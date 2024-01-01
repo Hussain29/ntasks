@@ -1,0 +1,85 @@
+
+<!-- res/layout/activity_add_client.xml -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:padding="15dp"
+    tools:context=".AddClientActivity">
+
+
+    <LinearLayout
+        android:id="@+id/buttonTextInputLayoutContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:padding="2dp"
+        android:layout_marginEnd="16dp">
+
+        <!-- TextInputLayout for Client Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutClientName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="9dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextClientName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New Client Name"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Add Client Button -->
+        <Button
+            android:id="@+id/buttonAddClient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_gravity="center_vertical"
+            android:textSize="12dp"
+            android:text="Add Client"
+            android:layout_marginEnd="4dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textClientD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clients"
+        android:textSize="20sp"
+        android:layout_below="@id/buttonTextInputLayoutContainer"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:textColor="@color/text"
+        android:layout_marginTop="20dp"/>
+
+    <!-- GridView to display a grid of client buttons -->
+    <GridView
+        android:id="@+id/gridViewClients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textClientD"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/gridview_border"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:columnWidth="100dp"
+        android:gravity="center"
+        android:numColumns="2"
+        android:padding="8dp"
+        android:stretchMode="columnWidth" />
+
+</RelativeLayout>

@@ -1,0 +1,159 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+    <TextView
+        android:id="@+id/LabelTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="left"
+        android:padding="12dp"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:layout_centerHorizontal="true"
+        android:text="Task I Have Assigned"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_bg"
+        android:layout_below="@id/LabelTitle"
+        android:gravity="left"
+        android:padding="14dp"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="3"
+        android:text="Task Name: "
+        android:textColor="@color/text"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textViewTaskDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTaskName"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_bg"
+        android:padding="14dp"
+        android:text="Task Description: "
+        android:textColor="@color/text"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewPriority"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTaskDescription"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_bg"
+        android:padding="14dp"
+        android:text="Priority: "
+        android:textColor="@color/text"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/textViewDeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewPriority"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_bg"
+        android:padding="14dp"
+        android:text="Deadline: "
+        android:textColor="@color/text"
+        android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textViewStatusLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewDeadline"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_bg"
+            android:padding="14dp"
+            android:text="Current Status:"
+            android:textColor="@color/text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewClientLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textViewStatusLabel"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/rounded_bg"
+            android:padding="14dp"
+            android:text="Client: "
+            android:textColor="@color/text"
+            android:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/textViewAssignedTo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewClientLabel"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/assignedby"
+        android:padding="14dp"
+        android:text="Assigned To:"
+        android:textColor="@color/white"/>
+
+    <!-- Spinner for Task Status -->
+    <Spinner
+        android:id="@+id/spinnerStatus"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewAssignedTo"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/changestatus"
+        android:entries="@array/status_options"
+        android:layout_centerHorizontal="true"
+        android:padding="12dp"
+        android:prompt="@string/change_status_prompt"
+        android:textColor="@android:color/white" />
+
+    <!-- Button to submit changes -->
+    <Button
+        android:id="@+id/buttonSubmit"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerStatus"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_bg"
+        android:onClick="submitChanges"
+        android:text="Submit Changes"
+        android:textColor="@color/btncolour"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/buttonEndTask"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonSubmit"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:text="End Task"
+        android:textColor="@color/endtask"
+        android:textSize="14dp"
+        android:textStyle="bold" />
+
+    </RelativeLayout>
+</ScrollView>

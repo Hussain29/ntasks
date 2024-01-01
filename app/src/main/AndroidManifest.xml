@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/osdesk"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/osdesk"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Ntasks"
+        tools:targetApi="31" >
+
+        <activity
+            android:name=".taskviewlist"
+            android:exported="false" />
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Master"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
+        <activity android:name=".AddTaskActivity" />
+        <activity android:name=".TaskDetailsActivity" />
+        <activity android:name=".MyAssignedTasksActivity" />
+        <activity android:name=".AssgnTaskDetailsActivity" />
+        <activity android:name=".AddClientActivity" />
+        <activity android:name=".ClientTasksActivity" />
+        <activity android:name=".AllTasksActivity" />
+        <activity android:name=".AllTasksDetailsActivity" />
+        <activity android:name=".PersonalTasksActivity" />
+
+        <activity
+            android:name=".Register"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" >
+
+
+        </activity>
+
+
+        <receiver android:name=".TaskNotificationReceiver"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.example.ntasks.NOTIFY_TASK" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".TestReceiver" />
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

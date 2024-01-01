@@ -1,0 +1,8 @@
+<!-- res/drawable/gridview_border.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#ffffff" /> <!-- Background color inside the border -->
+    <corners android:radius="8dp" /> <!-- Adjust the radius as needed -->
+    <stroke
+        android:color="#E4E7EA"
+        android:width="3dp" /> <!-- Border width -->
+</shape>

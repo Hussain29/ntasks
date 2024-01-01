@@ -1,0 +1,224 @@
+<!-- res/layout/activity_task_details.xml -->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".TaskDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+
+            android:elevation="122dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="4dp">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:id="@+id/textViewTaskName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/interf"
+        android:padding="5dp"
+        android:text="\t"
+        android:textColor="#5B5B5B"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPriority"
+
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="right"
+        android:fontFamily="@font/interf"
+        android:padding="5dp"
+        android:text=""
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="15dp">
+
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_calendar" />
+
+                    <TextView
+                        android:id="@+id/textViewDeadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/interf"
+                        android:text="\t\t" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="15dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_profile" />
+
+                    <TextView
+                        android:id="@+id/textViewAssignedBy"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/interf"
+                        android:text="\t\t" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="15dp">
+
+                    <ImageView
+                        android:id="@+id/imgClient"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/client" />
+
+                    <TextView
+                        android:id="@+id/textViewClientLabel"
+                        android:visibility="visible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/interf"
+                        android:text="\t" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewTaskDescription"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:fontFamily="@font/interf"
+                        android:paddingBottom="10dp"
+                        android:text="\t" />
+
+
+                    <TextView
+                        android:id="@+id/textViewStatusLabel"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Current Status:"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    <!-- Spinner for Task Status -->
+
+        <Spinner
+        android:id="@+id/spinnerStatus"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cvview"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/changestatus"
+        android:entries="@array/status_options"
+            android:layout_centerHorizontal="true"
+        android:padding="12dp"
+        android:prompt="@string/change_status_prompt"
+        android:textColor="@android:color/white" />
+
+
+    <TextView
+        android:id="@+id/linkTextView"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@id/btnDownloadAttachment"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_bg"
+        android:padding="16dp"
+        android:textColor="@color/text"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnDownloadAttachment"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/spinnerStatus"
+        android:layout_centerHorizontal="true"
+        android:padding="10dp"
+        android:layout_marginTop="14dp"
+        android:background="@drawable/rounded_bg"
+        android:text="Download Attachment"
+        android:textColor="@color/btncolour"
+        android:textSize="13dp"
+        android:onClick="downloadAttachment"
+        android:textStyle="bold" />
+    <!-- Button to submit changes -->
+
+    <Button
+        android:id="@+id/buttonSubmit"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linkTextView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_bg"
+        android:onClick="submitChanges"
+        android:text="Submit Changes"
+        android:textColor="@color/btncolour"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        />
+
+    </RelativeLayout>
+</ScrollView>

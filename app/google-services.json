@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "737241125118",
+    "project_id": "ntasks-11ec9",
+    "storage_bucket": "ntasks-11ec9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737241125118:android:d19f363c47827f86a115af",
+        "android_client_info": {
+          "package_name": "com.example.ntasks"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBx24AJ713EgbJ-F3Z6LQTq8xRDZEMpORg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

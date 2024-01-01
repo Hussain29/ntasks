@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="btncolour">#2438A7</color>
+    <!--<color name="main">#6750A4</color>-->
+    <color name="pri_medium">#FFA500</color>
+    <color name="pri">#0121D6</color>
+    <color name="text">#232323</color>
+    <color name="endtask">#E11010</color>
+    <color name="blueeee">#5743ca   </color>
+
+
+</resources>

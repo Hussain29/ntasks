@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Master">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="30dp">
+
+        <ImageView
+            android:id="@+id/imageView_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:adjustViewBounds="true"
+            android:maxWidth="180dp"
+            app:srcCompat="@drawable/osd" />
+    </LinearLayout>
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:background="@drawable/rectangle_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_marginTop="65dp"
+            android:fontFamily="@font/interf"
+            android:lineHeight="23sp"
+            android:text="Welcome!"
+            android:textColor="#949494"
+            android:textSize="26sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/interf"
+            android:lineHeight="27sp"
+            android:text="ONE STOP DASHBOARD"
+            android:textColor="#5B5B5B"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:columnCount="3"
+            android:paddingTop="60dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/thingstd"
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_row="0"
+                    android:layout_column="0"
+
+                    android:layout_marginLeft="12dp"
+
+                    android:elevation="12.2dp"
+                    android:text="Things\nTo Do"
+                    android:textColor="@color/text"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/interf"
+                    android:paddingLeft="29dp"
+                    android:text="Tasks"
+                    android:textColor="#5B5B5B" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="108dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="12dp"
+
+                    android:shadowDx="6"
+                    android:shadowDy="6"
+                    android:text="Clients"
+                    android:textColor="@color/text"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/interf"
+                    android:paddingLeft="49dp"
+                    android:text="Clients"
+                    android:textColor="#5B5B5B" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.Material3.Button.ElevatedButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="12dp"
+                    android:shadowDx="12"
+                    android:shadowDy="12"
+
+                    android:text="Rents"
+
+                    android:textColor="@color/text"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/interf"
+                    android:paddingLeft="49dp"
+                    android:text="Rents"
+                    android:textColor="#5B5B5B" />
+
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:shadowDx="12"
+                android:shadowDy="12"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:shadowDx="12"
+                android:shadowDy="12"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:shadowDx="12"
+                android:shadowDy="12"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+        </GridLayout>
+
+    </LinearLayout>
+</LinearLayout>

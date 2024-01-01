@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:padding="15dp">
+
+        <ImageView
+            android:id="@+id/imageView_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:adjustViewBounds="true"
+            android:maxWidth="150dp"
+            app:srcCompat="@drawable/osd" />
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView_logo"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <Button
+
+                android:id="@+id/button_login"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:shadowDx="6"
+                android:shadowDy="6"
+                android:drawableStart="@drawable/addbox"
+                android:text="Login"
+                android:textSize="16dp" />
+
+            <Button
+                android:id="@+id/button_register"
+                style="@style/Widget.Material3.Button.ElevatedButton"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/button_login"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+
+                android:text="Register"
+                android:textAlignment="center"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/button_addtask"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="130dp"
+            android:text="New Task"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:visibility="gone" /> <!-- Initially set to gone -->
+
+        <Button
+            android:id="@+id/button_viewtasks"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_asndby"
+            android:layout_marginTop="10dp"
+            android:text="Tasks To Do"
+            android:textAlignment="center"
+            android:textSize="16dp"
+
+            android:visibility="gone" /> <!-- Initially set to gone -->
+
+        <Button
+            android:id="@+id/button_logout"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonShowAllTasks"
+            android:layout_marginTop="10dp"
+            android:text="Log Out"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:visibility="gone" /> <!-- Initially set to gone -->
+
+        <Button
+            android:id="@+id/button_asndby"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_addtask"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Tasks Assigned"
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/button_addclient"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/buttonPersonalTasks"
+            android:layout_marginTop="10dp"
+            android:text="Clients"
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/buttonShowAllTasks"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_addclient"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Show All Tasks"
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/buttonPersonalTasks"
+            style="@style/Widget.Material3.Button.ElevatedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_viewtasks"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="Personal"
+            android:textSize="16dp"
+            android:visibility="gone" />
+
+
+    </RelativeLayout>
+
+</ScrollView>

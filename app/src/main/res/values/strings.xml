@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">1SD</string>
+    <string-array name="status_options">
+        <item>ASSIGNED</item>
+        <item>READ</item>
+        <item>IN PROGRESS</item>
+        <item>ON HOLD</item>
+        <item>NEED DISCUSSION</item>
+        <item>REVIEW</item>
+    </string-array>
+    <string name="change_status_prompt">Change Status &#709;</string>
+
+
+    <string name="Forgot"> <u>Forgot Your Password?</u>.</string>
+    <string name="noacc">Do not have Account? <u>Register</u>.</string>
+
+
+
+    </resources>
