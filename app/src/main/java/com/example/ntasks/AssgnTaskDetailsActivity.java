@@ -107,7 +107,8 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
                 "IN PROGRESS",
                 "ON HOLD",
                 "NEED DISCUSSION",
-                "REVIEW"
+                "REVIEW",
+                "DONE"
         };
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(

@@ -36,6 +36,7 @@ public class AllTasksActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 

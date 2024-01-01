@@ -43,8 +43,8 @@ Button Testify;
 Testify.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        Intent intent2 =new Intent(Master.this, testify.class);
-        startActivity(intent2);
+        ////Intent intent2 =new Intent(Master.this, testify.class);
+      ///  startActivity(intent2);
     }
 });
 
