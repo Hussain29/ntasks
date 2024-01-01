@@ -82,8 +82,7 @@ public class ClientTasksActivity extends AppCompatActivity implements MyAdapter.
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
                         String clientdb = dataSnapshot.child("clientdb").getValue(String.class);
-
-                        if (assignedUserdb != null && assignedUserdb.equals(currentUserName) && clientdb != null && clientdb.equals(selectedClient)) {
+                        if (clientdb != null && clientdb.equals(selectedClient)) {
                             String taskID = dataSnapshot.getKey();
                             String taskName = dataSnapshot.child("taskNamedb").getValue(String.class);
                             String taskDesc = dataSnapshot.child("taskDescriptiondb").getValue(String.class);
