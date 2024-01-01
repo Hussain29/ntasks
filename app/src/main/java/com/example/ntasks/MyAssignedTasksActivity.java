@@ -3,13 +3,16 @@ package com.example.ntasks;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,6 +42,16 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading tasks...");
         progressDialog.setCancelable(false);
         progressDialog.show(); // Show loading screen
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("Assigned Tasks");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_assigned_tasks);
@@ -123,9 +136,7 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Handle the home button click
-                Intent intent = new Intent(this, Master.class);
-                startActivity(intent);
-                finish(); // Close the current activity
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

@@ -3,6 +3,9 @@
     <style name="Base.Theme.Ntasks" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+
+        <item name="android:hardwareAccelerated">true</item>
     </style>
     <style name="Theme.Ntasks" parent="Base.Theme.Ntasks" />
 </resources>

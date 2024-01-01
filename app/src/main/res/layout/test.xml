@@ -104,13 +104,34 @@ Step 1 − Create a new project in Android Studio, go to File ⇒ New Project an
             android:orientation="vertical"
             android:padding="4dp">
 
-            <TextView
-                android:id="@+id/textViewTaskName"
-
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp">
+
+
+                <TextView
+                    android:id="@+id/textViewPriority"
+
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+
+                    android:fontFamily="@font/interf"
+                    android:text="\t\t\tpriority" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/interf"
-                android:text="\t"
+                android:text="\ttask name"
                 android:textColor="#5B5B5B"
 
 
@@ -120,7 +141,7 @@ Step 1 − Create a new project in Android Studio, go to File ⇒ New Project an
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="10dp"
-                android:paddingTop="30dp">
+                android:paddingTop="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,33 +164,13 @@ Step 1 − Create a new project in Android Studio, go to File ⇒ New Project an
                 android:paddingTop="15dp">
 
                 <TextView
+                    android:id="@+id/textViewDeadline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/interf"
-                    android:id="@+id/textViewDeadline"
 
-                    android:text="\t\t\t20-12-2023" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
-
-
-                <TextView
-                    android:id="@+id/textViewPriority"
-
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-
-                    android:fontFamily="@font/interf"
-                    android:text="\t\t\tpriority" />
+                    android:text="20-12-2023" />
 
             </LinearLayout>
 

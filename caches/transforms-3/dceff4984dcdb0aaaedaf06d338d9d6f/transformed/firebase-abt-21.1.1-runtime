@@ -1,0 +1,7 @@
+com.google.firebase.abt.AbtException
+com.google.firebase.abt.AbtExperimentInfo
+com.google.firebase.abt.BuildConfig
+com.google.firebase.abt.FirebaseABTesting
+com.google.firebase.abt.FirebaseABTesting$OriginService
+com.google.firebase.abt.component.AbtComponent
+com.google.firebase.abt.component.AbtRegistrar

@@ -188,6 +188,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.text.util.Linkify;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.URLUtil;
@@ -317,7 +318,17 @@ public class TaskDetailsActivity extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private void downloadAttachment() {
         // Get the original task ID associated with the displayed task
         String originalTaskId = task.getTaskID();

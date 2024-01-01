@@ -4,6 +4,7 @@ package com.example.ntasks;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,7 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -46,6 +49,16 @@ public class PersonalTasksActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_tasks);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("Personal Tasks");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         recyclerView = findViewById(R.id.allTasksRecycler);
         Header = findViewById(R.id.LabelTitle);
@@ -134,8 +147,7 @@ public class PersonalTasksActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Handle the home button click
-                finish(); // Close the current activity
-                return true;
+                onBackPressed();                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

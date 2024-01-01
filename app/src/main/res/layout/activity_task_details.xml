@@ -160,31 +160,27 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     <!-- Spinner for Task Status -->
+<LinearLayout
+    android:id="@+id/llsp"
+    android:layout_below="@id/cvview"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_height="wrap_content">
 
-        <Spinner
+    <Spinner
         android:id="@+id/spinnerStatus"
-        android:layout_width="220dp"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
         android:layout_below="@id/cvview"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/changestatus"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/rectbtn"
         android:entries="@array/status_options"
-            android:layout_centerHorizontal="true"
         android:padding="12dp"
         android:prompt="@string/change_status_prompt"
         android:textColor="@android:color/white" />
-
-
-    <TextView
-        android:id="@+id/linkTextView"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_below="@id/btnDownloadAttachment"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_bg"
-        android:padding="16dp"
-        android:textColor="@color/text"
-        android:textSize="16sp" />
 
     <Button
         android:id="@+id/btnDownloadAttachment"
@@ -193,14 +189,33 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/spinnerStatus"
         android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:layout_marginTop="14dp"
+        android:layout_margin="10dp"
         android:background="@drawable/rounded_bg"
+        android:onClick="downloadAttachment"
+        android:padding="12dp"
         android:text="Download Attachment"
         android:textColor="@color/btncolour"
-        android:textSize="13dp"
-        android:onClick="downloadAttachment"
+        android:textSize="10dp"
         android:textStyle="bold" />
+</LinearLayout>
+
+        <TextView
+
+
+            android:id="@+id/linkTextView"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_below="@id/llsp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/rounded_bg"
+            android:padding="16dp"
+            android:textColor="@color/text"
+            android:textSize="16sp" />
+
+
     <!-- Button to submit changes -->
 
     <Button

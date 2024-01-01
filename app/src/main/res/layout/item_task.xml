@@ -1,182 +1,212 @@
 <!-- res/layout/item_task.xml -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/rounded_outline_bg"
     android:padding="16dp">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:cardCornerRadius="10dp"
+        app:cardUseCompatPadding="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="4dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:paddingTop="5dp">
+
+
+                <TextView
+                    android:id="@+id/textViewPriority"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/interf"
+                    android:text=""
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textViewTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/interf"
+                android:text="task name"
+                android:textColor="#5B5B5B"
+                android:textSize="18dp"
+
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp">
+
+                <TextView
+                    android:id="@+id/textViewTaskDescription"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:fontFamily="@font/interf"
+                    android:maxLines="2"
+                    android:text="This example demonstrates how do I make a specific text on TextView bold in android.
+
+Step 1 − Create a new project in Android Studio, go to File ⇒ New Project and fill all required details to create a new project."
+
+                    android:textSize="15dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:id="@+id/textViewDeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/interf"
+                    android:paddingBottom="5dp"
+                    android:text="20-12-2023"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <!-- Task Name Section -->
-    <TextView
-        android:id="@+id/textViewTaskName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:paddingStart="10dp"
-        android:textSize="20sp"
-        android:textColor="#333333"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewTaskDescription"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+    <!--   <TextView
+           android:id="@+id/textViewTaskName"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="8dp"
+           android:paddingStart="10dp"
+           android:textSize="20sp"
+           android:textColor="#333333"
+           android:textStyle="bold"
+           app:layout_constraintBottom_toTopOf="@+id/textViewTaskDescription"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Task Description Section -->
-    <TextView
-        android:id="@+id/textViewTaskDescription"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:paddingStart="10dp"
-        android:padding="4dp"
-        android:textSize="17sp"
-        android:background="@drawable/rounded_bg"
-        android:textColor="@color/text"
-        app:layout_constraintBottom_toTopOf="@+id/textViewPriority"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+       &lt;!&ndash; Task Description Section &ndash;&gt;
+       <TextView
+           android:id="@+id/textViewTaskDescription"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="8dp"
+           android:paddingStart="10dp"
+           android:padding="4dp"
+           android:textSize="17sp"
+           android:background="@drawable/rounded_bg"
+           android:textColor="@color/text"
+           app:layout_constraintBottom_toTopOf="@+id/textViewPriority"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Priority Section -->
-    <TextView
-        android:id="@+id/textViewPriority"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_bg"
-        android:textColor="@color/white"
-        android:paddingStart="10dp"
-        android:padding="4dp"
-        android:textSize="17sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textViewDeadline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+       &lt;!&ndash; Priority Section &ndash;&gt;
+       <TextView
+           android:id="@+id/textViewPriority"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginBottom="8dp"
+           android:background="@drawable/rounded_bg"
+           android:textColor="@color/white"
+           android:paddingStart="10dp"
+           android:padding="4dp"
+           android:textSize="17sp"
+           android:textStyle="bold"
+           app:layout_constraintBottom_toTopOf="@+id/textViewDeadline"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"/>
 
-    <!-- Deadline Section -->
-    <TextView
-        android:id="@+id/textViewDeadline"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingStart="10dp"
-        android:padding="4dp"
-        android:textSize="17sp"
-        android:background="@drawable/rounded_bg"
-        android:textColor="@color/text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+       &lt;!&ndash; Deadline Section &ndash;&gt;
+       <TextView
+           android:id="@+id/textViewDeadline"
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:paddingStart="10dp"
+           android:padding="4dp"
+           android:textSize="17sp"
+           android:background="@drawable/rounded_bg"
+           android:textColor="@color/text"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintEnd_toEndOf="parent"
+           app:layout_constraintStart_toStartOf="parent"/>-->
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-<!--
- res/layout/item_task.xml
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@drawable/rounded_outline_bg"
-    android:padding="16dp">
-
-     ... (Other Views)
-
-
-
-
-
-    //////////////////
-
-
-    ///////////////////////
-
-
-     Task Name Section
-    <TextView
-        android:id="@+id/textViewTaskName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:textSize="20sp"
-        android:textColor="#333333"
-        android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
-
-     Task Description Section
-    <TextView
-        android:id="@+id/textViewTaskDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:textSize="16sp"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_bg"
-        android:layout_marginBottom="8dp"/>
-
-     Priority Section
-
-     Deadline Section
-    <TextView
-        android:id="@+id/textViewPriority"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/rounded_bg"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/textViewDeadline"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:textColor="@color/white"
-        android:background="@drawable/rounded_bg"
-        android:textSize="16sp"/>
-    </LinearLayout>
-
-
-
-    &lt;!&ndash; res/layout/item_task.xml &ndash;&gt;
+    <!--
+     res/layout/item_task.xml
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#756d"
+        android:background="@drawable/rounded_outline_bg"
         android:padding="16dp">
 
-        &lt;!&ndash; Task ID Section &ndash;&gt;
-       &lt;!&ndash; <TextView
-            android:id="@+id/textViewTaskID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text="dfgrtgfh"
-            android:textStyle="bold"
-            android:layout_marginBottom="8dp"/>
-    &ndash;&gt;
-        &lt;!&ndash; Task Name Section &ndash;&gt;
+         ... (Other Views)
+
+
+
+
+
+        //////////////////
+
+
+        ///////////////////////
+
+
+         Task Name Section
         <TextView
             android:id="@+id/textViewTaskName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:textSize="20sp"
-            android:textColor="@color/white"
+            android:textColor="#333333"
             android:textStyle="bold"
             android:layout_marginBottom="8dp"/>
 
-        &lt;!&ndash; Task Description Section &ndash;&gt;
+         Task Description Section
         <TextView
             android:id="@+id/textViewTaskDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:textSize="16sp"
+            android:textColor="@color/white"
             android:background="@drawable/rounded_bg"
             android:layout_marginBottom="8dp"/>
 
-        &lt;!&ndash; Priority Section &ndash;&gt;
+         Priority Section
 
-        &lt;!&ndash; Deadline Section &ndash;&gt;
+         Deadline Section
         <TextView
             android:id="@+id/textViewPriority"
             android:layout_width="match_parent"
@@ -184,6 +214,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/rounded_bg"
             android:paddingLeft="10dp"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <TextView
@@ -191,8 +222,71 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
+            android:textColor="@color/white"
             android:background="@drawable/rounded_bg"
             android:textSize="16sp"/>
-    </LinearLayout>
+        </LinearLayout>
 
--->
+
+
+        &lt;!&ndash; res/layout/item_task.xml &ndash;&gt;
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#756d"
+            android:padding="16dp">
+
+            &lt;!&ndash; Task ID Section &ndash;&gt;
+           &lt;!&ndash; <TextView
+                android:id="@+id/textViewTaskID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:text="dfgrtgfh"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+        &ndash;&gt;
+            &lt;!&ndash; Task Name Section &ndash;&gt;
+            <TextView
+                android:id="@+id/textViewTaskName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            &lt;!&ndash; Task Description Section &ndash;&gt;
+            <TextView
+                android:id="@+id/textViewTaskDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:textSize="16sp"
+                android:background="@drawable/rounded_bg"
+                android:layout_marginBottom="8dp"/>
+
+            &lt;!&ndash; Priority Section &ndash;&gt;
+
+            &lt;!&ndash; Deadline Section &ndash;&gt;
+            <TextView
+                android:id="@+id/textViewPriority"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/rounded_bg"
+                android:paddingLeft="10dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/textViewDeadline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10dp"
+                android:background="@drawable/rounded_bg"
+                android:textSize="16sp"/>
+        </LinearLayout>
+
+    -->

@@ -5,6 +5,7 @@ import android.app.DatePickerDialog;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ParseException;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,10 +23,13 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseApp;
@@ -92,6 +96,17 @@ public class AddTaskActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("Add Task");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
 
         taskRef = FirebaseDatabase.getInstance().getReference().child("Taskdata");
         userRef = FirebaseDatabase.getInstance().getReference().child("Registered Users");
@@ -197,11 +212,16 @@ public class AddTaskActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 progressDialog.show();
+
+
                 if (fileUri != null) {
                     uploadFileToStorage(fileUri);
                 } else {
                     insertTaskData();
                 }
+
+
+                progressDialog.hide();
             }
         });
     }
@@ -237,6 +257,7 @@ public class AddTaskActivity extends AppCompatActivity {
             }
         });
     }
+
     private void setupSpinnerWithUserNames() {
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -505,9 +526,8 @@ public class AddTaskActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(this, Master.class);
-                startActivity(intent);
-                finish();
+                // Handle the back button click
+                onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

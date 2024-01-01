@@ -94,12 +94,15 @@ public class taskviewlist extends AppCompatActivity {
 package com.example.ntasks;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -136,6 +139,16 @@ public class taskviewlist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_taskviewlist);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("Tasks");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         assignerdbf = getCurrentUser();
         Log.d("TaskData", "Name: " + assignerdbf);
@@ -239,9 +252,8 @@ public class taskviewlist extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Handle the home button click
-                Intent intent = new Intent(this, Master.class);
-                startActivity(intent);
-                finish(); // Optional: Close the current activity
+                onBackPressed();
+          // Optional: Close the current activity
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
