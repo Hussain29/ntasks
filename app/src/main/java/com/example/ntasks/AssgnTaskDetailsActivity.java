@@ -55,7 +55,7 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
         buttonEndTask = findViewById(R.id.buttonEndTask);
         clientTextView = findViewById(R.id.textViewClientLabel);// Initialize the End Task button
 
-        if(task.getClientdb() == null && task.getClientdb().equals("Select Client")){
+        if(task.getClientdb() == null || task.getClientdb().equals("Select Client")){
             clientTextView.setVisibility(View.GONE);
         }
         else{
