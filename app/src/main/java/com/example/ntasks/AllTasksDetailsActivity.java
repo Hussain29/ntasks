@@ -69,15 +69,13 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);
         clientTextView = findViewById(R.id.textViewClientLabel);
 
-        if(task.getAssignedUser().equals(task.getAssignerdb())){
-            assignedByTextView.setVisibility(View.GONE);
-            assignedToTextView.setVisibility(View.GONE);
-        }
-        if(task.getClientdb() == null || task.getClientdb().equals("Select Client") ){
+        Log.d("HUSH", "clients: " + task.getClientdb());
+        if(task.getClientdb() != null && task.getClientdb().equals("Select Client") ){
             clientTextView.setVisibility(View.GONE);
         }
         else{
             clientTextView.setText("Client:" + task.getClientdb());
+
         }
 
         // Set TextViews with task details

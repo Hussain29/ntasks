@@ -73,6 +73,7 @@ public class AllTasksActivity extends AppCompatActivity {
                     String statusdb = dataSnapshot.child("statusdb").getValue(String.class);
                     String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
                     String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
+                    String clientdb = dataSnapshot.child("clientdb").getValue(String.class);
 
 
                     Log.d("FirebaseData", "Task ID: " + taskID);
@@ -87,6 +88,7 @@ public class AllTasksActivity extends AppCompatActivity {
                         userlist.setStatusdb(statusdb);
                         userlist.setAssignerdb(assignerdb);
                         userlist.setAssignedUserdb(assignedUserdb);
+                        userlist.setClientdb(clientdb);
                         list.add(0, userlist);
                     }
                 }
