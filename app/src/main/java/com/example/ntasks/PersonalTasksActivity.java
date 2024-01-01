@@ -106,7 +106,7 @@ public class PersonalTasksActivity extends AppCompatActivity {
                             String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
                             String clientdb = dataSnapshot.child("clientdb").getValue(String.class);
 
-                            if (assignerdb != null && assignedUserdb != null && assignerdb.equals(assignedUserdb)) {
+                            if (assignerdb != null && assignedUserdb != null && assignerdb.equals(assignedUserdb) && !statusdb.equals("COMPLETED")) {
                                 Header.setVisibility(View.GONE);
                                 Userlist userlist = new Userlist();
                                 userlist.setTaskID(taskID);

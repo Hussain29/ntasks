@@ -92,7 +92,7 @@ public class AllTasksActivity extends AppCompatActivity {
 
                     Log.d("FirebaseData", "Task ID: " + taskID);
 
-                    if (assignerdb != null && assignedUserdb != null && !assignerdb.equals(assignedUserdb)) {
+                    if (assignerdb != null && assignedUserdb != null && !assignerdb.equals(assignedUserdb) && !statusdb.equals("COMPLETED")) {
                         Userlist userlist = new Userlist();
                         userlist.setTaskID(taskID);
                         userlist.setTaskName(taskName);

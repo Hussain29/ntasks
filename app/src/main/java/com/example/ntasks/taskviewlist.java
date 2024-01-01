@@ -201,17 +201,19 @@ public class taskviewlist extends AppCompatActivity {
                             String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
                             String clientdb = dataSnapshot.child("clientdb").getValue(String.class);
 
-                            Userlist userlist = new Userlist();
-                            userlist.setTaskID(taskID);
-                            userlist.setTaskName(taskName);
-                            userlist.setTaskDesc(taskDesc);
-                            userlist.setTaskprio(priority);
-                            userlist.setTaskdeadl(deadline);
-                            userlist.setStatusdb(statusdb);
-                            userlist.setAssignedUserdb(assignedUserdb);
-                            userlist.setAssignerdb(assignerdb);
-                            userlist.setClientdb(clientdb);
-                            list.add(0, userlist);
+                            if(!statusdb.equals("COMPLETED")) {
+                                Userlist userlist = new Userlist();
+                                userlist.setTaskID(taskID);
+                                userlist.setTaskName(taskName);
+                                userlist.setTaskDesc(taskDesc);
+                                userlist.setTaskprio(priority);
+                                userlist.setTaskdeadl(deadline);
+                                userlist.setStatusdb(statusdb);
+                                userlist.setAssignedUserdb(assignedUserdb);
+                                userlist.setAssignerdb(assignerdb);
+                                userlist.setClientdb(clientdb);
+                                list.add(0, userlist);
+                            }
                         }
                     }
 

@@ -180,14 +180,15 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
     }
 
     private void deleteTask(String taskID) {
-        // Delete the task from the database
+
+        // Update the status of the task to "COMPLETED" in the database
         DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference().child("Taskdata").child(taskID);
-        taskRef.removeValue();
+        taskRef.child("statusdb").setValue("COMPLETED");
 
         // You can also show a Toast message or handle UI updates to indicate success
-        Toast.makeText(AssgnTaskDetailsActivity.this, "Task deleted successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(AssgnTaskDetailsActivity.this, "Task marked as completed", Toast.LENGTH_SHORT).show();
 
-        // Close the current activity after deleting the task
+        // Close the current activity after updating the task status
         finish();
     }
 }

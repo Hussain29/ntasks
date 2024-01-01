@@ -98,16 +98,19 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
                             String statusdb = dataSnapshot.child("statusdb").getValue(String.class);
                             String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
 
-                            Userlist userlist = new Userlist();
-                            userlist.setTaskID(taskID);
-                            userlist.setTaskName(taskName);
-                            userlist.setTaskDesc(taskDesc);
-                            userlist.setTaskprio(priority);
-                            userlist.setTaskdeadl(deadline);
-                            userlist.setStatusdb(statusdb);
-                            userlist.setAssignedUserdb(assignedUserdb);
-                            userlist.setAssignerdb(assignerdb);
-                            list.add(0, userlist);
+
+                            if(!statusdb.equals("COMPLETED")) {
+                                Userlist userlist = new Userlist();
+                                userlist.setTaskID(taskID);
+                                userlist.setTaskName(taskName);
+                                userlist.setTaskDesc(taskDesc);
+                                userlist.setTaskprio(priority);
+                                userlist.setTaskdeadl(deadline);
+                                userlist.setStatusdb(statusdb);
+                                userlist.setAssignedUserdb(assignedUserdb);
+                                userlist.setAssignerdb(assignerdb);
+                                list.add(0, userlist);
+                            }
                         }
                     }
 
