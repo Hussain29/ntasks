@@ -44,15 +44,6 @@ public class MainActivity extends AppCompatActivity {
         }
         auth = FirebaseAuth.getInstance();
         // Get the ActionBar
-        ActionBar actionBar = getSupportActionBar();
-
-        // Set the title
-        actionBar.setTitle("Tasks");
-
-        // Enable the back button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
-        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         buttonLogin = findViewById(R.id.button_login);
         buttonRegister = findViewById(R.id.button_register);

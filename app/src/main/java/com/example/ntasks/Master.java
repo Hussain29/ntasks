@@ -19,15 +19,6 @@ Button Testify;
         Button thingstd=findViewById(R.id.thingstd);
 
         // Get the ActionBar
-        ActionBar actionBar = getSupportActionBar();
-
-        // Set the title
-        actionBar.setTitle("1SD");
-
-        // Enable the back button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
-        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
 
         Testify=findViewById(R.id.testify);
