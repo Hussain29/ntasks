@@ -9,16 +9,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-      android:layout_marginTop="50dp"      >
+        android:layout_marginTop="50dp">
 
         <ImageView
             android:id="@+id/imageView_logo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:adjustViewBounds="true"
             android:maxWidth="150dp"
-            android:layout_marginTop="30dp"
             app:srcCompat="@drawable/osd" />
 
 
@@ -67,13 +67,13 @@
 
         <LinearLayout
             android:id="@+id/card"
-            android:layout_marginTop="190dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
             android:layout_gravity="center"
+            android:layout_marginTop="190dp"
+            android:visibility="gone"
 
-           >
+            >
 
             <LinearLayout
 
@@ -109,27 +109,27 @@
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/interf"
                     android:text="Tasks To Do"
-                    android:visibility="gone"
                     android:textAlignment="center"
-
                     android:textSize="16dp"
+
+                    android:visibility="gone"
 
                     /> <!-- Initially set to gone -->
 
-                 <!-- Initially set to gone -->
+                <!-- Initially set to gone -->
 
                 <Button
                     android:id="@+id/button_asndby"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="190dp"
                     android:layout_height="60dp"
-                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/interf"
                     android:text="Tasks Assigned"
                     android:textAlignment="center"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/button_addclient"
@@ -137,13 +137,13 @@
                     android:layout_width="190dp"
                     android:layout_height="60dp"
                     android:layout_below="@id/buttonPersonalTasks"
-                    android:visibility="gone"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/interf"
                     android:text="Clients"
+                    android:textSize="16dp"
 
-                    android:textSize="16dp" />
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/buttonShowAllTasks"
@@ -151,52 +151,50 @@
                     android:layout_width="190dp"
                     android:layout_height="60dp"
                     android:layout_below="@id/button_addclient"
-                    android:visibility="gone"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/interf"
                     android:text="Show All Tasks"
                     android:textAlignment="center"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/buttonPersonalTasks"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="190dp"
                     android:layout_height="60dp"
-                    android:visibility="gone"
                     android:layout_below="@id/button_viewtasks"
-
                     android:layout_centerHorizontal="true"
+
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/interf"
                     android:text="Personal"
                     android:textAlignment="center"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
                 <Button
                     android:id="@+id/button_logout"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     android:layout_width="190dp"
                     android:layout_height="60dp"
-                    android:visibility="gone"
                     android:layout_below="@id/buttonShowAllTasks"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/interf"
                     android:text="Log Out"
-
                     android:textAlignment="center"
-                    android:textSize="16dp" />
+
+                    android:textSize="16dp"
+                    android:visibility="gone" />
 
 
             </LinearLayout>
 
         </LinearLayout>
-
-
 
 
     </RelativeLayout>
