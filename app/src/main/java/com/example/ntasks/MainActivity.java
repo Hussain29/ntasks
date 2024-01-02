@@ -1,10 +1,5 @@
 package com.example.ntasks;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -13,7 +8,12 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAddClient;
 
     private Button buttonPersonal;// Add this line
-
+    LinearLayout card1;
     private Button buttonAllTasks;
 
     @Override
@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         buttonAddClient = findViewById(R.id.button_addclient); // Initialize the button
         buttonAllTasks = findViewById(R.id.buttonShowAllTasks);
         buttonPersonal = findViewById(R.id.buttonPersonalTasks);
+        card1 = findViewById(R.id.card);
+
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(
@@ -192,6 +194,8 @@ public class MainActivity extends AppCompatActivity {
             buttonRegister.setVisibility(View.GONE);
             buttonAddTask.setVisibility(View.VISIBLE);
             buttonViewTasks.setVisibility(View.VISIBLE);
+            card1.setVisibility(View.VISIBLE);
+
             buttonAddClient.setVisibility(View.VISIBLE);
             buttonLogout.setVisibility(View.VISIBLE);
             buttonAssignedTasks.setVisibility(View.VISIBLE);
@@ -200,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             buttonLogin.setVisibility(View.VISIBLE);
             buttonRegister.setVisibility(View.VISIBLE);
+            card1.setVisibility(View.GONE);
             buttonAddTask.setVisibility(View.GONE);
             buttonViewTasks.setVisibility(View.GONE);
             buttonAddClient.setVisibility(View.GONE);

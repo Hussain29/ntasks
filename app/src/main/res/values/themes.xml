@@ -5,7 +5,7 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
 
-        <item name="android:hardwareAccelerated">true</item>
+
     </style>
     <style name="Theme.Ntasks" parent="Base.Theme.Ntasks" />
 </resources>
