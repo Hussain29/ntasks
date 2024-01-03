@@ -82,8 +82,9 @@ public class CompletedTasksActivity extends AppCompatActivity {
                         String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
 
                         // Check if the task is completed and user conditions are met
-                        if (statusdb != null && statusdb.equals("COMPLETED") &&
-                                (assignedUserdb.equals(currentUserName) || assignerdb.equals(currentUserName))) {
+                        if (statusdb != null && statusdb.equals("COMPLETED")
+                                && ((assignerdb.equals(currentUserName) && assignedUserdb.equals(currentUserName))
+                                || !assignerdb.equals(assignedUserdb))) {
 
                             // Task is completed and meets user conditions, retrieve task details
                             String taskID = dataSnapshot.getKey();
