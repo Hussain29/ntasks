@@ -29,15 +29,14 @@
 
                 <TextView
                     android:id="@+id/textViewTaskName"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_130sdp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="4dp"
                     android:fontFamily="@font/interf"
                     android:maxLines="1"
                     android:paddingLeft="@dimen/_3sdp"
                     android:text="task name"
                     android:textColor="#5B5B5B"
-
+android:layout_marginStart="@dimen/_3sdp"
                     android:textSize="@dimen/_13ssp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -111,12 +110,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/_5sdp">
+                android:paddingLeft="@dimen/_3sdp">
 
                 <TextView
                     android:id="@+id/textViewTaskDescription"
 
-                    android:layout_width="@dimen/_230sdp"
+                    android:layout_width="@dimen/_215sdp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:fontFamily="@font/interf"
@@ -134,7 +133,7 @@ Step 1 − Create a new project in Android Studio, go to File ⇒ New Project an
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginRight="@dimen/_5sdp"
+                    android:layout_marginRight="@dimen/_3sdp"
                     android:fontFamily="@font/interf"
                     android:text="20-12-2023"
                     android:textSize="@dimen/_11ssp"

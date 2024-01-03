@@ -190,9 +190,8 @@
             android:layout_marginEnd="16dp" />
         <Spinner
             style="@style/Widget.AppCompat.Spinner.DropDown"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="45dp"
-
             android:layout_below="@id/spinnerAssignedUser3"
             android:id="@+id/spinnerClients"
             android:layout_marginStart="@dimen/_116sdp"

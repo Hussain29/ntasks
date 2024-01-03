@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout card1;
     private Button buttonAllTasks;
 
+    private Button buttonCompletedTasks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         buttonAddClient = findViewById(R.id.button_addclient); // Initialize the button
         buttonAllTasks = findViewById(R.id.buttonShowAllTasks);
         buttonPersonal = findViewById(R.id.buttonPersonalTasks);
+        buttonCompletedTasks = findViewById(R.id.buttonCompletedTasks);
         card1 = findViewById(R.id.card);
         imagelogo=findViewById(R.id.imageView_logo);
 
@@ -169,6 +172,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        buttonCompletedTasks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open the AddClientActivity when the "Add Client" button is clicked
+                Intent intent = new Intent(MainActivity.this, CompletedTasksActivity.class);
+                startActivity(intent);
+            }
+        });
+
         // Hide buttons if the user is logged in
         updateUI(auth.getCurrentUser());
     }
@@ -198,7 +210,7 @@ public class MainActivity extends AppCompatActivity {
             buttonAddTask.setVisibility(View.VISIBLE);
             buttonViewTasks.setVisibility(View.VISIBLE);
             card1.setVisibility(View.VISIBLE);
-
+            buttonCompletedTasks.setVisibility(View.VISIBLE);
             buttonAddClient.setVisibility(View.VISIBLE);
             buttonLogout.setVisibility(View.VISIBLE);
             buttonAssignedTasks.setVisibility(View.VISIBLE);
@@ -208,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
             buttonLogin.setVisibility(View.VISIBLE);
             buttonRegister.setVisibility(View.VISIBLE);
             card1.setVisibility(View.GONE);
+            buttonCompletedTasks.setVisibility(View.GONE);
             buttonAddTask.setVisibility(View.GONE);
             buttonViewTasks.setVisibility(View.GONE);
             buttonAddClient.setVisibility(View.GONE);

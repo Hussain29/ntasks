@@ -145,7 +145,6 @@
                         android:fontFamily="@font/interf"
                         android:text="Clients"
                         android:textSize="16dp"
-
                         android:visibility="gone" />
 
                     <Button
@@ -170,11 +169,25 @@
                         android:layout_height="@dimen/_60sdp"
                         android:layout_below="@id/button_viewtasks"
                         android:layout_centerHorizontal="true"
-
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:fontFamily="@font/interf"
                         android:text="Personal"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/buttonCompletedTasks"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/buttonPersonalTasks"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Completed Tasks"
                         android:textAlignment="center"
                         android:textSize="16dp"
                         android:visibility="gone" />
@@ -190,9 +203,10 @@
                         android:fontFamily="@font/interf"
                         android:text="Log Out"
                         android:textAlignment="center"
-
                         android:textSize="16dp"
                         android:visibility="gone" />
+
+
 
 
                 </LinearLayout>

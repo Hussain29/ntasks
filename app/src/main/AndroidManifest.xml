@@ -42,6 +42,8 @@
         <activity android:name=".AllTasksActivity" />
         <activity android:name=".AllTasksDetailsActivity" />
         <activity android:name=".PersonalTasksActivity" />
+        <activity android:name=".CompletedTasksActivity" />
+
         <activity
             android:name=".Register"
             android:exported="false" />

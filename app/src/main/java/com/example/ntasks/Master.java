@@ -27,13 +27,13 @@ public class Master extends AppCompatActivity {
             getSupportActionBar().hide();
 
         }
-        Testify.setOnClickListener(new View.OnClickListener() {
+        /*Testify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent2 =new Intent(Master.this, testify.class);
                  startActivity(intent2);
             }
-        });
+        });*/
 
         clientbtn.setOnClickListener(new View.OnClickListener() {
             @Override
