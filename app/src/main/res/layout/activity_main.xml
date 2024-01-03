@@ -1,202 +1,204 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
-
-        <ImageView
-            android:id="@+id/imageView_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
-            android:adjustViewBounds="true"
-            android:maxWidth="150dp"
-            app:srcCompat="@drawable/osd" />
-
-
-        <LinearLayout
-            android:id="@+id/ll1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/imageView_logo"
-            android:layout_marginTop="1dp"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
-
-            <Button
-
-                android:id="@+id/button_login"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="160dp"
-                android:background="@drawable/rectbtn"
-                android:drawableStart="@drawable/addbox"
-                android:fontFamily="@font/interf"
-
-                android:shadowDx="6"
-                android:shadowDy="6"
-                android:text="Login"
-                android:textSize="16dp" />
-
-            <Button
-                android:id="@+id/button_register"
-                style="@style/Widget.Material3.Button.ElevatedButton.Icon"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-
-                android:layout_below="@id/button_login"
-                android:layout_centerHorizontal="true"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/interf"
-
-                android:text="Register"
-                android:textAlignment="center"
-                android:textSize="16dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/card"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_marginTop="190dp"
-            android:visibility="gone"
+            android:layout_marginTop="@dimen/_50sdp">
 
-            >
+            <ImageView
+                android:id="@+id/imageView_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:adjustViewBounds="true"
+                android:maxWidth="150dp"
+                app:srcCompat="@drawable/osd" />
+
 
             <LinearLayout
-
+                android:id="@+id/ll1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageView_logo"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/button_addtask"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="40dp"
-                    android:fontFamily="@font/interf"
-                    android:foregroundGravity="center"
-                    android:gravity="center"
-                    android:text="New Task"
-                    android:textAlignment="center"
-                    android:textSize="16dp"
-                    android:visibility="gone"
-                    app:icon="@drawable/addbox" /> <!-- Initially set to gone -->
 
-                <Button
-                    android:id="@+id/button_viewtasks"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/button_asndby"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/interf"
-                    android:text="Tasks To Do"
-                    android:textAlignment="center"
-                    android:textSize="16dp"
-
-                    android:visibility="gone"
-
-                    /> <!-- Initially set to gone -->
-
-                <!-- Initially set to gone -->
-
-                <Button
-                    android:id="@+id/button_asndby"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/interf"
-                    android:text="Tasks Assigned"
-                    android:textAlignment="center"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
-
-                <Button
-                    android:id="@+id/button_addclient"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/buttonPersonalTasks"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/interf"
-                    android:text="Clients"
-                    android:textSize="16dp"
-
-                    android:visibility="gone" />
-
-                <Button
-                    android:id="@+id/buttonShowAllTasks"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/button_addclient"
+                    android:id="@+id/button_login"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/_60sdp"
+                    android:background="@drawable/rectbtn"
+                    android:drawableStart="@drawable/addbox"
                     android:fontFamily="@font/interf"
-                    android:text="Show All Tasks"
-                    android:textAlignment="center"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
+
+                    android:shadowDx="6"
+                    android:shadowDy="6"
+                    android:text="Login"
+                    android:textSize="16dp" />
 
                 <Button
-                    android:id="@+id/buttonPersonalTasks"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/button_viewtasks"
+                    android:id="@+id/button_register"
+                    style="@style/Widget.Material3.Button.ElevatedButton.Icon"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+
+                    android:layout_below="@id/button_login"
                     android:layout_centerHorizontal="true"
-
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="10dp"
                     android:fontFamily="@font/interf"
-                    android:text="Personal"
-                    android:textAlignment="center"
-                    android:textSize="16dp"
-                    android:visibility="gone" />
 
-                <Button
-                    android:id="@+id/button_logout"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                    android:layout_width="190dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@id/buttonShowAllTasks"
+                    android:text="Register"
+                    android:textAlignment="center"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_120sdp"
+                android:visibility="gone"
+
+                >
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/interf"
-                    android:text="Log Out"
-                    android:textAlignment="center"
+                    android:orientation="vertical">
 
-                    android:textSize="16dp"
-                    android:visibility="gone" />
+                    <Button
+                        android:id="@+id/button_addtask"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_40sdp"
+                        android:fontFamily="@font/interf"
+                        android:foregroundGravity="center"
+                        android:gravity="center"
+                        android:text="New Task"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:visibility="gone"
+                        app:icon="@drawable/addbox" /> <!-- Initially set to gone -->
 
+                    <Button
+                        android:id="@+id/button_viewtasks"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/button_asndby"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Tasks To Do"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+
+                        android:visibility="gone"
+
+                        /> <!-- Initially set to gone -->
+
+                    <!-- Initially set to gone -->
+
+                    <Button
+                        android:id="@+id/button_asndby"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Tasks Assigned"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/button_addclient"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/buttonPersonalTasks"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Clients"
+                        android:textSize="16dp"
+
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/buttonShowAllTasks"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/button_addclient"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Show All Tasks"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/buttonPersonalTasks"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/button_viewtasks"
+                        android:layout_centerHorizontal="true"
+
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Personal"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+
+                    <Button
+                        android:id="@+id/button_logout"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="190dp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@id/buttonShowAllTasks"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:fontFamily="@font/interf"
+                        android:text="Log Out"
+                        android:textAlignment="center"
+
+                        android:textSize="16dp"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </RelativeLayout>
 
 
-    </RelativeLayout>
-
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.core.widget.NestedScrollView>
