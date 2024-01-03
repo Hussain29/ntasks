@@ -46,13 +46,13 @@
 
     <TextView
         android:id="@+id/textViewPriority"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
+        android:layout_width="@dimen/_21sdp"
+        android:layout_height="@dimen/_21sdp"
         android:layout_gravity="right"
         android:fontFamily="@font/interf"
         android:padding="5dp"
         android:text=""
-        android:textColor="@color/white"
+        android:textColor="@android:color/transparent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
