@@ -69,17 +69,19 @@ public class CompletedTasksActivity extends AppCompatActivity {
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
 
                         String statusdb = dataSnapshot.child("statusdb").getValue(String.class);
+                        String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
+                        String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
 
-                        // Check if the task is completed
-                        if (statusdb != null && statusdb.equals("COMPLETED")) {
-                            // Task is completed, retrieve task details
+                        // Check if the task is completed and user conditions are met
+                        if (statusdb != null && statusdb.equals("COMPLETED") &&
+                                (assignedUserdb.equals(currentUserName) || assignerdb.equals(currentUserName))) {
+
+                            // Task is completed and meets user conditions, retrieve task details
                             String taskID = dataSnapshot.getKey();
                             String taskName = dataSnapshot.child("taskNamedb").getValue(String.class);
                             String taskDesc = dataSnapshot.child("taskDescriptiondb").getValue(String.class);
                             String priority = dataSnapshot.child("prioritydb").getValue(String.class);
                             String deadline = dataSnapshot.child("deadlinedb").getValue(String.class);
-                            String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
-                            String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
                             String clientdb = dataSnapshot.child("clientdb").getValue(String.class);
 
                             Userlist userlist = new Userlist();

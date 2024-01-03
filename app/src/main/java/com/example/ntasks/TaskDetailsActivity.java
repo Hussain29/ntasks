@@ -194,6 +194,7 @@ import android.webkit.CookieManager;
 import android.webkit.URLUtil;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -222,7 +223,9 @@ public class TaskDetailsActivity extends AppCompatActivity {
     private Button buttonSubmit;
     private Button btnDownloadAttachment; // Add the Download Attachment button
 
-    private TaskModel task; // Add a member variable to store the TaskModel
+    private TaskModel task;
+
+    private ImageView clientimg;// Add a member variable to store the TaskModel
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -249,18 +252,20 @@ public class TaskDetailsActivity extends AppCompatActivity {
         buttonSubmit = findViewById(R.id.buttonSubmit);
         attachmentTextView = findViewById(R.id.linkTextView);
         btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);
-        clientTextView = findViewById(R.id.textViewClientLabel);// Initialize the Download Attachment button
+        clientTextView = findViewById(R.id.textViewClientLabel);
+        clientimg = findViewById(R.id.imgClient);// Initialize the Download Attachment button
 
         // Set TextViews with task details
         taskNameTextView.setText("Task Name: " + task.getTaskName());
         taskDescriptionTextView.setText("Task Description: " + task.getTaskDescription());
         priorityTextView.setText("Priority: " + task.getPriority());
-        deadlineTextView.setText("Deadline: " + task.getDeadline());
+        deadlineTextView.setText("Assigned On: " + task.getDeadline());
         statusTextView.setText("Current Status: " + task.getStatus());
         assignedByTextView.setText("Assigned By: " + task.getAssignerdb());
 
         if(task.getClientdb() == null || task.getClientdb().equals("Select Client")){
             clientTextView.setVisibility(View.GONE);
+            clientimg.setVisibility(View.GONE);
         }
         else{
             clientTextView.setText("Client:" + task.getClientdb());

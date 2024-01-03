@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,6 +41,8 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
     private Button btnDownloadAttachment;
     private Button buttonSubmit;
     private TextView clientTextView;
+
+    private ImageView clientimg;
 
 
     private TaskModel task;
@@ -82,10 +85,12 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         attachmentTextView = findViewById(R.id.linkTextView);
         btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);
         clientTextView = findViewById(R.id.textViewClientLabel);
+        clientimg = findViewById(R.id.imgClient);
 
         Log.d("HUSH", "clients: " + task.getClientdb());
         if(task.getClientdb() != null && task.getClientdb().equals("Select Client") ){
             clientTextView.setVisibility(View.GONE);
+            clientimg.setVisibility(View.GONE);
         }
         else{
             clientTextView.setText("Client:" + task.getClientdb());
@@ -96,7 +101,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         taskNameTextView.setText("Task Name: " + task.getTaskName());
         taskDescriptionTextView.setText("Task Description: " + task.getTaskDescription());
         priorityTextView.setText("Priority: " + task.getPriority());
-        deadlineTextView.setText("Deadline: " + task.getDeadline());
+        deadlineTextView.setText("Assigned On: " + task.getDeadline());
         statusTextView.setText("Current Status: " + task.getStatus());
         assignedByTextView.setText("Assigned By: " + task.getAssignerdb());
         assignedToTextView.setText("Assigned To: " + task.getAssignedUser());

@@ -132,6 +132,8 @@ public class AddTaskActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
         spinnerClients = findViewById(R.id.spinnerClients);
 
+
+        setCurrentDate();
         setupSpinnerWithUserNames();
         setupSpinnerWithClients();
 
@@ -183,12 +185,12 @@ public class AddTaskActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseRef = database.getReference("Attachments");
 
-        editTextDeadline.setOnClickListener(new View.OnClickListener() {
+        /*editTextDeadline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showDatePickerDialog();
             }
-        });
+        });*/
 
         checkBoxSendToAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -224,6 +226,13 @@ public class AddTaskActivity extends AppCompatActivity {
                 progressDialog.hide();
             }
         });
+    }
+
+    private void setCurrentDate() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+        String formattedDate = dateFormat.format(calendar.getTime());
+        editTextDeadline.setText(formattedDate);
     }
 
 
@@ -338,45 +347,6 @@ public class AddTaskActivity extends AppCompatActivity {
 
         return taskIds;
     }
-
-
-    /*private List<String> insertTaskData() {
-        // Insert task data to Firebase
-        String taskNamedb = editTextTaskName.getText().toString();
-        String taskDescriptiondb = editTextTaskDescription.getText().toString();
-        String prioritydb = getSelectedPriority();
-        String deadlinedb = editTextDeadline.getText().toString();
-        String assignedUserdb1 = spinnerAssignedUser1.getSelectedItem().toString();
-        String assignedUserdb2 = spinnerAssignedUser2.getSelectedItem().toString();
-        String assignedUserdb3 = spinnerAssignedUser3.getSelectedItem().toString();
-        String clientdb = spinnerClients.getSelectedItem().toString();
-        String assignerdb = getCurrentUser();
-        String defaultStatus = "ASSIGNED";
-
-        if (TextUtils.isEmpty(taskNamedb) || TextUtils.isEmpty(taskDescriptiondb) || TextUtils.isEmpty(prioritydb) || TextUtils.isEmpty(deadlinedb) || assignedUserdb1.equals("Select User")) {
-            Toast.makeText(this, "Please fill all the necessary fields", Toast.LENGTH_SHORT).show();
-            return Collections.emptyList();
-        }
-
-        List<String> taskIds = new ArrayList<>();
-
-        // Add a new task for each selected user
-        if (!assignedUserdb1.equals("Select User")) {
-            taskIds.add(addTaskForUser(taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, defaultStatus, assignedUserdb1, clientdb));
-        }
-        if (!assignedUserdb2.equals("Select User")) {
-            taskIds.add(addTaskForUser(taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, defaultStatus, assignedUserdb2, clientdb));
-        }
-        if (!assignedUserdb3.equals("Select User")) {
-            taskIds.add(addTaskForUser(taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, defaultStatus, assignedUserdb3, clientdb));
-        }
-
-        Toast.makeText(AddTaskActivity.this, "Task sent!", Toast.LENGTH_SHORT).show();
-        Log.d("TaskData", "Name: " + assignerdb);
-        finish();
-
-        return taskIds;
-    }*/
 
 
     private String getSelectedPriority() {
@@ -499,7 +469,7 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
 
-    private void showDatePickerDialog() {
+    /*private void showDatePickerDialog() {
         final Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -521,7 +491,7 @@ public class AddTaskActivity extends AppCompatActivity {
 
         datePickerDialog.show();
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

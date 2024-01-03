@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
     private Button buttonSubmit;
     private Button buttonEndTask; // Add the End Task button
     private TaskModel task;
+
+    private ImageView clientimg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,10 +70,12 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
         assignedToTextView = findViewById(R.id.textViewAssignedTo);
         buttonSubmit = findViewById(R.id.buttonSubmit);
         buttonEndTask = findViewById(R.id.buttonEndTask);
-        clientTextView = findViewById(R.id.textViewClientLabel);// Initialize the End Task button
+        clientTextView = findViewById(R.id.textViewClientLabel);
+        clientimg = findViewById(R.id.imgClient);// Initialize the End Task button
 
         if(task.getClientdb() == null || task.getClientdb().equals("Select Client")){
             clientTextView.setVisibility(View.GONE);
+            clientimg.setVisibility(View.GONE);
         }
         else{
             clientTextView.setText("Client:" + task.getClientdb());
@@ -80,7 +85,7 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
         taskNameTextView.setText("Task Name: " + task.getTaskName());
         taskDescriptionTextView.setText("Task Description: " + task.getTaskDescription());
         priorityTextView.setText("Priority: " + task.getPriority());
-        deadlineTextView.setText("Deadline: " + task.getDeadline());
+        deadlineTextView.setText("Assigned On: " + task.getDeadline());
         statusTextView.setText("Current Status: " + task.getStatus());
         assignedToTextView.setText("Assigned To: " + task.getAssignedUser());
 
@@ -161,7 +166,7 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
 
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to delete this task?")
+        builder.setMessage("Are you sure you want to end this task?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
