@@ -182,7 +182,7 @@
             android:layout_below="@id/cvdet"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
-            android:background="@drawable/changestatus"
+            android:background="@drawable/spinnerbg"
             android:entries="@array/status_options"
             android:padding="12dp"
             android:prompt="@string/change_status_prompt"

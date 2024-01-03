@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonAssignedTasks;
     private Button buttonLogout; // Add this line
     private Button buttonAddClient;
-
+    private ImageView imagelogo;
     private Button buttonPersonal;// Add this line
     LinearLayout card1;
     private Button buttonAllTasks;
@@ -55,6 +56,17 @@ public class MainActivity extends AppCompatActivity {
         buttonAllTasks = findViewById(R.id.buttonShowAllTasks);
         buttonPersonal = findViewById(R.id.buttonPersonalTasks);
         card1 = findViewById(R.id.card);
+        imagelogo=findViewById(R.id.imageView_logo);
+
+
+
+        imagelogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent8=new Intent(MainActivity.this,Master.class);
+                startActivity(intent8);
+            }
+        });
 
 
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {

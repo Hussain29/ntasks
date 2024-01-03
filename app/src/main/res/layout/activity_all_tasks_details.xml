@@ -195,7 +195,7 @@
         android:layout_height="55dp"
         android:layout_centerHorizontal="true"
         android:layout_margin="6dp"
-        android:background="@drawable/changestatus"
+        android:background="@drawable/spinnerbg"
         android:entries="@array/status_options"
         android:padding="12dp"
         android:prompt="@string/change_status_prompt"

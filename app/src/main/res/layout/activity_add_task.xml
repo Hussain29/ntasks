@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/interf"
             android:padding="18dp"
-            android:text="Task Details"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:text="TASK DETAILS"
             android:textColor="#5B5B5B"
             android:textSize="15sp"
             android:textStyle="bold" />
@@ -39,14 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:elevation="12dp"
-                android:hint="Task Name"
+                android:hint="TASK NAME"
 
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTaskName"
                     android:layout_width="match_parent"
-
+                    android:inputType="textCapCharacters"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/interf" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,7 +79,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/interf"
-                    android:hint="Task Description"
+                    android:hint="TASK DESCRIPTION"
                     android:inputType="textMultiLine"
                     android:minLines="4" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -100,7 +101,7 @@
                 android:layout_marginEnd="10dp"
                 android:checked="true"
                 android:padding="10dp"
-                android:text="High" />
+                android:text="HIGH" />
 
             <RadioButton
                 android:id="@+id/radioButtonMedium"
@@ -109,7 +110,7 @@
                 android:layout_marginEnd="10dp"
 
                 android:padding="10dp"
-                android:text="Medium" />
+                android:text="MEDIUM" />
 
             <RadioButton
                 android:id="@+id/radioButtonLow"
@@ -118,7 +119,7 @@
                 android:layout_marginEnd="10dp"
 
                 android:padding="10dp"
-                android:text="Low" />
+                android:text="LOW" />
         </RadioGroup>
         <!-- Deadline -->
         <com.google.android.material.textfield.TextInputLayout
@@ -140,7 +141,7 @@
                     android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:focusable="false"
-                    android:hint="Deadline"
+                    android:hint="DEADLINE"
                     android:inputType="none" />
 
 
@@ -197,7 +198,7 @@
             android:layout_marginStart="@dimen/_116sdp"
             android:layout_marginEnd="@dimen/_116sdp"
             android:layout_gravity="center"
-            android:background="@drawable/rectbtn"
+            android:background="@drawable/spinnerbg"
 
           />
         <!-- Checkbox -->
@@ -229,7 +230,7 @@
         <!-- Add Task Button -->
         <Button
             android:id="@+id/addTaskButton"
-            style="@style/Widget.Material3.Button.ElevatedButton"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/buttonSendToAll"
@@ -238,7 +239,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="20sp"
-            android:text="Add Task"
+            android:text="ADD TASK"
             android:textSize="14dp" />
 
 

@@ -176,7 +176,7 @@
         android:layout_below="@id/cvview"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:background="@drawable/rectbtn"
+        android:background="@drawable/spinnerbg"
         android:entries="@array/status_options"
         android:padding="12dp"
         android:prompt="@string/change_status_prompt"

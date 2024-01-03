@@ -138,6 +138,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.taskDescriptiondb.setText(userlist.getTaskDesc());
         holder.prioritydb.setText(userlist.getTaskprio());
         holder.deadlinedb.setText(userlist.getTaskdeadl());
+        holder.assto.setText(userlist.getAssignedUserdb());
+        holder.assby.setText(userlist.getAssignerdb());
 
         String priority = userlist.getTaskprio();
 
@@ -178,7 +180,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView taskNamedb, taskDescriptiondb, prioritydb, deadlinedb; // statusdb
+        TextView taskNamedb, taskDescriptiondb, prioritydb, deadlinedb,assto,assby; // statusdb
         OnItemClickListener onItemClickListener;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
@@ -188,6 +190,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             taskDescriptiondb = itemView.findViewById(R.id.textViewTaskDescription);
             prioritydb = itemView.findViewById(R.id.textViewPriority);
             deadlinedb = itemView.findViewById(R.id.textViewDeadline);
+            assto=itemView.findViewById(R.id.assto);
+            assby=itemView.findViewById(R.id.assby);
 
             // Add the following line if you've added a new TextView for displaying status
             // statusdb = itemView.findViewById(R.id.textViewStatus);

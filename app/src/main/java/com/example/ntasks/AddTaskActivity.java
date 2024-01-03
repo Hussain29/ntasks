@@ -382,11 +382,11 @@ public class AddTaskActivity extends AppCompatActivity {
     private String getSelectedPriority() {
         int selectedId = radioGroupPriority.getCheckedRadioButtonId();
         if (selectedId == R.id.radioButtonHigh) {
-            return "High";
+            return "HIGH";
         } else if (selectedId == R.id.radioButtonMedium) {
-            return "Medium";
+            return "MEDIUM";
         } else if (selectedId == R.id.radioButtonLow) {
-            return "Low";
+            return "LOW";
         }
         return "";
     }

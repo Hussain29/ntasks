@@ -32,8 +32,9 @@
                 android:id="@+id/editTextClientName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapCharacters"
                 android:hint="New Client Name"
-                android:inputType="text" />
+                 />
 
         </com.google.android.material.textfield.TextInputLayout>
 

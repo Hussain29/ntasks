@@ -3,102 +3,251 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_outline_bg"
-    android:padding="16dp">
+    android:paddingLeft="@dimen/_2sdp">
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
 
         android:layout_height="wrap_content"
-        android:elevation="8dp"
-        app:cardCornerRadius="10dp"
+        android:elevation="4dp"
+        app:cardCornerRadius="5dp"
         app:cardUseCompatPadding="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="4dp">
+            android:padding="@dimen/_2sdp">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:paddingLeft="10dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_3sdp"
                 android:paddingTop="5dp">
+
+                <TextView
+                    android:id="@+id/textViewTaskName"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/interf"
+                    android:maxLines="1"
+                    android:paddingLeft="@dimen/_3sdp"
+                    android:text="task name"
+                    android:textColor="#5B5B5B"
+
+                    android:textSize="@dimen/_13ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/textViewPriority"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\tA.By:\t"/>
+
+                        <TextView
+                            android:id="@+id/assby"
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="by++" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\tA.To:\t"/>
+
+
+                        <TextView
+                            android:id="@+id/assto"
+
+                            android:layout_width="@dimen/_100sdp"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:text="A.To"
+
+                            />
+                    </LinearLayout>
+                </LinearLayout>
 
 
                 <TextView
                     android:id="@+id/textViewPriority"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/_21sdp"
+                    android:layout_height="@dimen/_21sdp"
                     android:layout_gravity="right"
+                    android:background="@drawable/rounded_bg_priohigh"
                     android:fontFamily="@font/interf"
                     android:text=""
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="14dp" />
+                    android:textColor="@android:color/transparent"
+                    android:textSize="@dimen/_16ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewTaskName"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/interf"
-                android:text="task name"
-                android:textColor="#5B5B5B"
-                android:textSize="18dp"
-
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="10dp"
-                android:paddingTop="10dp">
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/_5sdp">
 
                 <TextView
                     android:id="@+id/textViewTaskDescription"
 
-                    android:layout_width="wrap_content"
+                    android:layout_width="@dimen/_230sdp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
                     android:fontFamily="@font/interf"
-                    android:maxLines="2"
+                    android:maxLines="1"
                     android:text="This example demonstrates how do I make a specific text on TextView bold in android.
 
 Step 1 − Create a new project in Android Studio, go to File ⇒ New Project and fill all required details to create a new project."
 
-                    android:textSize="15dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="12dp">
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textViewDeadline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="@dimen/_5sdp"
                     android:fontFamily="@font/interf"
-                    android:paddingBottom="5dp"
                     android:text="20-12-2023"
-                    android:textSize="14dp" />
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
+    <!--
+    old itemtask large start<<<
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:elevation="8dp"
+            app:cardCornerRadius="10dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="5dp">
+
+
+                    <TextView
+                        android:id="@+id/textViewPriority"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:fontFamily="@font/interf"
+                        android:text=""
+                        android:textColor="@android:color/transparent"
+                        android:textAlignment="center"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textViewTaskName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/interf"
+                    android:text="task name"
+                    android:textColor="#5B5B5B"
+                    android:textSize="18dp"
+
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp">
+
+                    <TextView
+                        android:id="@+id/textViewTaskDescription"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left"
+                        android:fontFamily="@font/interf"
+                        android:maxLines="2"
+                        android:text="This example demonstrates how do I make a specific text on TextView bold in android.
+
+    Step 1 − Create a new project in Android Studio, go to File ⇒ New Project and fill all required details to create a new project."
+
+                        android:textSize="15dp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="12dp">
+
+                    <TextView
+                        android:id="@+id/textViewDeadline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/interf"
+                        android:paddingBottom="5dp"
+                        android:text="20-12-2023"
+                        android:textSize="14dp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    old itemtask large end
+    -->
 
     <!-- Task Name Section -->
     <!--   <TextView
