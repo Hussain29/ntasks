@@ -140,8 +140,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.deadlinedb.setText(userlist.getTaskdeadl());
         holder.assto.setText(userlist.getAssignedUserdb());
         holder.assby.setText(userlist.getAssignerdb());
+        holder.statuss.setText(userlist.getStatusdb());
 
         String priority = userlist.getTaskprio();
+        String statuss = userlist.getStatusdb();
 
         if (priority != null) {
             switch (priority.toLowerCase()) {
@@ -163,6 +165,34 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             // You might want to set a default background or handle it differently
             holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg);
         }
+
+
+
+        if (statuss != null) {
+            switch (statuss.toLowerCase()) {
+                case "on hold":
+                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg_priohigh);
+                    break;
+                case "assigned":
+                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg_priomed);
+                    break;
+                case "done":
+                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg_priolow);
+                    break;
+                default:
+                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg);
+                    break;
+            }
+        } else {
+            // Handle the case where priority is null (optional, depending on your logic)
+            // You might want to set a default background or handle it differently
+            holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg);
+        }
+
+
+
+
+
     }
 
     @Override
@@ -180,7 +210,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView taskNamedb, taskDescriptiondb, prioritydb, deadlinedb,assto,assby; // statusdb
+        TextView taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, assto, assby,statuss; // statusdb
         OnItemClickListener onItemClickListener;
 
         public MyViewHolder(@NonNull View itemView, OnItemClickListener onItemClickListener) {
@@ -192,6 +222,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             deadlinedb = itemView.findViewById(R.id.textViewDeadline);
             assto=itemView.findViewById(R.id.assto);
             assby=itemView.findViewById(R.id.assby);
+            statuss=itemView.findViewById(R.id.statuss);
 
             // Add the following line if you've added a new TextView for displaying status
             // statusdb = itemView.findViewById(R.id.textViewStatus);
