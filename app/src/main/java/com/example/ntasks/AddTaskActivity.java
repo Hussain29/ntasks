@@ -100,7 +100,7 @@ public class AddTaskActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Add Task");
+        actionBar.setTitle("ADD TASK");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

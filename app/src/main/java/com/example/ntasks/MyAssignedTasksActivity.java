@@ -52,7 +52,7 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Assigned Tasks");
+        actionBar.setTitle("ASSIGNED TASKS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

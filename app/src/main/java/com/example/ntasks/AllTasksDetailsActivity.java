@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class AllTasksDetailsActivity extends AppCompatActivity {
 
-    private TextView taskNameTextView;
+    private TextView taskNameTextView, linkTextView;
     private TextView taskDescriptionTextView;
     private TextView priorityTextView;
     private TextView deadlineTextView;
@@ -42,7 +42,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
     private Button buttonSubmit;
     private TextView clientTextView;
 
-    private ImageView clientimg;
+    private ImageView clientimg, ivattach;
 
 
     private TaskModel task;
@@ -55,7 +55,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("All Tasks");
+        actionBar.setTitle("ALL TASKS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -64,7 +64,6 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
 
         // Retrieve task details from Intent
         task = getIntent().getParcelableExtra("task");
-
 
 
         if (task == null || task.getTaskID() == null) {
@@ -85,14 +84,14 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         attachmentTextView = findViewById(R.id.linkTextView);
         btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);
         clientTextView = findViewById(R.id.textViewClientLabel);
+        ivattach = findViewById(R.id.ivattach);
         clientimg = findViewById(R.id.imgClient);
 
         Log.d("HUSH", "clients: " + task.getClientdb());
-        if(task.getClientdb() != null && task.getClientdb().equals("Select Client") ){
+        if (task.getClientdb() != null && task.getClientdb().equals("Select Client")) {
             clientTextView.setVisibility(View.GONE);
             clientimg.setVisibility(View.GONE);
-        }
-        else{
+        } else {
             clientTextView.setText("Client:" + task.getClientdb());
 
         }
@@ -113,9 +112,11 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         downloadAttachment();
 
         // Add click listener for the "Download Attachment" button
-        /*btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
+      /*  btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 downloadAttachment();
             }
         });*/
@@ -130,6 +131,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -141,6 +143,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void setupSpinner() {
         String[] statusOptionsWithDefault = new String[]{
                 getString(R.string.change_status_prompt),
@@ -177,6 +180,11 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
                     // Check if the taskId matches the originalTaskId
                     if (taskId != null && taskId.equals(originalTaskId)) {
                         Log.d("AttachmentDebug", "Attachment entry found for Task ID: " + originalTaskId);
+                        ivattach.setVisibility(View.VISIBLE);
+                        btnDownloadAttachment.setVisibility(View.VISIBLE);
+
+
+
 
                         // If the entry exists, log the URL
                         String downloadUrl = snapshot.child("url").getValue(String.class);
@@ -203,6 +211,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
     private void displayClickableLink(String url) {
         // Use a TextView to display the clickable link
         TextView linkTextView = findViewById(R.id.linkTextView);
+        linkTextView.setVisibility(View.VISIBLE);
 
         // Set the autoLink property to web for automatic linking of URLs
         linkTextView.setAutoLinkMask(Linkify.WEB_URLS);

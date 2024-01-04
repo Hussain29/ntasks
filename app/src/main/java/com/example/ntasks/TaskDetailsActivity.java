@@ -229,7 +229,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
     private TaskModel task;
 
-    private ImageView clientimg;// Add a member variable to store the TaskModel
+    private ImageView clientimg,ivattach;// Add a member variable to store the TaskModel
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -258,6 +258,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);
         clientTextView = findViewById(R.id.textViewClientLabel);
         clientimg = findViewById(R.id.imgClient);// Initialize the Download Attachment button
+        ivattach = findViewById(R.id.ivattach);// Initialize the Download Attachment button
 
         // Set TextViews with task details
         taskNameTextView.setText("Task Name: " + task.getTaskName());
@@ -361,6 +362,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
                         Log.d("AttachmentDebug", "Attachment entry found for Task ID: " + originalTaskId);
 
                         Toast.makeText(TaskDetailsActivity.this, "Attachment Available", Toast.LENGTH_LONG).show();
+                        ivattach.setVisibility(View.VISIBLE);
+                        btnDownloadAttachment.setVisibility(View.VISIBLE);
 
                         // If the entry exists, log the URL
                         String downloadUrl = snapshot.child("url").getValue(String.class);

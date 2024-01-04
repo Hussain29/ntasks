@@ -47,7 +47,7 @@ public class AllTasksActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("All Tasks");
+        actionBar.setTitle("ALL TASKS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

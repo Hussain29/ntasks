@@ -49,7 +49,7 @@ public class AddClientActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Add Client");
+        actionBar.setTitle("ADD CLIENT");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

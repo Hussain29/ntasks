@@ -40,7 +40,7 @@ public class CompletedTasksActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Completed Tasks");
+        actionBar.setTitle("COMPLETED TASKS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

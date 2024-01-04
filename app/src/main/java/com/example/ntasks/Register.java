@@ -52,7 +52,7 @@ private static final String TAG="Register";
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Register");
+        actionBar.setTitle("REGISTER");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

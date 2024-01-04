@@ -59,7 +59,7 @@ public class PersonalTasksActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Personal Tasks");
+        actionBar.setTitle("PERSONAL TASKS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

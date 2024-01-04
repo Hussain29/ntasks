@@ -16,6 +16,15 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".hrmaster"
+            android:exported="false" />
+        <activity
+            android:name=".vendorsmaster"
+            android:exported="false" />
+        <activity
+            android:name=".rentsmaster"
+            android:exported="false" />
+        <activity
             android:name=".testify"
             android:exported="false" />
         <activity
@@ -43,7 +52,6 @@
         <activity android:name=".AllTasksDetailsActivity" />
         <activity android:name=".PersonalTasksActivity" />
         <activity android:name=".CompletedTasksActivity" />
-
         <activity
             android:name=".Register"
             android:exported="false" />
@@ -53,9 +61,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:hardwareAccelerated="false"
-
-            ></activity>
+            android:hardwareAccelerated="false" />
 
         <receiver
             android:name=".TaskNotificationReceiver"

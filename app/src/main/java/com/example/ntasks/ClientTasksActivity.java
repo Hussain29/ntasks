@@ -42,7 +42,7 @@ public class ClientTasksActivity extends AppCompatActivity implements MyAdapter.
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("Client");
+        actionBar.setTitle("CLIENT");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

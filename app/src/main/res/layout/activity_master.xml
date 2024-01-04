@@ -65,123 +65,80 @@
             android:columnCount="3"
             android:paddingTop="60dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/thingstd"
-                    style="@style/Widget.Material3.Button.ElevatedButton"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_row="0"
-                    android:layout_column="0"
+            <ImageView
+                android:id="@+id/thingstdi"
 
-                    android:layout_marginLeft="12dp"
-
-                    android:elevation="12.2dp"
-                    android:text="Things\nTo Do"
-                    android:textColor="@color/text"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/interf"
-                    android:paddingLeft="29dp"
-                    android:text="Tasks"
-                    android:textColor="#5B5B5B" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/clientbtn"
-                    style="@style/Widget.Material3.Button.ElevatedButton"
-                    android:layout_width="108dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="12dp"
-
-                    android:shadowDx="6"
-                    android:shadowDy="6"
-                    android:text="Clients"
-                    android:textColor="@color/text"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/interf"
-                    android:paddingLeft="49dp"
-                    android:text="Clients"
-                    android:textColor="#5B5B5B" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/testify"
-                    style="@style/Widget.Material3.Button.ElevatedButton"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="12dp"
-                    android:shadowDx="12"
-                    android:shadowDy="12"
-
-                    android:text="Rents"
-
-                    android:textColor="@color/text"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/interf"
-                    android:paddingLeft="49dp"
-                    android:text="Rents"
-                    android:textColor="#5B5B5B" />
-
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.ElevatedButton"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="25dp"
                 android:shadowDx="12"
                 android:shadowDy="12"
+                android:src="@drawable/gtasks"
                 android:textColor="@color/text"
                 android:textSize="16dp" />
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.ElevatedButton"
+            <ImageView
+                android:id="@+id/clientbtni"
+
+
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="25dp"
                 android:shadowDx="12"
                 android:shadowDy="12"
+                android:src="@drawable/group3"
                 android:textColor="@color/text"
                 android:textSize="16dp" />
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/Widget.Material3.Button.ElevatedButton"
+            <ImageView
+                android:id="@+id/vendorbtni"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_row="0"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:shadowDx="12"
+                android:shadowDy="12"
+                android:src="@drawable/gvendors"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/hrbtni"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="25dp"
                 android:shadowDx="12"
                 android:shadowDy="12"
+                android:src="@drawable/ghr11"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/posbtni"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:shadowDx="12"
+                android:shadowDy="12"
+                android:src="@drawable/gpos"
+                android:textColor="@color/text"
+                android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/rentsbtni"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="25dp"
+                android:shadowDx="12"
+                android:shadowDy="12"
+                android:src="@drawable/grents"
                 android:textColor="@color/text"
                 android:textSize="16dp" />
 
