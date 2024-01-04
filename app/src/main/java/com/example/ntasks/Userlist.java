@@ -29,7 +29,10 @@ public class Userlist {
     private String assignerdb;  // Add this line
 
     @PropertyName("clientdb")  // Replace with the actual field name for assigned user
-    private String clientdb;  // Add this line
+    private String clientdb;
+
+    @PropertyName("lastchangeddb")  // Replace with the actual field name for assigned user
+    private String lastchangeddb;// Add this line
 
     public Userlist() {
         // Default constructor required for calls to DataSnapshot.getValue(Userlist.class)
@@ -105,6 +108,14 @@ public class Userlist {
 
     public void setAssignedUserdb(String assignedUserdb) {
         this.assignedUserdb = assignedUserdb;  // Add this method
+    }
+
+    public String getLastchangeddb() {
+        return lastchangeddb;
+    }
+
+    public void setLastchangeddb(String lastchangeddb) {
+        this.lastchangeddb = lastchangeddb;
     }
 }
 

@@ -5,6 +5,7 @@ package com.example.ntasks;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -27,7 +28,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class PersonalTasksActivity extends AppCompatActivity {
 
@@ -101,6 +107,7 @@ public class PersonalTasksActivity extends AppCompatActivity {
                             String priority = dataSnapshot.child("prioritydb").getValue(String.class);
                             String deadline = dataSnapshot.child("deadlinedb").getValue(String.class);
                             String statusdb = dataSnapshot.child("statusdb").getValue(String.class);
+                            String lastChangeddb = dataSnapshot.child("lastchangeddb").getValue(String.class);
                             // Add the missing assignedUserdb statement
                             assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
                             String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
@@ -117,15 +124,34 @@ public class PersonalTasksActivity extends AppCompatActivity {
                                 userlist.setStatusdb(statusdb);
                                 userlist.setAssignerdb(assignerdb);
                                 userlist.setAssignedUserdb(assignedUserdb);
+                                userlist.setLastchangeddb(lastChangeddb);
                                 list.add(0, userlist);
                             }
                         }
                     }
 
+                    // Sort the list by lastchangeddb in descending order
+                    Collections.sort(list, new Comparator<Userlist>() {
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                        @Override
+                        public int compare(Userlist task1, Userlist task2) {
+                            try {
+                                Date lastChanged1 = dateFormat.parse(task1.getLastchangeddb());
+                                Date lastChanged2 = dateFormat.parse(task2.getLastchangeddb());
+
+                                // Compare in reverse order for descending order
+                                return lastChanged2.compareTo(lastChanged1);
+                            } catch (ParseException | java.text.ParseException e) {
+                                e.printStackTrace();
+                                return 0;
+                            }
+                        }
+                    });
+
                     myAdapter.notifyDataSetChanged();
                     progressDialog.dismiss();
                 }
-                
             }
 
             @Override
@@ -147,7 +173,8 @@ public class PersonalTasksActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case android.R.id.home:
                 // Handle the home button click
-                onBackPressed();                return true;
+                onBackPressed();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }

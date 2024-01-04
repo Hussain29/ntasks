@@ -408,14 +408,30 @@ public class AddTaskActivity extends AppCompatActivity {
         });
     }
 
-    private String addTaskForUser(String taskNamedb, String taskDescriptiondb, String prioritydb,
+    /*private String addTaskForUser(String taskNamedb, String taskDescriptiondb, String prioritydb,
                                   String deadlinedb, String defaultStatus, String assignedUserdb, String clientdb) {
         String assignerdb = getCurrentUser();
         Log.d("TaskData", "Assigner: " + assignerdb);
         DatabaseReference newTaskRef = taskRef.push();
         newTaskRef.setValue(new taskdb(taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, defaultStatus, assignedUserdb, assignerdb, clientdb));
         return newTaskRef.getKey();
+    }*/
+
+    private String addTaskForUser(String taskNamedb, String taskDescriptiondb, String prioritydb,
+                                  String deadlinedb, String defaultStatus, String assignedUserdb, String clientdb) {
+        String assignerdb = getCurrentUser();
+        Log.d("TaskData", "Assigner: " + assignerdb);
+
+        // Get the current timestamp
+        long currentTimeMillis = System.currentTimeMillis();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        String lastChangedTimestamp = dateFormat.format(currentTimeMillis);
+
+        DatabaseReference newTaskRef = taskRef.push();
+        newTaskRef.setValue(new taskdb(taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, defaultStatus, assignedUserdb, assignerdb, clientdb, lastChangedTimestamp));
+        return newTaskRef.getKey();
     }
+
 
     private String getCurrentUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

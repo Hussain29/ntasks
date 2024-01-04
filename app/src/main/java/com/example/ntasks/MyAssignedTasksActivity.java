@@ -4,6 +4,7 @@ package com.example.ntasks;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -24,7 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class MyAssignedTasksActivity extends AppCompatActivity {
 
@@ -113,6 +119,23 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
                             }
                         }
                     }
+                    Collections.sort(list, new Comparator<Userlist>() {
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                        @Override
+                        public int compare(Userlist task1, Userlist task2) {
+                            try {
+                                Date lastChanged1 = dateFormat.parse(task1.getLastchangeddb());
+                                Date lastChanged2 = dateFormat.parse(task2.getLastchangeddb());
+
+                                // Compare in reverse order for descending order
+                                return lastChanged2.compareTo(lastChanged1);
+                            } catch (ParseException | java.text.ParseException e) {
+                                e.printStackTrace();
+                                return 0;
+                            }
+                        }
+                    });
 
                     myAdapter.notifyDataSetChanged();
 

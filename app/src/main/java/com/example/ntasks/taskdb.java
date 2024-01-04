@@ -8,13 +8,13 @@ public class taskdb {
     private String statusdb;  // New field for status
     private String assignedUserdb;  // New field for assigned user
     private String assignerdb;
-
     private String clientdb;
+    private String lastchangeddb;
     public taskdb() {
         // Default constructor required for calls to DataSnapshot.getValue(taskdb.class)
     }
 
-    public taskdb(String taskNamedb, String taskDescriptiondb, String prioritydb, String deadlinedb, String statusdb, String assignedUserdb, String assignerdb, String clientdb) {
+    public taskdb(String taskNamedb, String taskDescriptiondb, String prioritydb, String deadlinedb, String statusdb, String assignedUserdb, String assignerdb, String clientdb, String lastchangeddb) {
         this.taskNamedb = taskNamedb;
         this.taskDescriptiondb = taskDescriptiondb;
         this.prioritydb = prioritydb;
@@ -23,6 +23,7 @@ public class taskdb {
         this.assignedUserdb = assignedUserdb;
         this.assignerdb = assignerdb;
         this.clientdb = clientdb;
+        this.lastchangeddb = lastchangeddb;
     }
 
     public String getClientdb() {
@@ -88,50 +89,13 @@ public class taskdb {
     public void setAssignedUserdb(String assignedUser) {
         this.assignedUserdb = assignedUser;
     }
+
+    public String getLastchangeddb() {
+        return lastchangeddb;
+    }
+
+    public void setLastchangeddb(String lastchangeddb) {
+        this.lastchangeddb = lastchangeddb;
+    }
 }
 
-/*package com.example.ntasks;
-
-public class taskdb {
-    public String taskNamedb;
-    public String taskDescriptiondb;
-    public String prioritydb;
-    public String deadlinedb;
-    public String statusdb;  // New field for status
-
-    public taskdb() {
-        // Default constructor required for calls to DataSnapshot.getValue(taskdb.class)
-    }
-
-    public taskdb(String taskNamedb, String taskDescriptiondb, String prioritydb, String deadlinedb, String statusdb) {
-        this.taskNamedb = taskNamedb;
-        this.taskDescriptiondb = taskDescriptiondb;
-        this.prioritydb = prioritydb;
-        this.deadlinedb = deadlinedb;
-        this.statusdb = statusdb;
-    }
-
-    public void setTaskNamedb(String taskNamedb) {
-        this.taskNamedb = taskNamedb;
-    }
-
-    public void setTaskDescriptiondb(String taskDescriptiondb) {
-        this.taskDescriptiondb = taskDescriptiondb;
-    }
-
-    public void setPrioritydb(String prioritydb) {
-        this.prioritydb = prioritydb;
-    }
-
-    public void setDeadlinedb(String deadlinedb) {
-        this.deadlinedb = deadlinedb;
-    }
-
-    public String getStatusdb() {
-        return statusdb;
-    }
-
-    public void setStatusdb(String statusdb) {
-        this.statusdb = statusdb;
-    }
-}*/

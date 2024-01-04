@@ -5,6 +5,7 @@ package com.example.ntasks;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -23,7 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 
 public class AllTasksActivity extends AppCompatActivity {
 
@@ -88,6 +94,7 @@ public class AllTasksActivity extends AppCompatActivity {
                     String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
                     String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
                     String clientdb = dataSnapshot.child("clientdb").getValue(String.class);
+                    String lastchangeddb = dataSnapshot.child("lastchangeddb").getValue(String.class);
 
 
                     Log.d("FirebaseData", "Task ID: " + taskID);
@@ -103,9 +110,29 @@ public class AllTasksActivity extends AppCompatActivity {
                         userlist.setAssignerdb(assignerdb);
                         userlist.setAssignedUserdb(assignedUserdb);
                         userlist.setClientdb(clientdb);
+                        userlist.setLastchangeddb(lastchangeddb);
                         list.add(0, userlist);
                     }
                 }
+
+                // Sort the list based on the deadline
+                Collections.sort(list, new Comparator<Userlist>() {
+                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+
+                    @Override
+                    public int compare(Userlist task1, Userlist task2) {
+                        try {
+                            Date deadline1 = dateFormat.parse(task1.getTaskdeadl());
+                            Date deadline2 = dateFormat.parse(task2.getTaskdeadl());
+                            return deadline1.compareTo(deadline2);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            return 0;
+                        } catch (java.text.ParseException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                });
 
                 myAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();

@@ -208,6 +208,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class TaskDetailsActivity extends AppCompatActivity {
 
     private TextView taskNameTextView;
@@ -262,6 +266,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
         deadlineTextView.setText("Assigned On: " + task.getDeadline());
         statusTextView.setText("Current Status: " + task.getStatus());
         assignedByTextView.setText("Assigned By: " + task.getAssignerdb());
+        downloadAttachment();
+
 
         if(task.getClientdb() == null || task.getClientdb().equals("Select Client")){
             clientTextView.setVisibility(View.GONE);
@@ -288,12 +294,12 @@ public class TaskDetailsActivity extends AppCompatActivity {
         }
 
         // Add click listener for the "Download Attachment" button
-        btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
+        /*btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 downloadAttachment();
             }
-        });
+        });*/
 
 
         String[] statusOptionsWithDefault = new String[]{
@@ -354,6 +360,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     if (taskId != null && taskId.equals(originalTaskId)) {
                         Log.d("AttachmentDebug", "Attachment entry found for Task ID: " + originalTaskId);
 
+                        Toast.makeText(TaskDetailsActivity.this, "Attachment Available", Toast.LENGTH_LONG).show();
+
                         // If the entry exists, log the URL
                         String downloadUrl = snapshot.child("url").getValue(String.class);
 
@@ -411,8 +419,11 @@ public class TaskDetailsActivity extends AppCompatActivity {
     private void updateStatusInDatabase(String taskID, String selectedStatus) {
         DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference().child("Taskdata").child(taskID);
 
-        // Update the 'status' field in the database
+        // Update the 'statusdb' field in the database
         taskRef.child("statusdb").setValue(selectedStatus);
+
+        // Update the 'lastchangeddb' field with the current timestamp
+        taskRef.child("lastchangeddb").setValue(getCurrentTimestamp());
 
         // Update the status in the current TaskModel
         task.setStatus(selectedStatus);
@@ -420,6 +431,12 @@ public class TaskDetailsActivity extends AppCompatActivity {
         // You can also show a Toast message or handle UI updates to indicate success
         Toast.makeText(TaskDetailsActivity.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    // Method to get the current timestamp in the desired format
+    private String getCurrentTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 }
 

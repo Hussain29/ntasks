@@ -110,13 +110,15 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         // Set up Spinner
         setupSpinner();
 
+        downloadAttachment();
+
         // Add click listener for the "Download Attachment" button
-        btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
+        /*btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 downloadAttachment();
             }
-        });
+        });*/
 
         // Add click listener for the "Submit Changes" button
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +180,7 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
 
                         // If the entry exists, log the URL
                         String downloadUrl = snapshot.child("url").getValue(String.class);
-
+                        Toast.makeText(AllTasksDetailsActivity.this, "Attachment Available", Toast.LENGTH_LONG).show();
                         // Display the URL as clickable link text
                         displayClickableLink(downloadUrl);
 
