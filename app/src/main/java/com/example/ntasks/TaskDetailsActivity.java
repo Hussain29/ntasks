@@ -255,7 +255,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         assignedByTextView = findViewById(R.id.textViewAssignedBy);
         buttonSubmit = findViewById(R.id.buttonSubmit);
         attachmentTextView = findViewById(R.id.linkTextView);
-        btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);
+        /*btnDownloadAttachment = findViewById(R.id.btnDownloadAttachment);*/
         clientTextView = findViewById(R.id.textViewClientLabel);
         clientimg = findViewById(R.id.imgClient);// Initialize the Download Attachment button
         ivattach = findViewById(R.id.ivattach);// Initialize the Download Attachment button

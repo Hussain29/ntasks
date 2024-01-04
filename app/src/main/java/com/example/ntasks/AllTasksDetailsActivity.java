@@ -26,6 +26,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AllTasksDetailsActivity extends AppCompatActivity {
 
     private TextView taskNameTextView, linkTextView;
@@ -247,6 +251,8 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         // Update the 'status' field in the database
         taskRef.child("statusdb").setValue(selectedStatus);
 
+        taskRef.child("lastchangeddb").setValue(getCurrentTimestamp());
+
         // Update the status in the current TaskModel
         task.setStatus(selectedStatus);
 
@@ -254,4 +260,9 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
         Toast.makeText(AllTasksDetailsActivity.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
         finish();
     }
+    private String getCurrentTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
 }

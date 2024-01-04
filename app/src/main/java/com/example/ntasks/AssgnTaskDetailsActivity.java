@@ -20,6 +20,10 @@ import androidx.core.content.ContextCompat;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class AssgnTaskDetailsActivity extends AppCompatActivity {
 
     private TextView taskNameTextView;
@@ -156,12 +160,20 @@ public class AssgnTaskDetailsActivity extends AppCompatActivity {
         // Update the 'status' field in the database
         taskRef.child("statusdb").setValue(selectedStatus);
 
+        taskRef.child("lastchangeddb").setValue(getCurrentTimestamp());
+
+
         // Update the status in the current TaskModel
         task.setStatus(selectedStatus);
 
         // You can also show a Toast message or handle UI updates to indicate success
         Toast.makeText(AssgnTaskDetailsActivity.this, "Status updated successfully", Toast.LENGTH_SHORT).show();
         finish();
+    }
+
+    private String getCurrentTimestamp() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 
     private void showDeleteConfirmationDialog() {
