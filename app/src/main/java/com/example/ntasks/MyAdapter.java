@@ -171,16 +171,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         if (statuss != null) {
             switch (statuss.toLowerCase()) {
                 case "on hold":
-                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg_priohigh);
+                    holder.itemView.setBackgroundResource(R.drawable.onhold);
                     break;
                 case "assigned":
-                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg_priomed);
+                   holder.itemView.setBackgroundResource(R.drawable.assigned);
                     break;
                 case "done":
-                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg_priolow);
+                    holder.itemView.setBackgroundResource(R.drawable.done);
                     break;
                 default:
-                    holder.prioritydb.setBackgroundResource(R.drawable.rounded_bg);
+                    holder.itemView.setBackgroundResource(R.drawable.rounded_bg);
                     break;
             }
         } else {
