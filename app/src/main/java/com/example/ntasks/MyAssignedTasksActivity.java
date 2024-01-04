@@ -120,19 +120,19 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
                         }
                     }
                     Collections.sort(list, new Comparator<Userlist>() {
-                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
                         @Override
                         public int compare(Userlist task1, Userlist task2) {
                             try {
-                                Date lastChanged1 = dateFormat.parse(task1.getLastchangeddb());
-                                Date lastChanged2 = dateFormat.parse(task2.getLastchangeddb());
-
-                                // Compare in reverse order for descending order
-                                return lastChanged2.compareTo(lastChanged1);
-                            } catch (ParseException | java.text.ParseException e) {
+                                Date deadline1 = dateFormat.parse(task1.getTaskdeadl());
+                                Date deadline2 = dateFormat.parse(task2.getTaskdeadl());
+                                return deadline1.compareTo(deadline2);
+                            } catch (ParseException e) {
                                 e.printStackTrace();
                                 return 0;
+                            } catch (java.text.ParseException e) {
+                                throw new RuntimeException(e);
                             }
                         }
                     });
