@@ -1,15 +1,13 @@
 package com.example.ntasks.rents;
 
-import static com.example.ntasks.rents.addflats.RandomIdGenerator.generateRandomId;
+import static com.example.ntasks.rents.AddFlatsActivity.RandomIdGenerator.generateRandomId;
 
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +17,7 @@ import com.example.ntasks.R;
 
 import java.util.Random;
 
-public class addflats extends AppCompatActivity {
+public class AddFlatsActivity extends AppCompatActivity {
     EditText etflatid;
 
     @Override

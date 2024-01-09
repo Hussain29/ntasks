@@ -14,10 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.ntasks.AddTaskActivity;
 import com.example.ntasks.R;
 
-public class addvendors extends AppCompatActivity {
+public class AddVendorsActivity extends AppCompatActivity {
     private static final int PICK_FILE_REQUEST = 2; // You can use any integer value
     private Uri fileUri;
     @Override
@@ -34,7 +33,7 @@ public class addvendors extends AppCompatActivity {
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(addvendors.this, "Select any type of file", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddVendorsActivity.this, "Select any type of file", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
                 startActivityForResult(intent, PICK_FILE_REQUEST);

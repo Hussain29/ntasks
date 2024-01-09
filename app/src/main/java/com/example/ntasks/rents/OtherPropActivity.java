@@ -10,18 +10,18 @@ import android.view.MenuItem;
 
 import com.example.ntasks.R;
 
-public class independent extends AppCompatActivity {
+public class OtherPropActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_independent);
+        setContentView(R.layout.activity_other_buildings);
 
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("INDEPENDENT");
+        actionBar.setTitle("OTHERS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

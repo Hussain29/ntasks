@@ -14,7 +14,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.rents.rentsmaster;
-import com.example.ntasks.rents.vendors;
+import com.example.ntasks.rents.VendorsActivity;
 
 public class Master extends AppCompatActivity {
     Button Testify;
@@ -98,7 +98,7 @@ public class Master extends AppCompatActivity {
         });vendorsbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(Master.this, vendors.class);
+                Intent intent4 = new Intent(Master.this, VendorsActivity.class);
                 startActivity(intent4);
             }
         });

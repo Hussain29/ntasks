@@ -188,8 +188,6 @@ public class AllTasksDetailsActivity extends AppCompatActivity {
                         btnDownloadAttachment.setVisibility(View.VISIBLE);
 
 
-
-
                         // If the entry exists, log the URL
                         String downloadUrl = snapshot.child("url").getValue(String.class);
                         Toast.makeText(AllTasksDetailsActivity.this, "Attachment Available", Toast.LENGTH_LONG).show();

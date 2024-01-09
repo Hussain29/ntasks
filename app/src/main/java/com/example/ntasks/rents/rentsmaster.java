@@ -37,7 +37,7 @@ public class rentsmaster extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(rentsmaster.this, "Property", Toast.LENGTH_SHORT).show();
-                Intent intent5 = new Intent(rentsmaster.this,buildings.class);
+                Intent intent5 = new Intent(rentsmaster.this, PropertiesActivity.class);
                 startActivity(intent5);
             }
         });
@@ -46,7 +46,7 @@ public class rentsmaster extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(rentsmaster.this, "Vendors", Toast.LENGTH_SHORT).show();
 
-                Intent intent2 = new Intent(rentsmaster.this, vendors.class);
+                Intent intent2 = new Intent(rentsmaster.this, VendorsActivity.class);
                 startActivity(intent2);
             }
         });

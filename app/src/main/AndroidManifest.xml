@@ -16,37 +16,37 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".rents.addflats"
+            android:name=".rents.AddFlatsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.addapartments"
+            android:name=".rents.AddApartmentsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.other_buildings"
+            android:name=".rents.OtherPropActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.independent"
+            android:name=".rents.IndependentActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.flats"
+            android:name=".rents.FlatsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.apartments"
+            android:name=".rents.ApartmentsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.plots"
+            android:name=".rents.PlotsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.buildings"
+            android:name=".rents.PropertiesActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.addvendors"
+            android:name=".rents.AddVendorsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.vendors"
+            android:name=".rents.VendorsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.addowners"
+            android:name=".rents.AddOwnersActivity"
             android:exported="false" />
         <activity
             android:name=".rents.OwnersActivity"

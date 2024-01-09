@@ -13,13 +13,13 @@ import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
 
-public class buildings extends AppCompatActivity {
+public class PropertiesActivity extends AppCompatActivity {
     Button btnplots, btnapart, btnflats, btnindepen, btnothers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buildings);
+        setContentView(R.layout.activity_properties);
         btnplots = findViewById(R.id.btnplots);
         btnapart = findViewById(R.id.btnapartments);
         btnflats = findViewById(R.id.btnflats);
@@ -29,7 +29,7 @@ public class buildings extends AppCompatActivity {
         btnplots.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(buildings.this, plots.class);
+                Intent intent = new Intent(PropertiesActivity.this, PlotsActivity.class);
                 startActivity(intent);
             }
         });
@@ -37,7 +37,7 @@ public class buildings extends AppCompatActivity {
         btnapart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(buildings.this, apartments.class);
+                Intent intent1 = new Intent(PropertiesActivity.this, ApartmentsActivity.class);
                 startActivity(intent1);
             }
         });
@@ -45,7 +45,7 @@ public class buildings extends AppCompatActivity {
         btnflats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent3 = new Intent(buildings.this, flats.class);
+                Intent intent3 = new Intent(PropertiesActivity.this, FlatsActivity.class);
                 startActivity(intent3);
             }
         });
@@ -53,7 +53,7 @@ public class buildings extends AppCompatActivity {
         btnindepen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(buildings.this, independent.class);
+                Intent intent4 = new Intent(PropertiesActivity.this, IndependentActivity.class);
                 startActivity(intent4);
             }
         });
@@ -61,7 +61,7 @@ public class buildings extends AppCompatActivity {
         btnothers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent5 = new Intent(buildings.this, other_buildings.class);
+                Intent intent5 = new Intent(PropertiesActivity.this, OtherPropActivity.class);
                 startActivity(intent5);
             }
         });

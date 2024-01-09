@@ -1,39 +1,27 @@
 package com.example.ntasks.rents;
 
-import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import com.example.ntasks.R;
 
-public class apartments extends AppCompatActivity {
-    Button btnaddapartment;
+public class IndependentActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apartments);
-        btnaddapartment = findViewById(R.id.btnaddapartment);
-        btnaddapartment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(apartments.this,addapartments.class);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_independent);
 
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("APARTMENTS");
+        actionBar.setTitle("INDEPENDENT");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

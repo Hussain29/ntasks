@@ -1,43 +1,43 @@
 package com.example.ntasks.rents;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+
+import com.example.ntasks.R;
+import androidx.appcompat.app.ActionBar;
+import androidx.core.content.ContextCompat;
+
+import android.graphics.drawable.ColorDrawable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
-import com.example.ntasks.R;
-
-public class vendors extends AppCompatActivity {
-
+public class FlatsActivity extends AppCompatActivity {
+Button btnaddflats;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_vendors);
+        setContentView(R.layout.activity_flats);
 
-        Button addvendors = findViewById(R.id.btnaddvendor);
+        btnaddflats=findViewById(R.id.btnaddflats);
 
 
-        addvendors.setOnClickListener(new View.OnClickListener() {
+        btnaddflats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(vendors.this, com.example.ntasks.rents.addvendors.class);
+                Intent intent=new Intent(FlatsActivity.this, AddFlatsActivity.class);
                 startActivity(intent);
             }
         });
-
 
 
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("VENDORS");
+        actionBar.setTitle("FLATS");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);
@@ -51,13 +51,11 @@ public class vendors extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Handle the back button click
+                // Handle the home button click
                 onBackPressed();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-
 }

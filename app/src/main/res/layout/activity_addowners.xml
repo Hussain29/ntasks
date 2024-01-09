@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.addowners">
+    tools:context=".rents.AddOwnersActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -246,7 +246,7 @@
                         app:boxStrokeWidth="0dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etownerPhonenumber"
+                            android:id="@+id/etownerPhonenumber2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/interf"
@@ -295,7 +295,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etph3"
+                        android:id="@+id/etownerPhonenumber3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -344,7 +344,6 @@
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_90sdp"
                 android:background="@drawable/spinnerbg"
-
                 />
 
 

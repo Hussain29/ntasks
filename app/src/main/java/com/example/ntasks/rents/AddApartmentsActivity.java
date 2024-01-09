@@ -12,7 +12,7 @@ import android.widget.Spinner;
 
 import com.example.ntasks.R;
 
-public class addapartments extends AppCompatActivity {
+public class AddApartmentsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
