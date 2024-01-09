@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".rents.addflats"
+            android:exported="false" />
+        <activity
             android:name=".rents.addapartments"
             android:exported="false" />
         <activity

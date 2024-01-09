@@ -44,8 +44,8 @@ public class rentsmaster extends AppCompatActivity {
         vendorsbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Toast.makeText(rentsmaster.this, "Vendors", Toast.LENGTH_SHORT).show();
+
                 Intent intent2 = new Intent(rentsmaster.this, vendors.class);
                 startActivity(intent2);
             }

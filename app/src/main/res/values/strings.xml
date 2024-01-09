@@ -16,7 +16,16 @@
         <item>Person 4</item>
 
     </string-array>
+    <string-array name="flattypes">
+        <item>SELECT FLAT TYPE</item>
+        <item>ROOM</item>
+        <item>1 BHK</item>
+        <item>2 BHK</item>
+        <item>3 BHK</item>
+        <item>4 BHK</item>
+        <item>OTHERS</item>
 
+    </string-array>
 
 
     <string name="change_status_prompt">Change Status &#709;</string>
