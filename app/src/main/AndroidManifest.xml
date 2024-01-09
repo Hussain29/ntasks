@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".ownerdetails"
+            android:name=".rents.ownerdetails"
             android:exported="false" />
         <activity
             android:name=".rents.AddFlatsActivity"

@@ -1,8 +1,10 @@
-package com.example.ntasks;
+package com.example.ntasks.rents;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.ntasks.R;
 
 public class ownerdetails extends AppCompatActivity {
 
