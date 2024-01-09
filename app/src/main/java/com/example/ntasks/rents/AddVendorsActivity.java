@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.ntasks.R;
@@ -19,12 +20,22 @@ import com.example.ntasks.R;
 public class AddVendorsActivity extends AppCompatActivity {
     private static final int PICK_FILE_REQUEST = 2; // You can use any integer value
     private Uri fileUri;
+    Button add;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addvendors);
         CardView cvaddattach=findViewById(R.id.cvaddattach);
+        CardView cvph2=findViewById(R.id.cvph2);
+        add=findViewById(R.id.add1);
 
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cvph2.setVisibility(View.VISIBLE);
+            }
+        });
 
 
 
