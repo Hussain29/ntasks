@@ -267,7 +267,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
         deadlineTextView.setText("Assigned On: " + task.getDeadline());
         statusTextView.setText("Current Status: " + task.getStatus());
         assignedByTextView.setText("Assigned By: " + task.getAssignerdb());
-        downloadAttachment();
+
 
 
         if(task.getClientdb() == null || task.getClientdb().equals("Select Client")){
@@ -319,7 +319,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerStatus.setAdapter(adapter);
-
+        downloadAttachment();
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -341,6 +341,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
     private void downloadAttachment() {
         // Get the original task ID associated with the displayed task
         String originalTaskId = task.getTaskID();
@@ -351,8 +352,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
         attachmentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-
                 // Iterate through the children of Attachments node
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String taskId = snapshot.child("taskId").getValue(String.class);
@@ -360,14 +359,15 @@ public class TaskDetailsActivity extends AppCompatActivity {
                     // Check if the taskId matches the originalTaskId
                     if (taskId != null && taskId.equals(originalTaskId)) {
                         Log.d("AttachmentDebug", "Attachment entry found for Task ID: " + originalTaskId);
-
-                        Toast.makeText(TaskDetailsActivity.this, "Attachment Available", Toast.LENGTH_LONG).show();
                         ivattach.setVisibility(View.VISIBLE);
-                        btnDownloadAttachment.setVisibility(View.VISIBLE);
+                        /*btnDownloadAttachment.setVisibility(View.VISIBLE);*/
+
+
+
 
                         // If the entry exists, log the URL
                         String downloadUrl = snapshot.child("url").getValue(String.class);
-
+                        Toast.makeText(TaskDetailsActivity.this, "Attachment Available", Toast.LENGTH_LONG).show();
                         // Display the URL as clickable link text
                         displayClickableLink(downloadUrl);
 
@@ -390,6 +390,7 @@ public class TaskDetailsActivity extends AppCompatActivity {
     private void displayClickableLink(String url) {
         // Use a TextView to display the clickable link
         TextView linkTextView = findViewById(R.id.linkTextView);
+        linkTextView.setVisibility(View.VISIBLE);
 
         // Set the autoLink property to web for automatic linking of URLs
         linkTextView.setAutoLinkMask(Linkify.WEB_URLS);
@@ -405,6 +406,8 @@ public class TaskDetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
     private void openURLInBrowser(String url) {
         // Create an Intent to open the URL in a web browser

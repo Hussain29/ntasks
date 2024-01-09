@@ -16,13 +16,46 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".rents.addapartments"
+            android:exported="false" />
+        <activity
+            android:name=".rents.other_buildings"
+            android:exported="false" />
+        <activity
+            android:name=".rents.independent"
+            android:exported="false" />
+        <activity
+            android:name=".rents.flats"
+            android:exported="false" />
+        <activity
+            android:name=".rents.apartments"
+            android:exported="false" />
+        <activity
+            android:name=".rents.plots"
+            android:exported="false" />
+        <activity
+            android:name=".rents.buildings"
+            android:exported="false" />
+        <activity
+            android:name=".rents.addvendors"
+            android:exported="false" />
+        <activity
+            android:name=".rents.vendors"
+            android:exported="false" />
+        <activity
+            android:name=".rents.addowners"
+            android:exported="false" />
+        <activity
+            android:name=".rents.OwnersActivity"
+            android:exported="false" />
+        <activity
             android:name=".hrmaster"
             android:exported="false" />
         <activity
             android:name=".vendorsmaster"
             android:exported="false" />
         <activity
-            android:name=".rentsmaster"
+            android:name=".rents.rentsmaster"
             android:exported="false" />
         <activity
             android:name=".testify"

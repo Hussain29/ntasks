@@ -8,6 +8,17 @@
         <item>NEED DISCUSSION</item>
         <item>REVIEW</item>
     </string-array>
+
+    <string-array name="Owners">
+        <item>Person 1</item>
+        <item>Person 2</item>
+        <item>Person 3</item>
+        <item>Person 4</item>
+
+    </string-array>
+
+
+
     <string name="change_status_prompt">Change Status &#709;</string>
 
 

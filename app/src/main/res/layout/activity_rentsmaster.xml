@@ -1,9 +1,199 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rentsmaster">
+    tools:context=".rents.rentsmaster">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/building"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_28sdp"
+                    android:fontFamily="@font/interf"
+
+                    android:text="Dashboard"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_20ssp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/interf"
+                    android:text="Access All Your Property Management Tools"
+                    android:textSize="@dimen/_13ssp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="65dp"
+
+                android:background="@drawable/rectangle_10"
+                android:orientation="vertical">
+
+
+                <GridLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_35sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:columnCount="2">
+
+                    <Button
+                        android:id="@+id/ownersbtn"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+
+                        android:text="Owners"
+                        android:textSize="@dimen/_9ssp" />
+
+                    <Button
+                        android:id="@+id/propertybtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="Property"
+
+                        android:textSize="@dimen/_9ssp" />
+
+                    <Button
+                        android:id="@+id/vendorsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="VENDORS"
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/tenantsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="TENANTS"
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/paymentsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+                        android:text="PAYMENTS"
+
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/expensesbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="EXPENSES"
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/ralertsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="RENT ALERTS"
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/contractsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="CONTRACTS"
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/reportsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_margin="@dimen/_12sdp"
+
+                        android:text="REPORTS"
+
+                        android:textSize="@dimen/_9ssp" />
+
+
+                    <Button
+                        android:id="@+id/statementsbtn"
+
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_60sdp"
+
+                        android:layout_margin="@dimen/_12sdp"
+                        android:text="STATEMENTS"
+                        android:textSize="@dimen/_8sdp" />
+
+
+                </GridLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
