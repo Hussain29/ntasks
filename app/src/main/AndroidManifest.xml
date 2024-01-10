@@ -19,7 +19,7 @@
             android:name=".rents.vendordetails"
             android:exported="false" />
         <activity
-            android:name=".rents.ownerdetails"
+            android:name=".rents.OwnerDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.AddFlatsActivity"

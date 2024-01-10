@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
-import com.example.ntasks.rents.Owner;
 
 import java.util.ArrayList;
 
@@ -18,6 +17,15 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
 
     private Context context;
     private ArrayList<Owner> ownerList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Owner owner);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     public OwnerAdapter(Context context, ArrayList<Owner> ownerList) {
         this.context = context;
@@ -37,6 +45,16 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
 
         holder.textViewTaskName.setText(owner.getOwnerName());
         holder.textViewTaskDescription.setText(owner.getOwnerPhone1());
+
+        // Set click listener for the item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mListener != null && position != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(ownerList.get(position));
+                }
+            }
+        });
     }
 
     @Override

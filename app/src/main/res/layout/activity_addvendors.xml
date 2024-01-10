@@ -25,6 +25,7 @@
             android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/addvendorpic"
             android:src="@drawable/addpersonn"
             android:layout_gravity="center"
             android:layout_margin="@dimen/_5sdp"
@@ -42,7 +43,7 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvownername"
+                android:id="@+id/cvvendorname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/tvtask"
@@ -63,7 +64,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etownerid"
+                        android:id="@+id/etvendorid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -73,12 +74,10 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvownername"
+                android:id="@+id/cvvendorname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-
-                android:layout_below="@id/tvtask"
                 android:layout_marginLeft="22dp"
                 android:layout_marginRight="22dp"
                 app:cardCornerRadius="6dp">
@@ -95,7 +94,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etownerName"
+                        android:id="@+id/etvendorName"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -107,7 +106,7 @@
 
             <!-- Task Description -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvowneradd"
+                android:id="@+id/cvvendoradd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cvtaskname"
@@ -127,7 +126,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etowneradd"
+                        android:id="@+id/etvendoradd"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -139,7 +138,7 @@
 
             <!-- Task Description -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvowneremail"
+                android:id="@+id/cvvendoremail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cvtaskname"
@@ -159,7 +158,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etowneremail"
+                        android:id="@+id/etvendoremail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -196,7 +195,7 @@
                         app:boxStrokeWidth="0dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etownerPhonenumber"
+                            android:id="@+id/etvendorPhonenumber"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/interf"
@@ -221,7 +220,7 @@
 
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvph2"
+                android:id="@+id/cvv2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
@@ -236,12 +235,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:elevation="12dp"
-                    android:hint="VENDOR'S PHONE NUMBER"
+                    android:hint="VENDOR'S ALT PHONE NUMBER"
 
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etvendorPhonenumber"
+                        android:id="@+id/etvendorPhonenumber2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -272,7 +271,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etownerNotes"
+                        android:id="@+id/etvendorNotes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -310,6 +309,7 @@
                     android:orientation="vertical">
 
                     <ImageView
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -327,7 +327,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-
+                android:id="@+id/btnaddvendordet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"

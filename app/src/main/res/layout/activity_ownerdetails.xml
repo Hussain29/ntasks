@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.ownerdetails">
+    tools:context=".rents.OwnerDetailsActivity">
 
 
     <androidx.cardview.widget.CardView
@@ -27,9 +27,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:src="@drawable/no_profile_pic"
-
-                    android:id="@+id/ivimage"
+                    android:id="@+id/imageView2"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -53,9 +51,21 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivimage" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
+                <TextView
+                    android:id="@+id/textViewPriority"
+                    android:layout_width="@dimen/_21sdp"
+                    android:layout_height="@dimen/_21sdp"
 
+                    android:layout_gravity="right"
+                    android:fontFamily="@font/interf"
+                    android:padding="5dp"
+                    android:text=""
+                    android:textColor="@android:color/transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,13 +80,13 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:src="@android:drawable/ic_menu_myplaces"
+                    android:src="@drawable/ic_calendar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvadd"
+                    android:id="@+id/textViewDeadline"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -101,7 +111,7 @@
                     android:src="@drawable/ic_email" />
 
                 <TextView
-                    android:id="@+id/tvemail"
+                    android:id="@+id/textViewAssignedBy"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,8 +134,7 @@
                     android:src="@drawable/ic_mobile" />
 
                 <TextView
-                    android:id="@+id/tvph1"
-
+                    android:id="@+id/textViewOwnerPhone1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -147,7 +156,7 @@
                     android:src="@drawable/ic_mobile" />
 
                 <TextView
-                    android:id="@+id/tvph2"
+                    android:id="@+id/textViewOwnerPhone2"
 
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
@@ -170,7 +179,7 @@
                     android:src="@drawable/ic_mobile" />
 
                 <TextView
-                    android:id="@+id/tvph3"
+                    android:id="@+id/textViewOwnerPhone3"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -194,7 +203,7 @@
                     android:src="@android:drawable/ic_menu_edit" />
 
                 <TextView
-                    android:id="@+id/tvnotes"
+                    android:id="@+id/textViewClientLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -214,7 +223,7 @@
 
 
                 <TextView
-                    android:id="@+id/tvidtype"
+                    android:id="@+id/textViewStatusLabel"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -222,7 +231,6 @@
                     android:text="ID TYPE:"
                     android:textStyle="bold" />
                 <Button
-                    android:id="@+id/btndownloadid"
                     android:text="Download ID"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
