@@ -39,6 +39,7 @@ public class Vendor implements Parcelable {
         userId = in.readString();
     }
 
+
     public String getVendorId() {
         return vendorId;
     }

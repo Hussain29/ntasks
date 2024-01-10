@@ -39,13 +39,13 @@ public class OwnerDetailsActivity extends AppCompatActivity {
         // Initialize Views
         ownerImageView = findViewById(R.id.imageView2);
         ownerNameTextView = findViewById(R.id.tvName);
-        ownerAddressTextView = findViewById(R.id.textViewDeadline); // Assuming Address is displayed in the same view
-        ownerEmailTextView = findViewById(R.id.textViewAssignedBy);
+        ownerAddressTextView = findViewById(R.id.tvaddo); // Assuming Address is displayed in the same view
+        ownerEmailTextView = findViewById(R.id.tvemailo);
         ownerPhone1TextView = findViewById(R.id.textViewOwnerPhone1);
         ownerPhone2TextView = findViewById(R.id.textViewOwnerPhone2); // Assuming Phone 2 is displayed in the same view
         ownerPhone3TextView = findViewById(R.id.textViewOwnerPhone3); // Assuming Phone 3 is displayed in the same view
-        ownerNotesTextView = findViewById(R.id.textViewClientLabel);
-        idTypeTextView = findViewById(R.id.textViewStatusLabel);
+        ownerNotesTextView = findViewById(R.id.tvnoteso);
+        idTypeTextView = findViewById(R.id.tvido);
 
 
         // Set TextViews with owner details
