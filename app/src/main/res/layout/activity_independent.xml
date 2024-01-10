@@ -13,7 +13,7 @@
         android:paddingTop="@dimen/_30sdp">
 
         <Button
-            android:id="@+id/btnaddflats"
+            android:id="@+id/btnaddindp"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -204,6 +204,7 @@
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recindp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

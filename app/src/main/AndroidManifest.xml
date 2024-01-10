@@ -16,6 +16,15 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".rents.AddPlots"
+            android:exported="false" />
+        <activity
+            android:name=".rents.AddIndependent"
+            android:exported="false" />
+        <activity
+            android:name=".rents.independent"
+            android:exported="false" />
+        <activity
             android:name=".rents.vendordetails"
             android:exported="false" />
         <activity
