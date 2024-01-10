@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.ActionBar;
@@ -18,7 +19,9 @@ import com.example.ntasks.R;
 import java.util.Random;
 
 public class AddFlatsActivity extends AppCompatActivity {
-    EditText etflatid;
+    EditText etflatid,etarflat,etflatno,etflatNotes;
+    Spinner spinapart,spinftype,spinownersf,spinvendorsf,spinid;
+    LinearLayout llattachf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class AddFlatsActivity extends AppCompatActivity {
 
 
         // Assuming 'your_spinner' is the ID of your Spinner in the layout file
-        Spinner spinner = findViewById(R.id.spintype);
+        Spinner spinner = findViewById(R.id.spinftype);
 
 // Get the string array from resources
         String[] items = getResources().getStringArray(R.array.flattypes);

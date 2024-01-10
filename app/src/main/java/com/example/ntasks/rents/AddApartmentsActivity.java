@@ -8,12 +8,18 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import com.example.ntasks.R;
 
 public class AddApartmentsActivity extends AppCompatActivity {
-
+EditText etaptid,etaptName,etaptadd,etaptarea,etaptunits,etaptfloor,etaptshops,etaptNotes;
+Button btnaptadd;
+LinearLayout llattach;
+Spinner spinowner,spinvendors,spindocs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

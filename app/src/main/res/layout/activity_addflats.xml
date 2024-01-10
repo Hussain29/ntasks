@@ -27,8 +27,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/imaddperson"
-            android:layout_width="@dimen/_70sdp"
+             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_gravity="center"
@@ -45,6 +44,7 @@
 
 
         <LinearLayout
+            android:id="@+id/llattachf"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/_5sdp"
@@ -54,11 +54,10 @@
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvownerid"
+                android:id="@+id/cvflatid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tvtask"
-                android:layout_marginLeft="22dp"
+                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="22dp"
                 app:cardCornerRadius="6dp">
@@ -95,7 +94,7 @@
                 android:background="@drawable/spinnerbg" />
 
             <Spinner
-                android:id="@+id/spintype"
+                android:id="@+id/spinftype"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginLeft="22dp"
@@ -107,8 +106,7 @@
 
             <!-- Task Description -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvowneremail"
-                android:layout_width="match_parent"
+                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cvtaskname"
                 android:layout_marginLeft="22dp"
@@ -127,7 +125,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etowneremail"
+                        android:id="@+id/etarflat"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -157,7 +155,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etowneremail"
+                        android:id="@+id/etflatno"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -201,7 +199,7 @@
 
             <!--Owner Spinner-->
             <Spinner
-                android:id="@+id/spinowner"
+                android:id="@+id/spinownersf"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginLeft="22dp"
@@ -211,7 +209,7 @@
                 android:background="@drawable/spinnerbg" />
 
             <Spinner
-                android:id="@+id/spinvendors"
+                android:id="@+id/spinvendorsf"
 
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
@@ -224,40 +222,10 @@
 
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv3"
-                android:layout_width="match_parent"
-
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="22dp"
-                android:visibility="gone"
-                app:cardCornerRadius="6dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:elevation="12dp"
-                    android:hint="OWNER'S PH No.3"
-
-                    app:boxStrokeWidth="0dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etph3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/interf"
-                        android:inputType="textCapCharacters" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.cardview.widget.CardView>
 
             <!-- Task Description -->
             <androidx.cardview.widget.CardView
-                android:id="@+id/cvownernotes"
-                android:layout_width="match_parent"
+                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="22dp"
                 android:layout_marginTop="20dp"
@@ -276,7 +244,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etownerNotes"
+                        android:id="@+id/etflatNotes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -287,7 +255,7 @@
             </androidx.cardview.widget.CardView>
 
             <Spinner
-                android:id="@+id/spinnerClients"
+                android:id="@+id/spinid"
                 style="@style/Widget.AppCompat.Spinner.DropDown"
                 android:layout_width="210dp"
 
@@ -311,6 +279,7 @@
                 android:elevation="@dimen/_12sdp">
 
                 <LinearLayout
+                    android:id="@+id/attachfile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -333,7 +302,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btnsowner"
+                android:id="@+id/btnaddflats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
