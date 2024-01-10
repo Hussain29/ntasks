@@ -57,7 +57,6 @@
                     android:id="@+id/textViewPriority"
                     android:layout_width="@dimen/_21sdp"
                     android:layout_height="@dimen/_21sdp"
-
                     android:layout_gravity="right"
                     android:fontFamily="@font/interf"
                     android:padding="5dp"
@@ -86,7 +85,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textViewDeadline"
+                    android:id="@+id/tvaddo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -111,7 +110,7 @@
                     android:src="@drawable/ic_email" />
 
                 <TextView
-                    android:id="@+id/textViewAssignedBy"
+                    android:id="@+id/tvemailo"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -203,7 +202,7 @@
                     android:src="@android:drawable/ic_menu_edit" />
 
                 <TextView
-                    android:id="@+id/textViewClientLabel"
+                    android:id="@+id/tvnoteso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -223,8 +222,7 @@
 
 
                 <TextView
-                    android:id="@+id/textViewStatusLabel"
-
+                    android:id="@+id/tvido"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
