@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".rents.vendordetails"
+            android:exported="false" />
+        <activity
             android:name=".rents.ownerdetails"
             android:exported="false" />
         <activity

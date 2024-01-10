@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.ownerdetails">
+    tools:context=".rents.vendordetails">
 
 
     <androidx.cardview.widget.CardView
@@ -28,8 +28,7 @@
 
                 <ImageView
                     android:src="@drawable/no_profile_pic"
-
-                    android:id="@+id/ivimage"
+                    android:id="@+id/ivimagev"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -53,10 +52,9 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivimage" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivimagev" />
 
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+              </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -76,7 +74,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvadd"
+                    android:id="@+id/tvaddv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -101,7 +99,7 @@
                     android:src="@drawable/ic_email" />
 
                 <TextView
-                    android:id="@+id/tvemail"
+                    android:id="@+id/tvemailv"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -124,7 +122,7 @@
                     android:src="@drawable/ic_mobile" />
 
                 <TextView
-                    android:id="@+id/tvph1"
+                    android:id="@+id/ph1v"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,7 +145,7 @@
                     android:src="@drawable/ic_mobile" />
 
                 <TextView
-                    android:id="@+id/tvph2"
+                    android:id="@+id/ph2v"
 
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
@@ -165,41 +163,18 @@
                 android:paddingTop="15dp">
 
                 <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_mobile" />
-
-                <TextView
-                    android:id="@+id/tvph3"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="Phone 3" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
-
-                <ImageView
                     android:id="@+id/imgClient"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:src="@android:drawable/ic_menu_edit" />
 
                 <TextView
-                    android:id="@+id/tvnotes"
+                    android:id="@+id/tvnotesv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/interf"
-                    android:text="Owner Notes"
+                    android:text="Vendor Notes"
                     android:visibility="visible" />
 
             </LinearLayout>
@@ -214,7 +189,7 @@
 
 
                 <TextView
-                    android:id="@+id/tvidtype"
+                    android:id="@+id/tvidv"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -222,7 +197,7 @@
                     android:text="ID TYPE:"
                     android:textStyle="bold" />
                 <Button
-                    android:id="@+id/btndownloadid"
+                    android:id="@+id/btndownidv"
                     android:text="Download ID"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
@@ -235,6 +210,8 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+
+
 
 
 </ScrollView>
