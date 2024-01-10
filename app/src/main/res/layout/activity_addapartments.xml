@@ -277,7 +277,6 @@
                 android:layout_marginRight="22dp" />
 
 
-
             <!--Vendor Spinner-->
             <Spinner
                 android:id="@+id/spinvendors"

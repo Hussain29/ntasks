@@ -22,10 +22,10 @@
             android:name=".rents.AddIndependent"
             android:exported="false" />
         <activity
-            android:name=".rents.independent"
+            android:name=".rents.IndependentActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.vendordetails"
+            android:name=".rents.VendorDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.OwnerDetailsActivity"
@@ -39,9 +39,7 @@
         <activity
             android:name=".rents.OtherPropActivity"
             android:exported="false" />
-        <activity
-            android:name=".rents.IndependentActivity"
-            android:exported="false" />
+
         <activity
             android:name=".rents.FlatsActivity"
             android:exported="false" />
@@ -69,9 +67,7 @@
         <activity
             android:name=".hrmaster"
             android:exported="false" />
-        <activity
-            android:name=".vendorsmaster"
-            android:exported="false" />
+
         <activity
             android:name=".rents.rentsmaster"
             android:exported="false" />
