@@ -4,7 +4,12 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
-
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="geo" />
+        </intent>
+    </queries>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,6 +20,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
+        <activity
+            android:name=".rents.FlatDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".rents.ApartmentDetailsActivity"
+            android:exported="false" />
         <activity
             android:name=".rents.AddPlots"
             android:exported="false" />
@@ -27,6 +38,7 @@
         <activity
             android:name=".rents.VendorDetailsActivity"
             android:exported="false" />
+
         <activity
             android:name=".rents.OwnerDetailsActivity"
             android:exported="false" />
@@ -39,7 +51,6 @@
         <activity
             android:name=".rents.OtherPropActivity"
             android:exported="false" />
-
         <activity
             android:name=".rents.FlatsActivity"
             android:exported="false" />
@@ -66,8 +77,12 @@
             android:exported="false" />
         <activity
             android:name=".hrmaster"
-            android:exported="false" />
+            android:exported="false" >
 
+
+
+
+        </activity>
         <activity
             android:name=".rents.rentsmaster"
             android:exported="false" />
@@ -89,6 +104,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+
         <activity android:name=".AddTaskActivity" />
         <activity android:name=".TaskDetailsActivity" />
         <activity android:name=".MyAssignedTasksActivity" />
