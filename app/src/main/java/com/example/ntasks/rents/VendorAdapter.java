@@ -50,8 +50,9 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.VendorView
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mListener != null && position != RecyclerView.NO_POSITION) {
-                    mListener.onItemClick(vendorList.get(position));
+                int adapterPosition = holder.getAdapterPosition();
+                if (mListener != null && adapterPosition != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(vendorList.get(adapterPosition));
                 }
             }
         });

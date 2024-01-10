@@ -17,7 +17,7 @@
 
     </string-array>
     <string-array name="flattypes">
-        <item>SELECT FLAT TYPE</item>
+        <item>Select Flat Type</item>
         <item>ROOM</item>
         <item>1 BHK</item>
         <item>2 BHK</item>

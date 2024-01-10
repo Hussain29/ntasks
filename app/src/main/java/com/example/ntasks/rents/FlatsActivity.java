@@ -1,57 +1,112 @@
 package com.example.ntasks.rents;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-
-import com.example.ntasks.R;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.ntasks.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 public class FlatsActivity extends AppCompatActivity {
-Button btnaddflats;
+
+    private RecyclerView recyclerViewFlats;
+    private FlatAdapter flatAdapter;
+    private ArrayList<Flats> flatList;
+
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_flats);
 
-        btnaddflats=findViewById(R.id.btnaddflats);
+        Button btnAddFlats = findViewById(R.id.btnaddflats);
 
-
-        btnaddflats.setOnClickListener(new View.OnClickListener() {
+        btnAddFlats.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(FlatsActivity.this, AddFlatsActivity.class);
+                Intent intent = new Intent(FlatsActivity.this, AddFlatsActivity.class);
                 startActivity(intent);
             }
         });
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
-        // Get the ActionBar
+        recyclerViewFlats = findViewById(R.id.recyclerViewFlats);
+        recyclerViewFlats.setLayoutManager(new LinearLayoutManager(this));
+
+        flatList = new ArrayList<>();
+
+        // Retrieve data from Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                flatList.clear(); // Clear the list before adding new data
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Flats flat = snapshot.getValue(Flats.class);
+                    flatList.add(flat);
+                }
+                flatAdapter.notifyDataSetChanged();
+                progressDialog.dismiss(); // Notify the adapter that the data has changed
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
+
+        flatAdapter = new FlatAdapter(this, flatList);
+        recyclerViewFlats.setAdapter(flatAdapter);
+
+        // Set up item click listener
+        flatAdapter.setOnItemClickListener(new FlatAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Flats flat) {
+                // Handle item click here
+                /*openFlatDetailsActivity(flat);*/
+            }
+        });
+
         ActionBar actionBar = getSupportActionBar();
-
-        // Set the title
         actionBar.setTitle("FLATS");
-
-        // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk); // Replace with your color resource
+        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
-
-
     }
+
+    /*private void openFlatDetailsActivity(Flats flat) {
+        Intent intent = new Intent(FlatsActivity.this, FlatDetailsActivity.class);
+        intent.putExtra("flat", flat);
+        startActivity(intent);
+        // Add more data if needed
+    }*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Handle the home button click
                 onBackPressed();
                 return true;
             default:

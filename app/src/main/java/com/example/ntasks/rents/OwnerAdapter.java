@@ -50,12 +50,14 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mListener != null && position != RecyclerView.NO_POSITION) {
-                    mListener.onItemClick(ownerList.get(position));
+                int adapterPosition = holder.getAdapterPosition();
+                if (mListener != null && adapterPosition != RecyclerView.NO_POSITION) {
+                    mListener.onItemClick(ownerList.get(adapterPosition));
                 }
             }
         });
     }
+
 
     @Override
     public int getItemCount() {
