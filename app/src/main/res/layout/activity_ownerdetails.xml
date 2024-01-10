@@ -27,6 +27,7 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:src="@drawable/no_profile_pic"
                     android:id="@+id/imageView2"
                     android:layout_width="@dimen/_70sdp"
                     android:layout_height="@dimen/_70sdp"
