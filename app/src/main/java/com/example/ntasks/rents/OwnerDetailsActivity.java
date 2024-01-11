@@ -49,14 +49,14 @@ public class OwnerDetailsActivity extends AppCompatActivity {
 
 
         // Set TextViews with owner details
-        ownerNameTextView.setText("Name:" + owner.getOwnerName());
-        ownerAddressTextView.setText("Address:" + owner.getOwnerAddress());
-        ownerEmailTextView.setText("Email:" + owner.getOwnerEmail());
-        ownerPhone1TextView.setText("Phone Number:" + owner.getOwnerPhone1());
-        ownerPhone2TextView.setText("Phone Number 2:" + owner.getOwnerPhone2());
-        ownerPhone3TextView.setText("Phone Number 3:" + owner.getOwnerPhone3());
-        ownerNotesTextView.setText("Notes:" + owner.getOwnerNotes());
-        idTypeTextView.setText("ID Type: " + owner.getUserId());
+        ownerNameTextView.setText("\t\tName:" + owner.getOwnerName());
+        ownerAddressTextView.setText("\t\tAddress:" + owner.getOwnerAddress());
+        ownerEmailTextView.setText("\t\tEmail:" + owner.getOwnerEmail());
+        ownerPhone1TextView.setText("\t\tPhone Number:" + owner.getOwnerPhone1());
+        ownerPhone2TextView.setText("\t\tPhone Number 2:" + owner.getOwnerPhone2());
+        ownerPhone3TextView.setText("\t\tPhone Number 3:" + owner.getOwnerPhone3());
+        ownerNotesTextView.setText("\t\tNotes:" + owner.getOwnerNotes());
+        idTypeTextView.setText("\t\tID Type: " + owner.getUserId());
 
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();

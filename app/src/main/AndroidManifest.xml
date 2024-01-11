@@ -24,10 +24,10 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".rents.PlotDetails"
+            android:name=".rents.PlotDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.IndependentDetails"
+            android:name=".rents.IndependentDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.FlatDetailsActivity"
@@ -36,10 +36,10 @@
             android:name=".rents.ApartmentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.AddPlots"
+            android:name=".rents.AddPlotsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.AddIndependent"
+            android:name=".rents.AddIndependentActivity"
             android:exported="false" />
         <activity
             android:name=".rents.IndependentActivity"

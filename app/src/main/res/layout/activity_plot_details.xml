@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.PlotDetails">
+    tools:context=".rents.PlotDetailsActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvview"
@@ -67,7 +67,7 @@
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="@dimen/_5sdp"
-                    android:src="@drawable/plo  "
+                    android:src="@drawable/plot"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -138,27 +138,6 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/flat" />
-
-                <TextView
-                    android:id="@+id/tvflatsplt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="\tUnits" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

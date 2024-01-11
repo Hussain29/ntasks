@@ -158,13 +158,6 @@ public class AddFlatsActivity extends AppCompatActivity {
             String apartmentName = getSelectedItemString(spinApart);
             String fType = getSelectedItemString(spinFType);
 
-            Log.d("AFAA", "Flat ID: " + flatId);
-            Log.d("AFAA", "Area: " + area);
-            Log.d("AFAA", "Flat No: " + flatNo);
-            Log.d("AFAA", "Flat Notes: " + flatNotes);
-            Log.d("AFAA", "Apartment Name: " + apartmentName);
-            Log.d("AFAA", "Flat Type: " + fType);
-
             if (!TextUtils.isEmpty(flatId) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(flatNo)
                     && !TextUtils.isEmpty(apartmentName) && !TextUtils.isEmpty(fType)) {
                 saveFlatDetails();

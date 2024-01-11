@@ -86,7 +86,7 @@ public class ApartmentsActivity extends AppCompatActivity {
             public void onItemClick(Apartment apartment) {
                 // Handle item click here
                 // You can open ApartmentDetailsActivity and pass relevant data through Intent
-                /*openApartmentDetailsActivity(apartment);*/
+                openApartmentDetailsActivity(apartment);
             }
         });
 
@@ -97,12 +97,25 @@ public class ApartmentsActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
-    /*private void openApartmentDetailsActivity(Apartment apartment) {
+    private void openApartmentDetailsActivity(Apartment apartment) {
         Intent intent = new Intent(ApartmentsActivity.this, ApartmentDetailsActivity.class);
-        intent.putExtra("apartment", new Apartment(apartment.getAptId(), apartment.getAptName(), apartment.getAptAddress(), apartment.getOwnerId(), apartment.getVendorId()));
+        intent.putExtra("apartment", new Apartment(
+                apartment.getAptId(),
+                apartment.getAptName(),
+                apartment.getAptAddress(),
+                apartment.getAptArea(),
+                apartment.getAptUnits(),
+                apartment.getAptFloor(),
+                apartment.getAptShops(),
+                apartment.getAptNotes(),
+                apartment.getUserId(),
+                apartment.getVendorName(),
+                apartment.getOwnerName()
+        ));
         startActivity(intent);
         // Add more data if needed
-    }*/
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

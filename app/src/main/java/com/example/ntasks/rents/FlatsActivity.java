@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class FlatsActivity extends AppCompatActivity {
     private RecyclerView recyclerViewFlats;
     private FlatAdapter flatAdapter;
     private ArrayList<Flats> flatList;
-
+    private ArrayList<Apartment> apartmentList;
     private ProgressDialog progressDialog;
 
     @Override
@@ -56,6 +57,26 @@ public class FlatsActivity extends AppCompatActivity {
         recyclerViewFlats.setLayoutManager(new LinearLayoutManager(this));
 
         flatList = new ArrayList<>();
+
+        apartmentList = new ArrayList<>();
+
+        // Populate apartmentList from Firebase
+        DatabaseReference databaseReferenceApts = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
+        databaseReferenceApts.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                apartmentList.clear(); // Clear the list before adding new data
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Apartment apartment = snapshot.getValue(Apartment.class);
+                    apartmentList.add(apartment);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
 
         // Retrieve data from Firebase Realtime Database
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
@@ -85,7 +106,7 @@ public class FlatsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(Flats flat) {
                 // Handle item click here
-                /*openFlatDetailsActivity(flat);*/
+                openFlatDetailsActivity(flat);
             }
         });
 
@@ -96,12 +117,13 @@ public class FlatsActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
-    /*private void openFlatDetailsActivity(Flats flat) {
+    private void openFlatDetailsActivity(Flats flat) {
         Intent intent = new Intent(FlatsActivity.this, FlatDetailsActivity.class);
         intent.putExtra("flat", flat);
+        intent.putParcelableArrayListExtra("apartmentList", (ArrayList<? extends Parcelable>) apartmentList);
         startActivity(intent);
-        // Add more data if needed
-    }*/
+    }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

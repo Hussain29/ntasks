@@ -48,13 +48,13 @@ public class VendorDetailsActivity extends AppCompatActivity {
 
         // Set TextViews with vendor details
         vendorImageView.setImageResource(R.drawable.no_profile_pic); // Set the image resource
-        vendorNameTextView.setText("Name: " + vendor.getVendorName());
-        vendorAddressTextView.setText("Address: " + vendor.getVendorAddress());
-        vendorEmailTextView.setText("Email: " + vendor.getVendorEmail());
-        vendorPhone1TextView.setText("Phone 1: " + vendor.getVendorPhone1());
-        vendorPhone2TextView.setText("Phone 2: " + vendor.getVendorPhone2());
-        vendorNotesTextView.setText("Vendor Notes: " + vendor.getVendorNotes());
-        idTypeTextView.setText("ID Type: " + vendor.getUserId());
+        vendorNameTextView.setText("\t\tName: " + vendor.getVendorName());
+        vendorAddressTextView.setText("\t\tAddress: " + vendor.getVendorAddress());
+        vendorEmailTextView.setText("\t\tEmail: " + vendor.getVendorEmail());
+        vendorPhone1TextView.setText("\t\tPhone 1: " + vendor.getVendorPhone1());
+        vendorPhone2TextView.setText("\t\tPhone 2: " + vendor.getVendorPhone2());
+        vendorNotesTextView.setText("\t\tVendor Notes: " + vendor.getVendorNotes());
+        idTypeTextView.setText("\t\tID Type: " + vendor.getUserId());
 
         // Add onClickListener for the downloadIdButton if needed
 

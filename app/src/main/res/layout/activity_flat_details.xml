@@ -13,7 +13,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginBottom="@dimen/_50sdp"
-
         android:elevation="122dp">
 
         <LinearLayout
@@ -130,35 +129,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingTop="15dp">
-
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:src="@android:drawable/ic_menu_directions"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvaddfapt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="\t\tAddress"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView1"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -173,7 +143,7 @@
                     android:src="@android:drawable/ic_menu_mapmode" />
 
                 <TextView
-                    android:id="@+id/tvarefapt"
+                    android:id="@+id/tvareafapt"
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -183,95 +153,8 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
 
-                <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="25dp"
-                    android:src="@android:drawable/ic_menu_mapmode" />
 
-                <TextView
-                    android:id="@+id/tvareapt"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="\t\tArea" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/flat" />
-
-                <TextView
-                    android:id="@+id/tvflatsfapt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="\tFlats" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@android:drawable/ic_dialog_dialer" />
-
-                <TextView
-                    android:id="@+id/tvfloorfapt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="\tFloors" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingTop="15dp">
-
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@android:drawable/ic_menu_today" />
-
-                <TextView
-                    android:id="@+id/tvsfaptshops"
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="17dp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/interf"
-                    android:text="\tShops" />
-
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -370,6 +253,13 @@
 
 
             </LinearLayout>
+
+            <Button
+                android:id="@+id/btnApartmentDetails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Apartment Details"
+                android:layout_gravity="center_horizontal"/>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
