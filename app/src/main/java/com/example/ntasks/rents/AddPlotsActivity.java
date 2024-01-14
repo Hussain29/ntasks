@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
@@ -34,6 +35,7 @@ import java.util.List;
 
 public class AddPlotsActivity extends AppCompatActivity {
 
+    private static final int PICK_FILE_REQUEST_IMG = 67;
     private Button saveButton, saveloc;
     CardView cvaddattach;
     LinearLayout ll2;
@@ -46,7 +48,7 @@ public class AddPlotsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plots);
-
+ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
         plotsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Plots");
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Vendors");
@@ -121,11 +123,23 @@ public class AddPlotsActivity extends AppCompatActivity {
             }
         });
 
+        ivaddplt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddPlotsActivity.this, "Select Image", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
 
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Add logic for handling attachments if needed
+                Toast.makeText(AddPlotsActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
             }
         });
 

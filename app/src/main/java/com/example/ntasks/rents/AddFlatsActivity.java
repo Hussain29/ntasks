@@ -1,5 +1,8 @@
 package com.example.ntasks.rents;
 
+import static com.example.ntasks.rents.AddVendorsActivity.PICK_FILE_REQUEST_IMG;
+
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -15,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
@@ -41,6 +46,31 @@ public class AddFlatsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addflats);
+        ConstraintLayout addimg;
+        CardView cvattach=findViewById(R.id.cvaddattach);
+
+        addimg=findViewById(R.id.addimg);
+
+        addimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddFlatsActivity.this, "Select Image", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
+
+        cvattach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddFlatsActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
+
 
         apartmentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
         flatsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");

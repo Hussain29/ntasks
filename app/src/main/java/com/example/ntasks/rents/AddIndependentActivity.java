@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
@@ -33,6 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class AddIndependentActivity extends AppCompatActivity {
 
+    private static final int PICK_FILE_REQUEST_IMG =66 ;
     private Button saveButton,saveloc;
     CardView cvaddattach;
     LinearLayout ll2;
@@ -45,6 +47,8 @@ public class AddIndependentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_independent);
+        ConstraintLayout addindpimg;
+        addindpimg=findViewById(R.id.ivaddindp);
 
         independentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Independents");
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
@@ -81,10 +85,26 @@ public class AddIndependentActivity extends AppCompatActivity {
 
         spinnerdoc.setAdapter(adapter);
 
+
+
+        addindpimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddIndependentActivity.this, "Select Image", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
+
+
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateAndSaveIndependentDetails();
+                Toast.makeText(AddIndependentActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
             }
         });
 

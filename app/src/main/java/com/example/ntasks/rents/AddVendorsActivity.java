@@ -30,7 +30,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class AddVendorsActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST = 2;
-    private static final int PICK_FILE_REQUEST_IMG = 4;
+    static final int PICK_FILE_REQUEST_IMG = 4;
     private Button add1, add2, saveButton;
     CardView cvv2;
     CardView cvaddattach;

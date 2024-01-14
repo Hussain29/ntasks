@@ -1,5 +1,7 @@
 package com.example.ntasks.rents;
 
+import static com.example.ntasks.rents.AddVendorsActivity.PICK_FILE_REQUEST_IMG;
+
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
@@ -35,7 +38,7 @@ import java.util.List;
 
 public class AddApartmentsActivity extends AppCompatActivity {
     private EditText etaptloc;
-    private static final int PICK_FILE_REQUEST = 2; // You can use any integer value
+    private static final int PICK_FILE_REQUEST = 22; // You can use any integer value
     private Button saveButton, saveloc;
     CardView cv3, cvaddattach;
     LinearLayout ll2;
@@ -48,7 +51,7 @@ public class AddApartmentsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addapartments);
-
+        ConstraintLayout ivaddapt=findViewById(R.id.ivaddapt);
         apartmentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Vendors");
@@ -122,10 +125,23 @@ public class AddApartmentsActivity extends AppCompatActivity {
             }
         });
 
+
+        ivaddapt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddApartmentsActivity.this, "Select Image", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateAndSaveApartmentDetails();
+                Toast.makeText(AddApartmentsActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
             }
         });
 
