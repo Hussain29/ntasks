@@ -33,7 +33,7 @@ public class AddVendorsActivity extends AppCompatActivity {
     private static final int PICK_FILE_REQUEST_IMG = 4;
     private Button add1, add2, saveButton;
     CardView cvv2;
-    //CardView cvaddattach;
+    CardView cvaddattach;
     LinearLayout ll2;
     private Spinner spinven;
     private EditText etVendorId, etVendorName, etVendorAddress, etVendorEmail, etVendorPhoneNumber, etVendorPhoneNumber2, etVendorNotes;
@@ -54,6 +54,7 @@ public class AddVendorsActivity extends AppCompatActivity {
         add1 = findViewById(R.id.add1);
         saveButton = findViewById(R.id.btnaddvendordet);
         cvv2 = findViewById(R.id.cvv2);
+        cvaddattach=findViewById(R.id.cvaddattach);
 
         ImageView imaddperson = findViewById(R.id.addvendorpic);
 
@@ -65,6 +66,25 @@ public class AddVendorsActivity extends AppCompatActivity {
         etVendorPhoneNumber2 = findViewById(R.id.etvendorPhonenumber2);
         etVendorNotes = findViewById(R.id.etvendorNotes);
 
+
+        imaddperson.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddVendorsActivity.this, "Select Your IMAGE", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
+        cvaddattach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AddVendorsActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+            }
+        });
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -24,8 +24,12 @@ public class ApartmentDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apartment_details);
+        ImageView imgloc=findViewById(R.id.imgloc);
+
+
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
+
 
         // Set the title
         actionBar.setTitle("APARTMENT DETAILS");
