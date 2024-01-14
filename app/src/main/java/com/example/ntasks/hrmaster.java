@@ -17,7 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class hrmaster extends AppCompatActivity {
-
+    private EditText etsplit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,52 +25,8 @@ public class hrmaster extends AppCompatActivity {
         setContentView(R.layout.activity_hrmaster);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Button openMapsButton = findViewById(R.id.openmaps);
-        Button split = findViewById(R.id.split);
-         TextView lonTextView=findViewById(R.id.tvlon);
-        TextView latTextView=findViewById(R.id.tvlat);
-        EditText etsplit=findViewById(R.id.etsplit);
 
 
-        split.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                splitText();
-
-
-
-                String enteredText = etsplit.getText().toString().trim();
-
-                // Check if the text contains a comma
-                if (enteredText.contains(",")) {
-                    // Split the text into parts based on the comma
-                    String[] parts = enteredText.split(",");
-
-                    if (parts.length == 2) {
-                        // Extract latitude and longitude
-                        String lat = parts[0].trim();
-                        String lon = parts[1].trim();
-
-                        // Display the results
-                        latTextView.setText("Lat = " + lat);
-                        lonTextView.setText("Lon = " + lon);
-                    } else {
-                        // Invalid input
-                        latTextView.setText("Invalid input");
-                        lonTextView.setText("");
-                    }
-                } else {
-                    // No comma found
-                    latTextView.setText("No comma found");
-                    lonTextView.setText("");
-                }
-
-
-
-
-
-
-            }
-        });
 
     /*    openMapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,11 +46,13 @@ public class hrmaster extends AppCompatActivity {
                     startActivity(mapIntent);
                 }
             }
-        });
-*/
+        });*/
         openMapsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                splitText();
+                EditText etsplit=findViewById(R.id.etsplit);
+
                 // Get the latitude and longitude from user input
                 String enteredText = etsplit.getText().toString().trim();
 
@@ -173,7 +131,37 @@ public class hrmaster extends AppCompatActivity {
 
 
     private void splitText() {
-        Toast.makeText(this, "Hello", Toast.LENGTH_SHORT).show();
+
+
+        String enteredText = etsplit.getText().toString().trim();
+        TextView lonTextView=findViewById(R.id.tvlon);
+        TextView latTextView=findViewById(R.id.tvlat);
+        // Check if the text contains a comma
+        if (enteredText.contains(",")) {
+            // Split the text into parts based on the comma
+            String[] parts = enteredText.split(",");
+
+            if (parts.length == 2) {
+                // Extract latitude and longitude
+                String lat = parts[0].trim();
+                String lon = parts[1].trim();
+
+                // Display the results
+                latTextView.setText("Lat = " + lat);
+                lonTextView.setText("Lon = " + lon);
+            } else {
+                // Invalid input
+                latTextView.setText("Invalid input");
+                lonTextView.setText("");
+            }
+        } else {
+            // No comma found
+            latTextView.setText("No comma found");
+            lonTextView.setText("");
+        }
+
+
+
     }
 
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,17 +31,20 @@ public class AddOwnersActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST = 2; // You can use any integer value
     private static final int PICK_FILE_REQUEST_IMG = 4; // You can use any integer value
-    private Button add1, add2, saveButton;
+     private Button add1, add2, saveButton;
     CardView cv3;
     LinearLayout ll2;
 
     private EditText etOwnerId, etOwnerName, etOwnerAddress, etOwnerEmail, etOwnerPhone1, etOwnerPhone2, etOwnerPhone3, etOwnerNotes;
     private DatabaseReference ownersRef;
-
+    private Spinner spinowner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addowners);
+
+        setupSpinnerForFType();
+        spinowner=findViewById(R.id.spinnerowner);
 
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
 
@@ -50,8 +54,7 @@ public class AddOwnersActivity extends AppCompatActivity {
         add1 = findViewById(R.id.add1);
         add2 = findViewById(R.id.add2);
         saveButton = findViewById(R.id.btnsowner);
-
-        ImageView imaddperson = findViewById(R.id.imaddperson);
+         ImageView imaddperson = findViewById(R.id.imaddperson);
 
         etOwnerId = findViewById(R.id.etownerid);
         etOwnerName = findViewById(R.id.etownerName);
@@ -89,7 +92,10 @@ public class AddOwnersActivity extends AppCompatActivity {
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                validateAndSaveOwnerDetails();
+                Toast.makeText(AddOwnersActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("*/*");
+                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
             }
         });
 
@@ -112,6 +118,7 @@ public class AddOwnersActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
+/*
     private void validateAndSaveOwnerDetails() {
         String ownerId = etOwnerId.getText().toString().trim();
         String ownerName = etOwnerName.getText().toString().trim();
@@ -122,12 +129,32 @@ public class AddOwnersActivity extends AppCompatActivity {
         String ownerPhone3 = etOwnerPhone3.getText().toString().trim();
         String ownerNotes = etOwnerNotes.getText().toString().trim();
 
-        if (isValidOwnerId(ownerId) && isValidEmail(ownerEmail) && isValidPhoneNumber(ownerPhone1) && isValidPhoneNumber(ownerPhone2) && isValidPhoneNumber(ownerPhone3)) {
+        if (isValidOwnerId(ownerId) && isValidEmail(ownerEmail) && isValidPhoneNumber(ownerPhone1)) {
             saveOwnerDetails();
         } else {
             Toast.makeText(AddOwnersActivity.this, "Please fill all the necessary fields with valid data", Toast.LENGTH_SHORT).show();
         }
     }
+*/
+
+    private void setupSpinnerForFType() {
+        // Remove this line:
+        Spinner spinowner = findViewById(R.id.spinnerowner);
+
+        // Get the string array from resources
+        String[] ownertypes = getResources().getStringArray(R.array.IDtypes);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ownertypes);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinowner.setAdapter(adapter);
+    }
+
+
 
     private void saveOwnerDetails() {
         String ownerId = etOwnerId.getText().toString().trim();

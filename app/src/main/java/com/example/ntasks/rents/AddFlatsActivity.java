@@ -57,7 +57,15 @@ public class AddFlatsActivity extends AppCompatActivity {
 
         setupSpinnerWithApartments();
         setupSpinnerForFType(); // Added this line to initialize the FType spinner
+        Spinner spinnerdoc=findViewById(R.id.spinid);
 
+        String[] items = getResources().getStringArray(R.array.DocIDtypes);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,items );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerdoc.setAdapter(adapter);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

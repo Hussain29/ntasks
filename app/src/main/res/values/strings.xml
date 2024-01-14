@@ -26,6 +26,28 @@
         <item>OTHERS</item>
 
     </string-array>
+    <string-array name="IDtypes">
+        <item>Select ID Type</item>
+        <item>AADHAR CARD</item>
+        <item>PAN CARD</item>
+        <item>PASSPORT</item>
+        <item>DRIVING LICENCE</item>
+        <item>VOTER ID</item>
+        <item>OTHERS</item>
+
+    </string-array>
+
+
+    <string-array name="DocIDtypes">
+        <item>Select DOC ID Type</item>
+        <item>ELECTRICITY BILL</item>
+        <item>WATER BILL</item>
+        <item>TAX INVOICE</item>
+        <item>RECIEPT</item>
+        <item>DOCUMENT</item>
+        <item>OTHERS</item>
+
+    </string-array>
 
 
     <string name="change_status_prompt">Change Status &#709;</string>

@@ -24,13 +24,12 @@
             android:textStyle="bold" />
 
 
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ivaddapt"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
-            android:layout_marginTop="@dimen/_12sdp"
             android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_12sdp"
             android:background="@drawable/apartment">
 
             <ImageView
@@ -148,6 +147,89 @@
 
             </androidx.cardview.widget.CardView>
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginRight="22dp"
+                app:cardCornerRadius="6dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="@dimen/_220sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    app:cardCornerRadius="6dp"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:elevation="12dp"
+                        android:hint="Enter Lattitude,Longitude"
+
+                        app:boxStrokeWidth="0dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etsplit"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/interf"
+                            android:inputType="textCapCharacters" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/appCompatImageButton"
+                    android:layout_width="@dimen/_44sdp"
+                    android:layout_height="@dimen/_44sdp"
+                    android:background="@android:drawable/ic_menu_mylocation"
+                    android:padding="@dimen/_5sdp"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvlat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\t\tlat:" />
+
+                        <TextView
+                            android:id="@+id/tvlon"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="\t\tlong:" />
+                    </LinearLayout>
+
+                    <Button
+                        android:id="@+id/btnsaveloc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_marginLeft="@dimen/_100sdp"
+                        android:text="Save Location" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <!-- Task Description -->
             <androidx.cardview.widget.CardView
@@ -240,7 +322,7 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 android:layout_marginLeft="22dp"
+                android:layout_marginLeft="22dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="22dp"
                 app:cardCornerRadius="6dp">
@@ -270,11 +352,11 @@
                 android:id="@+id/spinowner"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/spinnerbg"
-
                 android:layout_marginLeft="22dp"
+
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="22dp" />
+                android:layout_marginRight="22dp"
+                android:background="@drawable/spinnerbg" />
 
 
             <!--Vendor Spinner-->
@@ -283,13 +365,11 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
-                android:background="@drawable/spinnerbg"
-
                 android:layout_marginLeft="22dp"
+
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="22dp" />
-
-
+                android:layout_marginRight="22dp"
+                android:background="@drawable/spinnerbg" />
 
 
             <!-- Task Description -->
@@ -320,7 +400,7 @@
                         android:fontFamily="@font/interf"
                         android:inputType="textCapCharacters"
 
-                        android:minLines="3"/>
+                        android:minLines="3" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.cardview.widget.CardView>
 

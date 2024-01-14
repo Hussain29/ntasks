@@ -1,6 +1,8 @@
 package com.example.ntasks.rents;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +21,7 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,12 +34,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddApartmentsActivity extends AppCompatActivity {
-
+    private EditText etaptloc;
     private static final int PICK_FILE_REQUEST = 2; // You can use any integer value
-    private Button saveButton;
+    private Button saveButton, saveloc;
     CardView cv3, cvaddattach;
     LinearLayout ll2;
-
+    //private EditText etsplit;
     private EditText etAptId, etAptName, etAptAddress, etAptArea, etAptUnits, etAptFloor, etAptShops, etAptNotes;
     private Spinner spinOwner, spinVendors, spinDocs;
     private DatabaseReference apartmentsRef, ownersRef, vendorsRef;
@@ -61,13 +65,62 @@ public class AddApartmentsActivity extends AppCompatActivity {
         etAptFloor = findViewById(R.id.etaptfloor);
         etAptShops = findViewById(R.id.etaptshops);
         etAptNotes = findViewById(R.id.etaptNotes);
-
+        saveloc = findViewById(R.id.btnsaveloc);
         spinOwner = findViewById(R.id.spinowner);
         spinVendors = findViewById(R.id.spinvendors);
         spinDocs = findViewById(R.id.spinnerdoc);
 
         setupSpinnerWithOwners();
         setupSpinnerWithVendors();
+
+        Spinner spinnerdoc=findViewById(R.id.spinnerdoc);
+
+         String[] items = getResources().getStringArray(R.array.DocIDtypes);
+
+         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,items );
+
+         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+         spinnerdoc.setAdapter(adapter);
+        saveloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                splitText();
+                EditText etsplit=findViewById(R.id.etsplit);
+
+                // Get the latitude and longitude from user input
+                String enteredText = etsplit.getText().toString().trim();
+
+                // Check if the text contains a comma
+                if (enteredText.contains(",")) {
+                    // Split the text into parts based on the comma
+                    String[] parts = enteredText.split(",");
+
+                    if (parts.length == 2) {
+                        // Extract latitude and longitude
+                        double latitude = Double.parseDouble(parts[0].trim());
+                        double longitude = Double.parseDouble(parts[1].trim());
+
+                        // Create a Uri with the coordinates
+                        Uri gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude + "?z=15&q=" + latitude + "," + longitude);
+
+                        // Create an Intent to open Google Maps
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                        // Check if there's an activity to handle the Intent
+                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
+                    } else {
+                        // Invalid input
+                        Toast.makeText(AddApartmentsActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // No comma found
+                    Toast.makeText(AddApartmentsActivity.this, "No comma found in input", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,4 +268,43 @@ public class AddApartmentsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
+    private void splitText() {
+        EditText etsplit=findViewById(R.id.etsplit);
+
+        String enteredText = etsplit.getText().toString().trim();
+        TextView lonTextView=findViewById(R.id.tvlon);
+        TextView latTextView=findViewById(R.id.tvlat);
+        // Check if the text contains a comma
+        if (enteredText.contains(",")) {
+            // Split the text into parts based on the comma
+            String[] parts = enteredText.split(",");
+
+            if (parts.length == 2) {
+                // Extract latitude and longitude
+                String lat = parts[0].trim();
+                String lon = parts[1].trim();
+
+                // Display the results
+                latTextView.setText("Lat = " + lat);
+                lonTextView.setText("Lon = " + lon);
+            } else {
+                // Invalid input
+                latTextView.setText("Invalid input");
+                lonTextView.setText("");
+            }
+        } else {
+            // No comma found
+            latTextView.setText("No comma found");
+            lonTextView.setText("");
+        }
+
+
+
+    }
+
+
+
 }

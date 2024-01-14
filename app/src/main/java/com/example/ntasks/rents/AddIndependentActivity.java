@@ -1,6 +1,8 @@
 package com.example.ntasks.rents;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.MenuItem;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -30,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class AddIndependentActivity extends AppCompatActivity {
 
-    private Button saveButton;
+    private Button saveButton,saveloc;
     CardView cvaddattach;
     LinearLayout ll2;
 
@@ -50,7 +53,7 @@ public class AddIndependentActivity extends AppCompatActivity {
         cvaddattach = findViewById(R.id.cvaddattach);
         ll2 = findViewById(R.id.llattach);
         saveButton = findViewById(R.id.btnindpadd);
-
+        saveloc=findViewById(R.id.btnsaveloc);
         etIndpId = findViewById(R.id.etindpid);
         etIndpName = findViewById(R.id.etindpName);
         etIndpAdd = findViewById(R.id.etindpadd);
@@ -66,6 +69,17 @@ public class AddIndependentActivity extends AppCompatActivity {
 
         setupSpinnerWithOwners();
         setupSpinnerWithVendors();
+
+
+        Spinner spinnerdoc=findViewById(R.id.spinnerdoc);
+
+        String[] items = getResources().getStringArray(R.array.DocIDtypes);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,items );
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spinnerdoc.setAdapter(adapter);
 
         cvaddattach.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +105,48 @@ public class AddIndependentActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk); // Replace with your color resource
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+
+        saveloc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                splitText();
+                EditText etsplit=findViewById(R.id.etsplit);
+
+                // Get the latitude and longitude from user input
+                String enteredText = etsplit.getText().toString().trim();
+
+                // Check if the text contains a comma
+                if (enteredText.contains(",")) {
+                    // Split the text into parts based on the comma
+                    String[] parts = enteredText.split(",");
+
+                    if (parts.length == 2) {
+                        // Extract latitude and longitude
+                        double latitude = Double.parseDouble(parts[0].trim());
+                        double longitude = Double.parseDouble(parts[1].trim());
+
+                        // Create a Uri with the coordinates
+                        Uri gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude + "?z=15&q=" + latitude + "," + longitude);
+
+                        // Create an Intent to open Google Maps
+                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+
+                        // Check if there's an activity to handle the Intent
+                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                            startActivity(mapIntent);
+                        }
+                    } else {
+                        // Invalid input
+                        Toast.makeText(AddIndependentActivity.this, "Invalid input", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // No comma found
+                    Toast.makeText(AddIndependentActivity.this, "No comma found in input", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
 
     private void setupSpinnerWithOwners() {
@@ -200,6 +256,39 @@ public class AddIndependentActivity extends AppCompatActivity {
             // Handle the case when the user is not authenticated
             return "Unknown User";
         }
+    }
+    private void splitText() {
+        EditText etsplit=findViewById(R.id.etsplit);
+
+        String enteredText = etsplit.getText().toString().trim();
+        TextView lonTextView=findViewById(R.id.tvlon);
+        TextView latTextView=findViewById(R.id.tvlat);
+        // Check if the text contains a comma
+        if (enteredText.contains(",")) {
+            // Split the text into parts based on the comma
+            String[] parts = enteredText.split(",");
+
+            if (parts.length == 2) {
+                // Extract latitude and longitude
+                String lat = parts[0].trim();
+                String lon = parts[1].trim();
+
+                // Display the results
+                latTextView.setText("Lat = " + lat);
+                lonTextView.setText("Lon = " + lon);
+            } else {
+                // Invalid input
+                latTextView.setText("Invalid input");
+                lonTextView.setText("");
+            }
+        } else {
+            // No comma found
+            latTextView.setText("No comma found");
+            lonTextView.setText("");
+        }
+
+
+
     }
 
     @Override

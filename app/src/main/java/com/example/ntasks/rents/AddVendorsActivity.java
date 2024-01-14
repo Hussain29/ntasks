@@ -8,10 +8,12 @@ import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
@@ -33,7 +35,7 @@ public class AddVendorsActivity extends AppCompatActivity {
     CardView cvv2;
     //CardView cvaddattach;
     LinearLayout ll2;
-
+    private Spinner spinven;
     private EditText etVendorId, etVendorName, etVendorAddress, etVendorEmail, etVendorPhoneNumber, etVendorPhoneNumber2, etVendorNotes;
     private DatabaseReference vendorsRef;
 
@@ -41,6 +43,9 @@ public class AddVendorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addvendors);
+
+        setupSpinnerForFType();
+        spinven=findViewById(R.id.spinnervendor);
 
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Vendors");
 
@@ -108,7 +113,22 @@ public class AddVendorsActivity extends AppCompatActivity {
         int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
+    private void setupSpinnerForFType() {
+        // Remove this line:
+        Spinner spinven = findViewById(R.id.spinnervendor);
 
+        // Get the string array from resources
+        String[] idtypes = getResources().getStringArray(R.array.IDtypes);
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, idtypes);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        spinven.setAdapter(adapter);
+    }
     private void validateAndSaveVendorDetails() {
         String vendorId = etVendorId.getText().toString().trim();
         String vendorName = etVendorName.getText().toString().trim();
