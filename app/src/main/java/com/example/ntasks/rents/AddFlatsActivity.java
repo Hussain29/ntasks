@@ -1,9 +1,8 @@
 package com.example.ntasks.rents;
 
-import static com.example.ntasks.rents.AddVendorsActivity.PICK_FILE_REQUEST_IMG;
-
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,15 +30,28 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddFlatsActivity extends AppCompatActivity {
 
-    private Button saveButton;
+    private static final int PICK_FILE_REQUEST_IMG = 4;
+    private static final int PICK_FILE_REQUEST_DOC = 5;
+
     private EditText etFlatId, etArea, etFlatNo, etFlatNotes;
+    private Button saveButton;
     private Spinner spinApart, spinFType;
+    private ImageView flatImageView;
+    /*private Uri imageUri;
+    private Uri documentUri;*/
+
+    private Spinner docTypeSpinner;
+    private String photoUrl;
+    private String docUrl;
+
 
     private DatabaseReference apartmentRef, flatsRef;
 
@@ -46,12 +59,19 @@ public class AddFlatsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addflats);
+
+        flatImageView = findViewById(R.id.addimg);
+        docTypeSpinner = findViewById(R.id.spinid);
+
+        apartmentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
+        flatsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
+
+        // Inside your onCreate method or wherever you initialize your views
         ConstraintLayout addimg;
-        CardView cvattach=findViewById(R.id.cvaddattach);
+        CardView cvattach = findViewById(R.id.cvaddattach);
 
-        addimg=findViewById(R.id.addimg);
 
-        addimg.setOnClickListener(new View.OnClickListener() {
+        flatImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(AddFlatsActivity.this, "Select Image", Toast.LENGTH_LONG).show();
@@ -67,15 +87,11 @@ public class AddFlatsActivity extends AppCompatActivity {
                 Toast.makeText(AddFlatsActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
-                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+                startActivityForResult(intent, PICK_FILE_REQUEST_DOC);
             }
         });
 
-
-        apartmentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
-        flatsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
-
-        saveButton = findViewById(R.id.btnaddflats);
+        setupSpinnerForDocType(); // Setup document type spinner
 
         etFlatId = findViewById(R.id.etflatid);
         etArea = findViewById(R.id.etarflat);
@@ -87,15 +103,8 @@ public class AddFlatsActivity extends AppCompatActivity {
 
         setupSpinnerWithApartments();
         setupSpinnerForFType(); // Added this line to initialize the FType spinner
-        Spinner spinnerdoc=findViewById(R.id.spinid);
 
-        String[] items = getResources().getStringArray(R.array.DocIDtypes);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,items );
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerdoc.setAdapter(adapter);
+        saveButton = findViewById(R.id.btnaddflats);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,49 +151,74 @@ public class AddFlatsActivity extends AppCompatActivity {
             }
         });
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_FILE_REQUEST_IMG) {
+                if (data != null && data.getData() != null) {
+                    Uri selectedImageUri = data.getData();
+                    uploadImageToFirebaseStorage(selectedImageUri);
+                }
+            } else if (requestCode == PICK_FILE_REQUEST_DOC) {
+                if (data != null && data.getData() != null) {
+                    Uri selectedDocUri = data.getData();
+                    uploadDocumentToFirebaseStorage(selectedDocUri);
+                }
+            }
+        }
+    }
+
+    // Method to handle document upload
+    private void uploadDocumentToFirebaseStorage(Uri docUri) {
+        String fileName = "document:" + System.currentTimeMillis();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        storageRef.putFile(docUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        docUrl = uri.toString();
+                        Log.d("AddFlatsActivity", "Document URL: " + docUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddFlatsActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("AddFlatsActivity", "Document upload failed", e);
+                });
+    }
+
+    // Method to handle image upload
+    private void uploadImageToFirebaseStorage(Uri imageUri) {
+        String fileName = "image:" + System.currentTimeMillis();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        photoUrl = uri.toString();
+                        Log.d("AddFlatsActivity", "Image URL: " + photoUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddFlatsActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("AddFlatsActivity", "Image upload failed", e);
+                });
+    }
+
 
     private void setupSpinnerForFType() {
-        // Remove this line: Spinner spinFType = findViewById(R.id.spinftype);
-
-        // Get the string array from resources
         String[] flatTypes = getResources().getStringArray(R.array.flattypes);
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, flatTypes);
-
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
         spinFType.setAdapter(adapter);
     }
 
-    public interface Callback<T> {
-        void onSuccess(T result);
-        void onFailure(String error);
-    }
-
-    private void getOwnerNameAndVendorNameForApartment(String apartmentName, Callback<Pair<String, String>> callback) {
-        apartmentRef.orderByChild("aptName").equalTo(apartmentName).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    DataSnapshot apartmentSnapshot = snapshot.getChildren().iterator().next();
-                    String ownerName = apartmentSnapshot.child("ownerName").getValue(String.class);
-                    String vendorName = apartmentSnapshot.child("vendorName").getValue(String.class);
-
-                    callback.onSuccess(new Pair<>(ownerName, vendorName));
-                } else {
-                    callback.onFailure("Apartment not found");
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Handle error
-                callback.onFailure(error.getMessage());
-            }
-        });
+    private void setupSpinnerForDocType() {
+        String[] docTypes = getResources().getStringArray(R.array.DocIDtypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, docTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        docTypeSpinner.setAdapter(adapter);
     }
 
     private void validateAndSaveFlatDetails() {
@@ -195,6 +229,7 @@ public class AddFlatsActivity extends AppCompatActivity {
             String flatNotes = etFlatNotes.getText().toString().trim();
             String apartmentName = getSelectedItemString(spinApart);
             String fType = getSelectedItemString(spinFType);
+            String docType = docTypeSpinner.getSelectedItem().toString();
 
             if (!TextUtils.isEmpty(flatId) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(flatNo)
                     && !TextUtils.isEmpty(apartmentName) && !TextUtils.isEmpty(fType)) {
@@ -219,6 +254,8 @@ public class AddFlatsActivity extends AppCompatActivity {
         String flatNotes = etFlatNotes.getText().toString().trim();
         String apartmentName = spinApart.getSelectedItem().toString();
         String fType = spinFType.getSelectedItem().toString();
+        String docType = docTypeSpinner.getSelectedItem().toString();
+
 
         // Retrieve ownerName and vendorName from the selected apartment
         getOwnerNameAndVendorNameForApartment(apartmentName, new Callback<Pair<String, String>>() {
@@ -231,7 +268,7 @@ public class AddFlatsActivity extends AppCompatActivity {
                         && !TextUtils.isEmpty(apartmentName) && !TextUtils.isEmpty(fType)
                         && !TextUtils.isEmpty(result.first) && !TextUtils.isEmpty(result.second)) {
 
-                    Flats flat = new Flats(flatId, area, flatNo, flatNotes, apartmentName, fType, result.first, result.second, userId);
+                    Flats flat = new Flats(flatId, area, flatNo, flatNotes, apartmentName, fType, result.first, result.second, userId, docType, photoUrl, docUrl);
 
                     flatsRef.child(flatId).setValue(flat);
 
@@ -256,20 +293,34 @@ public class AddFlatsActivity extends AppCompatActivity {
         if (user != null) {
             return user.getUid();
         } else {
-            // Handle the case when the user is not authenticated
             return "Unknown User";
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Handle the home button click
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
+    private void getOwnerNameAndVendorNameForApartment(String apartmentName, Callback<Pair<String, String>> callback) {
+        apartmentRef.orderByChild("aptName").equalTo(apartmentName).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    DataSnapshot aptSnapshot = dataSnapshot.getChildren().iterator().next();
+                    String ownerName = aptSnapshot.child("ownerName").getValue(String.class);
+                    String vendorName = aptSnapshot.child("vendorName").getValue(String.class);
+                    callback.onSuccess(new Pair<>(ownerName, vendorName));
+                } else {
+                    callback.onFailure("Apartment not found");
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                callback.onFailure(databaseError.getMessage());
+            }
+        });
+    }
+
+    private interface Callback<T> {
+        void onSuccess(T result);
+
+        void onFailure(String error);
     }
 }

@@ -175,6 +175,31 @@
                     android:src="@android:drawable/ic_menu_myplaces" />
 
                 <TextView
+                    android:id="@+id/tvCoords"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textStyle="bold|italic"
+                    android:fontFamily="@font/interf"
+                    android:text="\tCoordinates: " />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@android:drawable/ic_menu_myplaces" />
+
+                <TextView
                     android:id="@+id/tvownerplt"
 
                     android:layout_width="wrap_content"
@@ -185,6 +210,7 @@
                     android:text="\tOwner" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -249,11 +275,21 @@
                     android:layout_marginBottom="5dp"
                     android:text="DOC TYPE:"
                     android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvdoclinkplt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Click to download:"
+                    android:textStyle="bold" />
+
                 <Button
                     android:text="Download DOC"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    />
 
 
 

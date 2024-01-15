@@ -14,12 +14,15 @@ public class Owner implements Parcelable {
     private String ownerPhone3;
     private String ownerNotes;
     private String userId;
+    private String photoUrl;
+    private String docUrl;
+    private String docType; // New field for document type
 
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(Owner.class)
     }
 
-    public Owner(String ownerId, String ownerName, String ownerAddress, String ownerEmail, String ownerPhone1, String ownerPhone2, String ownerPhone3, String ownerNotes, String userId) {
+    public Owner(String ownerId, String ownerName, String ownerAddress, String ownerEmail, String ownerPhone1, String ownerPhone2, String ownerPhone3, String ownerNotes, String userId, String photoUrl, String docUrl, String docType) {
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.ownerAddress = ownerAddress;
@@ -29,6 +32,9 @@ public class Owner implements Parcelable {
         this.ownerPhone3 = ownerPhone3;
         this.ownerNotes = ownerNotes;
         this.userId = userId;
+        this.photoUrl = photoUrl;
+        this.docUrl = docUrl;
+        this.docType = docType;
     }
 
     protected Owner(Parcel in) {
@@ -41,6 +47,9 @@ public class Owner implements Parcelable {
         ownerPhone3 = in.readString();
         ownerNotes = in.readString();
         userId = in.readString();
+        photoUrl = in.readString();
+        docUrl = in.readString();
+        docType = in.readString();
     }
 
     public static final Creator<Owner> CREATOR = new Creator<Owner>() {
@@ -127,6 +136,30 @@ public class Owner implements Parcelable {
         this.userId = userId;
     }
 
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getDocUrl() {
+        return docUrl;
+    }
+
+    public void setDocUrl(String docUrl) {
+        this.docUrl = docUrl;
+    }
+
+    public String getDocType() {
+        return docType;
+    }
+
+    public void setDocType(String docType) {
+        this.docType = docType;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -143,5 +176,8 @@ public class Owner implements Parcelable {
         dest.writeString(ownerPhone3);
         dest.writeString(ownerNotes);
         dest.writeString(userId);
+        dest.writeString(photoUrl);
+        dest.writeString(docUrl);
+        dest.writeString(docType);
     }
 }

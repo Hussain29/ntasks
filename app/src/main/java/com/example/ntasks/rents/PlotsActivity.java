@@ -109,7 +109,11 @@ public class PlotsActivity extends AppCompatActivity {
                 plot.getPltNotes(),
                 plot.getUserId(),
                 plot.getVendorName(),
-                plot.getOwnerName()
+                plot.getOwnerName(),
+                plot.getDocType(),
+                plot.getDocUrl(),
+                plot.getImgUrl(),
+                plot.getCoordinates()
         ));
         startActivity(intent);
         // Add more data if needed

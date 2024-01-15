@@ -1,57 +1,76 @@
 package com.example.ntasks.rents;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Button;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import android.text.util.Linkify;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 public class IndependentDetailsActivity extends AppCompatActivity {
 
+    private ImageView imageView2;
+    private TextView tvIndpName;
+    private TextView tvIndpId;
+    private TextView tvAddIndp;
+    private TextView tvAreaIndp;
+    private TextView tvUnitsIndp;
+    private TextView tvFloorIndp;
+    private TextView tvShops;
+    private TextView tvOwnerIndp;
+    private TextView tvVendorIndp;
+    private TextView tvIndpNotes;
+    private TextView tvDocIndp;
+    private TextView tvDocumentsIndp;
+    private TextView linkTextView;
+
+    private TextView tvCoords;
+
+    private Independent independent;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_independent_details);
-        // Get the ActionBar
-        ActionBar actionBar = getSupportActionBar();
-
-        // Set the title
-        actionBar.setTitle("INDEPENDENT DETAILS");
-
-        // Enable the back button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
-        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         // Retrieve Independent object from Intent
-        Independent independent = getIntent().getParcelableExtra("independent");
+        independent = getIntent().getParcelableExtra("independent");
 
-        // Find views
-        ImageView imageView2 = findViewById(R.id.imageView2);
-        TextView tvIndpName = findViewById(R.id.tvindpName);
-        TextView tvIndpId = findViewById(R.id.tvidindp);
-        TextView tvAddIndp = findViewById(R.id.tvaddindp);
-        TextView tvAreaIndp = findViewById(R.id.tvareindp);
-        TextView tvUnitsIndp = findViewById(R.id.tvflatsindp);
-        TextView tvFloorIndp = findViewById(R.id.tvfloorindp);
-        TextView tvShops = findViewById(R.id.tvsptshops);
-        TextView tvOwnerIndp = findViewById(R.id.tvownerindp);
-        TextView tvVendorIndp = findViewById(R.id.tvvendorindp);
-        TextView tvIndpNotes = findViewById(R.id.tvindpnotes);
-        TextView tvDocIndp = findViewById(R.id.tvdocindp);
-        /*Button btnDownloadDoc = findViewById(R.id.downloadDocButton);*/
-
-        // Check if the independent object is not null
+        // Check if independent is null before accessing its properties
         if (independent != null) {
+            // Initialize Views
+            imageView2 = findViewById(R.id.imageView2);
+            tvIndpName = findViewById(R.id.tvindpName);
+            tvIndpId = findViewById(R.id.tvidindp);
+            tvAddIndp = findViewById(R.id.tvaddindp);
+            tvAreaIndp = findViewById(R.id.tvareindp);
+            tvUnitsIndp = findViewById(R.id.tvflatsindp);
+            tvFloorIndp = findViewById(R.id.tvfloorindp);
+            tvShops = findViewById(R.id.tvsptshops);
+            tvOwnerIndp = findViewById(R.id.tvownerindp);
+            tvVendorIndp = findViewById(R.id.tvvendorindp);
+            tvIndpNotes = findViewById(R.id.tvindpnotes);
+            tvDocIndp = findViewById(R.id.tvdocindp);
+            tvDocumentsIndp = findViewById(R.id.tvdocumentsindp);
+            linkTextView = findViewById(R.id.linkTextView);
+            tvCoords = findViewById(R.id.tvsptcoords);
+
             // Set values to views
-            imageView2.setImageResource(R.drawable.independent); // You can change this image based on your requirements
+            // Use Picasso to load the independent image
+            Picasso.get().load(R.drawable.independent).into(imageView2);
             tvIndpName.setText(independent.getIndpName());
             tvIndpId.setText("\t\tIndependent Id: " + independent.getIndpId());
             tvAddIndp.setText("\t\tAddress: " + independent.getIndpAddress());
@@ -62,26 +81,70 @@ public class IndependentDetailsActivity extends AppCompatActivity {
             tvOwnerIndp.setText("\t\tOwner: " + independent.getOwnerName());
             tvVendorIndp.setText("\t\tVendor: " + independent.getVendorName());
             tvIndpNotes.setText("\t\tIndependent Notes: " + independent.getIndpNotes());
-            tvDocIndp.setText("\t\tDOC TYPE:");
+            tvDocIndp.setText("\t\tDOC TYPE:" + independent.getDocuType());
+            tvCoords.setText("\t\tCoordinates:" + independent.getCoordinates());
+            tvDocumentsIndp.setText("\t\tIndependent Doc");
 
-            // Set onClickListener for the download button
-            /*btnDownloadDoc.setOnClickListener(v -> {
-                // Add your logic for downloading the document
-            });*/
+            // Load owner image using Picasso
+            if (independent.getImgUrl() != null && !independent.getImgUrl().isEmpty()) {
+                Picasso.get().load(independent.getImgUrl()).into(imageView2);
+            }
+
+            // Get the ActionBar
+            ActionBar actionBar = getSupportActionBar();
+
+            // Set the title
+            actionBar.setTitle("INDEPENDENT DETAILS");
+
+            // Enable the back button
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            int actionBarColor = ContextCompat.getColor(this, R.color.blueeee);
+            actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+            // Display clickable link for document URL
+            displayAttachmentLink(independent.getDocuUrl());
 
             // You can customize this based on your specific requirements
             // For example, changing background colors, text colors, etc.
         } else {
-            // Handle the case where the independent object is null
+            // Log an error or show a message indicating that the independent data is null
+            Log.e("IndependentDetailsActivity", "Independent data is null");
+            // You may also finish the activity or handle it accordingly
+            finish();
         }
     }
 
+    private void displayAttachmentLink(String url) {
+        // Use a TextView to display the clickable link
+        tvDocumentsIndp.setVisibility(View.VISIBLE);
+
+        // Set the autoLink property to web for automatic linking of URLs
+        tvDocumentsIndp.setAutoLinkMask(Linkify.WEB_URLS);
+
+        // Set the text to the URL
+        tvDocumentsIndp.setText("Click To View Document: " + url);
+
+        // Set an onClickListener to perform some action when clicked
+        tvDocumentsIndp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Modify this block based on your desired action
+                // For example, show a toast or perform some other action
+                Toast.makeText(IndependentDetailsActivity.this, "Document URL Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void openUrlInBrowser(String url) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        startActivity(intent);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Handle the back button click
+                // Handle the home button click
                 onBackPressed();
                 return true;
             default:

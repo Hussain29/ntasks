@@ -1,13 +1,17 @@
+
+
 package com.example.ntasks.rents;
 
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,25 +30,33 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class AddOwnersActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST = 2; // You can use any integer value
     private static final int PICK_FILE_REQUEST_IMG = 4; // You can use any integer value
-     private Button add1, add2, saveButton;
-    CardView cv3;
-    LinearLayout ll2;
 
+    private Button add1, add2, saveButton;
+    private CardView cv3;
+    private LinearLayout ll2;
+    private ImageView imageView;
     private EditText etOwnerId, etOwnerName, etOwnerAddress, etOwnerEmail, etOwnerPhone1, etOwnerPhone2, etOwnerPhone3, etOwnerNotes;
     private DatabaseReference ownersRef;
     private Spinner spinowner;
+
+    private String photoUrl; // To store the URL of the uploaded image
+    private String docUrl;   // To store the URL of the uploaded document
+    private String selectedDocType; // To store the selected document type from the spinner
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addowners);
 
         setupSpinnerForFType();
-        spinowner=findViewById(R.id.spinnerowner);
+        spinowner = findViewById(R.id.spinnerowner);
 
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
 
@@ -54,7 +66,7 @@ public class AddOwnersActivity extends AppCompatActivity {
         add1 = findViewById(R.id.add1);
         add2 = findViewById(R.id.add2);
         saveButton = findViewById(R.id.btnsowner);
-         ImageView imaddperson = findViewById(R.id.imaddperson);
+        ImageView imaddperson = findViewById(R.id.imaddperson);
 
         etOwnerId = findViewById(R.id.etownerid);
         etOwnerName = findViewById(R.id.etownerName);
@@ -79,6 +91,7 @@ public class AddOwnersActivity extends AppCompatActivity {
             }
         });
 
+
         imaddperson.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,7 +108,7 @@ public class AddOwnersActivity extends AppCompatActivity {
                 Toast.makeText(AddOwnersActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
-                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+                startActivityForResult(intent, PICK_FILE_REQUEST);
             }
         });
 
@@ -118,43 +131,80 @@ public class AddOwnersActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
-/*
-    private void validateAndSaveOwnerDetails() {
-        String ownerId = etOwnerId.getText().toString().trim();
-        String ownerName = etOwnerName.getText().toString().trim();
-        String ownerAddress = etOwnerAddress.getText().toString().trim();
-        String ownerEmail = etOwnerEmail.getText().toString().trim();
-        String ownerPhone1 = etOwnerPhone1.getText().toString().trim();
-        String ownerPhone2 = etOwnerPhone2.getText().toString().trim();
-        String ownerPhone3 = etOwnerPhone3.getText().toString().trim();
-        String ownerNotes = etOwnerNotes.getText().toString().trim();
-
-        if (isValidOwnerId(ownerId) && isValidEmail(ownerEmail) && isValidPhoneNumber(ownerPhone1)) {
-            saveOwnerDetails();
-        } else {
-            Toast.makeText(AddOwnersActivity.this, "Please fill all the necessary fields with valid data", Toast.LENGTH_SHORT).show();
-        }
-    }
-*/
-
     private void setupSpinnerForFType() {
-        // Remove this line:
-        Spinner spinowner = findViewById(R.id.spinnerowner);
-
-        // Get the string array from resources
+        spinowner = findViewById(R.id.spinnerowner);
         String[] ownertypes = getResources().getStringArray(R.array.IDtypes);
 
-        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, ownertypes);
-
-        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Apply the adapter to the spinner
         spinowner.setAdapter(adapter);
+        spinowner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                selectedDocType = ownertypes[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
     }
 
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_FILE_REQUEST) {
+                if (data != null && data.getData() != null) {
+                    Uri selectedDocUri = data.getData();
+                    uploadDocumentToFirebaseStorage(selectedDocUri);
+                }
+            } else if (requestCode == PICK_FILE_REQUEST_IMG) {
+                if (data != null && data.getData() != null) {
+                    Uri selectedImageUri = data.getData();
+                    uploadImageToFirebaseStorage(selectedImageUri);
+                }
+            }
+        }
+    }
+
+    private void uploadDocumentToFirebaseStorage(Uri docUri) {
+        String fileName = "document:" + System.currentTimeMillis();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        storageRef.putFile(docUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        docUrl = uri.toString();
+                        Log.d("AddOwnersActivity", "Document URL: " + docUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddOwnersActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("AddOwnersActivity", "Document upload failed", e);
+                });
+    }
+
+    private void uploadImageToFirebaseStorage(Uri imageUri) {
+        String fileName = "image:" + System.currentTimeMillis();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        photoUrl = uri.toString();
+                        Log.d("AddOwnersActivity", "Image URL: " + photoUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddOwnersActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("AddOwnersActivity", "Image upload failed", e);
+                });
+    }
 
     private void saveOwnerDetails() {
         String ownerId = etOwnerId.getText().toString().trim();
@@ -171,22 +221,13 @@ public class AddOwnersActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(ownerId) && !TextUtils.isEmpty(ownerName) && !TextUtils.isEmpty(ownerAddress)
                 && !TextUtils.isEmpty(ownerEmail) && !TextUtils.isEmpty(ownerPhone1) && !TextUtils.isEmpty(ownerPhone2)) {
 
-            // Assuming you have an Owner class, replace it with your actual Owner class
-            Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerEmail, ownerPhone1, ownerPhone2, ownerPhone3, ownerNotes, userId);
+            Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerEmail, ownerPhone1, ownerPhone2, ownerPhone3, ownerNotes, userId, photoUrl, docUrl, selectedDocType);
 
-            // Save owner details to Firebase
             ownersRef.child(ownerId).setValue(owner);
 
-            // Additional actions, if needed
             Toast.makeText(AddOwnersActivity.this, "Owner details saved successfully!", Toast.LENGTH_SHORT).show();
             Log.d("AddOwnersActivity", "Owner details saved - ID: " + ownerId + ", Name: " + ownerName);
 
-            // You can add further actions or redirection here
-            // For example, redirect the user to another activity
-            // Intent intent = new Intent(AddOwnersActivity.this, AnotherActivity.class);
-            // startActivity(intent);
-
-            // Finish the current activity
             finish();
         } else {
             Toast.makeText(AddOwnersActivity.this, "Please fill all the necessary fields", Toast.LENGTH_SHORT).show();
@@ -194,7 +235,7 @@ public class AddOwnersActivity extends AppCompatActivity {
     }
 
     private boolean isValidPhoneNumber(String phoneNumber) {
-        return phoneNumber.matches("\\d{10}"); // Assumes a 10-digit phone number
+        return phoneNumber.matches("\\d{10}");
     }
 
     private boolean isValidEmail(String email) {
@@ -210,7 +251,6 @@ public class AddOwnersActivity extends AppCompatActivity {
         if (user != null) {
             return user.getUid();
         } else {
-            // Handle the case when the user is not authenticated
             return "Unknown User";
         }
     }
@@ -219,7 +259,6 @@ public class AddOwnersActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // Handle the home button click
                 onBackPressed();
                 return true;
             default:

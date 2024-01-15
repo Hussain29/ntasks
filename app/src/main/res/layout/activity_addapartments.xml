@@ -25,7 +25,6 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/ivaddapt"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:layout_gravity="center"
@@ -33,7 +32,7 @@
             android:background="@drawable/apartment">
 
             <ImageView
-
+                android:id="@+id/ivaddapt"
                 android:layout_width="@dimen/_26sdp"
                 android:layout_height="@dimen/_26sdp"
                 android:src="@android:drawable/ic_input_add"
@@ -70,7 +69,6 @@
                     android:layout_height="match_parent"
                     android:elevation="12dp"
                     android:hint="APARTMENT ID"
-
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText

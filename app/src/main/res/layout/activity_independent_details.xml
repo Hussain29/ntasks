@@ -194,6 +194,30 @@
                     android:src="@android:drawable/ic_menu_today" />
 
                 <TextView
+                    android:id="@+id/tvsptcoords"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="17dp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/interf"
+                    android:text="\tCoordinates:" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingTop="15dp">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@android:drawable/ic_menu_today" />
+
+                <TextView
                     android:id="@+id/tvsptshops"
 
                     android:layout_width="wrap_content"
@@ -281,6 +305,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
+                android:layout_marginBottom="40dp"
                 android:paddingTop="10dp">
 
 
@@ -288,8 +313,15 @@
                     android:id="@+id/tvdocindp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
                     android:text="DOC TYPE:"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvdocumentsindp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Click to download:"
                     android:textStyle="bold" />
                 <Button
                     android:text="Download DOC"

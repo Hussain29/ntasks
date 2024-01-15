@@ -14,14 +14,18 @@ public class Apartment implements Parcelable {
     private String aptShops;
     private String aptNotes;
     private String userId;
-    private String vendorName; // New field
-    private String ownerName;  // New field
+    private String vendorName;
+    private String ownerName;
+    private String coordinates;
+    private String imgUrl;   // New field for image URL
+    private String docUrl;   // New field for document URL
+    private String docType;  // New field for document type
 
     public Apartment() {
         // Default constructor required for calls to DataSnapshot.getValue(Apartment.class)
     }
 
-    public Apartment(String aptId, String aptName, String aptAddress, String aptArea, String aptUnits, String aptFloor, String aptShops, String aptNotes, String userId, String vendorName, String ownerName) {
+    public Apartment(String aptId, String aptName, String aptAddress, String aptArea, String aptUnits, String aptFloor, String aptShops, String aptNotes, String userId, String vendorName, String ownerName, String coordinates, String docType, String imgUrl, String docUrl) {
         this.aptId = aptId;
         this.aptName = aptName;
         this.aptAddress = aptAddress;
@@ -33,6 +37,10 @@ public class Apartment implements Parcelable {
         this.userId = userId;
         this.vendorName = vendorName;
         this.ownerName = ownerName;
+        this.coordinates = coordinates;
+        this.docType = docType;
+        this.imgUrl = imgUrl;
+        this.docUrl = docUrl;
     }
 
     protected Apartment(Parcel in) {
@@ -47,6 +55,10 @@ public class Apartment implements Parcelable {
         userId = in.readString();
         vendorName = in.readString();
         ownerName = in.readString();
+        coordinates = in.readString();
+        docType = in.readString();
+        imgUrl = in.readString();
+        docUrl = in.readString();
     }
 
     public static final Creator<Apartment> CREATOR = new Creator<Apartment>() {
@@ -60,6 +72,32 @@ public class Apartment implements Parcelable {
             return new Apartment[size];
         }
     };
+
+    // Getter and setter methods for new fields
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getDocUrl() {
+        return docUrl;
+    }
+
+    public void setDocUrl(String docUrl) {
+        this.docUrl = docUrl;
+    }
+
+    public String getDocType() {
+        return docType;
+    }
+
+    public void setDocType(String docType) {
+        this.docType = docType;
+    }
 
     public String getAptId() {
         return aptId;
@@ -149,6 +187,14 @@ public class Apartment implements Parcelable {
         this.ownerName = ownerName;
     }
 
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -167,5 +213,10 @@ public class Apartment implements Parcelable {
         dest.writeString(userId);
         dest.writeString(vendorName);
         dest.writeString(ownerName);
+        dest.writeString(coordinates);
+        dest.writeString(docType);
+        dest.writeString(imgUrl);
+        dest.writeString(docUrl);
     }
 }
+

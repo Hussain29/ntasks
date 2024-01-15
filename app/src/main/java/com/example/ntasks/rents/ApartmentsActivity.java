@@ -110,7 +110,11 @@ public class ApartmentsActivity extends AppCompatActivity {
                 apartment.getAptNotes(),
                 apartment.getUserId(),
                 apartment.getVendorName(),
-                apartment.getOwnerName()
+                apartment.getOwnerName(),
+                apartment.getCoordinates(),
+                apartment.getDocType(),
+                apartment.getImgUrl(),
+                apartment.getDocUrl()
         ));
         startActivity(intent);
         // Add more data if needed

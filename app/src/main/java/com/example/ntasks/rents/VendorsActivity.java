@@ -100,7 +100,7 @@ public class VendorsActivity extends AppCompatActivity {
 
     private void openVendorDetailsActivity(Vendor vendor) {
         Intent intent = new Intent(VendorsActivity.this, VendorDetailsActivity.class);
-        intent.putExtra("vendor", new Vendor(vendor.getVendorId(), vendor.getVendorName(), vendor.getVendorAddress(), vendor.getVendorEmail(), vendor.getVendorPhone1(), vendor.getVendorPhone2(), vendor.getVendorNotes(), vendor.getUserId()));
+        intent.putExtra("vendor", new Vendor(vendor.getVendorId(), vendor.getVendorName(), vendor.getVendorAddress(), vendor.getVendorEmail(), vendor.getVendorPhone1(), vendor.getVendorPhone2(), vendor.getVendorNotes(), vendor.getUserId(), vendor.getDocType(), vendor.getImageUri(), vendor.getDocumentUri()));
         startActivity(intent);
         // Add more data if needed
     }

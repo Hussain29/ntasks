@@ -13,14 +13,17 @@ public class Flats implements Parcelable {
     private String fType;
     private String ownerName;
     private String vendorName;
-    /*private String id;*/
     private String userId;
+    private String docType;  // Added field for document type
+    private String photoUrl;  // Added field for photo URL
+    private String docUrl;  // Added field for document URL
 
     public Flats() {
         // Default constructor required for calls to DataSnapshot.getValue(Flats.class)
     }
 
-    public Flats(String flatId, String area, String flatNo, String flatNotes, String apartmentName, String fType, String ownerName, String vendorName, /*String id,*/ String userId) {
+    public Flats(String flatId, String area, String flatNo, String flatNotes, String apartmentName, String fType,
+                 String ownerName, String vendorName, String userId, String docType, String photoUrl, String docUrl) {
         this.flatId = flatId;
         this.area = area;
         this.flatNo = flatNo;
@@ -29,8 +32,10 @@ public class Flats implements Parcelable {
         this.fType = fType;
         this.ownerName = ownerName;
         this.vendorName = vendorName;
-        /*this.id = id;*/
         this.userId = userId;
+        this.docType = docType;
+        this.photoUrl = photoUrl;
+        this.docUrl = docUrl;
     }
 
     protected Flats(Parcel in) {
@@ -42,8 +47,10 @@ public class Flats implements Parcelable {
         fType = in.readString();
         ownerName = in.readString();
         vendorName = in.readString();
-        /*id = in.readString();*/
         userId = in.readString();
+        docType = in.readString();
+        photoUrl = in.readString();
+        docUrl = in.readString();
     }
 
     public static final Creator<Flats> CREATOR = new Creator<Flats>() {
@@ -122,20 +129,38 @@ public class Flats implements Parcelable {
         this.vendorName = vendorName;
     }
 
-   /* public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }*/
-
     public String getUserId() {
         return userId;
     }
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    // ... (getters and setters for new fields)
+
+    public String getDocType() {
+        return docType;
+    }
+
+    public void setDocType(String docType) {
+        this.docType = docType;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public String getDocUrl() {
+        return docUrl;
+    }
+
+    public void setDocUrl(String docUrl) {
+        this.docUrl = docUrl;
     }
 
     @Override
@@ -153,7 +178,9 @@ public class Flats implements Parcelable {
         dest.writeString(fType);
         dest.writeString(ownerName);
         dest.writeString(vendorName);
-        /*dest.writeString(id);*/
         dest.writeString(userId);
+        dest.writeString(docType);
+        dest.writeString(photoUrl);
+        dest.writeString(docUrl);
     }
 }

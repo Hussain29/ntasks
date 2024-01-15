@@ -5,8 +5,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,6 +31,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,19 +40,27 @@ import java.util.List;
 public class AddPlotsActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST_IMG = 67;
-    private Button saveButton, saveloc;
-    CardView cvaddattach;
-    LinearLayout ll2;
 
-    private EditText etPltId, etPltName, etPltAdd, etPltArea, etPltFloor, etPltShops, etPltNotes;
+    private static final int PICK_FILE_REQUEST_DOC = 70;
+
+    private Button saveButton, saveloc;
+    private CardView cvaddattach;
+    private LinearLayout ll2;
+
+    private EditText etPltId, etPltName, etPltAdd, etPltArea, etPltFloor, etPltShops, etPltNotes, etCoordinates;
     private Spinner spinOwner, spinVendors, spinDocs;
+
     private DatabaseReference plotsRef, ownersRef, vendorsRef;
+    private String docUrl;
+    private String imgUrl;
+    private String docType;
+    private String coordinates;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_plots);
-ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
+
         plotsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Plots");
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Vendors");
@@ -64,6 +76,8 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
         etPltFloor = findViewById(R.id.etpltfloor);
         etPltShops = findViewById(R.id.etpltshops);
         etPltNotes = findViewById(R.id.etpltNotes);
+        etCoordinates=findViewById(R.id.etsplit);
+
 
         spinOwner = findViewById(R.id.spinowner);
         spinVendors = findViewById(R.id.spinvendors);
@@ -71,23 +85,13 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
 
         setupSpinnerWithOwners();
         setupSpinnerWithVendors();
-
-
-        Spinner spinnerdoc=findViewById(R.id.spinnerdoc);
-
-        String[] items = getResources().getStringArray(R.array.DocIDtypes);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,items );
-
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinnerdoc.setAdapter(adapter);
+        setupSpinnerForDocType();
 
         saveloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 splitText();
-                EditText etsplit=findViewById(R.id.etsplit);
+                EditText etsplit = findViewById(R.id.etsplit);
 
                 // Get the latitude and longitude from user input
                 String enteredText = etsplit.getText().toString().trim();
@@ -123,6 +127,7 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
             }
         });
 
+        ConstraintLayout ivaddplt = findViewById(R.id.ivaddplt);
         ivaddplt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,7 +144,7 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
                 Toast.makeText(AddPlotsActivity.this, "Select Your Document", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("*/*");
-                startActivityForResult(intent, PICK_FILE_REQUEST_IMG);
+                startActivityForResult(intent, PICK_FILE_REQUEST_DOC);
             }
         });
 
@@ -160,6 +165,24 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
         actionBar.setDisplayHomeAsUpEnabled(true);
         int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk); // Replace with your color resource
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+    }
+
+    private void setupSpinnerForDocType() {
+        String[] docTypes = getResources().getStringArray(R.array.DocIDtypes);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, docTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinDocs.setAdapter(adapter);
+        spinDocs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                docType = docTypes[position];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing here
+            }
+        });
     }
 
     private void setupSpinnerWithOwners() {
@@ -228,6 +251,7 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
         String pltNotes = etPltNotes.getText().toString().trim();
         String ownerName = spinOwner.getSelectedItem().toString();
         String vendorName = spinVendors.getSelectedItem().toString();
+        String coordinates = etCoordinates.getText().toString().trim();
 
         String userId = getCurrentUserId();
 
@@ -236,7 +260,8 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
                 && !TextUtils.isEmpty(ownerName) && !TextUtils.isEmpty(vendorName)) {
 
             // Assuming you have a Plot class, replace it with your actual Plot class
-            Plot plot = new Plot(pltId, pltName, pltAdd, pltArea, pltFloor, pltShops, pltNotes, userId, vendorName, ownerName);
+            Plot plot = new Plot(pltId, pltName, pltAdd, pltArea, pltFloor, pltShops, pltNotes, userId, vendorName, ownerName,
+                    docType, docUrl, imgUrl, coordinates);
 
             // Save plot details to Firebase
             plotsRef.child(pltId).setValue(plot);
@@ -256,6 +281,7 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
         }
     }
 
+
     private String getCurrentUserId() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -265,12 +291,14 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
             return "Unknown User";
         }
     }
+
     private void splitText() {
-        EditText etsplit=findViewById(R.id.etsplit);
+        EditText etsplit = findViewById(R.id.etsplit);
 
         String enteredText = etsplit.getText().toString().trim();
-        TextView lonTextView=findViewById(R.id.tvlon);
-        TextView latTextView=findViewById(R.id.tvlat);
+        TextView lonTextView = findViewById(R.id.tvlon);
+        TextView latTextView = findViewById(R.id.tvlat);
+
         // Check if the text contains a comma
         if (enteredText.contains(",")) {
             // Split the text into parts based on the comma
@@ -284,6 +312,9 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
                 // Display the results
                 latTextView.setText("Lat = " + lat);
                 lonTextView.setText("Lon = " + lon);
+
+                // Set coordinates in the Plot object or wherever needed
+                coordinates = enteredText;
             } else {
                 // Invalid input
                 latTextView.setText("Invalid input");
@@ -294,9 +325,6 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
             latTextView.setText("No comma found");
             lonTextView.setText("");
         }
-
-
-
     }
 
     @Override
@@ -309,5 +337,59 @@ ConstraintLayout ivaddplt=findViewById(R.id.ivaddplt);
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            if (requestCode == PICK_FILE_REQUEST_IMG) {
+                if (data != null && data.getData() != null) {
+                    Uri selectedImageUri = data.getData();
+                    uploadImageToFirebaseStorage(selectedImageUri);
+                }
+            } else if (requestCode == PICK_FILE_REQUEST_DOC) {
+                if (data != null && data.getData() != null) {
+                    Uri selectedDocUri = data.getData();
+                    uploadDocumentToFirebaseStorage(selectedDocUri);
+                }
+            }
+        }
+    }
+
+    private void uploadDocumentToFirebaseStorage(Uri docUri) {
+        String fileName = "document:" + System.currentTimeMillis();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        storageRef.putFile(docUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        docUrl = uri.toString();
+                        Log.d("AddPlotsActivity", "Document URL: " + docUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddPlotsActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("AddPlotsActivity", "Document upload failed", e);
+                });
+    }
+
+    // Add this method to handle image upload
+    private void uploadImageToFirebaseStorage(Uri imageUri) {
+        String fileName = "image:" + System.currentTimeMillis();
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        storageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        imgUrl = uri.toString();
+                        Log.d("AddPlotsActivity", "Image URL: " + imgUrl);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(AddPlotsActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    Log.e("AddPlotsActivity", "Image upload failed", e);
+                });
     }
 }

@@ -294,13 +294,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
                 break;
         }
 
-        // Add click listener for the "Download Attachment" button
-        /*btnDownloadAttachment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                downloadAttachment();
-            }
-        });*/
 
 
         String[] statusOptionsWithDefault = new String[]{
@@ -361,8 +354,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
                         Log.d("AttachmentDebug", "Attachment entry found for Task ID: " + originalTaskId);
                         ivattach.setVisibility(View.VISIBLE);
                         /*btnDownloadAttachment.setVisibility(View.VISIBLE);*/
-
-
 
 
                         // If the entry exists, log the URL

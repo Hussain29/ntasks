@@ -29,7 +29,6 @@ public class IndependentActivity extends AppCompatActivity {
     private RecyclerView recyclerViewIndependents;
     private IndependentAdapter independentAdapter;
     private ArrayList<Independent> independentList;
-
     private ProgressDialog progressDialog;
 
     @Override
@@ -110,7 +109,11 @@ public class IndependentActivity extends AppCompatActivity {
                 independent.getIndpNotes(),
                 independent.getUserId(),
                 independent.getVendorName(),
-                independent.getOwnerName()
+                independent.getOwnerName(),
+                independent.getDocuUrl(),
+                independent.getImgUrl(),
+                independent.getDocuType(),
+                independent.getCoordinates()
         ));
         startActivity(intent);
         // Add more data if needed

@@ -101,7 +101,7 @@ public class OwnersActivity extends AppCompatActivity {
 
     private void openOwnerDetailsActivity(Owner owner) {
         Intent intent = new Intent(OwnersActivity.this, OwnerDetailsActivity.class);
-        intent.putExtra("owner", new Owner(owner.getOwnerId(), owner.getOwnerName(), owner.getOwnerAddress(), owner.getOwnerEmail(), owner.getOwnerPhone1(), owner.getOwnerPhone2(), owner.getOwnerPhone3(), owner.getOwnerNotes(), owner.getUserId()));
+        intent.putExtra("owner", new Owner(owner.getOwnerId(), owner.getOwnerName(), owner.getOwnerAddress(), owner.getOwnerEmail(), owner.getOwnerPhone1(), owner.getOwnerPhone2(), owner.getOwnerPhone3(), owner.getOwnerNotes(), owner.getUserId(), owner.getPhotoUrl(), owner.getDocUrl(), owner.getDocType()));
         startActivity(intent);
         // Add more data if needed
     }
