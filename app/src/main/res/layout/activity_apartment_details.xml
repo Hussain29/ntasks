@@ -95,7 +95,7 @@
                 android:paddingTop="15dp">
 
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/imgloc"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
@@ -112,8 +112,7 @@
                     android:layout_gravity="center"
                     android:fontFamily="@font/interf"
                     android:text="\t\tAddress"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView1"
+                    app:layout_constraintStart_toEndOf="@+id/imgloc"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

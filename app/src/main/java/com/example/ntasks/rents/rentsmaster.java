@@ -56,8 +56,8 @@ public class rentsmaster extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(rentsmaster.this, "Tenants", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(rentsmaster.this,OwnersActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(rentsmaster.this, TenantsActivity.class);
+                startActivity(intent);
             }
         });
         paymentsbtn.setOnClickListener(new View.OnClickListener() {
@@ -92,8 +92,8 @@ public class rentsmaster extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(rentsmaster.this, "Contracts", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(rentsmaster.this,OwnersActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(rentsmaster.this,ContractsActivity.class);
+                startActivity(intent);
             }
         });
         reportsbtn.setOnClickListener(new View.OnClickListener() {

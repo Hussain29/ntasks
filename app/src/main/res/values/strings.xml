@@ -49,6 +49,56 @@
 
     </string-array>
 
+    <string-array name="Paymentday">
+        <item>DATE OF PAYMENT</item>
+        <item>1ST Of MONTH</item>
+        <item>2ND Of MONTH</item>
+        <item>3RD Of MONTH</item>
+        <item>4TH Of MONTH</item>
+        <item>5TH Of MONTH</item>
+        <item>6TH Of MONTH</item>
+        <item>7TH Of MONTH</item>
+        <item>8TH Of MONTH</item>
+        <item>9TH Of MONTH</item>
+        <item>10TH Of MONTH</item>
+        <item>11TH Of MONTH</item>
+        <item>12TH Of MONTH</item>
+        <item>13TH Of MONTH</item>
+        <item>14TH Of MONTH</item>
+        <item>15TH Of MONTH</item>
+        <item>16TH Of MONTH</item>
+        <item>17TH Of MONTH</item>
+        <item>18TH Of MONTH</item>
+        <item>19TH Of MONTH</item>
+        <item>20TH Of MONTH</item>
+        <item>21ST Of MONTH</item>
+        <item>22ND Of MONTH</item>
+        <item>23RD Of MONTH</item>
+        <item>24TH Of MONTH</item>
+        <item>25TH Of MONTH</item>
+        <item>26TH Of MONTH</item>
+        <item>27TH Of MONTH</item>
+        <item>28TH Of MONTH</item>
+        <item>29TH Of MONTH</item>
+        <item>30TH Of MONTH</item>
+        <item>31ST Of MONTH</item>
+
+    </string-array>
+
+    <string-array name="noof">
+        <item>No. Of Persons</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+
 
     <string name="change_status_prompt">Change Status &#709;</string>
 

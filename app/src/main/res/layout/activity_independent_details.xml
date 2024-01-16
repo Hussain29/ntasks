@@ -92,8 +92,8 @@
                 android:paddingTop="15dp">
 
 
-                <ImageView
-                    android:id="@+id/imageView1"
+                <ImageButton
+                    android:id="@+id/imgloc"
                     android:layout_width="25dp"
                     android:layout_height="25dp"
                     android:layout_marginLeft="@dimen/_5sdp"
