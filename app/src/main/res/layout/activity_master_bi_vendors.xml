@@ -12,6 +12,15 @@
         android:orientation="vertical"
         android:paddingTop="@dimen/_30sdp">
 
+
+        <SearchView
+            android:id="@+id/searchview"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+
         <Button
             android:id="@+id/btnaddbven"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
@@ -24,6 +33,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewbven"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
