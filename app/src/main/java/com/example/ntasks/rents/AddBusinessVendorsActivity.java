@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddBusinessVendorsActivity extends AppCompatActivity {
+private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccountry, etcfax, etctel, etcemail, etcpocn, etcpoce, etcaltcontact1, etcaltcontact2, etcgoods, etccrno, etcvatno, etcaddinfo, etcglink, etcbankname, etcbenname, etcacno, etcbankadd, etcibanno, etcnotes;
 
     private static final int PICK_FILE_REQUEST_IMG = 4;
     private static final int PICK_FILE_REQUEST_DOC = 5;
@@ -61,6 +62,34 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_business_vendors);
+
+        etcid = findViewById(R.id.etcid);
+        etcname = findViewById(R.id.etcname);
+        etcsname = findViewById(R.id.etcsname);
+        etcmaddress = findViewById(R.id.etcmaddress);
+        etcweb = findViewById(R.id.etcweb);
+        etccity = findViewById(R.id.etccity);
+        etccountry = findViewById(R.id.etccountry);
+        etcfax = findViewById(R.id.etcfax);
+        etctel = findViewById(R.id.etctel);
+        etcemail = findViewById(R.id.etcemail);
+        etcpocn = findViewById(R.id.etcpocn);
+        etcpoce = findViewById(R.id.etcpoce);
+        etcaltcontact1 = findViewById(R.id.etcaltcontact1);
+        etcaltcontact2 = findViewById(R.id.etcaltcontact2);
+        etcgoods = findViewById(R.id.etcgoods);
+        etccrno = findViewById(R.id.etccrno);
+        etcvatno = findViewById(R.id.etcvatno);
+        etcaddinfo = findViewById(R.id.etcaddinfo);
+        etcglink = findViewById(R.id.etcglink);
+        etcbankname = findViewById(R.id.etcbankname);
+        etcbenname = findViewById(R.id.etcbenname);
+        etcacno = findViewById(R.id.etcacno);
+        etcbankadd = findViewById(R.id.etcbankadd);
+        etcibanno = findViewById(R.id.etcibanno);
+        etcnotes = findViewById(R.id.etcnotes);
+
+
 
         etVendorId = findViewById(R.id.etbvendorid);
         etVendorName = findViewById(R.id.etbvendorname);
