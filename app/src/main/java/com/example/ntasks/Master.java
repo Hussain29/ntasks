@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.ntasks.rents.BusinessVendors;
 import com.example.ntasks.rents.rentsmaster;
 import com.example.ntasks.rents.VendorsActivity;
 
@@ -98,7 +99,7 @@ public class Master extends AppCompatActivity {
         });vendorsbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(Master.this, VendorsActivity.class);
+                Intent intent4 = new Intent(Master.this, BusinessVendors.class);
                 startActivity(intent4);
             }
         });
