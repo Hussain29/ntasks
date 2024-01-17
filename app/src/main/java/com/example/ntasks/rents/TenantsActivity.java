@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ntasks.AddTenant;
 import com.example.ntasks.R;
 
 public class TenantsActivity extends AppCompatActivity {
@@ -39,7 +38,7 @@ Button addtenants;
         addtenants.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(TenantsActivity.this, AddTenant.class);
+                Intent intent=new Intent(TenantsActivity.this, AddTenantActivity.class);
                 startActivity(intent);
             }
         });

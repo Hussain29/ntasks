@@ -24,7 +24,7 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".rents.BusinessVendors"
+            android:name=".rents.AddBusinessVendorsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.Collections"
@@ -39,7 +39,7 @@
             android:name=".rents.TenantsActivity"
             android:exported="false" />
         <activity
-            android:name=".AddTenant"
+            android:name=".rents.AddTenantActivity"
             android:exported="false" />
         <activity
             android:name=".rents.PlotDetailsActivity"

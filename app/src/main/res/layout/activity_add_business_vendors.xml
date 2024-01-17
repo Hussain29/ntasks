@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.BusinessVendors">
+    tools:context=".rents.AddBusinessVendorsActivity">
 
 
 
@@ -28,6 +28,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ivaddbvendor"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:layout_gravity="center"
@@ -73,7 +74,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenid"
+                        android:id="@+id/etbvendorid"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -105,7 +106,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenName"
+                        android:id="@+id/etbvendorname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -115,7 +116,38 @@
             </androidx.cardview.widget.CardView>
 
 
-             <androidx.cardview.widget.CardView
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvapadd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cvtaskname"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="22dp"
+                app:cardCornerRadius="6dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:elevation="12dp"
+                    android:hint="Address"
+
+                    app:boxStrokeWidth="0dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etbaddress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/interf"
+                        android:inputType="textCapCharacters" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.cardview.widget.CardView>
+
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvapadd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -136,7 +168,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenper"
+                        android:id="@+id/etbcontactperson"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -169,7 +201,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenmob"
+                        android:id="@+id/etbmobile"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -201,7 +233,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenland"
+                        android:id="@+id/etblandline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -232,7 +264,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenemail"
+                        android:id="@+id/etbemail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -260,12 +292,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:elevation="12dp"
-                    android:hint="ALTERNATE CONTACT"
+                    android:hint="ALTERNATE CONTACT #1"
 
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvencon1"
+                        android:id="@+id/etbalternatecontact1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -289,12 +321,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:elevation="12dp"
-                    android:hint="ALTERNATE CONTACT"
+                    android:hint="ALTERNATE CONTACT #2"
 
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvencon2"
+                        android:id="@+id/etbalternatecontact2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -328,7 +360,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etproduct"
+                        android:id="@+id/etbproducts"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -386,7 +418,7 @@
                         app:boxStrokeWidth="0dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/etsplit"
+                            android:id="@+id/etbcoordinates"
 
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -461,7 +493,7 @@
                     app:boxStrokeWidth="0dp">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etbvenNotes"
+                        android:id="@+id/etbnotes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/interf"
@@ -507,7 +539,7 @@
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/btnbvenadd"
+                android:id="@+id/btnbadd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
