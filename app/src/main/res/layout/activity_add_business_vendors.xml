@@ -911,6 +911,7 @@
             </LinearLayout>
 
 
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvownernotes"
                 android:layout_width="match_parent"
@@ -941,6 +942,8 @@
                         android:minLines="3" />
                 </com.google.android.material.textfield.TextInputLayout>
             </androidx.cardview.widget.CardView>
+
+
 
 
             <androidx.cardview.widget.CardView

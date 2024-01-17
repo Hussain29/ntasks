@@ -33,21 +33,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddBusinessVendorsActivity extends AppCompatActivity {
-private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccountry, etcfax, etctel, etcemail, etcpocn, etcpoce, etcaltcontact1, etcaltcontact2, etcgoods, etccrno, etcvatno, etcaddinfo, etcglink, etcbankname, etcbenname, etcacno, etcbankadd, etcibanno, etcnotes;
+    private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccountry, etcfax, etctel, etcemail, etcpocn, etcpoce, etcaltcontact1, etcaltcontact2, etcgoods, etccrno, etcvatno, etcaddinfo, etcglink, etcbankname, etcbenname, etcacno, etcbankadd, etcibanno, etcnotes;
 
     private static final int PICK_FILE_REQUEST_IMG = 4;
     private static final int PICK_FILE_REQUEST_DOC = 5;
 
+    TextView tvproductsss;
     private ConstraintLayout vendorImageView;
     private Uri imageUri;
     private Uri documentUri;
     Button btnAddProduct;
     private List<String> productsList;
 
-    private EditText etVendorId, etVendorName, etContactPerson, etMobileNumber, etLandlineNumber,
+    /*private EditText etVendorId, etVendorName, etContactPerson, etMobileNumber, etLandlineNumber,
             etAddress, etEmailAddress, etAlternateContact1, etAlternateContact2, etProducts,
             etCoordinates, etNotes;
-
+*/
     private Button saveButton;
     private DatabaseReference vendorsRef;
 
@@ -63,50 +64,41 @@ private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccoun
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_business_vendors);
 
-        etcid = findViewById(R.id.etcid);
-        etcname = findViewById(R.id.etcname);
-        etcsname = findViewById(R.id.etcsname);
-        etcmaddress = findViewById(R.id.etcmaddress);
-        etcweb = findViewById(R.id.etcweb);
-        etccity = findViewById(R.id.etccity);
-        etccountry = findViewById(R.id.etccountry);
-        etcfax = findViewById(R.id.etcfax);
-        etctel = findViewById(R.id.etctel);
-        etcemail = findViewById(R.id.etcemail);
-        etcpocn = findViewById(R.id.etcpocn);
-        etcpoce = findViewById(R.id.etcpoce);
-        etcaltcontact1 = findViewById(R.id.etcaltcontact1);
-        etcaltcontact2 = findViewById(R.id.etcaltcontact2);
-        etcgoods = findViewById(R.id.etcgoods);
-        etccrno = findViewById(R.id.etccrno);
-        etcvatno = findViewById(R.id.etcvatno);
-        etcaddinfo = findViewById(R.id.etcaddinfo);
-        etcglink = findViewById(R.id.etcglink);
-        etcbankname = findViewById(R.id.etcbankname);
-        etcbenname = findViewById(R.id.etcbenname);
-        etcacno = findViewById(R.id.etcacno);
-        etcbankadd = findViewById(R.id.etcbankadd);
-        etcibanno = findViewById(R.id.etcibanno);
-        etcnotes = findViewById(R.id.etcnotes);
+        etcid = findViewById(R.id.etcid); // Company ID
+        etcname = findViewById(R.id.etcname);// Company Name
+        etcsname = findViewById(R.id.etcsname);// Company Short Name
+        etcmaddress = findViewById(R.id.etcmaddress);// Company Mailing Address
+        etcweb = findViewById(R.id.etcweb);// Company Website
+        etccity = findViewById(R.id.etccity);// Company City Name
+        etccountry = findViewById(R.id.etccountry);// Company Country Name
+        etcfax = findViewById(R.id.etcfax);// Company Fax
+        etctel = findViewById(R.id.etctel);// Company Telephone
+        etcemail = findViewById(R.id.etcemail);// Company Email
+        etcpocn = findViewById(R.id.etcpocn);// Company Point Of Contact Name
+        etcpoce = findViewById(R.id.etcpoce);// Company Point Of Contact Email
+        etcaltcontact1 = findViewById(R.id.etcaltcontact1);// Company Point Of Contact Phone1
+        etcaltcontact2 = findViewById(R.id.etcaltcontact2);// Company Point Of Contact Phone2
 
+        etcgoods = findViewById(R.id.etcgoods);// Company Products
+        etccrno = findViewById(R.id.etccrno);// Company CR Number
+        etcvatno = findViewById(R.id.etcvatno);// Company VAT Number
+        etcaddinfo = findViewById(R.id.etcaddinfo);// Additional Info (~notes)
+        etcglink = findViewById(R.id.etcglink);// Google Location Link
 
+        etcbankname = findViewById(R.id.etcbankname);// Bank Name
+        etcbenname = findViewById(R.id.etcbenname);// Beneficary Name
+        etcacno = findViewById(R.id.etcacno);// Account Number
+        etcbankadd = findViewById(R.id.etcbankadd);//Bank Address
+        etcibanno = findViewById(R.id.etcibanno);// IBAN Number
 
-        etVendorId = findViewById(R.id.etbvendorid);
-        etVendorName = findViewById(R.id.etbvendorname);
-        etContactPerson = findViewById(R.id.etbcontactperson);
-        etMobileNumber = findViewById(R.id.etbmobile);
-        etLandlineNumber = findViewById(R.id.etblandline);
-        etAddress = findViewById(R.id.etbaddress);
-        etEmailAddress = findViewById(R.id.etbemail);
-        etAlternateContact1 = findViewById(R.id.etbalternatecontact1);
-        etAlternateContact2 = findViewById(R.id.etbalternatecontact2);
-        etProducts = findViewById(R.id.etbproducts);
-        etCoordinates = findViewById(R.id.etbcoordinates);
-        etNotes = findViewById(R.id.etbnotes);
+        tvproductsss = findViewById(R.id.tvproducts);
+
+        etcnotes = findViewById(R.id.etcnotes);// Notes
+
 
         saveButton = findViewById(R.id.btnbadd);
 
-        vendorImageView = findViewById(R.id.ivaddbvendor);
+        vendorImageView = findViewById(R.id.ivaddbvendor); //Add Image of Shop Pic
 
         btnAddProduct = findViewById(R.id.btnaddproducts);
         textViewProducts = findViewById(R.id.tvproducts);
@@ -117,7 +109,7 @@ private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccoun
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("BusinessVendors");
 
         // Inside your onCreate method or wherever you initialize your views
-        LinearLayout llAttach = findViewById(R.id.llattach);
+        LinearLayout llAttach = findViewById(R.id.llattach); // Attach Buiz Card
         llAttach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,7 +148,7 @@ private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccoun
     }
 
     private void addProduct() {
-        String product = etProducts.getText().toString().trim();
+        String product = etcgoods.getText().toString().trim();
 
         if (!product.isEmpty()) {
             // Add product to the list
@@ -166,7 +158,7 @@ private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccoun
             updateProductsTextView();
 
             // Clear the EditText for the next input
-            etProducts.getText().clear();
+            etcgoods.getText().clear();
         }
     }
 
@@ -258,22 +250,43 @@ private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccoun
     }
 
     private void validateAndSaveVendorDetails() {
-        String vendorId = etVendorId.getText().toString().trim();
-        String vendorName = etVendorName.getText().toString().trim();
-        String contactPerson = etContactPerson.getText().toString().trim();
-        String mobileNumber = etMobileNumber.getText().toString().trim();
-        String landlineNumber = etLandlineNumber.getText().toString().trim();
-        String address = etAddress.getText().toString().trim();
-        String emailAddress = etEmailAddress.getText().toString().trim();
-        String alternateContact1 = etAlternateContact1.getText().toString().trim();
-        String alternateContact2 = etAlternateContact2.getText().toString().trim();
-        String products = textViewProducts.getText().toString().trim();
-        String coordinates = etCoordinates.getText().toString().trim();
-        String notes = etNotes.getText().toString().trim();
+        String companyId = etcid.getText().toString().trim();
+        String companyName = etcname.getText().toString().trim();
+        String companyShortName = etcsname.getText().toString().trim();
+        String companyMailingAddress = etcmaddress.getText().toString().trim();
+        String companyWebsite = etcweb.getText().toString().trim();
+        String companyCity = etccity.getText().toString().trim();
+        String companyCountry = etccountry.getText().toString().trim();
+        String companyFax = etcfax.getText().toString().trim();
+        String companyTelephone = etctel.getText().toString().trim();
+        String companyEmail = etcemail.getText().toString().trim();
+        String companyPocName = etcpocn.getText().toString().trim();
+        String companyPocEmail = etcpoce.getText().toString().trim();
+        String companyAltContact1 = etcaltcontact1.getText().toString().trim();
+        String companyAltContact2 = etcaltcontact2.getText().toString().trim();
 
-        if (TextUtils.isEmpty(vendorId) || TextUtils.isEmpty(vendorName) || TextUtils.isEmpty(contactPerson) || TextUtils.isEmpty(mobileNumber)
-                || TextUtils.isEmpty(address) || TextUtils.isEmpty(emailAddress) || TextUtils.isEmpty(products)
-                || TextUtils.isEmpty(coordinates) || TextUtils.isEmpty(notes)) {
+        String companyProducts = tvproductsss.getText().toString().trim();
+        String companyCrNumber = etccrno.getText().toString().trim();
+        String companyVatNumber = etcvatno.getText().toString().trim();
+        String additionalInfo = etcaddinfo.getText().toString().trim();
+        String googleLocationLink = etcglink.getText().toString().trim();
+
+        String bankName = etcbankname.getText().toString().trim();
+        String beneficiaryName = etcbenname.getText().toString().trim();
+        String accountNumber = etcacno.getText().toString().trim();
+        String bankAddress = etcbankadd.getText().toString().trim();
+        String ibanNumber = etcibanno.getText().toString().trim();
+
+        String notes = etcnotes.getText().toString().trim();
+
+        if (TextUtils.isEmpty(companyId) || TextUtils.isEmpty(companyName) || TextUtils.isEmpty(companyShortName) ||
+                TextUtils.isEmpty(companyMailingAddress) || TextUtils.isEmpty(companyWebsite) || TextUtils.isEmpty(companyCity) ||
+                TextUtils.isEmpty(companyCountry) || TextUtils.isEmpty(companyFax) || TextUtils.isEmpty(companyTelephone) ||
+                TextUtils.isEmpty(companyEmail) || TextUtils.isEmpty(companyPocName) || TextUtils.isEmpty(companyPocEmail) ||
+                TextUtils.isEmpty(companyAltContact1) || TextUtils.isEmpty(companyAltContact2) ||
+                TextUtils.isEmpty(companyCrNumber) || TextUtils.isEmpty(companyVatNumber) || TextUtils.isEmpty(additionalInfo) ||
+                TextUtils.isEmpty(googleLocationLink) || TextUtils.isEmpty(bankName) || TextUtils.isEmpty(beneficiaryName) ||
+                TextUtils.isEmpty(accountNumber) || TextUtils.isEmpty(bankAddress) || TextUtils.isEmpty(ibanNumber) || TextUtils.isEmpty(notes)) {
             Toast.makeText(this, "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -286,11 +299,17 @@ private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccoun
 
         String userId = currentUser.getUid();
 
-        BusinessVendor vendor = new BusinessVendor(vendorId, vendorName, contactPerson, mobileNumber, landlineNumber, address,
-                emailAddress, alternateContact1, alternateContact2, products, coordinates, notes, docUrl, userId, photoUrl);
+        BusinessVendor vendor = new BusinessVendor(companyId, companyName, companyShortName, companyMailingAddress,
+                companyWebsite, companyCity, companyCountry, companyFax, companyTelephone, companyEmail,
+                companyPocName, companyPocEmail, companyAltContact1, companyAltContact2, companyProducts,
+                companyCrNumber, companyVatNumber, additionalInfo, googleLocationLink, bankName,
+                beneficiaryName, accountNumber, bankAddress, ibanNumber, notes);
 
         saveVendorToDatabase(vendor);
     }
+
+// Rest of the methods remain the same
+
 
     private void saveVendorToDatabase(BusinessVendor vendor) {
         vendorsRef.push().setValue(vendor, new DatabaseReference.CompletionListener() {

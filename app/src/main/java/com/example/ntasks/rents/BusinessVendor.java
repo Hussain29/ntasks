@@ -5,65 +5,99 @@ import android.os.Parcelable;
 
 public class BusinessVendor implements Parcelable {
 
-    private String vendorId;
-    private String vendorName;
-    private String contactPerson;
-    private String mobileNumber;
-    private String landlineNumber;
-    private String address;
-    private String emailAddress;
-    private String alternateContact1;
-    private String alternateContact2;
-    private String products;
-    private String coordinates;
+    private String companyId;
+    private String companyName;
+    private String companyShortName;
+    private String companyMailingAddress;
+    private String companyWebsite;
+    private String companyCity;
+    private String companyCountry;
+    private String companyFax;
+    private String companyTelephone;
+    private String companyEmail;
+    private String companyPocName;
+    private String companyPocEmail;
+    private String companyAltContact1;
+    private String companyAltContact2;
+
+    private String companyProducts;
+    private String companyCrNumber;
+    private String companyVatNumber;
+    private String additionalInfo;
+    private String googleLocationLink;
+
+    private String bankName;
+    private String beneficiaryName;
+    private String accountNumber;
+    private String bankAddress;
+    private String ibanNumber;
+
     private String notes;
-    private String docUrl;
-    private String userId;
-    private String photoUrl;
-    // Add any other fields as needed
 
     public BusinessVendor() {
         // Default constructor required for calls to DataSnapshot.getValue(BusinessVendor.class)
     }
 
-    public BusinessVendor(String vendorId, String vendorName, String contactPerson, String mobileNumber, String landlineNumber, String address,
-                          String emailAddress, String alternateContact1, String alternateContact2, String products,
-                          String coordinates, String notes, String docUrl, String userId, String photoUrl) {
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
-        this.contactPerson = contactPerson;
-        this.mobileNumber = mobileNumber;
-        this.landlineNumber = landlineNumber;
-        this.address = address;
-        this.emailAddress = emailAddress;
-        this.alternateContact1 = alternateContact1;
-        this.alternateContact2 = alternateContact2;
-        this.products = products;
-        this.coordinates = coordinates;
+    public BusinessVendor(String companyId, String companyName, String companyShortName, String companyMailingAddress,
+                          String companyWebsite, String companyCity, String companyCountry, String companyFax,
+                          String companyTelephone, String companyEmail, String companyPocName, String companyPocEmail,
+                          String companyAltContact1, String companyAltContact2, String companyProducts,
+                          String companyCrNumber, String companyVatNumber, String additionalInfo, String googleLocationLink,
+                          String bankName, String beneficiaryName, String accountNumber, String bankAddress,
+                          String ibanNumber, String notes) {
+        this.companyId = companyId;
+        this.companyName = companyName;
+        this.companyShortName = companyShortName;
+        this.companyMailingAddress = companyMailingAddress;
+        this.companyWebsite = companyWebsite;
+        this.companyCity = companyCity;
+        this.companyCountry = companyCountry;
+        this.companyFax = companyFax;
+        this.companyTelephone = companyTelephone;
+        this.companyEmail = companyEmail;
+        this.companyPocName = companyPocName;
+        this.companyPocEmail = companyPocEmail;
+        this.companyAltContact1 = companyAltContact1;
+        this.companyAltContact2 = companyAltContact2;
+        this.companyProducts = companyProducts;
+        this.companyCrNumber = companyCrNumber;
+        this.companyVatNumber = companyVatNumber;
+        this.additionalInfo = additionalInfo;
+        this.googleLocationLink = googleLocationLink;
+        this.bankName = bankName;
+        this.beneficiaryName = beneficiaryName;
+        this.accountNumber = accountNumber;
+        this.bankAddress = bankAddress;
+        this.ibanNumber = ibanNumber;
         this.notes = notes;
-        this.docUrl = docUrl;
-        this.userId = userId;
-        this.photoUrl = photoUrl;
-        // Initialize other fields as needed
     }
 
     protected BusinessVendor(Parcel in) {
-        vendorId = in.readString();
-        vendorName = in.readString();
-        contactPerson = in.readString();
-        mobileNumber = in.readString();
-        landlineNumber = in.readString();
-        address = in.readString();
-        emailAddress = in.readString();
-        alternateContact1 = in.readString();
-        alternateContact2 = in.readString();
-        products = in.readString();
-        coordinates = in.readString();
+        companyId = in.readString();
+        companyName = in.readString();
+        companyShortName = in.readString();
+        companyMailingAddress = in.readString();
+        companyWebsite = in.readString();
+        companyCity = in.readString();
+        companyCountry = in.readString();
+        companyFax = in.readString();
+        companyTelephone = in.readString();
+        companyEmail = in.readString();
+        companyPocName = in.readString();
+        companyPocEmail = in.readString();
+        companyAltContact1 = in.readString();
+        companyAltContact2 = in.readString();
+        companyProducts = in.readString();
+        companyCrNumber = in.readString();
+        companyVatNumber = in.readString();
+        additionalInfo = in.readString();
+        googleLocationLink = in.readString();
+        bankName = in.readString();
+        beneficiaryName = in.readString();
+        accountNumber = in.readString();
+        bankAddress = in.readString();
+        ibanNumber = in.readString();
         notes = in.readString();
-        docUrl = in.readString();
-        userId = in.readString();
-        photoUrl = in.readString();
-        // Read other fields as needed
     }
 
     public static final Creator<BusinessVendor> CREATOR = new Creator<BusinessVendor>() {
@@ -80,92 +114,196 @@ public class BusinessVendor implements Parcelable {
 
     // Getter and setter methods for all fields
 
-    public String getVendorId() {
-        return vendorId;
+    public String getCompanyId() {
+        return companyId;
     }
 
-    public void setVendorId(String vendorId) {
-        this.vendorId = vendorId;
+    public void setCompanyId(String companyId) {
+        this.companyId = companyId;
     }
 
-    public String getVendorName() {
-        return vendorName;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setVendorName(String vendorName) {
-        this.vendorName = vendorName;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    public String getContactPerson() {
-        return contactPerson;
+    public String getCompanyShortName() {
+        return companyShortName;
     }
 
-    public void setContactPerson(String contactPerson) {
-        this.contactPerson = contactPerson;
+    public void setCompanyShortName(String companyShortName) {
+        this.companyShortName = companyShortName;
     }
 
-    public String getMobileNumber() {
-        return mobileNumber;
+    public String getCompanyMailingAddress() {
+        return companyMailingAddress;
     }
 
-    public void setMobileNumber(String mobileNumber) {
-        this.mobileNumber = mobileNumber;
+    public void setCompanyMailingAddress(String companyMailingAddress) {
+        this.companyMailingAddress = companyMailingAddress;
     }
 
-    public String getLandlineNumber() {
-        return landlineNumber;
+    public String getCompanyWebsite() {
+        return companyWebsite;
     }
 
-    public void setLandlineNumber(String landlineNumber) {
-        this.landlineNumber = landlineNumber;
+    public void setCompanyWebsite(String companyWebsite) {
+        this.companyWebsite = companyWebsite;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCompanyCity() {
+        return companyCity;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCompanyCity(String companyCity) {
+        this.companyCity = companyCity;
     }
 
-    public String getEmailAddress() {
-        return emailAddress;
+    public String getCompanyCountry() {
+        return companyCountry;
     }
 
-    public void setEmailAddress(String emailAddress) {
-        this.emailAddress = emailAddress;
+    public void setCompanyCountry(String companyCountry) {
+        this.companyCountry = companyCountry;
     }
 
-    public String getAlternateContact1() {
-        return alternateContact1;
+    public String getCompanyFax() {
+        return companyFax;
     }
 
-    public void setAlternateContact1(String alternateContact1) {
-        this.alternateContact1 = alternateContact1;
+    public void setCompanyFax(String companyFax) {
+        this.companyFax = companyFax;
     }
 
-    public String getAlternateContact2() {
-        return alternateContact2;
+    public String getCompanyTelephone() {
+        return companyTelephone;
     }
 
-    public void setAlternateContact2(String alternateContact2) {
-        this.alternateContact2 = alternateContact2;
+    public void setCompanyTelephone(String companyTelephone) {
+        this.companyTelephone = companyTelephone;
     }
 
-    public String getProducts() {
-        return products;
+    public String getCompanyEmail() {
+        return companyEmail;
     }
 
-    public void setProducts(String products) {
-        this.products = products;
+    public void setCompanyEmail(String companyEmail) {
+        this.companyEmail = companyEmail;
     }
 
-    public String getCoordinates() {
-        return coordinates;
+    public String getCompanyPocName() {
+        return companyPocName;
     }
 
-    public void setCoordinates(String coordinates) {
-        this.coordinates = coordinates;
+    public void setCompanyPocName(String companyPocName) {
+        this.companyPocName = companyPocName;
+    }
+
+    public String getCompanyPocEmail() {
+        return companyPocEmail;
+    }
+
+    public void setCompanyPocEmail(String companyPocEmail) {
+        this.companyPocEmail = companyPocEmail;
+    }
+
+    public String getCompanyAltContact1() {
+        return companyAltContact1;
+    }
+
+    public void setCompanyAltContact1(String companyAltContact1) {
+        this.companyAltContact1 = companyAltContact1;
+    }
+
+    public String getCompanyAltContact2() {
+        return companyAltContact2;
+    }
+
+    public void setCompanyAltContact2(String companyAltContact2) {
+        this.companyAltContact2 = companyAltContact2;
+    }
+
+    public String getCompanyProducts() {
+        return companyProducts;
+    }
+
+    public void setCompanyProducts(String companyProducts) {
+        this.companyProducts = companyProducts;
+    }
+
+    public String getCompanyCrNumber() {
+        return companyCrNumber;
+    }
+
+    public void setCompanyCrNumber(String companyCrNumber) {
+        this.companyCrNumber = companyCrNumber;
+    }
+
+    public String getCompanyVatNumber() {
+        return companyVatNumber;
+    }
+
+    public void setCompanyVatNumber(String companyVatNumber) {
+        this.companyVatNumber = companyVatNumber;
+    }
+
+    public String getAdditionalInfo() {
+        return additionalInfo;
+    }
+
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
+    }
+
+    public String getGoogleLocationLink() {
+        return googleLocationLink;
+    }
+
+    public void setGoogleLocationLink(String googleLocationLink) {
+        this.googleLocationLink = googleLocationLink;
+    }
+
+    public String getBankName() {
+        return bankName;
+    }
+
+    public void setBankName(String bankName) {
+        this.bankName = bankName;
+    }
+
+    public String getBeneficiaryName() {
+        return beneficiaryName;
+    }
+
+    public void setBeneficiaryName(String beneficiaryName) {
+        this.beneficiaryName = beneficiaryName;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getBankAddress() {
+        return bankAddress;
+    }
+
+    public void setBankAddress(String bankAddress) {
+        this.bankAddress = bankAddress;
+    }
+
+    public String getIbanNumber() {
+        return ibanNumber;
+    }
+
+    public void setIbanNumber(String ibanNumber) {
+        this.ibanNumber = ibanNumber;
     }
 
     public String getNotes() {
@@ -176,30 +314,6 @@ public class BusinessVendor implements Parcelable {
         this.notes = notes;
     }
 
-    public String getDocUrl() {
-        return docUrl;
-    }
-
-    public void setDocUrl(String docUrl) {
-        this.docUrl = docUrl;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -207,21 +321,30 @@ public class BusinessVendor implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(vendorId);
-        dest.writeString(vendorName);
-        dest.writeString(contactPerson);
-        dest.writeString(mobileNumber);
-        dest.writeString(landlineNumber);
-        dest.writeString(address);
-        dest.writeString(emailAddress);
-        dest.writeString(alternateContact1);
-        dest.writeString(alternateContact2);
-        dest.writeString(products);
-        dest.writeString(coordinates);
+        dest.writeString(companyId);
+        dest.writeString(companyName);
+        dest.writeString(companyShortName);
+        dest.writeString(companyMailingAddress);
+        dest.writeString(companyWebsite);
+        dest.writeString(companyCity);
+        dest.writeString(companyCountry);
+        dest.writeString(companyFax);
+        dest.writeString(companyTelephone);
+        dest.writeString(companyEmail);
+        dest.writeString(companyPocName);
+        dest.writeString(companyPocEmail);
+        dest.writeString(companyAltContact1);
+        dest.writeString(companyAltContact2);
+        dest.writeString(companyProducts);
+        dest.writeString(companyCrNumber);
+        dest.writeString(companyVatNumber);
+        dest.writeString(additionalInfo);
+        dest.writeString(googleLocationLink);
+        dest.writeString(bankName);
+        dest.writeString(beneficiaryName);
+        dest.writeString(accountNumber);
+        dest.writeString(bankAddress);
+        dest.writeString(ibanNumber);
         dest.writeString(notes);
-        dest.writeString(docUrl);
-        dest.writeString(userId);
-        dest.writeString(photoUrl);
-        // Write other fields as needed
     }
 }

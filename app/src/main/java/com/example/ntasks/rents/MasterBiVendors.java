@@ -114,25 +114,36 @@ public class MasterBiVendors extends AppCompatActivity {
     private void openBusinessVendorDetailsActivity(BusinessVendor vendor) {
         Intent intent = new Intent(MasterBiVendors.this, BusinessVendorDetailsActivity.class);
         intent.putExtra("business_vendor", new BusinessVendor(
-                vendor.getVendorId(),
-                vendor.getVendorName(),
-                vendor.getContactPerson(),
-                vendor.getMobileNumber(),
-                vendor.getLandlineNumber(),
-                vendor.getAddress(),
-                vendor.getEmailAddress(),
-                vendor.getAlternateContact1(),
-                vendor.getAlternateContact2(),
-                vendor.getProducts(),
-                vendor.getCoordinates(),
-                vendor.getNotes(),
-                vendor.getDocUrl(),
-                vendor.getUserId(),
-                vendor.getPhotoUrl()
+                vendor.getCompanyId(),
+                vendor.getCompanyName(),
+                vendor.getCompanyShortName(),
+                vendor.getCompanyMailingAddress(),
+                vendor.getCompanyWebsite(),
+                vendor.getCompanyCity(),
+                vendor.getCompanyCountry(),
+                vendor.getCompanyFax(),
+                vendor.getCompanyTelephone(),
+                vendor.getCompanyEmail(),
+                vendor.getCompanyPocName(),
+                vendor.getCompanyPocEmail(),
+                vendor.getCompanyAltContact1(),
+                vendor.getCompanyAltContact2(),
+                vendor.getCompanyProducts(),
+                vendor.getCompanyCrNumber(),
+                vendor.getCompanyVatNumber(),
+                vendor.getAdditionalInfo(),
+                vendor.getGoogleLocationLink(),
+                vendor.getBankName(),
+                vendor.getBeneficiaryName(),
+                vendor.getAccountNumber(),
+                vendor.getBankAddress(),
+                vendor.getIbanNumber(),
+                vendor.getNotes()
         ));
         startActivity(intent);
         // Add more data if needed
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

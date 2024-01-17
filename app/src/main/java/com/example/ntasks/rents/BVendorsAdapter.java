@@ -49,8 +49,8 @@ public class BVendorsAdapter extends RecyclerView.Adapter<BVendorsAdapter.BVendo
     public void onBindViewHolder(@NonNull BVendorsViewHolder holder, int position) {
         BusinessVendor vendor = filteredList.get(position);
 
-        holder.tvVendorName.setText(vendor.getVendorName());
-        holder.tvVendorProducts.setText(vendor.getProducts());
+        holder.tvVendorName.setText(vendor.getCompanyName());
+        holder.tvVendorProducts.setText(vendor.getCompanyProducts());
 
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,8 +88,8 @@ public class BVendorsAdapter extends RecyclerView.Adapter<BVendorsAdapter.BVendo
                 } else {
                     filteredList.clear();
                     for (BusinessVendor vendor : vendorList) {
-                        if (vendor.getContactPerson().toLowerCase().contains(filterPattern) ||vendor.getVendorName().toLowerCase().contains(filterPattern) ||
-                                vendor.getMobileNumber().contains(filterPattern)||vendor.getProducts().toLowerCase().contains(filterPattern)) {
+                        if (vendor.getCompanyPocName().toLowerCase().contains(filterPattern) ||vendor.getCompanyName().toLowerCase().contains(filterPattern) ||
+                                vendor.getCompanyTelephone().contains(filterPattern)||vendor.getCompanyProducts().toLowerCase().contains(filterPattern)) {
                             filteredList.add(vendor);
                         }
                     }
