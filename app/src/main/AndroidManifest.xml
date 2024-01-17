@@ -2,8 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SENDTO" />
+
+
 
     <queries>
         <intent>
@@ -23,6 +31,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
+        <activity
+            android:name=".rents.BiVendorDetails"
+            android:exported="false" />
+        <activity
+            android:name=".MasterBiVendors"
+            android:exported="false" />
         <activity
             android:name=".rents.AddBusinessVendorsActivity"
             android:exported="false" />

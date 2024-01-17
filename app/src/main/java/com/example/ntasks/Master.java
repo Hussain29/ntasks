@@ -13,8 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.ntasks.rents.AddBusinessVendorsActivity;
+import com.example.ntasks.rents.BiVendorDetails;
+import com.example.ntasks.rents.BusinessVendors;
 import com.example.ntasks.rents.rentsmaster;
+import com.example.ntasks.rents.VendorsActivity;
 
 public class Master extends AppCompatActivity {
     Button Testify;
@@ -92,13 +94,13 @@ public class Master extends AppCompatActivity {
         });   hrbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(Master.this, hrmaster.class);
+                Intent intent4 = new Intent(Master.this, BiVendorDetails.class);
                 startActivity(intent4);
             }
         });vendorsbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent4 = new Intent(Master.this, AddBusinessVendorsActivity.class);
+                Intent intent4 = new Intent(Master.this, BusinessVendors.class);
                 startActivity(intent4);
             }
         });
