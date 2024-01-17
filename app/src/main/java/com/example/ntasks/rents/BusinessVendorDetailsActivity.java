@@ -15,8 +15,8 @@ import android.widget.Toast;
 
 import com.example.ntasks.R;
 
-public class BiVendorDetails extends AppCompatActivity {
-LinearLayout callalt,emailButton;
+public class BusinessVendorDetailsActivity extends AppCompatActivity {
+LinearLayout callalt, emailButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

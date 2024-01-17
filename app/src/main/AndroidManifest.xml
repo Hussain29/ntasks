@@ -32,10 +32,10 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".rents.BiVendorDetails"
+            android:name=".rents.BusinessVendorDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".MasterBiVendors"
+            android:name=".rents.MasterBiVendors"
             android:exported="false" />
         <activity
             android:name=".rents.AddBusinessVendorsActivity"
