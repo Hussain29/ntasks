@@ -149,6 +149,8 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
     private TextView tvIBANNo;
     private TextView tvNotes;
 
+    private TextView tvbuizCard;
+
     private BusinessVendor businessVendor;
 
     @Override
@@ -164,10 +166,10 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             // Initialize Views
             imageView2 = findViewById(R.id.imageView2);
             tvBivenName = findViewById(R.id.tvbvendorName);
-            tvBivenId = findViewById(R.id.tvbvenodrID);
+            tvBivenId = findViewById(R.id.tvbvendorID);
             /*tvAddBiven = findViewById(R.id.tvidbiven);*/
-            tvProducts = findViewById(R.id.tvproducts);
-            tvAddress = findViewById(R.id.tvaddap); // Assuming the address TextView ID is the same
+            tvProducts = findViewById(R.id.tvbvendorproducts);
+            tvAddress = findViewById(R.id.tvbvendoraddress); // Assuming the address TextView ID is the same
             tvWebsite = findViewById(R.id.tvbvendorwebsite);
             tvCity = findViewById(R.id.tvbvendorcity); // Assuming the city TextView ID is the same
             tvCountry = findViewById(R.id.tvbvendorscountry); // Assuming the country TextView ID is the same
@@ -188,6 +190,7 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             tvBankAddress = findViewById(R.id.tvbvendorbankadd);
             tvIBANNo = findViewById(R.id.tvbvendoribanno);
             tvNotes = findViewById(R.id.tvbvendornotes);
+            tvbuizCard = findViewById(R.id.tvbvendorbuizcard);
 
             // Set values to views
             // Use Picasso to load the vendor image
@@ -238,7 +241,7 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             // For example, changing background colors, text colors, etc.
 
             // Display clickable link for website URL
-            displayLink(businessVendor.getCompanyWebsite());
+            displayLink(businessVendor.getBCardURL());
         } else {
             // Log an error or show a message indicating that the vendor data is null
             Log.e("BusinessVendorDetailsActivity", "Vendor data is null");
@@ -249,21 +252,26 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
 
     private void displayLink(String url) {
         // Use a TextView to display the clickable link
-        tvWebsite.setVisibility(View.VISIBLE);
+        if (tvbuizCard != null) {
+            tvbuizCard.setVisibility(View.VISIBLE);
+            // Other operations on tvbuizCard
+        } else {
+            Log.e("BusinessVendorDetails", "tvbuizCard is null");
+        }
 
         // Set the autoLink property to web for automatic linking of URLs
-        tvWebsite.setAutoLinkMask(Linkify.WEB_URLS);
+        tvbuizCard.setAutoLinkMask(Linkify.WEB_URLS);
 
         // Set the text to the URL
-        tvWebsite.setText("Click To Visit Website: " + url);
+        tvbuizCard.setText("Click To View Business Card " + url);
 
         // Set an onClickListener to perform some action when clicked
-        tvWebsite.setOnClickListener(new View.OnClickListener() {
+        tvbuizCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Modify this block based on your desired action
                 // For example, open the website in a browser or perform some other action
-                Toast.makeText(BusinessVendorDetailsActivity.this, "Website URL Clicked", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BusinessVendorDetailsActivity.this, "URL Clicked", Toast.LENGTH_SHORT).show();
             }
         });
     }

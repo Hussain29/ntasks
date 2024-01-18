@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.TextView;
+
 import com.example.ntasks.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -155,6 +157,23 @@ public class MasterBiVendors extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public static class TenantDetails extends AppCompatActivity {
+    TextView tvtenName,tvidten,tvtenfath,tvtenadd,tvtenpadd,tvpayten, tvworkten,tvrentamtten,tvdepten, tvdoaten,tvphnoten,tvownerten,tvvendorten,tvtenprop,tvtennotes,tvdocten,tvdocumentsten;
+
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_tenant_details);
+
+
+
+
+
+
         }
     }
 }

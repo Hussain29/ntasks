@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvbvenodrID"
+                android:id="@+id/tvbvendorID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -636,19 +636,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:paddingLeft="10dp"
-            android:paddingTop="10dp">
+            android:paddingTop="15dp">
 
+            <ImageView
+                android:id="@+id/imgClient"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp" />
 
-            <Button
-
+            <TextView
+                android:id="@+id/tvbvendorbuizcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Download DOC" />
-
+                android:fontFamily="@font/interf"
+                android:text="\tB Card"
+                android:visibility="visible" />
 
         </LinearLayout>
 

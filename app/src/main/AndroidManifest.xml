@@ -44,7 +44,7 @@
             android:name=".rents.Collections"
             android:exported="false" />
         <activity
-            android:name=".TenantDetails"
+            android:name=".rents.MasterBiVendors$TenantDetails"
             android:exported="false" />
         <activity
             android:name=".rents.ContractsActivity"
