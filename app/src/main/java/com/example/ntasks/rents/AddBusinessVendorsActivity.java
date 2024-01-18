@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +18,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -107,6 +110,16 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
         // Add this line to your existing declarations
 
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("BusinessVendors");
+
+
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setTitle("ADD BUSINESS VENDORS");
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
 
         // Inside your onCreate method or wherever you initialize your views
         LinearLayout llAttach = findViewById(R.id.llattach); // Attach Buiz Card
@@ -325,4 +338,19 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }
