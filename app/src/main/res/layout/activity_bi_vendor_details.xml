@@ -167,7 +167,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/bven2" />
+                android:src="@android:drawable/ic_menu_search" />
 
             <TextView
                 android:id="@+id/tvarebiven"
@@ -190,7 +190,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/bven2" />
+                android:src="@android:drawable/ic_menu_myplaces" />
 
             <TextView
                 android:id="@+id/tvarebiven"
@@ -213,7 +213,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/bven2" />
+                android:src="@android:drawable/ic_menu_myplaces" />
 
             <TextView
                 android:id="@+id/tvarebiven"
@@ -236,7 +236,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/bven2" />
+                android:src="@drawable/ms__selector" />
 
             <TextView
                 android:id="@+id/tvarebiven"
@@ -305,7 +305,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/bven2" />
+                android:src="@drawable/ms__selector" />
 
             <TextView
                 android:id="@+id/tvarebiven"
@@ -328,7 +328,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@drawable/bven2" />
+                android:src="@drawable/ms__selector" />
 
             <TextView
                 android:id="@+id/tvarebiven"
@@ -424,7 +424,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -448,7 +448,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -472,7 +472,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -496,7 +496,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -521,7 +521,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -546,7 +546,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -571,7 +571,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -596,7 +596,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector"  />
 
             <TextView
                 android:id="@+id/tvbivencoords"
@@ -621,7 +621,7 @@
             <ImageView
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_menu_myplaces" />
+                android:src="@drawable/ms__selector" />
 
             <TextView
                 android:id="@+id/tvbivencoords"
