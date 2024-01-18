@@ -97,23 +97,7 @@ public class ApartmentDetailsActivity extends AppCompatActivity {
                         // Handle the case where Google Maps is not installed
                         // You can open the browser or notify the user to install Google Maps
                     }
-                    ///////////////////////////////////////////////////////////////
-                    /*// Create a Uri with the specified latitude and longitude
-                    Uri gmmIntentUri = Uri.parse("google.navigation:q=" +latlong);
 
-                    // Create an Intent with the action "ACTION_VIEW"
-                    Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-
-                    // Set the package to the Google Maps app (you can also use "com.google.android.apps.maps")
-                    mapIntent.setPackage("com.google.android.apps.maps");
-
-                    // Check if there is an app to handle the Intent before starting it
-                    if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                        startActivity(mapIntent);
-                    } else {
-                        // Handle the case where Google Maps is not installed
-                        // You can open the browser or notify the user to install Google Maps
-                    }*/
                 }
             });
 

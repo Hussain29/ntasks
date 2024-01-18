@@ -58,8 +58,8 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
     TextView textViewProducts;
     private Spinner spinDocType;
 
-    private String photoUrl;
-    private String docUrl;
+    private String shopPicURL;
+    private String bCardURL;
     private String selectedDocType;
 
     @Override
@@ -235,8 +235,8 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
         storageRef.putFile(docUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        docUrl = uri.toString();
-                        Log.d("AddBusinessVendors", "Document URL: " + docUrl);
+                        bCardURL = uri.toString();
+                        Log.d("AddBusinessVendors", "Document URL: " + bCardURL);
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -252,8 +252,8 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        photoUrl = uri.toString();
-                        Log.d("AddBusinessVendors", "Image URL: " + photoUrl);
+                        shopPicURL = uri.toString();
+                        Log.d("AddBusinessVendors", "Image URL: " + shopPicURL);
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -316,7 +316,8 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
                 companyWebsite, companyCity, companyCountry, companyFax, companyTelephone, companyEmail,
                 companyPocName, companyPocEmail, companyAltContact1, companyAltContact2, companyProducts,
                 companyCrNumber, companyVatNumber, additionalInfo, googleLocationLink, bankName,
-                beneficiaryName, accountNumber, bankAddress, ibanNumber, notes);
+                beneficiaryName, accountNumber, bankAddress, ibanNumber, notes, shopPicURL, bCardURL);
+
 
         saveVendorToDatabase(vendor);
     }

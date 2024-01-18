@@ -34,6 +34,10 @@ public class BusinessVendor implements Parcelable {
 
     private String notes;
 
+    // New fields added
+    private String shopPicURL;
+    private String bCardURL;
+
     public BusinessVendor() {
         // Default constructor required for calls to DataSnapshot.getValue(BusinessVendor.class)
     }
@@ -44,7 +48,7 @@ public class BusinessVendor implements Parcelable {
                           String companyAltContact1, String companyAltContact2, String companyProducts,
                           String companyCrNumber, String companyVatNumber, String additionalInfo, String googleLocationLink,
                           String bankName, String beneficiaryName, String accountNumber, String bankAddress,
-                          String ibanNumber, String notes) {
+                          String ibanNumber, String notes, String shopPicURL, String bCardURL) {
         this.companyId = companyId;
         this.companyName = companyName;
         this.companyShortName = companyShortName;
@@ -70,6 +74,8 @@ public class BusinessVendor implements Parcelable {
         this.bankAddress = bankAddress;
         this.ibanNumber = ibanNumber;
         this.notes = notes;
+        this.shopPicURL = shopPicURL;
+        this.bCardURL = bCardURL;
     }
 
     protected BusinessVendor(Parcel in) {
@@ -98,6 +104,8 @@ public class BusinessVendor implements Parcelable {
         bankAddress = in.readString();
         ibanNumber = in.readString();
         notes = in.readString();
+        shopPicURL = in.readString();
+        bCardURL = in.readString();
     }
 
     public static final Creator<BusinessVendor> CREATOR = new Creator<BusinessVendor>() {
@@ -314,6 +322,23 @@ public class BusinessVendor implements Parcelable {
         this.notes = notes;
     }
 
+    public String getShopPicURL() {
+        return shopPicURL;
+    }
+
+    public void setShopPicURL(String shopPicURL) {
+        this.shopPicURL = shopPicURL;
+    }
+
+    public String getBCardURL() {
+        return bCardURL;
+    }
+
+    public void setBCardURL(String bCardURL) {
+        this.bCardURL = bCardURL;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -346,5 +371,7 @@ public class BusinessVendor implements Parcelable {
         dest.writeString(bankAddress);
         dest.writeString(ibanNumber);
         dest.writeString(notes);
+        dest.writeString(shopPicURL);
+        dest.writeString(bCardURL);
     }
 }

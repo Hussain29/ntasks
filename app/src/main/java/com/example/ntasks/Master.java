@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.ntasks.rents.BusinessVendorDetailsActivity;
 import com.example.ntasks.rents.MasterBiVendors;
 import com.example.ntasks.rents.rentsmaster;
 

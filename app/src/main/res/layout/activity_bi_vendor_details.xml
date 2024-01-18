@@ -36,7 +36,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
                 <TextView
-                    android:id="@+id/tvbivenName"
+                    android:id="@+id/tvbvendorName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_12sdp"
@@ -86,7 +86,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvidbiven"
+                android:id="@+id/tvbvenodrID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -116,7 +116,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvidbiven"
+                android:id="@+id/tvbvendorproducts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -146,7 +146,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvaddap"
+                android:id="@+id/tvbvendoraddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -170,7 +170,7 @@
                 android:src="@android:drawable/ic_menu_search" />
 
             <TextView
-                android:id="@+id/tvarebiven"
+                android:id="@+id/tvbvendorwebsite"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -193,7 +193,7 @@
                 android:src="@android:drawable/ic_menu_myplaces" />
 
             <TextView
-                android:id="@+id/tvarebiven"
+                android:id="@+id/tvbvendorcity"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -216,8 +216,7 @@
                 android:src="@android:drawable/ic_menu_myplaces" />
 
             <TextView
-                android:id="@+id/tvarebiven"
-
+                android:id="@+id/tvbvendorscountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -239,8 +238,7 @@
                 android:src="@drawable/ms__selector" />
 
             <TextView
-                android:id="@+id/tvarebiven"
-
+                android:id="@+id/tvbvendorfax"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -262,7 +260,7 @@
                 android:src="@android:drawable/ic_menu_call" />
 
             <TextView
-                android:id="@+id/tvflatsbiven"
+                android:id="@+id/tvbvendortelephone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -285,7 +283,7 @@
                 android:src="@android:drawable/ic_menu_send" />
 
             <TextView
-                android:id="@+id/tvsptshops"
+                android:id="@+id/tvbvendoremail"
 
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
@@ -308,8 +306,7 @@
                 android:src="@drawable/ms__selector" />
 
             <TextView
-                android:id="@+id/tvarebiven"
-
+                android:id="@+id/tvbvendorpocname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -331,36 +328,13 @@
                 android:src="@drawable/ms__selector" />
 
             <TextView
-                android:id="@+id/tvarebiven"
+                android:id="@+id/tvbvendorpocemail"
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
                 android:text="\tContact Email" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingTop="15dp">
-
-            <ImageView
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
-                android:src="@android:drawable/ic_btn_speak_now" />
-
-            <TextView
-                android:id="@+id/tvfloorbiven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:fontFamily="@font/interf"
-                android:text="\tLandline No." />
 
         </LinearLayout>
 
@@ -380,13 +354,13 @@
                 android:src="@android:drawable/stat_sys_phone_call_on_hold" />
 
             <TextView
-                android:id="@+id/tvsptshops"
+                android:id="@+id/tvbvendorpocphone1"
 
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
-                android:text="\tALTERNATE CONTACT" />
+                android:text="\tCONTACT" />
 
         </LinearLayout>
 
@@ -403,8 +377,7 @@
                 android:src="@android:drawable/stat_sys_phone_call_on_hold" />
 
             <TextView
-                android:id="@+id/tvsptshops"
-
+                android:id="@+id/tvbvendorpocphone2"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
                 android:layout_gravity="center"
@@ -427,7 +400,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendorcrno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -451,7 +424,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendorvatno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -475,7 +448,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendoraddinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -499,7 +472,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendorglink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -524,7 +497,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendorbankname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -549,7 +522,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendorbenefname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -574,7 +547,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendoraccno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -599,7 +572,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendorbankadd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -624,7 +597,7 @@
                 android:src="@drawable/ms__selector" />
 
             <TextView
-                android:id="@+id/tvbivencoords"
+                android:id="@+id/tvbvendoribanno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -649,7 +622,7 @@
                 android:src="@android:drawable/ic_menu_edit" />
 
             <TextView
-                android:id="@+id/tvbivennotes"
+                android:id="@+id/tvbvendornotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -670,6 +643,7 @@
 
 
             <Button
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

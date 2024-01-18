@@ -138,7 +138,9 @@ public class MasterBiVendors extends AppCompatActivity {
                 vendor.getAccountNumber(),
                 vendor.getBankAddress(),
                 vendor.getIbanNumber(),
-                vendor.getNotes()
+                vendor.getNotes(),
+                vendor.getShopPicURL(),
+                vendor.getBCardURL()
         ));
         startActivity(intent);
         // Add more data if needed
