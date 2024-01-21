@@ -12,7 +12,8 @@ import android.widget.EditText;
 import com.example.ntasks.R;
 
 public class hrAddEmployeeActivity extends AppCompatActivity {
-EditText etempid, etempname, etempiqno, etempiqexp1, etempiqexp2, etempaddper, etempemcon1, etempemcon2, etempnat, etempocc, etempbtdt, etempbtdt1, etempbtdt2, etempcountry, etempmstat, etemprel, etemphins1, etemphins2, etempiq1, etempiq2, etempdl1, etempdl2, etemppp1, etemppp2, etempdep, etempppno, etempppcity, etempppdt, etempppexpdt, etempvinfo, etempdlno, etempdldate, etempdlexpdt, etemphisd, etemphied, etempnotes;
+
+    EditText etempid, etempname, etempiqno, etempiqexp1, etempiqexp2, etempaddper, etempemcon1, etempemcon2, etempnat, etempocc, etempbtdt, etempbtdt1, etempbtdt2, etempcountry, etempmstat, etemprel, etemphins1, etemphins2, etempiq1, etempiq2, etempdl1, etempdl2, etemppp1, etemppp2, etempdep, etempppno, etempppcity, etempppdt, etempppexpdt, etempvinfo, etempdlno, etempdldate, etempdlexpdt, etemphisd, etemphied, etempnotes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
