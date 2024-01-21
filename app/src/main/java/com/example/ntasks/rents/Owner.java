@@ -17,12 +17,15 @@ public class Owner implements Parcelable {
     private String photoUrl;
     private String docUrl;
     private String docType; // New field for document type
+    private String age; // New field for document type
+    private String occupation; // New field for document type
+    private String fathername; // New field for document type
 
     public Owner() {
         // Default constructor required for calls to DataSnapshot.getValue(Owner.class)
     }
 
-    public Owner(String ownerId, String ownerName, String ownerAddress, String ownerEmail, String ownerPhone1, String ownerPhone2, String ownerPhone3, String ownerNotes, String userId, String photoUrl, String docUrl, String docType) {
+    public Owner(String ownerId, String ownerName, String ownerAddress, String ownerEmail, String ownerPhone1, String ownerPhone2, String ownerPhone3, String ownerNotes, String userId, String photoUrl, String docUrl, String docType, String age, String occupation, String fathername) {
         this.ownerId = ownerId;
         this.ownerName = ownerName;
         this.ownerAddress = ownerAddress;
@@ -35,6 +38,9 @@ public class Owner implements Parcelable {
         this.photoUrl = photoUrl;
         this.docUrl = docUrl;
         this.docType = docType;
+        this.age = age;
+        this.occupation = occupation;
+        this.fathername = fathername;
     }
 
     protected Owner(Parcel in) {
@@ -50,6 +56,9 @@ public class Owner implements Parcelable {
         photoUrl = in.readString();
         docUrl = in.readString();
         docType = in.readString();
+        age = in.readString();
+        occupation = in.readString();
+        fathername = in.readString();
     }
 
     public static final Creator<Owner> CREATOR = new Creator<Owner>() {
@@ -82,6 +91,30 @@ public class Owner implements Parcelable {
 
     public String getOwnerAddress() {
         return ownerAddress;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    public String getOccupation() {
+        return occupation;
+    }
+
+    public void setOccupation(String occupation) {
+        this.occupation = occupation;
+    }
+
+    public String getFathername() {
+        return fathername;
+    }
+
+    public void setFathername(String fathername) {
+        this.fathername = fathername;
     }
 
     public void setOwnerAddress(String ownerAddress) {
@@ -179,5 +212,8 @@ public class Owner implements Parcelable {
         dest.writeString(photoUrl);
         dest.writeString(docUrl);
         dest.writeString(docType);
+        dest.writeString(age);
+        dest.writeString(occupation);
+        dest.writeString(fathername);
     }
 }

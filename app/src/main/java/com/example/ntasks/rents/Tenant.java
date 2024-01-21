@@ -25,6 +25,7 @@ public class Tenant implements Parcelable {
     private String imgUrl;
     private String docUrl;
     private String payday; // New field for payday
+    private String age; // New field for payday
 
     public Tenant() {
         // Default constructor required for calls to DataSnapshot.getValue(Tenant.class)
@@ -35,7 +36,7 @@ public class Tenant implements Parcelable {
                   String noOfPeople, String tenantPhoneNumber, String tenantPhoneNumber2,
                   String tenantPhoneNumber3, String propertyName, String tenantRent,
                   String advanceAmount, String admissionDate, String docType, String tenantNotes,
-                  String imgUrl, String docUrl, String payday) {
+                  String imgUrl, String docUrl, String payday, String age) {
         this.tenantId = tenantId;
         this.tenantName = tenantName;
         this.tenantFatherName = tenantFatherName;
@@ -56,6 +57,7 @@ public class Tenant implements Parcelable {
         this.imgUrl = imgUrl;
         this.docUrl = docUrl;
         this.payday = payday;
+        this.age = age;
     }
 
     protected Tenant(Parcel in) {
@@ -78,7 +80,8 @@ public class Tenant implements Parcelable {
         tenantNotes = in.readString();
         imgUrl = in.readString();
         docUrl = in.readString();
-        payday = in.readString(); // Read payday from parcel
+        payday = in.readString();
+        age = in.readString();// Read payday from parcel
     }
 
     public static final Creator<Tenant> CREATOR = new Creator<Tenant>() {
@@ -92,6 +95,14 @@ public class Tenant implements Parcelable {
             return new Tenant[size];
         }
     };
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
 
     public String getPropertyName() {
         return propertyName;
@@ -281,6 +292,7 @@ public class Tenant implements Parcelable {
         dest.writeString(tenantNotes);
         dest.writeString(imgUrl);
         dest.writeString(docUrl);
-        dest.writeString(payday); // Write payday to parcel
+        dest.writeString(payday);// Write payday to parcel
+        dest.writeString(age);// Write payday to parcel
     }
 }

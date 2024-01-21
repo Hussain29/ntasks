@@ -36,6 +36,8 @@ import com.google.firebase.storage.StorageReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import kotlin.Triple;
+
 public class AddFlatsActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST_IMG = 4;
@@ -180,6 +182,8 @@ public class AddFlatsActivity extends AppCompatActivity {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         docUrl = uri.toString();
                         Log.d("AddFlatsActivity", "Document URL: " + docUrl);
+                        Toast.makeText(AddFlatsActivity.this, "Document upload successful.", Toast.LENGTH_SHORT).show();
+
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -198,6 +202,8 @@ public class AddFlatsActivity extends AppCompatActivity {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         photoUrl = uri.toString();
                         Log.d("AddFlatsActivity", "Image URL: " + photoUrl);
+                        Toast.makeText(AddFlatsActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -258,17 +264,18 @@ public class AddFlatsActivity extends AppCompatActivity {
 
 
         // Retrieve ownerName and vendorName from the selected apartment
-        getOwnerNameAndVendorNameForApartment(apartmentName, new Callback<Pair<String, String>>() {
+        getOwnerNameVendorNameAndApartmentAddress(apartmentName, new Callback<Triple<String, String, String>>() {
             @Override
-            public void onSuccess(Pair<String, String> result) {
-                // Now, you have the ownerName and vendorName, proceed to save the flat details
+            public void onSuccess(Triple<String, String, String> result) {
+                // Now, you have the ownerName, vendorName, and apartmentAddress, proceed to save the flat details
                 String userId = getCurrentUserId();
 
                 if (!TextUtils.isEmpty(flatId) && !TextUtils.isEmpty(area) && !TextUtils.isEmpty(flatNo)
                         && !TextUtils.isEmpty(apartmentName) && !TextUtils.isEmpty(fType)
-                        && !TextUtils.isEmpty(result.first) && !TextUtils.isEmpty(result.second)) {
+                        && !TextUtils.isEmpty(result.first) && !TextUtils.isEmpty(result.second)
+                       /* && !TextUtils.isEmpty(result.third)*/) {
 
-                    Flats flat = new Flats(flatId, area, flatNo, flatNotes, apartmentName, fType, result.first, result.second, userId, docType, photoUrl, docUrl);
+                    Flats flat = new Flats(flatId, area, flatNo, flatNotes, apartmentName, fType, result.first, result.second, userId, docType, photoUrl, docUrl, result.third);
 
                     flatsRef.child(flatId).setValue(flat);
 
@@ -297,7 +304,7 @@ public class AddFlatsActivity extends AppCompatActivity {
         }
     }
 
-    private void getOwnerNameAndVendorNameForApartment(String apartmentName, Callback<Pair<String, String>> callback) {
+    private void getOwnerNameVendorNameAndApartmentAddress(String apartmentName, Callback<Triple<String, String, String>> callback) {
         apartmentRef.orderByChild("aptName").equalTo(apartmentName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -305,7 +312,8 @@ public class AddFlatsActivity extends AppCompatActivity {
                     DataSnapshot aptSnapshot = dataSnapshot.getChildren().iterator().next();
                     String ownerName = aptSnapshot.child("ownerName").getValue(String.class);
                     String vendorName = aptSnapshot.child("vendorName").getValue(String.class);
-                    callback.onSuccess(new Pair<>(ownerName, vendorName));
+                    String apartmentAddress = aptSnapshot.child("aptAddress").getValue(String.class);
+                    callback.onSuccess(new Triple<>(ownerName, vendorName, apartmentAddress));
                 } else {
                     callback.onFailure("Apartment not found");
                 }
@@ -317,6 +325,32 @@ public class AddFlatsActivity extends AppCompatActivity {
             }
         });
     }
+
+    public class Triple<A, B, C> {
+        private final A first;
+        private final B second;
+        private final C third;
+
+        public Triple(A first, B second, C third) {
+            this.first = first;
+            this.second = second;
+            this.third = third;
+        }
+
+        public A getFirst() {
+            return first;
+        }
+
+        public B getSecond() {
+            return second;
+        }
+
+        public C getThird() {
+            return third;
+        }
+    }
+
+
 
     private interface Callback<T> {
         void onSuccess(T result);

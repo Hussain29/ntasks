@@ -18,12 +18,14 @@ public class Flats implements Parcelable {
     private String photoUrl;  // Added field for photo URL
     private String docUrl;  // Added field for document URL
 
+    private String apartmentAddress;
+
     public Flats() {
         // Default constructor required for calls to DataSnapshot.getValue(Flats.class)
     }
 
     public Flats(String flatId, String area, String flatNo, String flatNotes, String apartmentName, String fType,
-                 String ownerName, String vendorName, String userId, String docType, String photoUrl, String docUrl) {
+                 String ownerName, String vendorName, String userId, String docType, String photoUrl, String docUrl, String apartmentAddress) {
         this.flatId = flatId;
         this.area = area;
         this.flatNo = flatNo;
@@ -36,6 +38,8 @@ public class Flats implements Parcelable {
         this.docType = docType;
         this.photoUrl = photoUrl;
         this.docUrl = docUrl;
+        this.apartmentAddress = apartmentAddress;
+
     }
 
     protected Flats(Parcel in) {
@@ -51,6 +55,7 @@ public class Flats implements Parcelable {
         docType = in.readString();
         photoUrl = in.readString();
         docUrl = in.readString();
+        apartmentAddress = in.readString();
     }
 
     public static final Creator<Flats> CREATOR = new Creator<Flats>() {
@@ -71,6 +76,14 @@ public class Flats implements Parcelable {
 
     public void setFlatId(String flatId) {
         this.flatId = flatId;
+    }
+
+    public String getApartmentAddress() {
+        return apartmentAddress;
+    }
+
+    public void setApartmentAddress(String apartmentAddress) {
+        this.apartmentAddress = apartmentAddress;
     }
 
     public String getArea() {
@@ -182,5 +195,6 @@ public class Flats implements Parcelable {
         dest.writeString(docType);
         dest.writeString(photoUrl);
         dest.writeString(docUrl);
+        dest.writeString(apartmentAddress);
     }
 }

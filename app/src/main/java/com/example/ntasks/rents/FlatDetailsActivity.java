@@ -43,6 +43,7 @@ public class FlatDetailsActivity extends AppCompatActivity {
 
         // Find views
         ImageView imageView2 = findViewById(R.id.imageView2);
+        TextView ID = findViewById(R.id.tvidfap);
         TextView tvFlatNo = findViewById(R.id.tvfaptName);
         TextView tvArea = findViewById(R.id.tvareafapt);
         TextView tvFlatNotes = findViewById(R.id.tvfaptnotes);
@@ -57,6 +58,7 @@ public class FlatDetailsActivity extends AppCompatActivity {
             // Set values to views
             imageView2.setImageResource(R.drawable.flat); // You can change this image based on your requirements
             tvFlatNo.setText(flat.getFlatNo());
+            ID.setText(flat.getFlatId());
             tvArea.setText("Area: " + flat.getArea());
             tvFlatNotes.setText("Flat Notes: " + flat.getFlatNotes());
             tvApartmentName.setText("Apartment Name: " + flat.getApartmentName());

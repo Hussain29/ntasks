@@ -42,7 +42,7 @@ public class AddOwnersActivity extends AppCompatActivity {
     private CardView cv3;
     private LinearLayout ll2;
     private ImageView imageView;
-    private EditText etOwnerId, etOwnerName, etOwnerAddress, etOwnerEmail, etOwnerPhone1, etOwnerPhone2, etOwnerPhone3, etOwnerNotes;
+    private EditText etOwnerId, etOwnerName, etOwnerAddress, etOwnerEmail, etOwnerPhone1, etOwnerPhone2, etOwnerPhone3, etOwnerNotes, etAge, etOcc, etFName;
     private DatabaseReference ownersRef;
     private Spinner spinowner;
 
@@ -76,6 +76,9 @@ public class AddOwnersActivity extends AppCompatActivity {
         etOwnerPhone2 = findViewById(R.id.etownerPhonenumber2);
         etOwnerPhone3 = findViewById(R.id.etownerPhonenumber3);
         etOwnerNotes = findViewById(R.id.etownerNotes);
+        etAge = findViewById(R.id.etownerAge);
+        etOcc = findViewById(R.id.etownerOcc);
+        etFName = findViewById(R.id.etownerFatherName);
 
         add1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +184,8 @@ public class AddOwnersActivity extends AppCompatActivity {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         docUrl = uri.toString();
                         Log.d("AddOwnersActivity", "Document URL: " + docUrl);
+                        Toast.makeText(AddOwnersActivity.this, "Document upload successful.", Toast.LENGTH_SHORT).show();
+
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -198,6 +203,8 @@ public class AddOwnersActivity extends AppCompatActivity {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         photoUrl = uri.toString();
                         Log.d("AddOwnersActivity", "Image URL: " + photoUrl);
+                        Toast.makeText(AddOwnersActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -214,14 +221,17 @@ public class AddOwnersActivity extends AppCompatActivity {
         String ownerPhone1 = etOwnerPhone1.getText().toString().trim();
         String ownerPhone2 = etOwnerPhone2.getText().toString().trim();
         String ownerPhone3 = etOwnerPhone3.getText().toString().trim();
+        String age = etAge.getText().toString().trim();
+        String occupation = etOcc.getText().toString().trim();
+        String fathername = etFName.getText().toString().trim();
         String ownerNotes = etOwnerNotes.getText().toString().trim();
 
         String userId = getCurrentUserId();
 
         if (!TextUtils.isEmpty(ownerId) && !TextUtils.isEmpty(ownerName) && !TextUtils.isEmpty(ownerAddress)
-                && !TextUtils.isEmpty(ownerEmail) && !TextUtils.isEmpty(ownerPhone1) && !TextUtils.isEmpty(ownerPhone2)) {
+                && !TextUtils.isEmpty(ownerEmail) && !TextUtils.isEmpty(ownerPhone1)) {
 
-            Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerEmail, ownerPhone1, ownerPhone2, ownerPhone3, ownerNotes, userId, photoUrl, docUrl, selectedDocType);
+            Owner owner = new Owner(ownerId, ownerName, ownerAddress, ownerEmail, ownerPhone1, ownerPhone2, ownerPhone3, ownerNotes, userId, photoUrl, docUrl, selectedDocType, age, occupation, fathername);
 
             ownersRef.child(ownerId).setValue(owner);
 

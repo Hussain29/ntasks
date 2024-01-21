@@ -47,7 +47,7 @@ public class AddTenantActivity extends AppCompatActivity {
 
     private EditText etTenantId, etTenantName, etTenantFatherName, etTenantPerAddress, etTenantPrevAddress,
             etTenantOccupation, etTenantWorkAddress, etTenantPhoneNumber, etTenantPhoneNumber2,
-            etTenantPhoneNumber3, etTenantRent, etAdvanceAmount, etAdmissionDate, etTenantNotes;
+            etTenantPhoneNumber3, etTenantRent, etAdvanceAmount, etAdmissionDate, etTenantNotes, etAge;
 
     private Button saveButton;
     private DatabaseReference tenantsRef;
@@ -67,6 +67,7 @@ public class AddTenantActivity extends AppCompatActivity {
         etTenantPerAddress = findViewById(R.id.ettenantperaddress);
         etTenantPrevAddress = findViewById(R.id.ettenantprevaddress);
         etTenantOccupation = findViewById(R.id.ettenantoccupation);
+        etAge = findViewById(R.id.ettenantAge);
         etTenantWorkAddress = findViewById(R.id.ettenantworkaddress);
         etTenantPhoneNumber = findViewById(R.id.ettenantphonenumber);
         etTenantPhoneNumber2 = findViewById(R.id.ettenantphonenumber2);
@@ -225,6 +226,8 @@ public class AddTenantActivity extends AppCompatActivity {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         docUrl = uri.toString();
                         Log.d("AddTenantsActivity", "Document URL: " + docUrl);
+                        Toast.makeText(AddTenantActivity.this, "Document upload successful.", Toast.LENGTH_SHORT).show();
+
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -242,6 +245,8 @@ public class AddTenantActivity extends AppCompatActivity {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         photoUrl = uri.toString();
                         Log.d("AddTenantsActivity", "Image URL: " + photoUrl);
+                        Toast.makeText(AddTenantActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -293,6 +298,7 @@ public class AddTenantActivity extends AppCompatActivity {
         String tenantOccupation = etTenantOccupation.getText().toString().trim();
         String tenantWorkAddress = etTenantWorkAddress.getText().toString().trim();
         String noOfPeople = spinnernoof.getSelectedItem().toString();
+        String age = etAge.getText().toString().trim();
         String tenantPhoneNumber = etTenantPhoneNumber.getText().toString().trim();
         String tenantPhoneNumber2 = etTenantPhoneNumber2.getText().toString().trim();
         String tenantPhoneNumber3 = etTenantPhoneNumber3.getText().toString().trim();
@@ -306,7 +312,7 @@ public class AddTenantActivity extends AppCompatActivity {
 
         return new Tenant(tenantId, tenantName, tenantFatherName, tenantPerAddress, tenantPrevAddress,
                 tenantOccupation, tenantWorkAddress, noOfPeople, tenantPhoneNumber, tenantPhoneNumber2, tenantPhoneNumber3,
-                propertyName, tenantRent, advanceAmount, admissionDate, docType, tenantNotes, photoUrl, docUrl, payday);
+                propertyName, tenantRent, advanceAmount, admissionDate, docType, tenantNotes, photoUrl, docUrl, payday, age);
     }
 
     private boolean isValidTenantId(String tenantId) {
