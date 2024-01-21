@@ -16,74 +16,25 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ntasks.rents.hrAddEmployeeActivity;
+
 public class hrmaster extends AppCompatActivity {
     private EditText etsplit;
-
+    Button btnaddemp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hrmaster);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        Button openMapsButton = findViewById(R.id.openmaps);
+
+        btnaddemp=findViewById(R.id.btnaddemp);
 
 
-
-    /*    openMapsButton.setOnClickListener(new View.OnClickListener() {
+        btnaddemp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                // Replace the coordinates with your desired latitude and longitude
-                double latitude = 37.7749;
-                double longitude = -122.4194;
-
-                // Create a Uri with the coordinates
-                Uri gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude + "?z=15&q=" + latitude + "," + longitude);
-
-                // Create an Intent to open Google Maps
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-
-                // Check if there's an activity to handle the Intent
-                if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                    startActivity(mapIntent);
-                }
-            }
-        });*/
-        openMapsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                splitText();
-                EditText etsplit=findViewById(R.id.etsplit);
-
-                // Get the latitude and longitude from user input
-                String enteredText = etsplit.getText().toString().trim();
-
-                // Check if the text contains a comma
-                if (enteredText.contains(",")) {
-                    // Split the text into parts based on the comma
-                    String[] parts = enteredText.split(",");
-
-                    if (parts.length == 2) {
-                        // Extract latitude and longitude
-                        double latitude = Double.parseDouble(parts[0].trim());
-                        double longitude = Double.parseDouble(parts[1].trim());
-
-                        // Create a Uri with the coordinates
-                        Uri gmmIntentUri = Uri.parse("geo:" + latitude + "," + longitude + "?z=15&q=" + latitude + "," + longitude);
-
-                        // Create an Intent to open Google Maps
-                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-
-                        // Check if there's an activity to handle the Intent
-                        if (mapIntent.resolveActivity(getPackageManager()) != null) {
-                            startActivity(mapIntent);
-                        }
-                    } else {
-                        // Invalid input
-                        Toast.makeText(hrmaster.this, "Invalid input", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    // No comma found
-                    Toast.makeText(hrmaster.this, "No comma found in input", Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View v) {
+                Intent intent=new Intent(hrmaster.this, hrAddEmployeeActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -102,14 +53,6 @@ public class hrmaster extends AppCompatActivity {
 
 
 
-
-
-
-
-     /*   Intent intent=new Intent(hrmaster.this, ApartmentDetails.class);
-        startActivity(intent);
-*/
-
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 
@@ -118,7 +61,7 @@ public class hrmaster extends AppCompatActivity {
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        int actionBarColor = ContextCompat.getColor(this, R.color.orangeee); // Replace with your color resource
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
         Toast.makeText(this, "Under Development, Coming Soon!", Toast.LENGTH_LONG).show();
 
@@ -129,40 +72,6 @@ public class hrmaster extends AppCompatActivity {
 
 
 
-
-    private void splitText() {
-
-
-        String enteredText = etsplit.getText().toString().trim();
-        TextView lonTextView=findViewById(R.id.tvlon);
-        TextView latTextView=findViewById(R.id.tvlat);
-        // Check if the text contains a comma
-        if (enteredText.contains(",")) {
-            // Split the text into parts based on the comma
-            String[] parts = enteredText.split(",");
-
-            if (parts.length == 2) {
-                // Extract latitude and longitude
-                String lat = parts[0].trim();
-                String lon = parts[1].trim();
-
-                // Display the results
-                latTextView.setText("Lat = " + lat);
-                lonTextView.setText("Lon = " + lon);
-            } else {
-                // Invalid input
-                latTextView.setText("Invalid input");
-                lonTextView.setText("");
-            }
-        } else {
-            // No comma found
-            latTextView.setText("No comma found");
-            lonTextView.setText("");
-        }
-
-
-
-    }
 
 
 

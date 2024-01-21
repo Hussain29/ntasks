@@ -92,8 +92,8 @@ public class Master extends AppCompatActivity {
         });   hrbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            /*    Intent intent4 = new Intent(Master.this, BusinessVendorDetailsActivity.class);
-                startActivity(intent4);*/
+               Intent intent4 = new Intent(Master.this, hrmaster.class);
+                startActivity(intent4);
             }
         });vendorsbtni.setOnClickListener(new View.OnClickListener() {
             @Override

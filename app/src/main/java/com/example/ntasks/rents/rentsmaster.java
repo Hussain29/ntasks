@@ -65,8 +65,8 @@ public class rentsmaster extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(rentsmaster.this, "Payments", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(rentsmaster.this,OwnersActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(rentsmaster.this,Collections.class);
+                startActivity(intent);
             }
         });
         expensesbtn.setOnClickListener(new View.OnClickListener() {

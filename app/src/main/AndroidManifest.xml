@@ -11,8 +11,6 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.SENDTO" />
 
-
-
     <queries>
         <intent>
             <action android:name="android.intent.action.VIEW" />
@@ -32,6 +30,12 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".rents.hrAddEmployee"
+            android:exported="false" />
+        <activity
+            android:name=".rents.TenantDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".rents.BusinessVendorDetailsActivity"
             android:exported="false" />
         <activity
@@ -42,6 +46,9 @@
             android:exported="false" />
         <activity
             android:name=".rents.Collections"
+            android:exported="false" />
+        <activity
+            android:name=".rents.hrAddEmployeeActivity"
             android:exported="false" />
         <activity
             android:name=".rents.MasterBiVendors$TenantDetails"

@@ -109,7 +109,7 @@ public class MasterBiVendors extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("BUSINESS VENDORS");
         actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
+        int actionBarColor = ContextCompat.getColor(this, R.color.greennnn);
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 

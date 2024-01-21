@@ -103,11 +103,12 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -115,7 +116,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
-import android.text.util.Linkify;
 
 import com.example.ntasks.R;
 import com.squareup.picasso.Picasso;
@@ -150,13 +150,18 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
     private TextView tvNotes;
 
     private TextView tvbuizCard;
-
+    private LinearLayout telephonelayout, altlayout, alt2layout;
     private BusinessVendor businessVendor;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bi_vendor_details);
+
+        telephonelayout = findViewById(R.id.telephonelayout);
+        altlayout = findViewById(R.id.altlayout);
+        alt2layout = findViewById(R.id.alt2layout);
+
 
         // Retrieve BusinessVendor object from Intent
         businessVendor = getIntent().getParcelableExtra("business_vendor");
@@ -200,7 +205,7 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             /*tvAddBiven.setText("\t\tAddress: " + businessVendor.getCompanyMailingAddress());*/
             tvProducts.setText("\t\tProducts: " + businessVendor.getCompanyProducts());
             tvAddress.setText("\t\tAddress: " + businessVendor.getCompanyMailingAddress());
-            tvWebsite.setText("\t\tWebsite: " + businessVendor.getCompanyEmail());
+            tvWebsite.setText("\t\tWebsite: " + businessVendor.getCompanyWebsite());
             tvCity.setText("\t\tCity: " + businessVendor.getCompanyCity());
             tvCountry.setText("\t\tCountry: " + businessVendor.getCompanyCountry());
             tvFax.setText("\t\tFAX: " + businessVendor.getCompanyFax());
@@ -234,7 +239,7 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
 
             // Enable the back button
             actionBar.setDisplayHomeAsUpEnabled(true);
-            int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
+            int actionBarColor = ContextCompat.getColor(this, R.color.greennnn);
             actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
             // You can customize this based on your specific requirements
@@ -248,6 +253,50 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             // You may also finish the activity or handle it accordingly
             finish();
         }
+
+
+        telephonelayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = tvTelephone.getText().toString();
+                dialPhoneNumber(phoneNumber);
+            }
+        });
+        altlayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = tvLandline.getText().toString();
+                dialPhoneNumber(phoneNumber);
+            }
+        });
+        alt2layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phoneNumber = tvAlternateContact.getText().toString();
+
+                // Create an intent to dial the phone number
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                dialIntent.setData(Uri.parse(phoneNumber));
+
+                // Check if there is an activity to handle the intent
+                if (dialIntent.resolveActivity(getPackageManager()) != null) {
+                    // Start the dialer activity
+                    startActivity(dialIntent);
+                } else {
+                    Toast.makeText(BusinessVendorDetailsActivity.this, "error", Toast.LENGTH_SHORT).show();
+                    // Handle the case where there is no dialer app available
+                    // You can provide user feedback or choose an alternative action
+                }
+             }
+        });
+
+
+
+
+
+
+
+
     }
 
     private void displayLink(String url) {
@@ -287,4 +336,21 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void dialPhoneNumber(String phoneNumber) {
+        // Create an intent to dial the phone number
+        Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+        dialIntent.setData(Uri.parse("tel:" + phoneNumber));
+
+        // Check if there is an activity to handle the intent
+        if (dialIntent.resolveActivity(getPackageManager()) != null) {
+            // Start the dialer activity
+            startActivity(dialIntent);
+        } else {
+            // Handle the case where there is no dialer app available
+            // You can provide user feedback or choose an alternative action
+        }
+    }
+
+
 }

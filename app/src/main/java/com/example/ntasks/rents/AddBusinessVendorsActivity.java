@@ -117,7 +117,7 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle("ADD BUSINESS VENDORS");
         actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
+        int actionBarColor = ContextCompat.getColor(this, R.color.greennnn);
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
 

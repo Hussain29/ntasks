@@ -117,12 +117,13 @@
 
             <TextView
                 android:id="@+id/tvbvendorproducts"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/_35sdp"
                 android:fontFamily="@font/interf"
                 android:text="\t\tPRODUCTS"
-                app:layout_constraintBottom_toBottomOf="parent"
+
                 app:layout_constraintStart_toEndOf="@+id/imageView"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -175,7 +176,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:autoLink="web"
+                android:onClick="onClickwebsite"
                 android:fontFamily="@font/interf"
+                android:linksClickable="true"
                 android:text="\tWebsite" />
 
         </LinearLayout>
@@ -248,6 +252,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/telephonelayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -286,6 +291,7 @@
                 android:id="@+id/tvbvendoremail"
 
                 android:layout_width="wrap_content"
+                android:textIsSelectable="true"
                 android:layout_height="17dp"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
@@ -314,8 +320,7 @@
                 android:text="\tPoint of Contact() Name" />
 
         </LinearLayout>
-
-        <LinearLayout
+         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -333,6 +338,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textIsSelectable="true"
                 android:fontFamily="@font/interf"
                 android:text="\tContact Email" />
 
@@ -340,7 +346,7 @@
 
 
         <LinearLayout
-            android:id="@+id/callalt"
+            android:id="@+id/altlayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -365,6 +371,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/alt2layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -380,6 +387,7 @@
                 android:id="@+id/tvbvendorpocphone2"
                 android:layout_width="wrap_content"
                 android:layout_height="17dp"
+
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
                 android:text="\tALTERNATE CONTACT" />
@@ -400,6 +408,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
+                android:textIsSelectable="true"
                 android:id="@+id/tvbvendorcrno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -424,6 +433,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
+                android:textIsSelectable="true"
                 android:id="@+id/tvbvendorvatno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -448,6 +458,7 @@
                 android:src="@drawable/ms__selector"  />
 
             <TextView
+                android:textIsSelectable="true"
                 android:id="@+id/tvbvendoraddinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -474,6 +485,8 @@
             <TextView
                 android:id="@+id/tvbvendorglink"
                 android:layout_width="wrap_content"
+                android:autoLink="web"
+                android:linksClickable="true"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
@@ -503,6 +516,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
                 android:text="\BANK NAME"
+                android:textIsSelectable="true"
                 android:textStyle="bold|italic" />
 
         </LinearLayout>
@@ -527,6 +541,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
+                android:textIsSelectable="true"
                 android:text="\BENEFICIARY NAME"
                  />
 
@@ -551,6 +566,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textIsSelectable="true"
                 android:fontFamily="@font/interf"
                 android:text="\A/C  NO"
                  />
@@ -576,6 +592,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textIsSelectable="true"
                 android:fontFamily="@font/interf"
                 android:text="\BANK ADDRESS"
                  />
@@ -600,6 +617,7 @@
                 android:id="@+id/tvbvendoribanno"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textIsSelectable="true"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
                 android:text="\IBAN NO.  "
@@ -625,6 +643,7 @@
                 android:id="@+id/tvbvendornotes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textIsSelectable="true"
                 android:layout_gravity="center"
                 android:fontFamily="@font/interf"
                 android:text="\tNOTES / REMARKS"
