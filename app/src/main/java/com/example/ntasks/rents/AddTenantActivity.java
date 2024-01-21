@@ -264,7 +264,7 @@ public class AddTenantActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(tenant.getTenantId()) && !TextUtils.isEmpty(tenant.getTenantName())
                 && !TextUtils.isEmpty(tenant.getTenantFatherName()) && !TextUtils.isEmpty(tenant.getTenantPerAddress())
-                && !TextUtils.isEmpty(tenant.getTenantPhoneNumber()) && !TextUtils.isEmpty(tenant.getPropertyType())
+                && !TextUtils.isEmpty(tenant.getTenantPhoneNumber()) && !TextUtils.isEmpty(tenant.getPropertyName())
                 && !TextUtils.isEmpty(tenant.getTenantRent()) && !TextUtils.isEmpty(tenant.getAdvanceAmount())
                 && !TextUtils.isEmpty(tenant.getAdmissionDate())) {
 
@@ -296,7 +296,7 @@ public class AddTenantActivity extends AppCompatActivity {
         String tenantPhoneNumber = etTenantPhoneNumber.getText().toString().trim();
         String tenantPhoneNumber2 = etTenantPhoneNumber2.getText().toString().trim();
         String tenantPhoneNumber3 = etTenantPhoneNumber3.getText().toString().trim();
-        String propertyType = propertySpinner.getSelectedItem().toString();
+        String propertyName = propertySpinner.getSelectedItem().toString();
         String tenantRent = etTenantRent.getText().toString().trim();
         String advanceAmount = etAdvanceAmount.getText().toString().trim();
         String admissionDate = etAdmissionDate.getText().toString().trim();
@@ -306,7 +306,7 @@ public class AddTenantActivity extends AppCompatActivity {
 
         return new Tenant(tenantId, tenantName, tenantFatherName, tenantPerAddress, tenantPrevAddress,
                 tenantOccupation, tenantWorkAddress, noOfPeople, tenantPhoneNumber, tenantPhoneNumber2, tenantPhoneNumber3,
-                propertyType, tenantRent, advanceAmount, admissionDate, docType, tenantNotes, photoUrl, docUrl, payday);
+                propertyName, tenantRent, advanceAmount, admissionDate, docType, tenantNotes, photoUrl, docUrl, payday);
     }
 
     private boolean isValidTenantId(String tenantId) {

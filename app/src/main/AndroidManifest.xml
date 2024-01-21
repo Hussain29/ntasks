@@ -86,6 +86,9 @@
             android:name=".rents.AddFlatsActivity"
             android:exported="false" />
         <activity
+            android:name=".rents.TenantDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".rents.AddApartmentsActivity"
             android:exported="false" />
         <activity

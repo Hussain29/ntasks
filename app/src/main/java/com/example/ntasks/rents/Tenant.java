@@ -16,7 +16,7 @@ public class Tenant implements Parcelable {
     private String tenantPhoneNumber;
     private String tenantPhoneNumber2;
     private String tenantPhoneNumber3;
-    private String propertyType;
+    private String propertyName;
     private String tenantRent;
     private String advanceAmount;
     private String admissionDate;
@@ -33,7 +33,7 @@ public class Tenant implements Parcelable {
     public Tenant(String tenantId, String tenantName, String tenantFatherName, String tenantPerAddress,
                   String tenantPrevAddress, String tenantOccupation, String tenantWorkAddress,
                   String noOfPeople, String tenantPhoneNumber, String tenantPhoneNumber2,
-                  String tenantPhoneNumber3, String propertyType, String tenantRent,
+                  String tenantPhoneNumber3, String propertyName, String tenantRent,
                   String advanceAmount, String admissionDate, String docType, String tenantNotes,
                   String imgUrl, String docUrl, String payday) {
         this.tenantId = tenantId;
@@ -47,7 +47,7 @@ public class Tenant implements Parcelable {
         this.tenantPhoneNumber = tenantPhoneNumber;
         this.tenantPhoneNumber2 = tenantPhoneNumber2;
         this.tenantPhoneNumber3 = tenantPhoneNumber3;
-        this.propertyType = propertyType;
+        this.propertyName = propertyName;
         this.tenantRent = tenantRent;
         this.advanceAmount = advanceAmount;
         this.admissionDate = admissionDate;
@@ -70,7 +70,7 @@ public class Tenant implements Parcelable {
         tenantPhoneNumber = in.readString();
         tenantPhoneNumber2 = in.readString();
         tenantPhoneNumber3 = in.readString();
-        propertyType = in.readString();
+        propertyName = in.readString();
         tenantRent = in.readString();
         advanceAmount = in.readString();
         admissionDate = in.readString();
@@ -92,6 +92,14 @@ public class Tenant implements Parcelable {
             return new Tenant[size];
         }
     };
+
+    public String getPropertyName() {
+        return propertyName;
+    }
+
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
+    }
 
     public String getTenantId() {
         return tenantId;
@@ -181,14 +189,6 @@ public class Tenant implements Parcelable {
         this.tenantPhoneNumber3 = tenantPhoneNumber3;
     }
 
-    public String getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(String propertyType) {
-        this.propertyType = propertyType;
-    }
-
     public String getTenantRent() {
         return tenantRent;
     }
@@ -273,7 +273,7 @@ public class Tenant implements Parcelable {
         dest.writeString(tenantPhoneNumber);
         dest.writeString(tenantPhoneNumber2);
         dest.writeString(tenantPhoneNumber3);
-        dest.writeString(propertyType);
+        dest.writeString(propertyName);
         dest.writeString(tenantRent);
         dest.writeString(advanceAmount);
         dest.writeString(admissionDate);
