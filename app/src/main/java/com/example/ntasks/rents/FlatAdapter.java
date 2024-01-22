@@ -45,7 +45,7 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatViewHolder
         Flats flats = flatList.get(position);
 
         holder.tvFlatNo.setText(flats.getFlatNo());
-        holder.tvFlatArea.setText(flats.getArea());
+        holder.tvFlatArea.setText(flats.getApartmentName());
 
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
