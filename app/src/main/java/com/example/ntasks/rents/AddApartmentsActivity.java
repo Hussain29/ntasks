@@ -283,19 +283,10 @@ public class AddApartmentsActivity extends AppCompatActivity {
             Apartment apartment = new Apartment(aptId, aptName, aptAddress, aptArea, aptUnits, aptFloor,
                     aptShops, aptNotes, userId, ownerName, vendorName, coordinates, docType, photoUrl, docUrl);
 
-            apartmentsRef.child(aptId).setValue(apartment, new DatabaseReference.CompletionListener() {
-                @Override
-                public void onComplete(DatabaseError error, DatabaseReference ref) {
-                    if (error == null) {
-                        Toast.makeText(AddApartmentsActivity.this, "Apartment details saved successfully!", Toast.LENGTH_SHORT).show();
-                        Log.d("AddApartmentsActivity", "Apartment details saved - ID: " + aptId + ", Name: " + aptName);
-                        finish();
-                    } else {
-                        Toast.makeText(AddApartmentsActivity.this, "Failed to save apartment details. Please try again.", Toast.LENGTH_SHORT).show();
-                        Log.e("AddApartmentsActivity", "Failed to save apartment details", error.toException());
-                    }
-                }
-            });
+            apartmentsRef.child(aptId).setValue(apartment);
+
+            Toast.makeText(AddApartmentsActivity.this, "Plot details saved successfully!", Toast.LENGTH_SHORT).show();
+            finish();
 
         } else {
             Toast.makeText(AddApartmentsActivity.this, "Please fill all the necessary fields", Toast.LENGTH_SHORT).show();
