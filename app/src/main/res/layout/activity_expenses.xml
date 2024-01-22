@@ -9,9 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:orientation="vertical"
-
         android:layout_marginTop="@dimen/_40sdp">
 
         <LinearLayout
@@ -19,25 +17,29 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/_12sdp"
-            android:background="@drawable/spinnerbg">
+            android:layout_marginRight="@dimen/_12sdp">
 
             <Spinner
-                android:id="@+id/flatspinner"
-                android:layout_width="@dimen/_140sdp"
-                android:layout_height="wrap_content" />
+                android:id="@+id/propertyspinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/_10sdp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/spinnerbg"/>
 
 
         </LinearLayout>
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvrent"
+            android:id="@+id/cvrents"
             android:layout_gravity="center_horizontal"
             android:layout_width="@dimen/_220sdp"
             android:layout_height="wrap_content"
             android:layout_below="@id/tvtask"
             android:layout_marginLeft="22dp"
             android:layout_marginRight="22dp"
+            android:layout_marginTop="@dimen/_10sdp"
             app:cardCornerRadius="6dp">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -48,11 +50,10 @@
                 android:layout_height="match_parent"
                 android:elevation="12dp"
                 android:hint="PARTICULAR"
-
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextpart"
+                    android:id="@+id/editTextparticular"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/interf"
@@ -70,6 +71,7 @@
             android:layout_below="@id/tvtask"
             android:layout_marginLeft="22dp"
             android:layout_marginRight="22dp"
+            android:layout_margin="@dimen/_10sdp"
             app:cardCornerRadius="6dp">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +82,6 @@
                 android:layout_height="match_parent"
                 android:elevation="12dp"
                 android:hint="EXPENSE AMOUNT"
-
                 app:boxStrokeWidth="0dp">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -97,6 +98,7 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:text="ADD PAYMENT"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 

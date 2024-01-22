@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,32 +30,35 @@ import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class ExpensesActivity extends AppCompatActivity {
-    private Spinner propertySpinner;
-    private TextInputEditText editTextParticular, editTextExpAmt;
-    private DatabaseReference flatsRef, apartmentsRef, independentsRef, expensesRef;
+
+public class CollectionsActivity extends AppCompatActivity {
+    private Spinner propertySpinner, tenantSpinner;
+    private TextInputEditText editTextRentAmt;
+    private DatabaseReference flatsRef, apartmentsRef, independentsRef, tenantsRef, plotsRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_expenses);
+        setContentView(R.layout.activity_collections);
 
         propertySpinner = findViewById(R.id.propertyspinner);
-        editTextParticular = findViewById(R.id.editTextparticular);
-        editTextExpAmt = findViewById(R.id.editTextexpamt);
+        tenantSpinner = findViewById(R.id.tenantspinner);
+        editTextRentAmt = findViewById(R.id.editTextrentamt);
 
         flatsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
         apartmentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
         independentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Independents");
-        expensesRef = FirebaseDatabase.getInstance().getReference().child("Rents/Expenses");
+        tenantsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Tenants");
+        plotsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Plots");
 
         setupPropertySpinner();
+        setupTenantSpinner();
 
-        Button btnAddExpense = findViewById(R.id.addexpns);
-        btnAddExpense.setOnClickListener(new View.OnClickListener() {
+        Button btnAddPayment = findViewById(R.id.Btnaddpay);
+        btnAddPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addExpense();
+                addPayment();
             }
         });
     }
@@ -116,18 +120,45 @@ public class ExpensesActivity extends AppCompatActivity {
         plotRef.addListenerForSingleValueEvent(propertyListener);
     }
 
+    private void setupTenantSpinner() {
+        tenantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                List<String> tenantNames = new ArrayList<>();
+                tenantNames.add("Select Tenant");
+
+                for (DataSnapshot tenantSnapshot : snapshot.getChildren()) {
+                    String tenantName = tenantSnapshot.child("tenantName").getValue(String.class);
+
+                    if (!TextUtils.isEmpty(tenantName)) {
+                        tenantNames.add(tenantName);
+                    }
+                }
+
+                ArrayAdapter<String> tenantAdapter = new ArrayAdapter<>(CollectionsActivity.this, android.R.layout.simple_spinner_item, tenantNames);
+                tenantAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                tenantSpinner.setAdapter(tenantAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e("CollectionsActivity", "Error retrieving tenant data", error.toException());
+            }
+        });
+    }
+
     private void updatePropertySpinner(List<String> propertyList) {
         ArrayAdapter<String> propertyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, propertyList);
         propertyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         propertySpinner.setAdapter(propertyAdapter);
     }
 
-    private void addExpense() {
+    private void addPayment() {
         String selectedProperty = propertySpinner.getSelectedItem().toString();
-        String particular = editTextParticular.getText().toString().trim();
-        String expenseAmount = editTextExpAmt.getText().toString().trim();
+        String selectedTenant = tenantSpinner.getSelectedItem().toString();
+        String rentAmount = editTextRentAmt.getText().toString().trim();
 
-        if (TextUtils.isEmpty(selectedProperty) || TextUtils.isEmpty(particular) || TextUtils.isEmpty(expenseAmount)) {
+        if (TextUtils.isEmpty(selectedProperty) || TextUtils.isEmpty(selectedTenant) || TextUtils.isEmpty(rentAmount)) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -136,31 +167,30 @@ public class ExpensesActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         String currentDate = sdf.format(new Date());
 
-        // Create an Expenses object (adjust this based on your data model)
-        Expenses expenses = new Expenses(selectedProperty, particular, expenseAmount, currentDate);
+        // Create a Payment object (adjust this based on your data model)
+        Collection collection = new Collection(selectedProperty, selectedTenant, rentAmount, currentDate);
 
-        // Push the expense data to the database
-        DatabaseReference expensesRef = FirebaseDatabase.getInstance().getReference().child("Rents/Expenses");
-        expensesRef.push().setValue(expenses)
+        // Push the payment data to the database
+        DatabaseReference paymentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Payments");
+        paymentsRef.push().setValue(collection)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(ExpensesActivity.this, "Expense added successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CollectionsActivity.this, "Payment added successfully", Toast.LENGTH_SHORT).show();
                         clearFields();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(ExpensesActivity.this, "Failed to add expense", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CollectionsActivity.this, "Failed to add payment", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
-
     private void clearFields() {
         propertySpinner.setSelection(0);
-        editTextParticular.getText().clear();
-        editTextExpAmt.getText().clear();
+        tenantSpinner.setSelection(0);
+        editTextRentAmt.getText().clear();
     }
 }

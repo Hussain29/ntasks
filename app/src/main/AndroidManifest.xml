@@ -48,7 +48,7 @@
             android:name=".rents.AddBusinessVendorsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.Collections"
+            android:name=".rents.CollectionsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.hrAddEmployeeActivity"

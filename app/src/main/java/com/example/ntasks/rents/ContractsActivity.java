@@ -484,6 +484,10 @@ public class ContractsActivity extends AppCompatActivity {
                 "has paid running rent advance.\n" +
                 "IN WITNESSES WHEREOF the Tenant & Landlord signed this Rental Agreement with their own free\n" +
                 "will on this day, month and year first mentioned above in the presence of the following witnesses."));
+        document.add(new AreaBreak());
+
+
+
         document.add(new Paragraph("\n\nWITNESSES\n\n").setUnderline().setTextAlignment(TextAlignment.LEFT));
         document.add(new Paragraph("TENANT\n\n").setUnderline().setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("LANDLORD").setUnderline().setTextAlignment(TextAlignment.RIGHT));
