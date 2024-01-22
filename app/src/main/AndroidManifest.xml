@@ -93,6 +93,9 @@
             android:name=".rents.OwnerDetailsActivity"
             android:exported="false" />
         <activity
+            android:name=".rents.ReportsActivity"
+            android:exported="false" />
+        <activity
             android:name=".rents.AddFlatsActivity"
             android:exported="false" />
         <activity

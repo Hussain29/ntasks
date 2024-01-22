@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvExpenses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Expenses"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_marginTop="16dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExpenses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvExpenses"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvCollections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Collections"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:layout_below="@id/rvExpenses"
+            android:layout_marginTop="16dp"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCollections"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvCollections"
+            android:layout_marginTop="8dp"/>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
