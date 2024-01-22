@@ -184,7 +184,7 @@ public class AddTenantActivity extends AppCompatActivity {
                 for (DataSnapshot propertySnapshot : dataSnapshot.getChildren()) {
                     String propertyName;
                     if (dataSnapshot.getKey().equals("Flats")) {
-                        propertyName = propertySnapshot.child("flatNo").getValue(String.class);
+                        propertyName = propertySnapshot.child("flatNo").getValue(String.class)  + ", " + propertySnapshot.child("apartmentName").getValue(String.class);
                     } else {
                         propertyName = propertySnapshot.child("indpName").getValue(String.class);
                     }

@@ -81,7 +81,7 @@ public class CollectionsActivity extends AppCompatActivity {
                     // Determine the type of property and fetch the corresponding field
                     switch (dataSnapshot.getKey()) {
                         case "Flats":
-                            propertyName = propertySnapshot.child("flatNo").getValue(String.class);
+                            propertyName = propertySnapshot.child("flatNo").getValue(String.class) + ", " + propertySnapshot.child("apartmentName").getValue(String.class);
                             break;
                         case "Apartments":
                             propertyName = propertySnapshot.child("aptName").getValue(String.class);
