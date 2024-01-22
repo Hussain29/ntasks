@@ -17,6 +17,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.ntasks.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +38,7 @@ public class AddApartmentsActivity extends AppCompatActivity {
     private static final int PICK_FILE_REQUEST_DOC = 5;
 
     private ImageView apartmentImageView;
+    private ConstraintLayout addapartment;
     private Uri imageUri;
     private Uri documentUri;
     private Spinner docTypeSpinner;
@@ -66,6 +68,8 @@ public class AddApartmentsActivity extends AppCompatActivity {
         etAptNotes = findViewById(R.id.etaptNotes);
         saveButton = findViewById(R.id.btnaptadd);
 
+
+        addapartment=findViewById(R.id.addapartment);
         apartmentImageView = findViewById(R.id.ivaddapt);
         docTypeSpinner = findViewById(R.id.spinnerdoc);
         spinOwner = findViewById(R.id.spinowner);  // Add this line to your existing declarations
@@ -82,6 +86,13 @@ public class AddApartmentsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 showFileChooser(PICK_FILE_REQUEST_DOC);
+            }
+        });
+
+        addapartment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser(PICK_FILE_REQUEST_IMG);
             }
         });
 

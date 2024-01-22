@@ -6,8 +6,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -35,6 +37,10 @@ public class CollectionsActivity extends AppCompatActivity {
     private Spinner propertySpinner, tenantSpinner;
     private TextInputEditText editTextRentAmt;
     private DatabaseReference flatsRef, apartmentsRef, independentsRef, tenantsRef, plotsRef;
+    private TextView myTextView;
+    private DatePicker datePicker;
+    private TextView mytvdate;
+    private Button enterdate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +50,39 @@ public class CollectionsActivity extends AppCompatActivity {
         propertySpinner = findViewById(R.id.propertyspinner);
         tenantSpinner = findViewById(R.id.tenantspinner);
         editTextRentAmt = findViewById(R.id.editTextrentamt);
+        enterdate = findViewById(R.id.enterdate);
+
+
+        mytvdate = findViewById(R.id.myTvdate);
+
+
+        enterdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePicker.setVisibility(View.VISIBLE);
+                int day = datePicker.getDayOfMonth();
+                int month = datePicker.getMonth();
+                int year = datePicker.getYear();
+
+                Calendar selectedDate = Calendar.getInstance();
+                selectedDate.set(year, month, day);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                String formattedDate = dateFormat.format(selectedDate.getTime());
+
+                mytvdate.setText("Selected Date: " + formattedDate);
+            }
+        });
+        mytvdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePicker.setVisibility(View.VISIBLE);
+            }
+        });
+
+
+        datePicker = findViewById(R.id.datePicker);
+
 
         flatsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
         apartmentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
@@ -62,6 +101,7 @@ public class CollectionsActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void setupPropertySpinner() {
         DatabaseReference flatRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
