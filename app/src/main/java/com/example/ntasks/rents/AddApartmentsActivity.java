@@ -292,7 +292,7 @@ public class AddApartmentsActivity extends AppCompatActivity {
                 && !TextUtils.isEmpty(aptShops) && !TextUtils.isEmpty(ownerName) && !TextUtils.isEmpty(vendorName)) {
 
             Apartment apartment = new Apartment(aptId, aptName, aptAddress, aptArea, aptUnits, aptFloor,
-                    aptShops, aptNotes, userId, ownerName, vendorName, coordinates, docType, photoUrl, docUrl);
+                    aptShops, aptNotes, userId, vendorName, ownerName, coordinates, docType, photoUrl, docUrl);
 
             apartmentsRef.child(aptId).setValue(apartment);
 
