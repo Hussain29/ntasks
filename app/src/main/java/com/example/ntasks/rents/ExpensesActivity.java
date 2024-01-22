@@ -18,7 +18,6 @@ import com.example.ntasks.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -29,7 +28,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ExpensesActivity extends AppCompatActivity {
@@ -50,9 +48,7 @@ public class ExpensesActivity extends AppCompatActivity {
         editTextExpAmt = findViewById(R.id.editTextexpamt);
         enterdate = findViewById(R.id.enterdate);
 
-
         mytvdate = findViewById(R.id.myTvdate);
-
 
         enterdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +61,10 @@ public class ExpensesActivity extends AppCompatActivity {
                 Calendar selectedDate = Calendar.getInstance();
                 selectedDate.set(year, month, day);
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-                String formattedDate = dateFormat.format(selectedDate.getTime());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", java.util.Locale.getDefault());
+                String formattedSelectedDate = dateFormat.format(selectedDate.getTime());
 
-                mytvdate.setText("Selected Date: " + formattedDate);
+                mytvdate.setText("Selected Date: " + formattedSelectedDate);
             }
         });
         mytvdate.setOnClickListener(new View.OnClickListener() {
@@ -78,11 +74,7 @@ public class ExpensesActivity extends AppCompatActivity {
             }
         });
 
-
         datePicker = findViewById(R.id.datePicker);
-
-
-
 
         flatsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
         apartmentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
@@ -111,14 +103,14 @@ public class ExpensesActivity extends AppCompatActivity {
 
         ValueEventListener propertyListener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot propertySnapshot : dataSnapshot.getChildren()) {
+            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                for (com.google.firebase.database.DataSnapshot propertySnapshot : dataSnapshot.getChildren()) {
                     String propertyName;
 
                     // Determine the type of property and fetch the corresponding field
                     switch (dataSnapshot.getKey()) {
                         case "Flats":
-                            propertyName = propertySnapshot.child("flatNo").getValue(String.class)  + ", " + propertySnapshot.child("apartmentName").getValue(String.class);
+                            propertyName = propertySnapshot.child("flatNo").getValue(String.class) + ", " + propertySnapshot.child("apartmentName").getValue(String.class);
                             break;
                         case "Apartments":
                             propertyName = propertySnapshot.child("aptName").getValue(String.class);
@@ -173,15 +165,24 @@ public class ExpensesActivity extends AppCompatActivity {
             return;
         }
 
-        // Get the current date
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        String currentDate = sdf.format(new Date());
+        // Get the selected date
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
 
-        // Create an Expenses object (adjust this based on your data model)
-        Expenses expenses = new Expenses(selectedProperty, particular, expenseAmount, currentDate);
+        Calendar selectedDate = Calendar.getInstance();
+        selectedDate.set(year, month, day);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", java.util.Locale.getDefault());
+        String formattedSelectedDate = dateFormat.format(selectedDate.getTime());
+
+        // Get the current date
+        String currentDate = dateFormat.format(new Date());
+
+        // Create an Expenses object
+        Expenses expenses = new Expenses(selectedProperty, particular, expenseAmount, formattedSelectedDate, currentDate);
 
         // Push the expense data to the database
-        DatabaseReference expensesRef = FirebaseDatabase.getInstance().getReference().child("Rents/Expenses");
         expensesRef.push().setValue(expenses)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -198,10 +199,11 @@ public class ExpensesActivity extends AppCompatActivity {
                 });
     }
 
-
     private void clearFields() {
         propertySpinner.setSelection(0);
         editTextParticular.getText().clear();
         editTextExpAmt.getText().clear();
+        mytvdate.setText("Selected Date: ");
+        datePicker.setVisibility(View.GONE);
     }
 }

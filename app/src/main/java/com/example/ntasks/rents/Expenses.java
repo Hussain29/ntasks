@@ -4,27 +4,31 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Expenses implements Parcelable {
-    private String property;
-    private String particular;
-    private String amount;
-    private String date;
 
-    // Required default constructor for Firebase
+    private String propertyName;
+    private String particular;
+    private String expenseAmount;
+    private String selectedDate;
+    private String currentDate;
+
     public Expenses() {
+        // Default constructor required for calls to DataSnapshot.getValue(Expenses.class)
     }
 
-    public Expenses(String property, String particular, String amount, String date) {
-        this.property = property;
+    public Expenses(String propertyName, String particular, String expenseAmount, String selectedDate, String currentDate) {
+        this.propertyName = propertyName;
         this.particular = particular;
-        this.amount = amount;
-        this.date = date;
+        this.expenseAmount = expenseAmount;
+        this.selectedDate = selectedDate;
+        this.currentDate = currentDate;
     }
 
     protected Expenses(Parcel in) {
-        property = in.readString();
+        propertyName = in.readString();
         particular = in.readString();
-        amount = in.readString();
-        date = in.readString();
+        expenseAmount = in.readString();
+        selectedDate = in.readString();
+        currentDate = in.readString();
     }
 
     public static final Creator<Expenses> CREATOR = new Creator<Expenses>() {
@@ -39,12 +43,12 @@ public class Expenses implements Parcelable {
         }
     };
 
-    public String getProperty() {
-        return property;
+    public String getPropertyName() {
+        return propertyName;
     }
 
-    public void setProperty(String property) {
-        this.property = property;
+    public void setPropertyName(String propertyName) {
+        this.propertyName = propertyName;
     }
 
     public String getParticular() {
@@ -55,23 +59,29 @@ public class Expenses implements Parcelable {
         this.particular = particular;
     }
 
-    public String getAmount() {
-        return amount;
+    public String getExpenseAmount() {
+        return expenseAmount;
     }
 
-    public void setAmount(String amount) {
-        this.amount = amount;
+    public void setExpenseAmount(String expenseAmount) {
+        this.expenseAmount = expenseAmount;
     }
 
-    public String getDate() {
-        return date;
+    public String getSelectedDate() {
+        return selectedDate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setSelectedDate(String selectedDate) {
+        this.selectedDate = selectedDate;
     }
 
+    public String getCurrentDate() {
+        return currentDate;
+    }
 
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
 
     @Override
     public int describeContents() {
@@ -80,10 +90,10 @@ public class Expenses implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(property);
+        dest.writeString(propertyName);
         dest.writeString(particular);
-        dest.writeString(amount);
-        dest.writeString(date);
+        dest.writeString(expenseAmount);
+        dest.writeString(selectedDate);
+        dest.writeString(currentDate);
     }
 }
-

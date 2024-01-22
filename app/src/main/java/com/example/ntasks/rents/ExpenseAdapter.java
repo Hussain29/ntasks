@@ -33,7 +33,7 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
 
         // Bind data to the views in the item_expense.xml layout
         holder.tvExpenseName.setText(expense.getParticular());
-        holder.tvExpenseAmount.setText(String.valueOf(expense.getAmount()));
+        holder.tvExpenseAmount.setText(String.valueOf(expense.getExpenseAmount()));
     }
 
     @Override
