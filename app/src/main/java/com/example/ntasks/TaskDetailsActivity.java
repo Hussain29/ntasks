@@ -183,6 +183,7 @@ import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -200,7 +201,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -238,6 +241,17 @@ public class TaskDetailsActivity extends AppCompatActivity {
 
         // Retrieve task details from Intent
         task = getIntent().getParcelableExtra("task");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("TASKS TO DO");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         if (task == null || task.getTaskID() == null) {
             // Handle the case where the task or taskID is null, perhaps show an error message
@@ -245,6 +259,43 @@ public class TaskDetailsActivity extends AppCompatActivity {
             return;
         }
 
+
+        /*
+
+
+        [
+
+                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("ADD EMPLOYEE");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.orangeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }}
+
+                ]
+
+
+        */
         // Initialize Views
         taskNameTextView = findViewById(R.id.textViewTaskName);
         taskDescriptionTextView = findViewById(R.id.textViewTaskDescription);
