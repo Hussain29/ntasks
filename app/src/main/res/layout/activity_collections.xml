@@ -64,6 +64,12 @@
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
 
+        <Button
+            android:id="@+id/Btnaddpay"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:text="ADD PAYMENT"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
 </ScrollView>
