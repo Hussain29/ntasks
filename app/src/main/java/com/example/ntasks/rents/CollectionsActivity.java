@@ -105,9 +105,200 @@ public class CollectionsActivity extends AppCompatActivity {
 
     private void setupPropertySpinner() {
         DatabaseReference flatRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
+        DatabaseReference tenantsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Tenants");
+        DatabaseReference independentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Independents");
+        DatabaseReference apartmentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
+        DatabaseReference plotsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Plots");
+
+        List<String> propertyList = new ArrayList<>();
+        AtomicInteger requestsCompleted = new AtomicInteger(0);
+
+        ValueEventListener flatListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot flatDataSnapshot) {
+                // Increment the counter
+                requestsCompleted.incrementAndGet();
+                Log.d("CAA", "Flats data fetched successfully. Total Requests Completed: " + requestsCompleted.get());
+
+                // Fetch data from Tenants module once Flats data is fetched
+                tenantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot tenantsDataSnapshot) {
+                        // Increment the counter
+                        requestsCompleted.incrementAndGet();
+                        Log.d("CAA", "Tenants data fetched successfully. Total Requests Completed: " + requestsCompleted.get());
+
+                        for (DataSnapshot tenantSnapshot : tenantsDataSnapshot.getChildren()) {
+                            String tenantName = tenantSnapshot.child("tenantName").getValue(String.class);
+                            String propertyName = tenantSnapshot.child("propertyName").getValue(String.class);
+
+                            // Find the corresponding Flat entry based on FlatNo and PropertyName
+                            DataSnapshot flatEntry = findEntryByFlatNoAndProperty(flatDataSnapshot, propertyName);
+
+                            // Format the spinner entry
+                            String aptName = (flatEntry != null && flatEntry.child("apartmentName").exists()) ? flatEntry.child("apartmentName").getValue(String.class) : "";
+                            String spinnerEntry = tenantName + " / " + propertyName + " (" + aptName + ")";
+                            propertyList.add(spinnerEntry);
+                        }
+
+                        // Check if all requests are completed
+                        if (requestsCompleted.get() == 5) {
+                            Log.d("CAA", "Updating spinner with data. Total Requests Completed: " + requestsCompleted.get());
+                            updatePropertySpinner(propertyList);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.e("CAA", "Error retrieving tenants data", databaseError.toException());
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("CAA", "Error retrieving flats data", databaseError.toException());
+            }
+        };
+
+        // Fetch data from Independents module once Flats data is fetched
+        flatRef.addListenerForSingleValueEvent(flatListener);
+
+        // Fetch data from Independents module
+        independentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot independentsDataSnapshot) {
+                // Increment the counter
+                requestsCompleted.incrementAndGet();
+                Log.d("CAA", "Independents data fetched successfully. Total Requests Completed: " + requestsCompleted.get());
+
+                for (DataSnapshot independentSnapshot : independentsDataSnapshot.getChildren()) {
+                    String independentName = independentSnapshot.child("indpName").getValue(String.class);
+                    String propertyName = independentSnapshot.child("propertyName").getValue(String.class);
+
+                    // Format the spinner entry for Independents
+                    String spinnerEntry = " / " +independentName;
+                    propertyList.add(spinnerEntry);
+                }
+
+                // Check if all requests are completed
+                if (requestsCompleted.get() == 5) {
+                    Log.d("CAA", "Updating spinner with data. Total Requests Completed: " + requestsCompleted.get());
+                    updatePropertySpinner(propertyList);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("CAA", "Error retrieving independents data", databaseError.toException());
+            }
+        });
+
+        // Fetch data from Apartments module
+        apartmentsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot apartmentsDataSnapshot) {
+                // Increment the counter
+                requestsCompleted.incrementAndGet();
+                Log.d("CAA", "Apartments data fetched successfully. Total Requests Completed: " + requestsCompleted.get());
+
+                for (DataSnapshot apartmentSnapshot : apartmentsDataSnapshot.getChildren()) {
+                    String apartmentName = apartmentSnapshot.child("aptName").getValue(String.class);
+
+                    // Format the spinner entry for Apartments
+                    String spinnerEntry = " / " + apartmentName;
+                    propertyList.add(spinnerEntry);
+                }
+
+                // Check if all requests are completed
+                if (requestsCompleted.get() == 5) {
+                    Log.d("CollectionsActivity", "Updating spinner with data. Total Requests Completed: " + requestsCompleted.get());
+                    updatePropertySpinner(propertyList);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("CAA", "Error retrieving apartments data", databaseError.toException());
+            }
+        });
+
+        // Fetch data from Plots module
+        plotsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot plotsDataSnapshot) {
+                // Increment the counter
+                requestsCompleted.incrementAndGet();
+                Log.d("CAA", "Plots data fetched successfully. Total Requests Completed: " + requestsCompleted.get());
+
+                for (DataSnapshot plotSnapshot : plotsDataSnapshot.getChildren()) {
+                    String plotName = plotSnapshot.child("pltName").getValue(String.class);
+
+                    // Format the spinner entry for Plots
+                    String spinnerEntry = " / " + plotName;
+                    propertyList.add(spinnerEntry);
+                }
+
+                // Check if all requests are completed
+                if (requestsCompleted.get() == 5) {
+                    Log.d("CAA", "Updating spinner with data. Total Requests Completed: " + requestsCompleted.get());
+                    updatePropertySpinner(propertyList);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.e("CAA", "Error retrieving plots data", databaseError.toException());
+            }
+        });
+    }
+
+
+
+    /*private DataSnapshot findEntryByFlatNoAndProperty(DataSnapshot flatDataSnapshot, String propertyName) {
+        for (DataSnapshot flatSnapshot : flatDataSnapshot.getChildren()) {
+            // Adjust the conditions to match your data structure
+            String flatNoFromSnapshot = flatSnapshot.child("flatNo").getValue(String.class);
+            String propertyNameFromSnapshot = flatSnapshot.child("propertyName").getValue(String.class);
+
+            if (propertyName.equals(propertyNameFromSnapshot)) {
+                // Assuming you want to find the flat entry based on property name
+                return flatSnapshot;
+            }
+        }
+        return null;
+    }*/
+
+
+    private DataSnapshot findEntryByFlatNoAndProperty(DataSnapshot flatDataSnapshot, String propertyName) {
+        for (DataSnapshot flatSnapshot : flatDataSnapshot.getChildren()) {
+            // Adjust the conditions to match your data structure
+            String flatNoFromSnapshot = flatSnapshot.child("flatNo").getValue(String.class);
+
+            Log.d("CAA", "Checking flat: " + flatNoFromSnapshot + " for property: " + propertyName);
+
+            if (flatNoFromSnapshot.equals(propertyName)) {
+                // Assuming you want to find the flat entry based on property name
+
+                // Fetch aptName from the flat entry
+                String aptName = flatSnapshot.child("apartmentName").getValue(String.class);
+
+                // Log the aptName for debugging
+                Log.d("CAA", "aptName found: " + aptName);
+
+                return flatSnapshot;
+            }
+        }
+        return null;
+    }
+
+
+    /*private void setupPropertySpinner() {
+        DatabaseReference flatRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
         DatabaseReference apartmentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Apartments");
         DatabaseReference independentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Independents");
         DatabaseReference plotRef = FirebaseDatabase.getInstance().getReference().child("Rents/Plots");
+        DatabaseReference tenantsRef = FirebaseDatabase.getInstance().getReference().child("Rents/  Tenants");
 
         List<String> propertyList = new ArrayList<>();
         AtomicInteger requestsCompleted = new AtomicInteger(0);
@@ -158,7 +349,7 @@ public class CollectionsActivity extends AppCompatActivity {
         apartmentRef.addListenerForSingleValueEvent(propertyListener);
         independentRef.addListenerForSingleValueEvent(propertyListener);
         plotRef.addListenerForSingleValueEvent(propertyListener);
-    }
+    }*/
 
     private void setupTenantSpinner() {
         tenantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -195,10 +386,14 @@ public class CollectionsActivity extends AppCompatActivity {
 
     private void addPayment() {
         String selectedProperty = propertySpinner.getSelectedItem().toString();
-        String selectedTenant = tenantSpinner.getSelectedItem().toString();
+        /*String selectedTenant = tenantSpinner.getSelectedItem().toString();*/
         String rentAmount = editTextRentAmt.getText().toString().trim();
 
-        if (TextUtils.isEmpty(selectedProperty) || TextUtils.isEmpty(selectedTenant) || TextUtils.isEmpty(rentAmount)) {
+        String[] parts = selectedProperty.split(" / ");
+        String selectedTenant = parts[0];
+        String selectedPropertyName = parts[1];
+
+        if (TextUtils.isEmpty(selectedProperty) || TextUtils.isEmpty(rentAmount)) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -218,7 +413,7 @@ public class CollectionsActivity extends AppCompatActivity {
         String currentDate = dateFormatcur.format(new Date());
 
         // Create a Payment object (adjust this based on your data model)
-        Collection collection = new Collection(selectedProperty, selectedTenant, rentAmount, currentDate, formattedSelectedDate);
+        Collection collection = new Collection(selectedPropertyName, selectedTenant, rentAmount, currentDate, formattedSelectedDate);
 
         // Push the payment data to the database
         DatabaseReference paymentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Payments");
