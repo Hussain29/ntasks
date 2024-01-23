@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.EmployeeDetails">
+    tools:context=".rents.EmployeeDetailsActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imgemployeepic"
                 android:layout_width="@dimen/_120sdp"
                 android:layout_height="@dimen/_140sdp"
                 android:src="@drawable/no_profile_pic"
@@ -33,12 +33,11 @@
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView3"
+                app:layout_constraintStart_toEndOf="@+id/imgemployeepic"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/textView2"
-
+                    android:id="@+id/tvEmployeeName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/_5sdp"
@@ -48,41 +47,40 @@
                     android:textSize="@dimen/_13sdp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/imgemployeepic"
                     tools:layout_editor_absoluteY="1dp" />
 
                 <TextView
+                    android:id="@+id/tvEmployeeOccupation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="2dp"
                     android:layout_marginRight="@dimen/_2sdp"
                     android:fontFamily="@font/interf"
-                    android:text="Occupation:Shopkeeper"
+                    android:text="Occupation: Shopkeeper"
                     android:textSize="@dimen/_13sdp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/imgemployeepic"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvEmployeeNationality"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="2dp"
                     android:layout_marginRight="@dimen/_2sdp"
                     android:fontFamily="@font/interf"
-
                     android:text="Nationality:INDIAN"
                     android:textSize="@dimen/_13sdp"
-                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintStart_toEndOf="@+id/imgemployeepic"
                     app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
                 <TextView
-                    android:id="@+id/textView2d"
+                    android:id="@+id/tvEmployeeIqamaNo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginStart="@dimen/_6sdp"
                     android:layout_marginLeft="@dimen/_2sdp"
                     android:fontFamily="@font/interf"
@@ -90,12 +88,14 @@
                     android:textSize="@dimen/_13sdp" />
 
                 <TextView
+                    android:id="@+id/tvEmpIqamaExpiryG"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="Expiry (G):21/02/1446" />
 
                 <TextView
+                    android:id="@+id/tvEmpIqamaExpiryH"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -123,17 +123,20 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvEmpPermanentAddress"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_50sdp"
                     android:text="Permanent Address"
                     android:textAlignment="center" />
 
                 <TextView
+                    android:id="@+id/tvEmpEmergencyNo1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Emergency Contact 1" />
 
                 <TextView
+                    android:id="@+id/tvEmpEmergencyNo2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Emergency Contact 2" />
@@ -156,30 +159,23 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvEmpBirthCountry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BIRTH COUNTRY"
                     android:textAlignment="center" />
 
                 <TextView
+                    android:id="@+id/tvEmpBdayG"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BIRTH DATE(G)" />
 
                 <TextView
+                    android:id="@+id/tvEmpBdayH"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BIRTH DATE(H)" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Marital Status" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Religion" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -205,17 +201,20 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpHealthInsurance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="HEALTH INSURANCE"
                         android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/tvEmpHealthInsExpiryG"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(G)" />
 
                     <TextView
+                        android:id="@+id/tvEmpHealthInsExpiryH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(H)" />
@@ -240,17 +239,20 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpIqamaDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="IQAMA"
                         android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/tvEmpIqamaDetExpiryG"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(G)" />
 
                     <TextView
+                        android:id="@+id/tvEmpIqamaDetExpiryH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(H)" />
@@ -275,17 +277,20 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpPassport"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="PASSPORT"
                         android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/tvEmpPasExpiryG"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(G)" />
 
                     <TextView
+                        android:id="@+id/tvEmpPasExpiryH"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(H)" />
@@ -310,25 +315,32 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpPasDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="PASSPORT INFORMATION"
                         android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/tvEmpPassportNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="NUMBER" />
 
                     <TextView
+                        android:id="@+id/tvEmpPassportCity"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="ISSUE CITY" />
+
                     <TextView
+                        android:id="@+id/tvEmpPassportIssueDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="ISSUE DATE" />
+
                     <TextView
+                        android:id="@+id/tvEmpPassportExpiryDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRATION DATE" />
@@ -353,21 +365,26 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpDL"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DRIVING LICENSE"
                         android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/tvEmpDrivingLicenseNo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="DL NO." />
 
                     <TextView
+                        android:id="@+id/tvEmpDLIssueDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="ISSUE DATE" />
+
                     <TextView
+                        android:id="@+id/tvEmpDLExpiryDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRATION DATE" />
@@ -377,7 +394,7 @@
 
 
 
-            <androidx.cardview.widget.CardView
+            <!--<androidx.cardview.widget.CardView
                 android:id="@+id/cvownername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -392,22 +409,25 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpHealthInsurance"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="HEALTH INSURANCE"
                         android:textAlignment="center" />
 
                     <TextView
+                        android:id="@+id/tvEmpHealthInsuranceIssueDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(G)" />
 
                     <TextView
+                        android:id="@+id/tvEmpHealthInsuranceExpiryDate"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="EXPIRY(H)" />
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>-->
 
 
             <androidx.cardview.widget.CardView
@@ -425,12 +445,14 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpMarital"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Marital Status"
                           />
 
                     <TextView
+                        android:id="@+id/tvEmpReligion"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Religion" />
@@ -455,6 +477,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpVisa"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Visa Information"
@@ -483,6 +506,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpDependent"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Dependent Information"
@@ -512,10 +536,20 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvEmpNotes"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Notes / Remarks"
-                          />
+                        android:text="Notes / Remarks"/>
+
+                    <TextView
+                        android:id="@+id/tvEmpDocument"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:text="Apartment Doc"
+                        android:textStyle="bold" />
+
+
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

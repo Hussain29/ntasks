@@ -70,12 +70,12 @@ public class Employee implements Parcelable {
         this.empCountry = empCountry;
         this.empMStat = empMStat;
         this.empRel = empRel;
-        this.empIns1 = empIns1;
-        this.empIns2 = empIns2;
+        this.empIns1 = empIns1; // ignore
+        this.empIns2 = empIns2;// ignore
         this.empIq1 = empIq1;
         this.empIq2 = empIq2;
-        this.empDl1 = empDl1;
-        this.empDl2 = empDl2;
+        this.empDl1 = empDl1; // ignore
+        this.empDl2 = empDl2; // ignore
         this.empPp1 = empPp1;
         this.empPp2 = empPp2;
         this.empDep = empDep;
@@ -284,7 +284,7 @@ public class Employee implements Parcelable {
         this.empRel = empRel;
     }
 
-    public String getEmpIns1() {
+    /*public String getEmpIns1() {
         return empIns1;
     }
 
@@ -298,7 +298,7 @@ public class Employee implements Parcelable {
 
     public void setEmpIns2(String empIns2) {
         this.empIns2 = empIns2;
-    }
+    }*/
 
     public String getEmpIq1() {
         return empIq1;
@@ -320,7 +320,7 @@ public class Employee implements Parcelable {
         return empDl1;
     }
 
-    public void setEmpDl1(String empDl1) {
+    /*public void setEmpDl1(String empDl1) {
         this.empDl1 = empDl1;
     }
 
@@ -330,7 +330,7 @@ public class Employee implements Parcelable {
 
     public void setEmpDl2(String empDl2) {
         this.empDl2 = empDl2;
-    }
+    }*/
 
     public String getEmpPp1() {
         return empPp1;

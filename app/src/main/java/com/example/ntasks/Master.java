@@ -14,8 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.ntasks.rents.EmployeeDetails;
 import com.example.ntasks.rents.MasterBiVendors;
+import com.example.ntasks.rents.hrmaster;
 import com.example.ntasks.rents.rentsmaster;
 
 public class Master extends AppCompatActivity {
@@ -89,7 +89,7 @@ public class Master extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(Master.this, "Under Development", Toast.LENGTH_SHORT).show();
-               /* Intent intent = new Intent(Master.this, EmployeeDetails.class);
+               /* Intent intent = new Intent(Master.this, EmployeeDetailsActivity.class);
                 startActivity(intent);*/
             }
         });

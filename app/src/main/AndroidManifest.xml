@@ -30,7 +30,7 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".rents.EmployeeDetails"
+            android:name=".rents.EmployeeDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.PastTenantsActivity"
@@ -138,7 +138,7 @@
             android:name=".rents.OwnersActivity"
             android:exported="false" />
         <activity
-            android:name=".hrmaster"
+            android:name=".rents.hrmaster"
             android:exported="false" />
         <activity
             android:name=".rents.rentsmaster"
