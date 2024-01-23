@@ -203,12 +203,22 @@ public class CollectionsActivity extends AppCompatActivity {
             return;
         }
 
+        int day = datePicker.getDayOfMonth();
+        int month = datePicker.getMonth();
+        int year = datePicker.getYear();
+
+        Calendar selectedDate = Calendar.getInstance();
+        selectedDate.set(year, month, day);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String formattedSelectedDate = dateFormat.format(selectedDate.getTime());
+
         // Get the current date
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
-        String currentDate = sdf.format(new Date());
+        SimpleDateFormat dateFormatcur = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        String currentDate = dateFormatcur.format(new Date());
 
         // Create a Payment object (adjust this based on your data model)
-        Collection collection = new Collection(selectedProperty, selectedTenant, rentAmount, currentDate);
+        Collection collection = new Collection(selectedProperty, selectedTenant, rentAmount, currentDate, formattedSelectedDate);
 
         // Push the payment data to the database
         DatabaseReference paymentsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Payments");

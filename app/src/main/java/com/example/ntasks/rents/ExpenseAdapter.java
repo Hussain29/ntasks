@@ -4,14 +4,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import com.example.ntasks.R;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ntasks.R;
+
 import java.util.List;
 
-// ExpenseAdapter.java
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
     private List<Expenses> expenseList;
@@ -32,8 +32,10 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
         Expenses expense = expenseList.get(position);
 
         // Bind data to the views in the item_expense.xml layout
+        holder.tvExpenseDate.setText(expense.getSelectedDate());
+        holder.tvPropertyName.setText(expense.getPropertyName());
         holder.tvExpenseName.setText(expense.getParticular());
-        holder.tvExpenseAmount.setText(String.valueOf(expense.getExpenseAmount()));
+        holder.tvExpenseAmount.setText(expense.getExpenseAmount());
     }
 
     @Override
@@ -42,14 +44,17 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
     }
 
     public static class ExpenseViewHolder extends RecyclerView.ViewHolder {
+        TextView tvExpenseDate;
+        TextView tvPropertyName;
         TextView tvExpenseName;
         TextView tvExpenseAmount;
 
         public ExpenseViewHolder(@NonNull View itemView) {
             super(itemView);
+            tvExpenseDate = itemView.findViewById(R.id.tvExpenseDate);
+            tvPropertyName = itemView.findViewById(R.id.tvPropertyName);
             tvExpenseName = itemView.findViewById(R.id.tvExpenseName);
             tvExpenseAmount = itemView.findViewById(R.id.tvExpenseAmount);
         }
     }
 }
-

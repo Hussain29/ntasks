@@ -10,15 +10,18 @@ public class Collection implements Parcelable {
     private String rentAmount;
     private String submissionDate;
 
+    private String selectedDate; // New field
+
     public Collection() {
         // Default constructor required for calls to DataSnapshot.getValue(Collection.class)
     }
 
-    public Collection(String propertyName, String tenantName, String rentAmount, String submissionDate) {
+    public Collection(String propertyName, String tenantName, String rentAmount, String submissionDate, String selectedDate) {
         this.propertyName = propertyName;
         this.tenantName = tenantName;
         this.rentAmount = rentAmount;
         this.submissionDate = submissionDate;
+        this.selectedDate = selectedDate; // Initialize the new field
     }
 
     protected Collection(Parcel in) {
@@ -26,6 +29,7 @@ public class Collection implements Parcelable {
         tenantName = in.readString();
         rentAmount = in.readString();
         submissionDate = in.readString();
+        selectedDate = in.readString();
     }
 
     public static final Creator<Collection> CREATOR = new Creator<Collection>() {
@@ -39,6 +43,14 @@ public class Collection implements Parcelable {
             return new Collection[size];
         }
     };
+
+    public String getSelectedDate() {
+        return selectedDate;
+    }
+
+    public void setSelectedDate(String selectedDate) {
+        this.selectedDate = selectedDate;
+    }
 
     public String getPropertyName() {
         return propertyName;
@@ -83,5 +95,6 @@ public class Collection implements Parcelable {
         dest.writeString(tenantName);
         dest.writeString(rentAmount);
         dest.writeString(submissionDate);
+        dest.writeString(selectedDate);
     }
 }

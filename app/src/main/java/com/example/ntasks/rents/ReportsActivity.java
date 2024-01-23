@@ -79,7 +79,7 @@ public class ReportsActivity extends AppCompatActivity {
     }
 
     private void loadCollections() {
-        DatabaseReference collectionsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Collections");
+        DatabaseReference collectionsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Payments");
 
         collectionsRef.addValueEventListener(new ValueEventListener() {
             @Override

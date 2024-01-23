@@ -10,6 +10,8 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.Locale;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -173,11 +175,12 @@ public class ExpensesActivity extends AppCompatActivity {
         Calendar selectedDate = Calendar.getInstance();
         selectedDate.set(year, month, day);
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", java.util.Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String formattedSelectedDate = dateFormat.format(selectedDate.getTime());
 
         // Get the current date
-        String currentDate = dateFormat.format(new Date());
+        SimpleDateFormat dateFormatcur = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        String currentDate = dateFormatcur.format(new Date());
 
         // Create an Expenses object
         Expenses expenses = new Expenses(selectedProperty, particular, expenseAmount, formattedSelectedDate, currentDate);

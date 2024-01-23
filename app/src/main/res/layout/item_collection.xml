@@ -19,16 +19,11 @@
             android:text="12/04/2024" />
 
         <TextView
-            android:id="@+id/tvflatindpName"
+            android:id="@+id/tvPropertyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Flat/indname" />
 
-        <TextView
-            android:id="@+id/tvaprtName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Apartment Name" />
 
         <TextView
             android:id="@+id/tvCollectionName"
