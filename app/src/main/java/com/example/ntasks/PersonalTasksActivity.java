@@ -182,7 +182,7 @@ public class PersonalTasksActivity extends AppCompatActivity {
     }
 
     private void openTaskDetailsActivity(Userlist userlist) {
-        Intent intent = new Intent(PersonalTasksActivity.this, AllTasksDetailsActivity.class);
+        Intent intent = new Intent(PersonalTasksActivity.this, AssgnTaskDetailsActivity.class);
         intent.putExtra("task", new TaskModel(userlist.getTaskID(), userlist.getTaskName(), userlist.getTaskDesc(), userlist.getTaskprio(), userlist.getTaskdeadl(), userlist.getStatusdb(), userlist.getAssignedUserdb(), userlist.getAssignerdb(), userlist.getClientdb()));
         startActivity(intent);
     }

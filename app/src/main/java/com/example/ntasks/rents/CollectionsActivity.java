@@ -1,6 +1,8 @@
 package com.example.ntasks.rents;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -42,6 +44,9 @@ public class CollectionsActivity extends AppCompatActivity {
     private TextView mytvdate;
     private Button enterdate;
 
+    private ProgressDialog progressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +58,10 @@ public class CollectionsActivity extends AppCompatActivity {
 
 
         mytvdate = findViewById(R.id.myTvdate);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
 
         enterdate.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +99,6 @@ public class CollectionsActivity extends AppCompatActivity {
         plotsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Plots");
 
         setupPropertySpinner();
-        setupTenantSpinner();
 
         Button btnAddPayment = findViewById(R.id.Btnaddpay);
         btnAddPayment.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +146,17 @@ public class CollectionsActivity extends AppCompatActivity {
                             String aptName = (flatEntry != null && flatEntry.child("apartmentName").exists()) ? flatEntry.child("apartmentName").getValue(String.class) : "";
                             String spinnerEntry = tenantName + " / " + propertyName + " (" + aptName + ")";
                             propertyList.add(spinnerEntry);
+                        }
+
+                        if (requestsCompleted.get() == 5) {
+                            Log.d("CAA", "Updating spinner with data. Total Requests Completed: " + requestsCompleted.get());
+                            updatePropertySpinner(propertyList);
+                            // Dismiss the progressDialog after a short delay
+                            new Handler().postDelayed(() -> {
+                                if (progressDialog != null && progressDialog.isShowing()) {
+                                    progressDialog.dismiss();
+                                }
+                            }, 500);
                         }
 
                         // Check if all requests are completed
@@ -242,6 +261,9 @@ public class CollectionsActivity extends AppCompatActivity {
                 if (requestsCompleted.get() == 5) {
                     Log.d("CAA", "Updating spinner with data. Total Requests Completed: " + requestsCompleted.get());
                     updatePropertySpinner(propertyList);
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
             }
 
@@ -350,32 +372,6 @@ public class CollectionsActivity extends AppCompatActivity {
         plotRef.addListenerForSingleValueEvent(propertyListener);
     }*/
 
-    private void setupTenantSpinner() {
-        tenantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                List<String> tenantNames = new ArrayList<>();
-                tenantNames.add("Select Tenant");
-
-                for (DataSnapshot tenantSnapshot : snapshot.getChildren()) {
-                    String tenantName = tenantSnapshot.child("tenantName").getValue(String.class);
-
-                    if (!TextUtils.isEmpty(tenantName)) {
-                        tenantNames.add(tenantName);
-                    }
-                }
-
-                ArrayAdapter<String> tenantAdapter = new ArrayAdapter<>(CollectionsActivity.this, android.R.layout.simple_spinner_item, tenantNames);
-                tenantAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                tenantSpinner.setAdapter(tenantAdapter);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Log.e("CollectionsActivity", "Error retrieving tenant data", error.toException());
-            }
-        });
-    }
 
     private void updatePropertySpinner(List<String> propertyList) {
         ArrayAdapter<String> propertyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, propertyList);

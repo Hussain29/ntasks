@@ -7,22 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
-
-        <TextView
-            android:id="@+id/LabelTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="2dp"
-            android:gravity="left"
-            android:padding="12dp"
-            android:shadowDx="2"
-            android:shadowDy="2"
-            android:shadowRadius="3"
-            android:text="Task I Have Assigned"
-            android:textColor="@color/text"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvdet"
