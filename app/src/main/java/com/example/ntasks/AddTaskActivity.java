@@ -67,11 +67,11 @@ public class AddTaskActivity extends AppCompatActivity {
     private Spinner spinnerAssignedUser1;
     private Spinner spinnerAssignedUser2;
     private Spinner spinnerAssignedUser3;
+    private Spinner spinnerClients;
     private CheckBox checkBoxSendToAll;
     private Button buttonSendToAll;
     private ProgressDialog progressDialog;
 
-    private Spinner spinnerClients;
 
 
     DatabaseReference taskRef;
@@ -235,7 +235,44 @@ public class AddTaskActivity extends AppCompatActivity {
         editTextDeadline.setText(formattedDate);
     }
 
+    private void setupSpinnerWithClients() {
+        clientsRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<String> clientNames = new ArrayList<>();
 
+                clientNames.add("Select Client");
+
+                for (DataSnapshot clientSnapshot : snapshot.getChildren()) {
+                    String clientId = clientSnapshot.getKey(); // Get the client ID
+                    String clientName = clientSnapshot.getValue(String.class); // Get the client name
+
+                    // Assuming each client node has a 'name' field
+                    if (clientName != null) {
+                        clientNames.add(clientName);
+                    }
+                }
+
+                // Sort the clientNames list alphabetically
+                Collections.sort(clientNames.subList(1, clientNames.size()));
+
+                // Update the client spinner adapter with client names
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(AddTaskActivity.this, android.R.layout.simple_spinner_item, clientNames);
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerClients.setAdapter(adapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle error
+            }
+        });
+    }
+
+
+
+/*
+23jan old
     private void setupSpinnerWithClients() {
         clientsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -297,6 +334,42 @@ public class AddTaskActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    */
+private void setupSpinnerWithUserNames() {
+    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        @Override
+        public void onDataChange(@NonNull DataSnapshot snapshot) {
+            List<String> userNames = new ArrayList<>();
+
+            userNames.add("Select User");
+
+            for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                // Assuming each user node has a 'name' field
+                String userName = userSnapshot.child("name").getValue(String.class);
+                if (userName != null) {
+                    userNames.add(userName);
+                }
+            }
+
+            // Sort the userNames list alphabetically
+            Collections.sort(userNames.subList(1, userNames.size()));
+
+            // Update the spinner adapter with user names
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(AddTaskActivity.this, android.R.layout.simple_spinner_item, userNames);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerAssignedUser1.setAdapter(adapter);
+            spinnerAssignedUser2.setAdapter(adapter);
+            spinnerAssignedUser3.setAdapter(adapter);
+        }
+
+        @Override
+        public void onCancelled(@NonNull DatabaseError error) {
+            // Handle error
+        }
+    });
+}
 
     private List<String> insertTaskData() {
         // Insert task data to Firebase

@@ -1,6 +1,9 @@
 package com.example.ntasks.rents;
 // ReportsActivity.java
 import android.os.Bundle;
+import android.os.Environment;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,15 +18,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ReportsActivity extends AppCompatActivity {
 
     private TextView tvExpenses, tvCollections;
-    private RecyclerView rvExpenses, rvCollections;
+    public RecyclerView rvExpenses, rvCollections;
     private List<Expenses> expenseList;
     private List<Collection> collectionList;
+    Button btncreaterep;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +40,16 @@ public class ReportsActivity extends AppCompatActivity {
         tvCollections = findViewById(R.id.tvCollections);
         rvExpenses = findViewById(R.id.rvExpenses);
         rvCollections = findViewById(R.id.rvCollections);
+        btncreaterep=findViewById(R.id.btncreaterep);
+
+
+
+        btncreaterep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generatePdf();
+            }
+        });
 
         expenseList = new ArrayList<>();
         collectionList = new ArrayList<>();
@@ -103,5 +119,54 @@ public class ReportsActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void generatePdf() {
+        try {
+            // Get the directory for saving the PDF
+            File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyPDFs");
+            if (!pdfDir.exists()) {
+                pdfDir.mkdirs();
+            }
+
+            // Create a PDF file
+            File pdfFile = new File(pdfDir, "my_report.pdf");
+
+            // Generate PDF with data from RecyclerViews
+            String expensesData = generateDataFromRecyclerView(rvExpenses);
+            String collectionsData = generateDataFromRecyclerView(rvCollections);
+
+            PdfGenerator.generatePdf(pdfFile, expensesData, collectionsData);
+
+            // Display a message or open the PDF file as needed
+            // ...
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private String generateDataFromRecyclerView(RecyclerView recyclerView) {
+        StringBuilder data = new StringBuilder();
+        RecyclerView.Adapter adapter = recyclerView.getAdapter();
+
+        if (adapter != null) {
+            if (adapter instanceof ExpenseAdapter) {
+                List<Expenses> expenseList = ((ExpenseAdapter) adapter).getExpenseList();
+
+                for (Expenses expense : expenseList) {
+                    // Assuming your Expenses class has a meaningful toString method
+                    data.append(expense.toString()).append("\n");
+                }
+            } else if (adapter instanceof CollectionAdapter) {
+                List<Collection> collectionList = ((CollectionAdapter) adapter).getCollectionList();
+
+                for (Collection collection : collectionList) {
+                    // Assuming your Collection class has a meaningful toString method
+                    data.append(collection.toString()).append("\n");
+                }
+            }
+        }
+
+        return data.toString();
+    }
+
 }
 

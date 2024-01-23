@@ -35,6 +35,7 @@ public class TenantsActivity extends AppCompatActivity {
     private ArrayList<Independent> independentList;
 
     private ProgressDialog progressDialog;
+    private Button btnpastTenants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +43,17 @@ public class TenantsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tenants);
 
         Button btnAddTenant = findViewById(R.id.addTenants);
+        btnpastTenants=findViewById(R.id.btnpastTenants);
 
+
+
+        btnpastTenants.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(TenantsActivity.this,PastTenantsActivity.class);
+                startActivity(intent);
+            }
+        });
         btnAddTenant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

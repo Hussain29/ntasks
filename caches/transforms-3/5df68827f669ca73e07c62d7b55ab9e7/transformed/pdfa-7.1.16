@@ -1,0 +1,13 @@
+com.itextpdf.pdfa.PdfAConformanceException
+com.itextpdf.pdfa.PdfAConformanceLogMessageConstant
+com.itextpdf.pdfa.PdfADocument
+com.itextpdf.pdfa.PdfADocument$1
+com.itextpdf.pdfa.PdfALogMessageConstant
+com.itextpdf.pdfa.PdfAPage
+com.itextpdf.pdfa.PdfAPageFactory
+com.itextpdf.pdfa.PdfAXMPUtil
+com.itextpdf.pdfa.checker.PdfA1Checker
+com.itextpdf.pdfa.checker.PdfA2Checker
+com.itextpdf.pdfa.checker.PdfA2Checker$1
+com.itextpdf.pdfa.checker.PdfA3Checker
+com.itextpdf.pdfa.checker.PdfAChecker

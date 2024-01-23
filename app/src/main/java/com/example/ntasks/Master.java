@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.ntasks.rents.EmployeeDetails;
 import com.example.ntasks.rents.MasterBiVendors;
 import com.example.ntasks.rents.rentsmaster;
 
@@ -29,6 +31,7 @@ public class Master extends AppCompatActivity {
         ImageView rentsbtni = findViewById(R.id.rentsbtni);
         ImageView hrbtni = findViewById(R.id.hrbtni);
         ImageView vendorsbtni = findViewById(R.id.vendorbtni);
+        ImageView postbtni = findViewById(R.id.posbtni);
         // Get the ActionBar
 
         int permissionState = ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS);
@@ -80,6 +83,14 @@ public class Master extends AppCompatActivity {
 
                 Intent intent3 = new Intent(Master.this, rentsmaster.class);
                 startActivity(intent3);
+            }
+        });
+        postbtni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Master.this, "Under Development", Toast.LENGTH_SHORT).show();
+               /* Intent intent = new Intent(Master.this, EmployeeDetails.class);
+                startActivity(intent);*/
             }
         });
 

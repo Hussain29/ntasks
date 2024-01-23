@@ -2,6 +2,10 @@ package com.example.ntasks.rents;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.List;
 
 public class Expenses implements Parcelable {
 
@@ -96,4 +100,68 @@ public class Expenses implements Parcelable {
         dest.writeString(selectedDate);
         dest.writeString(currentDate);
     }
+
+
+
+/*
+
+    public static void writeDataToExcel(List<Expenses> expensesList, String filePath) {
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        FileOutputStream fileOut = null;
+
+        try {
+            fileOut = new FileOutputStream(filePath);
+
+            // Create a sheet
+            workbook.createSheet("Expenses Data");
+
+            // Get the first sheet
+            org.apache.poi.ss.usermodel.Sheet sheet = workbook.getSheetAt(0);
+
+            // Add data to the sheet
+            for (int i = 0; i < expensesList.size(); i++) {
+                Row row = sheet.createRow(i);
+
+                Expenses expense = expensesList.get(i);
+                createCell(row, 0, expense.getSelectedDate());
+                createCell(row, 1, expense.getPropertyName());
+                createCell(row, 2, expense.getParticular());
+                createCell(row, 3, expense.getExpenseAmount());
+            }
+
+            // Write the workbook to the file
+            workbook.write(fileOut);
+            Log.d("ExcelUtils", "Data written to Excel file successfully");
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("ExcelUtils", "Error writing data to Excel file");
+        } finally {
+            try {
+                if (fileOut != null) {
+                    fileOut.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    private static void createCell(Row row, int column, String value) {
+        Cell cell = row.createCell(column);
+        cell.setCellValue(value);
+    }
+
+*/
+    @Override
+    public String toString() {
+        return "Expenses{" +
+                "date='" + selectedDate + '\'' +
+                ", propertyName='" + propertyName + '\'' +
+                ", particular='" + particular + '\'' +
+                ", expenseAmount='" + expenseAmount + '\'' +
+                '}';
+    }
+
+
 }

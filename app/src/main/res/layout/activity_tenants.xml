@@ -17,11 +17,19 @@
             android:id="@+id/addTenants"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/_40sdp"
             android:layout_gravity="center"
             android:text="\t\t\t\tAdd Tenant\t\t\t\t"
             app:icon="@drawable/addbox" />
-
+        <Button
+            android:id="@+id/btnpastTenants"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_gravity="center"
+            android:text="PAST Tenants"
+            app:icon="@android:drawable/ic_media_rew" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -15,7 +15,9 @@ import java.util.List;
 public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> {
 
     private List<Expenses> expenseList;
-
+    public List<Expenses> getExpenseList() {
+        return expenseList;
+    }
     public ExpenseAdapter(List<Expenses> expenseList) {
         this.expenseList = expenseList;
     }
@@ -57,4 +59,5 @@ public class ExpenseAdapter extends RecyclerView.Adapter<ExpenseAdapter.ExpenseV
             tvExpenseAmount = itemView.findViewById(R.id.tvExpenseAmount);
         }
     }
+
 }

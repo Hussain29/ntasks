@@ -292,14 +292,7 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
 
         String notes = etcnotes.getText().toString().trim();
 
-        if (TextUtils.isEmpty(companyId) || TextUtils.isEmpty(companyName) || TextUtils.isEmpty(companyShortName) ||
-                TextUtils.isEmpty(companyMailingAddress) || TextUtils.isEmpty(companyWebsite) || TextUtils.isEmpty(companyCity) ||
-                TextUtils.isEmpty(companyCountry) || TextUtils.isEmpty(companyFax) || TextUtils.isEmpty(companyTelephone) ||
-                TextUtils.isEmpty(companyEmail) || TextUtils.isEmpty(companyPocName) || TextUtils.isEmpty(companyPocEmail) ||
-                TextUtils.isEmpty(companyAltContact1) || TextUtils.isEmpty(companyAltContact2) ||
-                TextUtils.isEmpty(companyCrNumber) || TextUtils.isEmpty(companyVatNumber) || TextUtils.isEmpty(additionalInfo) ||
-                TextUtils.isEmpty(googleLocationLink) || TextUtils.isEmpty(bankName) || TextUtils.isEmpty(beneficiaryName) ||
-                TextUtils.isEmpty(accountNumber) || TextUtils.isEmpty(bankAddress) || TextUtils.isEmpty(ibanNumber) || TextUtils.isEmpty(notes)) {
+        if (TextUtils.isEmpty(companyName) || TextUtils.isEmpty(companyShortName)) {
             Toast.makeText(this, "Please fill in all required fields.", Toast.LENGTH_SHORT).show();
             return;
         }

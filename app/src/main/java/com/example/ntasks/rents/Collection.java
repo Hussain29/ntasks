@@ -97,4 +97,17 @@ public class Collection implements Parcelable {
         dest.writeString(submissionDate);
         dest.writeString(selectedDate);
     }
+
+    @Override
+    public String toString() {
+        return "Collection{" +
+                "paymentDate='" + submissionDate + '\'' +
+                ", propertyName='" + propertyName + '\'' +
+                ", collectionType='" + tenantName + '\'' +
+                ", collectionAmount='" + rentAmount + '\'' +
+                '}';
+    }
+
+
+
 }

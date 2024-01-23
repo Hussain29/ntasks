@@ -16,7 +16,10 @@ import java.util.List;
 public class CollectionAdapter extends RecyclerView.Adapter<CollectionAdapter.CollectionViewHolder> {
 
     private List<Collection> collectionList;
-
+    // Add this method to provide access to the data list
+    public List<Collection> getCollectionList() {
+        return collectionList;
+    }
     public CollectionAdapter(List<Collection> collectionList) {
         this.collectionList = collectionList;
     }
