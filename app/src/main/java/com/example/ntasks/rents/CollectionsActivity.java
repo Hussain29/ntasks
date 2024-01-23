@@ -48,7 +48,6 @@ public class CollectionsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_collections);
 
         propertySpinner = findViewById(R.id.propertyspinner);
-        tenantSpinner = findViewById(R.id.tenantspinner);
         editTextRentAmt = findViewById(R.id.editTextrentamt);
         enterdate = findViewById(R.id.enterdate);
 
