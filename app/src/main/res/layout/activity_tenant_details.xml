@@ -26,7 +26,7 @@
 
                 <ImageView
                     android:src="@drawable/addpersonn"
-                    android:id="@+id/imageView2"
+                    android:id="@+id/ivtenantpic"
                     android:layout_width="@dimen/_170sdp"
                     android:layout_height="@dimen/_200sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -72,7 +72,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvidtenant"
+                    android:id="@+id/tvtenantID"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -133,7 +133,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvtenantaddress"
+                    android:id="@+id/tvtenantpermaddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -255,8 +255,7 @@
                     android:src="@android:drawable/ic_menu_sort_alphabetically" />
 
                 <TextView
-                    android:id="@+id/tvtenantadvamt"
-
+                    android:id="@+id/tvtenantadvanceamt"
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
                     android:layout_gravity="center"
@@ -279,7 +278,7 @@
                     android:src="@android:drawable/ic_menu_agenda" />
 
                 <TextView
-                    android:id="@+id/tvtenantdateofadmsn"
+                    android:id="@+id/tvtenantdateofadmission"
 
                     android:layout_width="wrap_content"
                     android:layout_height="17dp"
