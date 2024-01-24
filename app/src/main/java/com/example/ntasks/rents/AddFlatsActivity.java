@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -47,9 +48,7 @@ public class AddFlatsActivity extends AppCompatActivity {
     private Button saveButton;
     private Spinner spinApart, spinFType;
     private ImageView flatImageView;
-    /*private Uri imageUri;
-    private Uri documentUri;*/
-
+    private ProgressDialog progressDialog;
     private Spinner docTypeSpinner;
     private String photoUrl;
     private String docUrl;
@@ -177,18 +176,25 @@ public class AddFlatsActivity extends AppCompatActivity {
         String fileName = "document:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
         storageRef.putFile(docUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         docUrl = uri.toString();
                         Log.d("AddFlatsActivity", "Document URL: " + docUrl);
                         Toast.makeText(AddFlatsActivity.this, "Document upload successful.", Toast.LENGTH_SHORT).show();
-
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddFlatsActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
                     Log.e("AddFlatsActivity", "Document upload failed", e);
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                 });
     }
 
@@ -197,18 +203,25 @@ public class AddFlatsActivity extends AppCompatActivity {
         String fileName = "image:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         photoUrl = uri.toString();
                         Log.d("AddFlatsActivity", "Image URL: " + photoUrl);
                         Toast.makeText(AddFlatsActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
-
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddFlatsActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
                     Log.e("AddFlatsActivity", "Image upload failed", e);
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                 });
     }
 

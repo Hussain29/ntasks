@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -61,6 +62,8 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
     private String shopPicURL;
     private String bCardURL;
     private String selectedDocType;
+
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -210,37 +213,29 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
         }
     }
 
-    /*private void setupSpinnerForDocType() {
-        String[] docTypes = getResources().getStringArray(R.array.DocIDtypes);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, docTypes);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        docTypeSpinner.setAdapter(adapter);
-        docTypeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                selectedDocType = docTypes[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing here
-            }
-        });
-    }*/
 
     private void uploadDocumentToFirebaseStorage(Uri docUri) {
         String fileName = "document:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
 
         storageRef.putFile(docUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         bCardURL = uri.toString();
                         Log.d("AddBusinessVendors", "Document URL: " + bCardURL);
+                        Toast.makeText(AddBusinessVendorsActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddBusinessVendorsActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                     Log.e("AddBusinessVendors", "Document upload failed", e);
                 });
     }
@@ -249,15 +244,24 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
         String fileName = "image:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         shopPicURL = uri.toString();
                         Log.d("AddBusinessVendors", "Image URL: " + shopPicURL);
+                        Toast.makeText(AddBusinessVendorsActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddBusinessVendorsActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                     Log.e("AddBusinessVendors", "Image upload failed", e);
                 });
     }

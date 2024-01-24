@@ -2,6 +2,7 @@
 
 package com.example.ntasks.rents;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -45,6 +46,7 @@ public class AddOwnersActivity extends AppCompatActivity {
     private EditText etOwnerId, etOwnerName, etOwnerAddress, etOwnerEmail, etOwnerPhone1, etOwnerPhone2, etOwnerPhone3, etOwnerNotes, etAge, etOcc, etFName;
     private DatabaseReference ownersRef;
     private Spinner spinowner;
+    private ProgressDialog progressDialog;
 
     private String photoUrl; // To store the URL of the uploaded image
     private String docUrl;   // To store the URL of the uploaded document
@@ -178,6 +180,11 @@ public class AddOwnersActivity extends AppCompatActivity {
     private void uploadDocumentToFirebaseStorage(Uri docUri) {
         String fileName = "document:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
 
         storageRef.putFile(docUri)
                 .addOnSuccessListener(taskSnapshot -> {
@@ -185,11 +192,13 @@ public class AddOwnersActivity extends AppCompatActivity {
                         docUrl = uri.toString();
                         Log.d("AddOwnersActivity", "Document URL: " + docUrl);
                         Toast.makeText(AddOwnersActivity.this, "Document upload successful.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
 
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddOwnersActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                     Log.e("AddOwnersActivity", "Document upload failed", e);
                 });
     }
@@ -197,6 +206,12 @@ public class AddOwnersActivity extends AppCompatActivity {
     private void uploadImageToFirebaseStorage(Uri imageUri) {
         String fileName = "image:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
 
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
@@ -204,11 +219,13 @@ public class AddOwnersActivity extends AppCompatActivity {
                         photoUrl = uri.toString();
                         Log.d("AddOwnersActivity", "Image URL: " + photoUrl);
                         Toast.makeText(AddOwnersActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
 
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddOwnersActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                     Log.e("AddOwnersActivity", "Image upload failed", e);
                 });
     }

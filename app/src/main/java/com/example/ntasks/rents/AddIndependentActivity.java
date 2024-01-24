@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -42,7 +43,7 @@ public class AddIndependentActivity extends AppCompatActivity {
 
     private Button saveButton, saveloc;
     private LinearLayout ll2;
-
+    private ProgressDialog progressDialog;
     private EditText etIndpId, etIndpName, etIndpAdd, etIndpArea, etIndpUnits, etIndpFloor, etIndpShops, etIndpNotes, etCoordinates;
     private Spinner spinOwner, spinVendors, spinDocs;
     private DatabaseReference independentRef, ownersRef, vendorsRef;
@@ -350,16 +351,25 @@ public class AddIndependentActivity extends AppCompatActivity {
         String fileName = "document:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
         storageRef.putFile(docUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         docUrl = uri.toString();
                         Log.d("AddVendorsActivity", "Document URL: " + docUrl);
+                        Toast.makeText(AddIndependentActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddIndependentActivity.this, "Document upload failed. Please try again.", Toast.LENGTH_SHORT).show();
                     Log.e("AddVendorsActivity", "Document upload failed", e);
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                 });
     }
 
@@ -368,16 +378,25 @@ public class AddIndependentActivity extends AppCompatActivity {
         String fileName = "image:" + System.currentTimeMillis();
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("uploads").child(fileName);
 
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Uploading...");
+        progressDialog.setCancelable(false);
+
+        progressDialog.show();
+
         storageRef.putFile(imageUri)
                 .addOnSuccessListener(taskSnapshot -> {
                     storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         imgUrl = uri.toString();
                         Log.d("AddVendorsActivity", "Image URL: " + imgUrl);
+                        Toast.makeText(AddIndependentActivity.this, "Image upload successful.", Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();// Notify the adapter that the data has changed
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(AddIndependentActivity.this, "Image upload failed. Please try again.", Toast.LENGTH_SHORT).show();
                     Log.e("AddVendorsActivity", "Image upload failed", e);
+                    progressDialog.dismiss();// Notify the adapter that the data has changed
                 });
     }
 

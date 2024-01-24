@@ -270,73 +270,6 @@ public class AddTaskActivity extends AppCompatActivity {
     }
 
 
-
-/*
-23jan old
-    private void setupSpinnerWithClients() {
-        clientsRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<String> clientNames = new ArrayList<>();
-
-                clientNames.add("Select Client");
-
-                for (DataSnapshot clientSnapshot : snapshot.getChildren()) {
-                    String clientId = clientSnapshot.getKey(); // Get the client ID
-                    String clientName = clientSnapshot.getValue(String.class); // Get the client name
-
-                    // Assuming each client node has a 'name' field
-                    if (clientName != null) {
-                        clientNames.add(clientName);
-                    }
-                }
-
-                // Update the client spinner adapter with client names
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(AddTaskActivity.this, android.R.layout.simple_spinner_item, clientNames);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerClients.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error
-            }
-        });
-    }
-
-    private void setupSpinnerWithUserNames() {
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                List<String> userNames = new ArrayList<>();
-
-                userNames.add("Select User");
-
-                for (DataSnapshot userSnapshot : snapshot.getChildren()) {
-                    // Assuming each user node has a 'name' field
-                    String userName = userSnapshot.child("name").getValue(String.class);
-                    if (userName != null) {
-                        userNames.add(userName);
-                    }
-                }
-
-                // Update the spinner adapter with user names
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(AddTaskActivity.this, android.R.layout.simple_spinner_item, userNames);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinnerAssignedUser1.setAdapter(adapter);
-                spinnerAssignedUser2.setAdapter(adapter);
-                spinnerAssignedUser3.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Handle error
-            }
-        });
-    }
-
-
-    */
 private void setupSpinnerWithUserNames() {
     userRef.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
@@ -481,14 +414,6 @@ private void setupSpinnerWithUserNames() {
         });
     }
 
-    /*private String addTaskForUser(String taskNamedb, String taskDescriptiondb, String prioritydb,
-                                  String deadlinedb, String defaultStatus, String assignedUserdb, String clientdb) {
-        String assignerdb = getCurrentUser();
-        Log.d("TaskData", "Assigner: " + assignerdb);
-        DatabaseReference newTaskRef = taskRef.push();
-        newTaskRef.setValue(new taskdb(taskNamedb, taskDescriptiondb, prioritydb, deadlinedb, defaultStatus, assignedUserdb, assignerdb, clientdb));
-        return newTaskRef.getKey();
-    }*/
 
     private String addTaskForUser(String taskNamedb, String taskDescriptiondb, String prioritydb,
                                   String deadlinedb, String defaultStatus, String assignedUserdb, String clientdb) {
@@ -558,29 +483,6 @@ private void setupSpinnerWithUserNames() {
     }
 
 
-    /*private void showDatePickerDialog() {
-        final Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog datePickerDialog = new DatePickerDialog(
-                this,
-                new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        String formattedDate = String.format("%02d-%02d-%04d", dayOfMonth, month + 1, year);
-                        editTextDeadline.setText(formattedDate);
-                    }
-                },
-                year,
-                month,
-                day
-        );
-
-        datePickerDialog.show();
-    }
-*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
