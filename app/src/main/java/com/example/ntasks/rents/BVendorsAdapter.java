@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 public class BVendorsAdapter extends RecyclerView.Adapter<BVendorsAdapter.BVendorsViewHolder> implements Filterable {
@@ -51,6 +52,10 @@ public class BVendorsAdapter extends RecyclerView.Adapter<BVendorsAdapter.BVendo
 
         holder.tvVendorName.setText(vendor.getCompanyName());
         holder.tvVendorProducts.setText(vendor.getCompanyProducts());
+
+        if (vendor.getShopPicURL() != null && !vendor.getShopPicURL().isEmpty()) {
+            Picasso.get().load(vendor.getShopPicURL()).into(holder.ivBVendor);
+        }
 
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -110,11 +115,13 @@ public class BVendorsAdapter extends RecyclerView.Adapter<BVendorsAdapter.BVendo
     public static class BVendorsViewHolder extends RecyclerView.ViewHolder {
         TextView tvVendorName;
         TextView tvVendorProducts;
+        ImageView ivBVendor;
 
         public BVendorsViewHolder(@NonNull View itemView) {
             super(itemView);
             tvVendorName = itemView.findViewById(R.id.tvbvendorname);
             tvVendorProducts = itemView.findViewById(R.id.tvbvendorprods);
+            ivBVendor = itemView.findViewById(R.id.ivbvendor);
         }
     }
 }

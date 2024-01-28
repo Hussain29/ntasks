@@ -4,12 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,10 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
         holder.tvApartmentName.setText(apartment.getAptName());
         holder.tvApartmentArea.setText(apartment.getAptAddress());
 
+        if (apartment.getImgUrl() != null && !apartment.getImgUrl().isEmpty()) {
+            Picasso.get().load(apartment.getImgUrl()).into(holder.ivApartment);
+        }
+
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,9 +73,11 @@ public class ApartmentAdapter extends RecyclerView.Adapter<ApartmentAdapter.Apar
     public static class ApartmentViewHolder extends RecyclerView.ViewHolder {
         TextView tvApartmentName;
         TextView tvApartmentArea;
+        ImageView ivApartment;
 
         public ApartmentViewHolder(@NonNull View itemView) {
             super(itemView);
+            ivApartment = itemView.findViewById(R.id.ivapart);
             tvApartmentName = itemView.findViewById(R.id.tvapart);
             tvApartmentArea = itemView.findViewById(R.id.tvaptad);
         }

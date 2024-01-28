@@ -122,9 +122,15 @@ public class TenantsActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 tenantList.clear(); // Clear the list before adding new data
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Tenant tenant = snapshot.getValue(Tenant.class);
-                    tenantList.add(tenant);
+
+                    String status = snapshot.child("status").getValue(String.class);
+
+                    if(status != null && status.equals("ACTIVE")) {
+                        Tenant tenant = snapshot.getValue(Tenant.class);
+                        tenantList.add(tenant);
+                    }
                 }
                 tenantAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();// Notify the adapter that the data has changed
@@ -156,12 +162,6 @@ public class TenantsActivity extends AppCompatActivity {
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
     }
 
-    /*private void openTenantDetailsActivity(Tenant tenant) {
-        Intent intent = new Intent(TenantsActivity.this, TenantDetailsActivity.class);
-        intent.putExtra("tenant", tenant);
-        intent.putParcelableArrayListExtra("flatList", flatArrayList);
-        startActivity(intent);
-    }*/
 
     private void openTenantDetailsActivity(Tenant tenant) {
         Intent intent = new Intent(TenantsActivity.this, TenantDetailsActivity.class);

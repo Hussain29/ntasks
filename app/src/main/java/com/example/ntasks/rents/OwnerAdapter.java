@@ -4,12 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -43,8 +45,12 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
     public void onBindViewHolder(@NonNull OwnerViewHolder holder, int position) {
         Owner owner = ownerList.get(position);
 
-        holder.textViewTaskName.setText(owner.getOwnerName());
-        holder.textViewTaskDescription.setText(owner.getOwnerPhone1());
+        holder.tvOwnerName.setText(owner.getOwnerName());
+        holder.tvPhone.setText(owner.getOwnerPhone1());
+
+        if (owner.getPhotoUrl() != null && !owner.getPhotoUrl().isEmpty()) {
+            Picasso.get().load(owner.getPhotoUrl()).into(holder.ivOwner);
+        }
 
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,13 +71,15 @@ public class OwnerAdapter extends RecyclerView.Adapter<OwnerAdapter.OwnerViewHol
     }
 
     public static class OwnerViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewTaskName;
-        TextView textViewTaskDescription;
+        TextView tvOwnerName;
+        TextView tvPhone;
+        ImageView ivOwner;
 
         public OwnerViewHolder(@NonNull View itemView) {
             super(itemView);
-            textViewTaskName = itemView.findViewById(R.id.textViewTaskName);
-            textViewTaskDescription = itemView.findViewById(R.id.textViewTaskDescription);
+            tvOwnerName = itemView.findViewById(R.id.textViewTaskName);
+            tvPhone = itemView.findViewById(R.id.textViewTaskDescription);
+            ivOwner = itemView.findViewById(R.id.ivOwner);
         }
     }
 }

@@ -20,7 +20,7 @@
             android:padding="@dimen/_2sdp">
 
             <ImageView
-                android:src="@drawable/flat"
+                android:id="@+id/ivflat"
                 android:layout_width="@dimen/_32sdp"
                 android:layout_height="@dimen/_32sdp"/>
 

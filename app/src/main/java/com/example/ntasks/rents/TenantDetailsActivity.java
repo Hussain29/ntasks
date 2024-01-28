@@ -1,5 +1,7 @@
 package com.example.ntasks.rents;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.View;
@@ -13,7 +15,11 @@ import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
+import com.example.ntasks.AssgnTaskDetailsActivity;
 import com.example.ntasks.R;
+import com.example.ntasks.TaskModel;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 public class TenantDetailsActivity extends AppCompatActivity {
@@ -26,6 +32,10 @@ public class TenantDetailsActivity extends AppCompatActivity {
     private Button btnFlatDetails;
     private CardView cvView;
     private NestedScrollView scrollView;
+
+    private Button btnEndTenant;
+
+    private Tenant tenant;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +63,11 @@ public class TenantDetailsActivity extends AppCompatActivity {
         btnFlatDetails = findViewById(R.id.btnFlatDetails);
         cvView = findViewById(R.id.cvview);
 
+        btnEndTenant = findViewById(R.id.btnEndTenant);
+
 
         // Retrieve Tenant data from Intent
-        Tenant tenant = getIntent().getParcelableExtra("tenant");
+            tenant = getIntent().getParcelableExtra("tenant");
 
         // Display Tenant data
         displayTenantData(tenant);
@@ -85,6 +97,13 @@ public class TenantDetailsActivity extends AppCompatActivity {
         tvTenantNotes.setText("Tenant Notes: " + tenant.getTenantNotes());
         tvTenantDocType.setText("Document Type: " + tenant.getDocType());
         tvTenantDocumentLink.setText("Click To View ID: " + tenant.getDocUrl());
+
+        btnEndTenant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDeleteConfirmationDialog();
+            }
+        });
     }
 
     private void displayAttachmentLink(String url) {
@@ -106,5 +125,38 @@ public class TenantDetailsActivity extends AppCompatActivity {
                 Toast.makeText(TenantDetailsActivity.this, "Attachment URL Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void showDeleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want remove this tenant?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User clicked "Yes," so delete the task
+                        deleteTenant(tenant.getTenantId());
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User clicked "No," so dismiss the dialog
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void deleteTenant(String tenantID) {
+
+        // Update the status of the task to "COMPLETED" in the database
+        DatabaseReference tenantRef = FirebaseDatabase.getInstance().getReference().child("Rents/Tenants").child(tenantID);
+        tenantRef.child("status").setValue("PAST");
+
+        // You can also show a Toast message or handle UI updates to indicate success
+        Toast.makeText(TenantDetailsActivity.this, "Tenant Removed", Toast.LENGTH_SHORT).show();
+
+        // Close the current activity after updating the task status
+        finish();
     }
 }

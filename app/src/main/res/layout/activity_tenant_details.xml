@@ -416,6 +416,14 @@
                 android:layout_height="wrap_content"
                 android:text="Flat Details"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_20sdp"/>
+
+            <Button
+                android:id="@+id/btnEndTenant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="End Tenant"
+                android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_50sdp"/>
 
         </LinearLayout>

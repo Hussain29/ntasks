@@ -324,10 +324,11 @@ public class AddTenantActivity extends AppCompatActivity {
         String docType = docTypeSpinner.getSelectedItem().toString();
         String tenantNotes = etTenantNotes.getText().toString().trim();
         String payday = spinnerpay.getSelectedItem().toString();
+        String status = "ACTIVE" ;
 
         return new Tenant(tenantId, tenantName, tenantFatherName, tenantPerAddress, tenantPrevAddress,
                 tenantOccupation, tenantWorkAddress, noOfPeople, tenantPhoneNumber, tenantPhoneNumber2, tenantPhoneNumber3,
-                propertyName, tenantRent, advanceAmount, admissionDate, docType, tenantNotes, photoUrl, docUrl, payday, age);
+                propertyName, tenantRent, advanceAmount, admissionDate, docType, tenantNotes, photoUrl, docUrl, payday, age, status);
     }
 
     private boolean isValidTenantId(String tenantId) {

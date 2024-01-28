@@ -26,6 +26,7 @@ public class Tenant implements Parcelable {
     private String docUrl;
     private String payday; // New field for payday
     private String age; // New field for payday
+    private String status; // New field for payday
 
     public Tenant() {
         // Default constructor required for calls to DataSnapshot.getValue(Tenant.class)
@@ -36,7 +37,7 @@ public class Tenant implements Parcelable {
                   String noOfPeople, String tenantPhoneNumber, String tenantPhoneNumber2,
                   String tenantPhoneNumber3, String propertyName, String tenantRent,
                   String advanceAmount, String admissionDate, String docType, String tenantNotes,
-                  String imgUrl, String docUrl, String payday, String age) {
+                  String imgUrl, String docUrl, String payday, String age, String status) {
         this.tenantId = tenantId;
         this.tenantName = tenantName;
         this.tenantFatherName = tenantFatherName;
@@ -58,6 +59,7 @@ public class Tenant implements Parcelable {
         this.docUrl = docUrl;
         this.payday = payday;
         this.age = age;
+        this.status = status;
     }
 
     protected Tenant(Parcel in) {
@@ -82,6 +84,7 @@ public class Tenant implements Parcelable {
         docUrl = in.readString();
         payday = in.readString();
         age = in.readString();// Read payday from parcel
+        status = in.readString();// Read payday from parcel
     }
 
     public static final Creator<Tenant> CREATOR = new Creator<Tenant>() {
@@ -95,6 +98,15 @@ public class Tenant implements Parcelable {
             return new Tenant[size];
         }
     };
+
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public String getAge() {
         return age;
@@ -294,5 +306,6 @@ public class Tenant implements Parcelable {
         dest.writeString(docUrl);
         dest.writeString(payday);// Write payday to parcel
         dest.writeString(age);// Write payday to parcel
+        dest.writeString(status);// Write payday to parcel
     }
 }

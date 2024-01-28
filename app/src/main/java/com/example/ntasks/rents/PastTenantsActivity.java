@@ -39,9 +39,10 @@ public class PastTenantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_past_tenants);
 
-
-
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         recyclerView = findViewById(R.id.recyclerViewTenants);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -90,7 +91,6 @@ public class PastTenantsActivity extends AppCompatActivity {
         });
 
 
-
         tenantList = new ArrayList<>();
         // Retrieve data from Firebase Realtime Database
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child("Rents/Tenants");
@@ -99,8 +99,13 @@ public class PastTenantsActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 tenantList.clear(); // Clear the list before adding new data
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Tenant tenant = snapshot.getValue(Tenant.class);
-                    tenantList.add(tenant);
+
+                    String status = snapshot.child("status").getValue(String.class);
+
+                    if(status != null && status.equals("PAST")) {
+                        Tenant tenant = snapshot.getValue(Tenant.class);
+                        tenantList.add(tenant);
+                    }
                 }
                 tenantAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();// Notify the adapter that the data has changed

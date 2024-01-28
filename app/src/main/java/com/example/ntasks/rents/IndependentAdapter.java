@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,7 +47,10 @@ public class IndependentAdapter extends RecyclerView.Adapter<IndependentAdapter.
         Independent independent = independentList.get(position);
 
         // Set values to views
-        holder.imgIndp.setImageResource(R.drawable.independent); // You can change this image based on your requirements
+        if (independent.getImgUrl() != null && !independent.getImgUrl().isEmpty()) {
+            Picasso.get().load(independent.getImgUrl()).into(holder.imgIndp);
+        }
+
         holder.tvIndpName.setText(independent.getIndpName());
         holder.tvIndpArea.setText("Area: " + independent.getIndpArea());
 
@@ -75,7 +79,7 @@ public class IndependentAdapter extends RecyclerView.Adapter<IndependentAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgIndp = itemView.findViewById(R.id.imgindp);
+            imgIndp = itemView.findViewById(R.id.ivindp);
             tvIndpName = itemView.findViewById(R.id.tvindpname);
             tvIndpArea = itemView.findViewById(R.id.tvindparea);
 

@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,7 +47,9 @@ public class PlotAdapter extends RecyclerView.Adapter<PlotAdapter.ViewHolder> {
         Plot plot = plotList.get(position);
 
         // Set values to views
-        holder.imgPlot.setImageResource(R.drawable.plot);
+        if (plot.getImgUrl() != null && !plot.getImgUrl().isEmpty()) {
+            Picasso.get().load(plot.getImgUrl()).into(holder.imgPlot);
+        }
         holder.tvPlotName.setText(plot.getPltName());
         holder.tvPlotArea.setText("Area: " + plot.getPltArea());
 

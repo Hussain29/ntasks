@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -47,7 +48,10 @@ public class TenantAdapter extends RecyclerView.Adapter<TenantAdapter.ViewHolder
         Tenant tenant = tenantList.get(position);
 
         // Set values to views
-        /*holder.imgTenant.setImageResource(R.drawable.addpersonn);*/ // You can change this image based on your requirements
+        if (tenant.getImgUrl() != null && !tenant.getImgUrl().isEmpty()) {
+            Picasso.get().load(tenant.getImgUrl()).into(holder.imgTenant);
+        }
+
         holder.tvTenantName.setText(tenant.getTenantName());
         holder.tvTenantProperty.setText("FLAT/INDEPENDENT: " + tenant.getPropertyName());
 
@@ -76,7 +80,7 @@ public class TenantAdapter extends RecyclerView.Adapter<TenantAdapter.ViewHolder
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            /*imgTenant = itemView.findViewById(R.id.imgtenant);*/
+            imgTenant = itemView.findViewById(R.id.ivTenant);
             tvTenantName = itemView.findViewById(R.id.tvtenantname);
             tvTenantProperty = itemView.findViewById(R.id.tvtenantprop);
 

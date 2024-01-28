@@ -21,7 +21,7 @@
             android:padding="@dimen/_2sdp">
 
             <ImageView
-                android:src="@drawable/bvenven"
+                android:id="@+id/ivbvendor"
                 android:layout_width="@dimen/_32sdp"
                 android:layout_height="@dimen/_32sdp"/>
 

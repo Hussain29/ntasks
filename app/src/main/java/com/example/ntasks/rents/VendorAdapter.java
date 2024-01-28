@@ -4,12 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,6 +48,10 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.VendorView
         holder.textViewVendorName.setText(vendor.getVendorName());
         holder.textViewVendorPhone.setText(vendor.getVendorPhone1());
 
+        if (vendor.getImageUri() != null && !vendor.getImageUri().isEmpty()) {
+            Picasso.get().load(vendor.getImageUri()).into(holder.ivVendor);
+        }
+
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,11 +72,13 @@ public class VendorAdapter extends RecyclerView.Adapter<VendorAdapter.VendorView
     public static class VendorViewHolder extends RecyclerView.ViewHolder {
         TextView textViewVendorName;
         TextView textViewVendorPhone;
+        ImageView ivVendor;
 
         public VendorViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewVendorName = itemView.findViewById(R.id.textViewTaskName); // Corrected to match the actual ID
             textViewVendorPhone = itemView.findViewById(R.id.textViewTaskDescription); // Corrected to match the actual ID
+            ivVendor = itemView.findViewById(R.id.ivVendor); // Corrected to match the actual ID
         }
     }
 }

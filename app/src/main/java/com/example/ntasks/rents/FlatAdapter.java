@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
 import com.example.ntasks.rents.Flats;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -47,6 +49,10 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatViewHolder
         holder.tvFlatNo.setText(flats.getFlatNo());
         holder.tvFlatArea.setText(flats.getApartmentName());
 
+        if (flats.getPhotoUrl() != null && !flats.getPhotoUrl().isEmpty()) {
+            Picasso.get().load(flats.getPhotoUrl()).into(holder.ivFlat);
+        }
+
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,10 +75,13 @@ public class FlatAdapter extends RecyclerView.Adapter<FlatAdapter.FlatViewHolder
         TextView tvFlatNo;
         TextView tvFlatArea;
 
+        ImageView ivFlat;
+
         public FlatViewHolder(@NonNull View itemView) {
             super(itemView);
             tvFlatNo = itemView.findViewById(R.id.tvflatno);
             tvFlatArea = itemView.findViewById(R.id.tvflatadd);
+            ivFlat = itemView.findViewById(R.id.ivflat);
         }
     }
 }
