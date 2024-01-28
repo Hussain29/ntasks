@@ -16,13 +16,13 @@
         tools:layout_editor_absoluteX="218dp" />
 
 
+    <!-- RecyclerView for Tenants -->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewPastTenants"
+        android:id="@+id/recyclerViewTenants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginBottom="@dimen/_12sdp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
