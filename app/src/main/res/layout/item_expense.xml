@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="center_horizontal"
     android:layout_height="wrap_content">
 
     <!-- Replace with your actual layout structure and design -->
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -15,34 +17,52 @@
         <TextView
             android:id="@+id/tvExpenseDate"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12/04/2024"/>
+            android:layout_marginLeft="@dimen/_5sdp"
 
+            android:layout_height="wrap_content"
+            android:text="12/04/2024"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
             android:id="@+id/tvPropertyName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Flat/indname" />
+            android:layout_marginLeft="@dimen/_12sdp"
 
-
-
+            android:text="Flat/indname"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvExpenseDate"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvExpenseName"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
-            android:text="Expense"/>
+            android:text="Expense"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="@dimen/_5sdp"
+
+            app:layout_constraintEnd_toStartOf="@+id/tvExpenseAmount"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvExpenseAmount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Amount"/>
+            android:layout_gravity="right"
+            android:text="Amount"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginRight="@dimen/_12sdp"
+
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- Add other views if needed -->
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </ScrollView>

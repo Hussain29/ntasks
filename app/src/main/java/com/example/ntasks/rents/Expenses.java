@@ -3,6 +3,9 @@ package com.example.ntasks.rents;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
+
+import com.google.firebase.database.PropertyName;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
@@ -10,7 +13,7 @@ import java.util.List;
 public class Expenses implements Parcelable {
 
     private String propertyName;
-    private String particular;
+     private String particular;
     private String expenseAmount;
     private String selectedDate;
     private String currentDate;
@@ -153,15 +156,34 @@ public class Expenses implements Parcelable {
     }
 
 */
+    /*@Override
+    public String toString() {
+        return ">" +
+                  selectedDate+"\t-" +
+                  propertyName +"\t-"+
+                  particular +"\t-"+
+                 expenseAmount +"\t" ;
+    }*/
+
     @Override
     public String toString() {
-        return "Expenses{" +
-                "date='" + selectedDate + '\'' +
-                ", propertyName='" + propertyName + '\'' +
-                ", particular='" + particular + '\'' +
-                ", expenseAmount='" + expenseAmount + '\'' +
-                '}';
+        String paddedPropertyName = padString(propertyName, 25); // Adjust the width as needed
+        String paddedParticular = padString(particular, 25); // Adjust the width as needed
+        String paddedExpenseAmount = padString(expenseAmount, 15); // Adjust the width as needed
+
+        return ">" +
+                selectedDate + "\t-" +
+                paddedPropertyName + "\t-" +
+                paddedParticular + "\t" +
+                paddedExpenseAmount + "\t";
     }
 
+    private String padString(String input, int width) {
+        if (input.length() >= width) {
+            return input.substring(0, width);
+        } else {
+            return String.format("%-" + width + "s", input);
+        }
+    }
 
 }

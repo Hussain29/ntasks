@@ -3,8 +3,13 @@ package com.example.ntasks.rents;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Collection implements Parcelable {
+public class Collection implements Parcelable , AmountCalculable{
 
+    @Override
+    public double getAmount() {
+        // Return the amount for collections
+        return Double.parseDouble(rentAmount);
+    }
     private String propertyName;
     private String tenantName;
     private String rentAmount;
@@ -98,16 +103,35 @@ public class Collection implements Parcelable {
         dest.writeString(selectedDate);
     }
 
+  /*  @Override
+    public String toString() {
+        return ">" +
+                 submissionDate +"\t"+ '\'' +
+                  propertyName+"\t" + '\'' +
+                 tenantName+"\t" + '\'' +
+                  rentAmount +"\t"+ '\'' ;
+    }*/
+
     @Override
     public String toString() {
-        return "Collection{" +
-                "paymentDate='" + submissionDate + '\'' +
-                ", propertyName='" + propertyName + '\'' +
-                ", collectionType='" + tenantName + '\'' +
-                ", collectionAmount='" + rentAmount + '\'' +
-                '}';
+        String paddedPropertyName = padString(propertyName, 25); // Adjust the width as needed
+        String paddedtenantName = padString(tenantName, 25); // Adjust the width as needed
+        String paddedrentAmount = padString(rentAmount, 15); // Adjust the width as needed
+
+        return ">" +
+                selectedDate + "\t-" +
+                paddedPropertyName + "\t-" +
+                paddedtenantName + "\t" +
+                paddedrentAmount + "\t";
     }
 
+    private String padString(String input, int width) {
+        if (input.length() >= width) {
+            return input.substring(0, width);
+        } else {
+            return String.format("%-" + width + "s", input);
+        }
+    }
 
 
 }

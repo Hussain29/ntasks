@@ -17,6 +17,7 @@
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="Expenses"
+            android:textStyle="bold"
             android:textSize="18sp" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -31,6 +32,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rvExpenses"
+            android:textStyle="bold"
+
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="Collections"
@@ -48,6 +51,7 @@
         android:id="@+id/btncreaterep"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_18sdp"
         android:text="Create report"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>

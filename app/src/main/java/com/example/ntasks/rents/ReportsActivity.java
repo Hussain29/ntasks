@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -91,6 +92,42 @@ public class ReportsActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk); // Replace with your color resource
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+
+        // Check if it's the last day of the month
+        if (isLastDayOfMonth()) {
+            // Execute your code here
+            executeLastDayOfMonthTask();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     }
@@ -175,7 +212,7 @@ public class ReportsActivity extends AppCompatActivity {
             String expensesData = generateDataFromRecyclerView(rvExpenses);
             String collectionsData = generateDataFromRecyclerView(rvCollections);
 
-            PdfGenerator.generatePdf(pdfFile, expensesData, collectionsData);
+            PdfGenerator.generatePdf(pdfFile, expenseList, collectionList);
             Toast.makeText(this, "PDF CREATED In MyReportsPDFs Folder of your Mobile Directory", Toast.LENGTH_LONG).show();
             // Display a message or open the PDF file as needed
             // ...
@@ -233,6 +270,51 @@ public class ReportsActivity extends AppCompatActivity {
     }
 
 
+    private boolean isLastDayOfMonth() {
+        // Get the current date
+        Calendar calendar = Calendar.getInstance();
+        int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        // Get the maximum day of the month
+        int lastDayOfMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+
+        // Check if it's the last day of the month
+        return currentDay == lastDayOfMonth;
+    }
+
+    private void executeLastDayOfMonthTask() {
+        // Your code to be executed on the last day of the month
+        // For example, show a notification, perform some background task, etc.
+
+ {
+            try {
+                // Get the directory for saving the PDF
+                File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyReportsPDFs");
+                if (!pdfDir.exists()) {
+                    pdfDir.mkdirs();
+                }
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+                String pdfFileName = "my_FINALreport_" + timeStamp + ".pdf";
+                // Create a PDF file
+                File pdfFile = new File(pdfDir, pdfFileName);
+
+                // Generate PDF with data from RecyclerViews
+                String expensesData = generateDataFromRecyclerView(rvExpenses);
+                String collectionsData = generateDataFromRecyclerView(rvCollections);
+
+                PdfGenerator.generatePdf(pdfFile, expenseList, collectionList);
+                Toast.makeText(this, "FINAL PDF In MyReportsPDFs Folder of your Mobile Directory", Toast.LENGTH_LONG).show();
+                // Display a message or open the PDF file as needed
+                // ...
+
+                openPdfWithIntent(pdfFile);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 
 }
