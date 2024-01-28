@@ -1,14 +1,23 @@
 package com.example.ntasks.rents;
 // ReportsActivity.java
-import android.app.ProgressDialog;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,8 +30,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class ReportsActivity extends AppCompatActivity {
 
@@ -31,9 +43,6 @@ public class ReportsActivity extends AppCompatActivity {
     private List<Expenses> expenseList;
     private List<Collection> collectionList;
     Button btncreaterep;
-
-    private ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +56,13 @@ public class ReportsActivity extends AppCompatActivity {
         btncreaterep=findViewById(R.id.btncreaterep);
 
 
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-
 
         btncreaterep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generatePdf();
+
+
             }
         });
 
@@ -75,6 +81,30 @@ public class ReportsActivity extends AppCompatActivity {
         // Load expenses and collections from Firebase
         loadExpenses();
         loadCollections();
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("REPORTS");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     private void loadExpenses() {
@@ -120,9 +150,6 @@ public class ReportsActivity extends AppCompatActivity {
 
                 // Notify the adapter that the data set has changed
                 rvCollections.getAdapter().notifyDataSetChanged();
-                if (progressDialog != null && progressDialog.isShowing()) {
-                    progressDialog.dismiss();
-                }
             }
 
             @Override
@@ -135,24 +162,29 @@ public class ReportsActivity extends AppCompatActivity {
     public void generatePdf() {
         try {
             // Get the directory for saving the PDF
-            File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyPDFs");
+            File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyReportsPDFs");
             if (!pdfDir.exists()) {
                 pdfDir.mkdirs();
             }
-
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+            String pdfFileName = "my_report_" + timeStamp + ".pdf";
             // Create a PDF file
-            File pdfFile = new File(pdfDir, "my_report.pdf");
+            File pdfFile = new File(pdfDir, pdfFileName);
 
             // Generate PDF with data from RecyclerViews
             String expensesData = generateDataFromRecyclerView(rvExpenses);
             String collectionsData = generateDataFromRecyclerView(rvCollections);
 
             PdfGenerator.generatePdf(pdfFile, expensesData, collectionsData);
-
+            Toast.makeText(this, "PDF CREATED In MyReportsPDFs Folder of your Mobile Directory", Toast.LENGTH_LONG).show();
             // Display a message or open the PDF file as needed
             // ...
+
+            openPdfWithIntent(pdfFile);
+
         } catch (IOException e) {
             e.printStackTrace();
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
         }
     }
     private String generateDataFromRecyclerView(RecyclerView recyclerView) {
@@ -179,6 +211,29 @@ public class ReportsActivity extends AppCompatActivity {
 
         return data.toString();
     }
+
+    private void openPdfWithIntent(File pdfFile) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        Uri pdfUri;
+
+        // Check Android version for FileProvider
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            pdfUri = FileProvider.getUriForFile(this, getPackageName() + ".provider", pdfFile);
+            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        } else {
+            pdfUri = Uri.fromFile(pdfFile);
+        }
+
+        intent.setDataAndType(pdfUri, "application/pdf");
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        } else {
+             return;}
+    }
+
+
+
 
 }
 
