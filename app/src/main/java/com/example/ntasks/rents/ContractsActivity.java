@@ -2,6 +2,7 @@ package com.example.ntasks.rents;
 
 import static com.itextpdf.kernel.geom.PageSize.A4;
 
+import android.app.ProgressDialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
@@ -50,6 +51,7 @@ public class ContractsActivity extends AppCompatActivity {
     private List<Flats> flatsList = new ArrayList<>();  // Initialize this list
     private List<Independent> independentsList = new ArrayList<>();  // Initialize this list
 
+    private ProgressDialog progressDialog;
 
     // Dynamic strings
     private String m1, m2, m3, m4, m5, m6;
@@ -65,6 +67,12 @@ public class ContractsActivity extends AppCompatActivity {
         ownersRef = FirebaseDatabase.getInstance().getReference().child("Rents/Owners");
         flatRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
         flatRef = FirebaseDatabase.getInstance().getReference().child("Rents/Flats");
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
         // ... other setup
 
         // Assuming you have initialized and populated the spinners in your layout
@@ -221,6 +229,7 @@ public class ContractsActivity extends AppCompatActivity {
         DatabaseReference independentRef = FirebaseDatabase.getInstance().getReference().child("Rents/Independents");
 
         List<String> propertyList = new ArrayList<>();
+        propertyList.add("Select Property");
         AtomicInteger requestsCompleted = new AtomicInteger(0);
 
         ValueEventListener propertyListener = new ValueEventListener() {
@@ -240,6 +249,9 @@ public class ContractsActivity extends AppCompatActivity {
 
                 if (requestsCompleted.incrementAndGet() == 2) {
                     updatePropertiesSpinner(propertyList);
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
             }
 

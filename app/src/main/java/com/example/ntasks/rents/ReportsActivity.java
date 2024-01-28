@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 // ReportsActivity.java
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -31,6 +32,9 @@ public class ReportsActivity extends AppCompatActivity {
     private List<Collection> collectionList;
     Button btncreaterep;
 
+    private ProgressDialog progressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +46,11 @@ public class ReportsActivity extends AppCompatActivity {
         rvCollections = findViewById(R.id.rvCollections);
         btncreaterep=findViewById(R.id.btncreaterep);
 
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
 
         btncreaterep.setOnClickListener(new View.OnClickListener() {
@@ -111,6 +120,9 @@ public class ReportsActivity extends AppCompatActivity {
 
                 // Notify the adapter that the data set has changed
                 rvCollections.getAdapter().notifyDataSetChanged();
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
             }
 
             @Override

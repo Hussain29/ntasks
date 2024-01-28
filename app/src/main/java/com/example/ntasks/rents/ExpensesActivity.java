@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -40,6 +41,9 @@ public class ExpensesActivity extends AppCompatActivity {
     private Button enterdate;
     private DatabaseReference flatsRef, apartmentsRef, independentsRef, expensesRef;
 
+    private ProgressDialog progressDialog;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +53,12 @@ public class ExpensesActivity extends AppCompatActivity {
         editTextParticular = findViewById(R.id.editTextparticular);
         editTextExpAmt = findViewById(R.id.editTextexpamt);
         enterdate = findViewById(R.id.enterdate);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
 
         mytvdate = findViewById(R.id.myTvdate);
 
@@ -135,6 +145,9 @@ public class ExpensesActivity extends AppCompatActivity {
                 // Increment the counter and check if all requests are completed
                 if (requestsCompleted.incrementAndGet() == 4) {
                     updatePropertySpinner(propertyList);
+                    if (progressDialog != null && progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
                 }
             }
 
