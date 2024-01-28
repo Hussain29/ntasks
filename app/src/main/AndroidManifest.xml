@@ -37,11 +37,16 @@
         <activity
             android:name=".rents.PastTenantsActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".rents.RentAlertsActivity"
+            android:exported="false" />
+
         <activity
             android:name=".rents.ExpensesActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.hrAddEmployee"
+            android:name=".rents.hrAddEmployeeActivity"
             android:exported="false" />
         <activity
             android:name=".rents.TenantDetailsActivity"

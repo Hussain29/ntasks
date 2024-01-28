@@ -5,29 +5,30 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tvTenantName"
         android:layout_width="@dimen/_110sdp"
         android:layout_height="wrap_content"
-        android:text="Name is the "
+        android:text="Name: "
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvapartment"
         android:layout_width="@dimen/_110sdp"
         android:layout_height="wrap_content"
-        android:text="Apartment is the "
-        app:layout_constraintStart_toEndOf="@+id/textView2" />
+        android:text="Apartment: "
+        app:layout_constraintStart_toEndOf="@+id/tvTenantName" />
     <TextView
         android:id="@+id/tvdop"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
-        android:text="Date OPayment"
+        android:text="Date Of Payment: "
         app:layout_constraintStart_toEndOf="@+id/tvapartment" />
 
     <TextView
+        android:id="@+id/tvRentAmt"
         android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
-        android:text="Amount"
+        android:text="Amount: "
         app:layout_constraintTop_toBottomOf="@id/tvdop"
         app:layout_constraintStart_toEndOf="@+id/tvapartment" />
 
