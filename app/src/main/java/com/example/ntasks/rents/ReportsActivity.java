@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 // ReportsActivity.java
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -22,11 +23,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ntasks.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
@@ -44,11 +50,20 @@ public class ReportsActivity extends AppCompatActivity {
     private List<Expenses> expenseList;
     private List<Collection> collectionList;
     Button btncreaterep;
+    Button btncreateMErep;
+
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reports);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         tvExpenses = findViewById(R.id.tvExpenses);
         tvCollections = findViewById(R.id.tvCollections);
@@ -58,12 +73,23 @@ public class ReportsActivity extends AppCompatActivity {
 
 
 
+
+        btncreateMErep=findViewById(R.id.btnmonthendrep);
+
+
         btncreaterep.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generatePdf();
 
 
+            }
+        });
+
+        btncreateMErep.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                executeLastDayOfMonthTask();
             }
         });
 
@@ -100,36 +126,6 @@ public class ReportsActivity extends AppCompatActivity {
             executeLastDayOfMonthTask();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -161,6 +157,9 @@ public class ReportsActivity extends AppCompatActivity {
 
                 // Notify the adapter that the data set has changed
                 rvExpenses.getAdapter().notifyDataSetChanged();
+                if (progressDialog != null && progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
             }
 
             @Override
@@ -283,38 +282,79 @@ public class ReportsActivity extends AppCompatActivity {
     }
 
     private void executeLastDayOfMonthTask() {
-        // Your code to be executed on the last day of the month
-        // For example, show a notification, perform some background task, etc.
-
- {
-            try {
-                // Get the directory for saving the PDF
-                File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyReportsPDFs");
-                if (!pdfDir.exists()) {
-                    pdfDir.mkdirs();
-                }
-                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
-                String pdfFileName = "my_FINALreport_" + timeStamp + ".pdf";
-                // Create a PDF file
-                File pdfFile = new File(pdfDir, pdfFileName);
-
-                // Generate PDF with data from RecyclerViews
-                String expensesData = generateDataFromRecyclerView(rvExpenses);
-                String collectionsData = generateDataFromRecyclerView(rvCollections);
-
-                PdfGenerator.generatePdf(pdfFile, expenseList, collectionList);
-                Toast.makeText(this, "FINAL PDF In MyReportsPDFs Folder of your Mobile Directory", Toast.LENGTH_LONG).show();
-                // Display a message or open the PDF file as needed
-                // ...
-
-                openPdfWithIntent(pdfFile);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
+        try {
+            // Get the directory for saving the PDF
+            File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyReportsPDFs");
+            if (!pdfDir.exists()) {
+                pdfDir.mkdirs();
             }
+            String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+            String pdfFileName = "my_FINALreport_" + timeStamp + ".pdf";
+            // Create a PDF file
+            File pdfFile = new File(pdfDir, pdfFileName);
+
+            // Generate PDF with data from RecyclerViews
+            String expensesData = generateDataFromRecyclerView(rvExpenses);
+            String collectionsData = generateDataFromRecyclerView(rvCollections);
+
+            PdfGenerator.generatePdf(pdfFile, expenseList, collectionList);
+            Toast.makeText(this, "FINAL PDF In MyReportsPDFs Folder of your Mobile Directory", Toast.LENGTH_LONG).show();
+
+            // Upload the PDF file to Firebase Storage
+            uploadPdfToFirebaseStorage(pdfFile, pdfFileName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Failed", Toast.LENGTH_SHORT).show();
         }
     }
+
+    private void uploadPdfToFirebaseStorage(File pdfFile, String pdfFileName) {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("monthly_report_pdfs").child(pdfFileName);
+        UploadTask uploadTask = storageRef.putFile(Uri.fromFile(pdfFile));
+
+        uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // File uploaded successfully, get the download URL
+                storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+                        // URI contains the download URL
+                        String downloadUrl = uri.toString();
+
+                        // Create a PdfDocument object
+                        String currentMonth = getCurrentMonth();
+                        PdfDocument pdfDocument = new PdfDocument(downloadUrl, currentMonth);
+
+                        // Push the PdfDocument object to Firebase Realtime Database
+                        DatabaseReference pdfRef = FirebaseDatabase.getInstance().getReference().child("Rents/MonthEndPdfDocuments");
+                        pdfRef.push().setValue(pdfDocument);
+
+                        // Display a message or open the PDF file as needed
+                        // ...
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle any errors retrieving the download URL
+                    }
+                });
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+            }
+        });
+    }
+
+    private String getCurrentMonth() {
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM yyyy", Locale.getDefault());
+        return dateFormat.format(calendar.getTime());
+    }
+
 
 
 }

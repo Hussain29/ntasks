@@ -35,7 +35,7 @@ public class RentAlertsAdapter extends RecyclerView.Adapter<RentAlertsAdapter.Vi
         Tenant tenant = itemList.get(position);
 
         holder.tvTenantName.setText("Name: " + tenant.getTenantName());
-        holder.tvApartment.setText("Apartment: " + tenant.getPropertyName());
+        holder.tvApartment.setText("Property: " + tenant.getPropertyName());
         holder.tvDateOfPayment.setText("Date Of Payment: " + tenant.getPayday());
         holder.tvRentAmount.setText("Amount: " + tenant.getTenantRent());
     }

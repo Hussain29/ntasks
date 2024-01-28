@@ -110,8 +110,8 @@ public class rentsmaster extends AppCompatActivity {
             public void onClick(View v) {
 
                 Toast.makeText(rentsmaster.this, "Statements", Toast.LENGTH_SHORT).show();
-                //Intent intent = new Intent(rentsmaster.this,OwnersActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(rentsmaster.this,StatementsActivity.class);
+                startActivity(intent);
             }
         });
 
