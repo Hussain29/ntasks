@@ -34,6 +34,7 @@ public class TenantDetailsActivity extends AppCompatActivity {
     private NestedScrollView scrollView;
 
     private Button btnEndTenant;
+    private Button btnReTenant;
 
     private Tenant tenant;
 
@@ -64,10 +65,17 @@ public class TenantDetailsActivity extends AppCompatActivity {
         cvView = findViewById(R.id.cvview);
 
         btnEndTenant = findViewById(R.id.btnEndTenant);
+        btnReTenant = findViewById(R.id.btnReTenant);
 
 
         // Retrieve Tenant data from Intent
-            tenant = getIntent().getParcelableExtra("tenant");
+        tenant = getIntent().getParcelableExtra("tenant");
+
+        if(tenant.getStatus().equals("PAST")){
+            btnEndTenant.setVisibility(View.GONE);// Show the logout button
+            btnReTenant.setVisibility(View.VISIBLE);// Show the logout button
+
+        }
 
         // Display Tenant data
         displayTenantData(tenant);
@@ -104,6 +112,13 @@ public class TenantDetailsActivity extends AppCompatActivity {
                 showDeleteConfirmationDialog();
             }
         });
+
+        btnReTenant.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showUndoConfirmationDialog();
+            }
+        });
     }
 
     private void displayAttachmentLink(String url) {
@@ -129,12 +144,31 @@ public class TenantDetailsActivity extends AppCompatActivity {
 
     private void showDeleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want remove this tenant?")
+        builder.setMessage("Are you sure you want to remove this tenant?")
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         // User clicked "Yes," so delete the task
                         deleteTenant(tenant.getTenantId());
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User clicked "No," so dismiss the dialog
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+    private void showUndoConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to reinstate this tenant?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User clicked "Yes," so delete the task
+                        undoTenant(tenant.getTenantId());
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -155,6 +189,18 @@ public class TenantDetailsActivity extends AppCompatActivity {
 
         // You can also show a Toast message or handle UI updates to indicate success
         Toast.makeText(TenantDetailsActivity.this, "Tenant Removed", Toast.LENGTH_SHORT).show();
+
+        // Close the current activity after updating the task status
+        finish();
+    }
+    private void undoTenant(String tenantID) {
+
+        // Update the status of the task to "COMPLETED" in the database
+        DatabaseReference tenantRef = FirebaseDatabase.getInstance().getReference().child("Rents/Tenants").child(tenantID);
+        tenantRef.child("status").setValue("ACTIVE");
+
+        // You can also show a Toast message or handle UI updates to indicate success
+        Toast.makeText(TenantDetailsActivity.this, "Tenant Added Again", Toast.LENGTH_SHORT).show();
 
         // Close the current activity after updating the task status
         finish();

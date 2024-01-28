@@ -423,6 +423,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="End Tenant"
+                android:visibility="visible"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_50sdp"/>
+
+            <Button
+                android:id="@+id/btnReTenant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Re-Add Tenant"
+                android:visibility="gone"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/_50sdp"/>
 
