@@ -199,7 +199,6 @@ public class ContractsActivity extends AppCompatActivity {
                 // Update dynamic strings m4, m5, m6 based on selectedFlat or selectedIndependent
                 m4 =  "JISS International Corporate Services And Consultants House No 9-1-\n" +
                         "1/B/16/2, Defence Colony Langer House Golconda , Hyderabad ,Telangana 500008"; // Constant
-
                 m5 = buildPropertyString(selectedFlat, selectedIndependent);
                 m6 = buildRentAmountString(selectedTenant);
             }
@@ -236,6 +235,7 @@ public class ContractsActivity extends AppCompatActivity {
                     m4 = "JISS International Corporate Services And Consultants House No 9-1-\n" +
                             "1/B/16/2, Defence Colony Langer House Golconda , Hyderabad ,Telangana 500008"; // Constant
                     m5 = buildPropertyString(selectedFlat, selectedIndependent);
+                    //Log.d("DebugTag", "values:" + selectedFlat + selectedIndependent);
                     m6 = buildRentAmountString(selectedTenant);
                     try {
                         createPdf(m1, m2, m3, m4, m5, m6);
@@ -358,8 +358,16 @@ public class ContractsActivity extends AppCompatActivity {
                     String propertyName;
                     if (dataSnapshot.getKey().equals("Flats")) {
                         propertyName = propertySnapshot.child("flatNo").getValue(String.class);
+                        Flats flat = propertySnapshot.getValue(Flats.class);
+                        if (flat != null) {
+                            flatsList.add(flat);
+                        }
                     } else {
                         propertyName = propertySnapshot.child("indpName").getValue(String.class);
+                        Independent independent = propertySnapshot.getValue(Independent.class);
+                        if (independent != null) {
+                            independentsList.add(independent);
+                        }
                     }
                     if (!TextUtils.isEmpty(propertyName)) {
                         propertyList.add(propertyName);
@@ -386,6 +394,7 @@ public class ContractsActivity extends AppCompatActivity {
 
 
 
+
     private void updatePropertiesSpinner(List<String> propertyList) {
         ArrayAdapter<String> propertyAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, propertyList);
         propertyAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -396,15 +405,17 @@ public class ContractsActivity extends AppCompatActivity {
         tenantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                List<String> tenantNames = new ArrayList<>();
+                tenantsList.clear(); // Clear the list before populating it again
 
+                List<String> tenantNames = new ArrayList<>();
                 tenantNames.add("Select Tenant");
 
                 for (DataSnapshot tenantSnapshot : snapshot.getChildren()) {
-                    String tenantName = tenantSnapshot.child("tenantName").getValue(String.class);
+                    Tenant tenant = tenantSnapshot.getValue(Tenant.class);
 
-                    if (!TextUtils.isEmpty(tenantName)) {
-                        tenantNames.add(tenantName);
+                    if (tenant != null) {
+                        tenantsList.add(tenant);
+                        tenantNames.add(tenant.getTenantName());
                     }
                 }
 
@@ -419,6 +430,7 @@ public class ContractsActivity extends AppCompatActivity {
             }
         });
     }
+
 
 
 
@@ -476,8 +488,12 @@ public class ContractsActivity extends AppCompatActivity {
     }
 
     private Flats findFlatByName(String flatName) {
+        Log.d("DebugTag", "values:" + flatName);
+
         for (Flats flat : flatsList) {
+            Log.d("DebugTag", "values:" + flatName);
             if (flat.getFlatNo().equals(flatName)) {
+                Log.d("DebugTag", "values:" + flatName);
                 return flat;
             }
         }
@@ -485,8 +501,11 @@ public class ContractsActivity extends AppCompatActivity {
     }
 
     private Independent findIndependentByName(String independentName) {
+       // Log.d("DebugTag", "values1:" + independentName);
         for (Independent independent : independentsList) {
+         //   Log.d("DebugTag", "values2:" + independentName);
             if (independent.getIndpName().equals(independentName)) {
+             //   Log.d("DebugTag", "values3:" + independentName);
                 return independent;
             }
         }
@@ -535,13 +554,17 @@ public class ContractsActivity extends AppCompatActivity {
     private String buildPropertyString(Flats flat, Independent independent) {
         // Build and return the string based on the selected Flat or Independent object
         // Customize this based on your actual data structure
+       // Log.d("DebugTag", "Activating 1");
         if (flat != null) {
+         //   Log.d("DebugTag", "Activating 2");
             return flat.getFlatNo() +
                     ", " + flat.getApartmentAddress();
         } else if (independent != null) {
+           // Log.d("DebugTag", "Activating 3");
             return independent.getIndpName() +
                     ",  " + independent.getIndpAddress();
         } else {
+           // Log.d("DebugTag", "Activating 4");
             return ""; // Handle the case when neither Flat nor Independent is selected
         }
     }
@@ -563,6 +586,11 @@ public class ContractsActivity extends AppCompatActivity {
        // String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
         //File file = new File(pdfPath, "myPDF.pdf");
        //OutputStream outputStream = new FileOutputStream(file);
+
+      /*  Log.d("DebugTag", "Tenant String (m2): " + m2);
+        Log.d("DebugTag", "Owner String (m3): " + m3);
+        Log.d("DebugTag", "Property String (m5): " + m5);
+        Log.d("DebugTag", "Rent Amount String (m6): " + m6);*/
 
 
 
