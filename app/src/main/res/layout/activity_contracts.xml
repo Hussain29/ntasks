@@ -51,5 +51,12 @@
             android:layout_margin="@dimen/_30sdp"
             android:text="CREATE CONTRACT" />
 
+
+        <TextView
+            android:id="@+id/tvm2"
+            android:text="7777"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </ScrollView>

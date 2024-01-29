@@ -2,8 +2,11 @@ package com.example.ntasks.rents;
 
 import static com.itextpdf.kernel.geom.PageSize.A4;
 
+import android.Manifest;
 import android.app.ProgressDialog;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -15,9 +18,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import com.example.ntasks.R;
 import com.google.firebase.database.DataSnapshot;
@@ -34,14 +41,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class ContractsActivity extends AppCompatActivity {
     Button btnsave;
+    private static final int STORAGE_PERMISSION_REQUEST_CODE = 1;
     EditText et1, et2, et3, et4, et5, et6;
-
+    TextView tvm2;
     private Spinner ownerSpinner, tenantSpinner, propertySpinner;
 
     // Instances of your classes
@@ -56,11 +68,50 @@ public class ContractsActivity extends AppCompatActivity {
     // Dynamic strings
     private String m1, m2, m3, m4, m5, m6;
 
+
+
+   /* @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == STORAGE_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted, you can now perform operations that require storage access
+                // Call your method to perform storage operations here
+                performStorageOperations();
+            } else {
+                // Permission denied, show a message or take appropriate action
+                Toast.makeText(this, "Storage permission denied", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contracts);
         btnsave = findViewById(R.id.btnsave);
+        tvm2=findViewById(R.id.tvm2);
+// ... (existing code)
+
+
+        // Check if the app has the permission to write to external storage
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
+                // Request the permission if not granted
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                        STORAGE_PERMISSION_REQUEST_CODE);
+            } else {
+                // Permission already granted, you can now perform operations that require storage access
+                // Call your method to perform storage operations here
+                performStorageOperations();
+            }
+        } else {
+            // For versions prior to Marshmallow, permissions are granted at install time
+            // You can perform operations that require storage access directly
+            performStorageOperations();
+        }
+*/
 
 
         tenantsRef = FirebaseDatabase.getInstance().getReference().child("Rents/Tenants");
@@ -127,6 +178,7 @@ public class ContractsActivity extends AppCompatActivity {
                 Tenant selectedTenant = findTenantByName(selectedTenantName);
                 // Update dynamic string m2 based on selectedTenant
                 m2 = buildTenantString(selectedTenant);
+                //tvm2.setText(m4);
             }
 
             @Override
@@ -159,36 +211,46 @@ public class ContractsActivity extends AppCompatActivity {
         });
         // ... other setup
 
-        btnsave.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Fetch selected items from spinners
-                String selectedOwnerName = ownerSpinner.getSelectedItem().toString();
-                String selectedTenantName = tenantSpinner.getSelectedItem().toString();
-                String selectedPropertyName = propertySpinner.getSelectedItem().toString();
 
-                // Find the selected instances
-                Owner selectedOwner = findOwnerByName(selectedOwnerName);
-                Tenant selectedTenant = findTenantByName(selectedTenantName);
-                Flats selectedFlat = findFlatByName(selectedPropertyName);
-                Independent selectedIndependent = findIndependentByName(selectedPropertyName);
 
-                // Build dynamic strings based on user selections
-                m2 = buildTenantString(selectedTenant);
-                m3 = buildOwnerString(selectedOwner);
-                m4 =  "JISS International Corporate Services And Consultants House No 9-1-\n" +
-                        "1/B/16/2, Defence Colony Langer House Golconda , Hyderabad ,Telangana 500008"; // Constant
-                m5 = buildPropertyString(selectedFlat, selectedIndependent);
-                m6 = buildRentAmountString(selectedTenant);
 
-                // Call createPdf with dynamic strings
-                try {
-                    createPdf(m1, m2, m3, m4, m5, m6);
-                } catch (FileNotFoundException e) {
-                    throw new RuntimeException(e);
+            btnsave.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    // Fetch selected items from spinners
+                    String selectedOwnerName = ownerSpinner.getSelectedItem().toString();
+                    String selectedTenantName = tenantSpinner.getSelectedItem().toString();
+                    String selectedPropertyName = propertySpinner.getSelectedItem().toString();
+
+                    // Find the selected instances
+                    Owner selectedOwner = findOwnerByName(selectedOwnerName);
+                    Tenant selectedTenant = findTenantByName(selectedTenantName);
+                    Flats selectedFlat = findFlatByName(selectedPropertyName);
+                    Independent selectedIndependent = findIndependentByName(selectedPropertyName);
+
+                    // Build dynamic strings based on user selections
+                    m2 = buildTenantString(selectedTenant);
+                    m3 = buildOwnerString(selectedOwner);
+                    m4 = "JISS International Corporate Services And Consultants House No 9-1-\n" +
+                            "1/B/16/2, Defence Colony Langer House Golconda , Hyderabad ,Telangana 500008"; // Constant
+                    m5 = buildPropertyString(selectedFlat, selectedIndependent);
+                    m6 = buildRentAmountString(selectedTenant);
+                    try {
+                        createPdf(m1, m2, m3, m4, m5, m6);
+                    } catch (FileNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
                 }
-            }
-        });
+            });
+
+
+
+
+
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 
@@ -202,6 +264,8 @@ public class ContractsActivity extends AppCompatActivity {
 
 
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -246,7 +310,37 @@ public class ContractsActivity extends AppCompatActivity {
             }
         });
     }
+/*
+   private void storagenew(){
+       try {
+           createPdf(m1, m2, m3, m4, m5, m6);
+       } catch (FileNotFoundException e) {
+           throw new RuntimeException(e);
+       }
 
+       // Check if the app has the permission to write to external storage
+       if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+               != PackageManager.PERMISSION_GRANTED) {
+           Toast.makeText(this, "Asking permission", Toast.LENGTH_SHORT).show();
+           // Request the permission if not granted
+           ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                   STORAGE_PERMISSION_REQUEST_CODE);
+       } else {
+           Toast.makeText(this, "permisoon granted", Toast.LENGTH_SHORT).show();
+
+           // Call createPdf with dynamic strings
+           try {
+               createPdf(m1, m2, m3, m4, m5, m6);
+           } catch (FileNotFoundException e) {
+               throw new RuntimeException(e);
+           }
+
+
+
+
+       }
+   }
+*/
 
     // Inside setupPropertiesSpinner method
     private void setupPropertiesSpinner() {
@@ -466,12 +560,33 @@ public class ContractsActivity extends AppCompatActivity {
     // ... (existing code)
 
     private void createPdf(String m1, String m2, String m3, String m4, String m5, String m6) throws FileNotFoundException {
-        String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
-        File file = new File(pdfPath, "myPDF.pdf");
-        OutputStream outputStream = new FileOutputStream(file);
+       // String pdfPath = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString();
+        //File file = new File(pdfPath, "myPDF.pdf");
+       //OutputStream outputStream = new FileOutputStream(file);
+
+
+
+        File pdfDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "MyReportsPDFs");
+        if (!pdfDir.exists()) {
+            pdfDir.mkdirs();
+        }
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(new Date());
+        String pdfFileName = "my_contract_" + timeStamp + ".pdf";
+        // Create a PDF file
+        File pdfFile = new File(pdfDir, pdfFileName);
+
+
+// Get current date using Calendar
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1; // Note: Month is 0-based
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+        String currentDate = day + "-" + month + "-" + year;
+        m1=currentDate;
 
         // Create a PdfWriter object with the specified file path
-        PdfWriter writer = new PdfWriter(file);
+        PdfWriter writer = new PdfWriter(pdfFile);
 
         // Create a PdfDocument object using the PdfWriter
         com.itextpdf.kernel.pdf.PdfDocument pdfDocument = new com.itextpdf.kernel.pdf.PdfDocument(writer);

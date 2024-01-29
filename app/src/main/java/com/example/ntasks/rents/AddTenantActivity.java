@@ -2,10 +2,12 @@ package com.example.ntasks.rents;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +19,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -61,6 +65,24 @@ public class AddTenantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_tenant);
+
+
+
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("ADD TENANT");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+
+
+
+
 
         etTenantId = findViewById(R.id.ettenantid);
         etTenantName = findViewById(R.id.ettenantName);
@@ -283,7 +305,7 @@ public class AddTenantActivity extends AppCompatActivity {
         String userId = getCurrentUserId();
 
         if (!TextUtils.isEmpty(tenant.getTenantId()) && !TextUtils.isEmpty(tenant.getTenantName())
-                && !TextUtils.isEmpty(tenant.getTenantFatherName()) && !TextUtils.isEmpty(tenant.getTenantPerAddress())
+
                 && !TextUtils.isEmpty(tenant.getTenantPhoneNumber()) && !TextUtils.isEmpty(tenant.getPropertyName())
                 && !TextUtils.isEmpty(tenant.getTenantRent()) && !TextUtils.isEmpty(tenant.getAdvanceAmount())
                 && !TextUtils.isEmpty(tenant.getAdmissionDate())) {
@@ -343,4 +365,17 @@ public class AddTenantActivity extends AppCompatActivity {
             return "Unknown User";
         }
     }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 }
