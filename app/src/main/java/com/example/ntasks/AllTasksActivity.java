@@ -9,6 +9,7 @@ import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +39,8 @@ public class AllTasksActivity extends AppCompatActivity {
     MyAdapter myAdapter;
     ArrayList<Userlist> list;
 
+    Button btnsort;
+
     private ProgressDialog progressDialog;
 
     @Override
@@ -64,6 +67,7 @@ public class AllTasksActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.allTasksRecycler);
+        btnsort = findViewById(R.id.buttonUserSort);
         dbref = FirebaseDatabase.getInstance().getReference("Taskdata");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -78,6 +82,9 @@ public class AllTasksActivity extends AppCompatActivity {
                 openTaskDetailsActivity(userlist);
             }
         });
+
+        // Add this code inside onCreate() method after setting up the RecyclerView
+        btnsort.setOnClickListener(v -> sortTasksPerUser());
 
         dbref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -151,6 +158,19 @@ public class AllTasksActivity extends AppCompatActivity {
         Intent intent = new Intent(AllTasksActivity.this, AllTasksDetailsActivity.class);
         intent.putExtra("task", new TaskModel(userlist.getTaskID(), userlist.getTaskName(), userlist.getTaskDesc(), userlist.getTaskprio(), userlist.getTaskdeadl(), userlist.getStatusdb(), userlist.getAssignedUserdb(), userlist.getAssignerdb(), userlist.getClientdb()));
         startActivity(intent);
+    }
+
+    private void sortTasksPerUser() {
+        Collections.sort(list, new Comparator<Userlist>() {
+            @Override
+            public int compare(Userlist task1, Userlist task2) {
+                // Compare tasks based on assigned user
+                return task1.getAssignedUserdb().compareToIgnoreCase(task2.getAssignedUserdb());
+            }
+        });
+
+        // Notify the adapter of the changes
+        myAdapter.notifyDataSetChanged();
     }
 
     @Override

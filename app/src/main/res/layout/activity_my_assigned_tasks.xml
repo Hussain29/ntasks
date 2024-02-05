@@ -23,6 +23,23 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
+    <Button
+        android:id="@+id/buttonUserSort"
+        style="@style/Widget.Material3.Button.ElevatedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/LabelTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_bg"
+        android:text="Sort By User"
+        android:textColor="@color/btncolour"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="20dp"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myAssignedTasksRecycler"
         android:layout_width="match_parent"

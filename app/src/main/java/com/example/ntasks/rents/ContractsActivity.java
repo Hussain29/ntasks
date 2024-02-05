@@ -587,7 +587,7 @@ public class ContractsActivity extends AppCompatActivity {
         //File file = new File(pdfPath, "myPDF.pdf");
        //OutputStream outputStream = new FileOutputStream(file);
 
-      /*  Log.d("DebugTag", "Tenant String (m2): " + m2);
+      /*  Log.d("DebugTag", "Tenant String (m2): " + m2);   
         Log.d("DebugTag", "Owner String (m3): " + m3);
         Log.d("DebugTag", "Property String (m5): " + m5);
         Log.d("DebugTag", "Rent Amount String (m6): " + m6);*/
