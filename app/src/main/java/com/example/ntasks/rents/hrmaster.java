@@ -2,18 +2,22 @@ package com.example.ntasks.rents;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ntasks.R;
 import com.google.firebase.database.DataSnapshot;
@@ -29,6 +33,7 @@ public class hrmaster extends AppCompatActivity {
     private RecyclerView recyclerView;
     private EmployeeAdapter employeeAdapter;
     private ArrayList<Employee> employeeList;
+
 
     private ProgressDialog progressDialog;
 
@@ -113,4 +118,44 @@ public class hrmaster extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+/*
+
+    private void showPasswordDialog() {
+        // Create an alert dialog with an EditText for password input
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Password");
+
+        final EditText inputPassword = new EditText(this);
+        inputPassword.setInputType(android.text.InputType.TYPE_CLASS_TEXT | android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(inputPassword);
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // Check if the entered password is correct
+                String enteredPassword = inputPassword.getText().toString().trim();
+                if (enteredPassword.equals(CORRECT_PASSWORD)) {
+                    // Password is correct, continue with the activity
+                    Toast.makeText(hrmaster.this, "Password Correct!", Toast.LENGTH_SHORT).show();
+                    // Add your activity logic here
+                } else {
+                    // Password is incorrect, show a message or take appropriate action
+                    Toast.makeText(hrmaster.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
+                    // Close the activity or take other actions
+                    finish();
+                }
+            }
+        });
+
+        builder.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                // Handle cancellation (e.g., pressing the back button)
+                finish();
+            }
+        });
+
+        builder.show();
+    }*/
 }

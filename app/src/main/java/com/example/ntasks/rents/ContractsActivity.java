@@ -91,6 +91,9 @@ public class ContractsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contracts);
         btnsave = findViewById(R.id.btnsave);
         tvm2=findViewById(R.id.tvm2);
+        TextView tvm3=findViewById(R.id.tvm3);
+         TextView tvm5=findViewById(R.id.tvm5);
+        TextView tvm6=findViewById(R.id.tvm6);
 // ... (existing code)
 
 
@@ -162,6 +165,7 @@ public class ContractsActivity extends AppCompatActivity {
                 Owner selectedOwner = findOwnerByName(selectedOwnerName);
                 // Update dynamic string m3 based on selectedOwner
                 m3 = buildOwnerString(selectedOwner);
+                tvm3.setText("OWNER:\t"+m3);
             }
 
             @Override
@@ -174,11 +178,14 @@ public class ContractsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle tenant selection
+
+
                 String selectedTenantName = tenantSpinner.getSelectedItem().toString();
+               /// tvm4.setText(selectedTenantName);
                 Tenant selectedTenant = findTenantByName(selectedTenantName);
                 // Update dynamic string m2 based on selectedTenant
                 m2 = buildTenantString(selectedTenant);
-                //tvm2.setText(m4);
+                tvm2.setText("TENANT:\t"+m2);
             }
 
             @Override
@@ -201,6 +208,9 @@ public class ContractsActivity extends AppCompatActivity {
                         "1/B/16/2, Defence Colony Langer House Golconda , Hyderabad ,Telangana 500008"; // Constant
                 m5 = buildPropertyString(selectedFlat, selectedIndependent);
                 m6 = buildRentAmountString(selectedTenant);
+               ///////////////////// tvm4.setText(m4);
+                tvm5.setText("PROPERTY:\t"+m5);
+                tvm6.setText("RENT AMOUNT:\t"+m6);
             }
 
             @Override
@@ -232,12 +242,13 @@ public class ContractsActivity extends AppCompatActivity {
                     // Build dynamic strings based on user selections
                     m2 = buildTenantString(selectedTenant);
                     m3 = buildOwnerString(selectedOwner);
+                    tvm3.setText("OWNER:\t\t"+m3);
                     m4 = "JISS International Corporate Services And Consultants House No 9-1-\n" +
                             "1/B/16/2, Defence Colony Langer House Golconda , Hyderabad ,Telangana 500008"; // Constant
                     m5 = buildPropertyString(selectedFlat, selectedIndependent);
-                    //Log.d("DebugTag", "values:" + selectedFlat + selectedIndependent);
+                     //Log.d("DebugTag", "values:" + selectedFlat + selectedIndependent);
                     m6 = buildRentAmountString(selectedTenant);
-                    try {
+                     try {
                         createPdf(m1, m2, m3, m4, m5, m6);
                     } catch (FileNotFoundException e) {
                         throw new RuntimeException(e);
@@ -479,8 +490,11 @@ public class ContractsActivity extends AppCompatActivity {
     }
 
     private Tenant findTenantByName(String tenantName) {
+
         for (Tenant tenant : tenantsList) {
+
             if (tenant.getTenantName().equals(tenantName)) {
+
                 return tenant;
             }
         }
@@ -515,10 +529,12 @@ public class ContractsActivity extends AppCompatActivity {
     // Helper methods to build dynamic strings
     // Inside buildTenantString method
     private String buildTenantString(Tenant tenant) {
+
         if (tenant != null && tenant.getTenantName() != null) {
+
             // Build and return the string based on the Tenant object
             // Customize this based on your actual data structure
-            return tenant.getTenantName() + "S/O" + tenant.getTenantFatherName() +
+            return tenant.getTenantName() + "\tS/O\t" + tenant.getTenantFatherName() +
                     ", Aged about " + tenant.getAge() + ", Occ: " + tenant.getTenantOccupation() +
                     "." + tenant.getDocType() + ":- " + tenant.getTenantId() +
                     ", resident of " + tenant.getTenantPerAddress();
@@ -533,10 +549,10 @@ public class ContractsActivity extends AppCompatActivity {
         if (owner != null && owner.getOwnerName() != null) {
             // Build and return the string based on the Owner object
             // Customize this based on your actual data structure
-            return owner.getOwnerName() + "S/O" + owner.getFathername() +
+            return owner.getOwnerName() + "\tS/O\t" + owner.getFathername() +
                     ", Aged about " + owner.getAge() + ", Occ: " + owner.getOccupation() +
                     "." + owner.getDocType() + ":- " + owner.getOwnerId() +
-                    ", resident of " + owner.getOwnerAddress();
+                    ", Resident of " + owner.getOwnerAddress();
         } else {
             return ""; // Handle the case when Owner or Owner's name is null
         }
@@ -669,7 +685,7 @@ public class ContractsActivity extends AppCompatActivity {
 
 
         document.add(new Paragraph("\n\nWITNESSES\n\n").setUnderline().setTextAlignment(TextAlignment.LEFT));
-        document.add(new Paragraph("TENANT\n\n").setUnderline().setTextAlignment(TextAlignment.RIGHT));
+        document.add(new Paragraph("TENANT\n\n\n").setUnderline().setTextAlignment(TextAlignment.RIGHT));
         document.add(new Paragraph("LANDLORD").setUnderline().setTextAlignment(TextAlignment.RIGHT));
 
         document.close();

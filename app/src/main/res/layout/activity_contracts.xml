@@ -22,25 +22,25 @@
                 android:id="@+id/spinnerowner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp"
                 android:layout_margin="@dimen/_4sdp"
-                android:background="@drawable/spinnerbg" />
+                android:background="@drawable/spinnerbg"
+                android:padding="@dimen/_10sdp" />
 
             <Spinner
                 android:id="@+id/spinnervendor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp"
-                android:layout_margin="@dimen/_4sdp" 
-                android:background="@drawable/spinnerbg" />
+                android:layout_margin="@dimen/_4sdp"
+                android:background="@drawable/spinnerbg"
+                android:padding="@dimen/_10sdp" />
 
             <Spinner
                 android:id="@+id/spinnerproperty"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/_10sdp"
                 android:layout_margin="@dimen/_4sdp"
-                android:background="@drawable/spinnerbg" />
+                android:background="@drawable/spinnerbg"
+                android:padding="@dimen/_10sdp" />
         </LinearLayout>
 
 
@@ -51,12 +51,38 @@
             android:layout_margin="@dimen/_30sdp"
             android:text="CREATE CONTRACT" />
 
+        <TextView
+            android:layout_margin="@dimen/_5sdp"
+            android:id="@+id/tvm3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="3333" />
 
         <TextView
             android:id="@+id/tvm2"
-            android:text="7777"
+            android:layout_margin="@dimen/_5sdp"
+
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="2222" />
+
+
+
+        <TextView
+            android:id="@+id/tvm5"
+            android:layout_margin="@dimen/_5sdp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="5555" />
+
+        <TextView
+            android:id="@+id/tvm6"
+            android:layout_margin="@dimen/_10sdp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="6666" />
 
     </LinearLayout>
 </ScrollView>
