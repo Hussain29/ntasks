@@ -187,15 +187,17 @@
                         android:text="STATEMENTS"
                         android:textSize="@dimen/_8sdp" />
 
-                    <Button
-                        android:id="@+id/btnchangepswrd"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Change Pswrd"
-                        />
-
                 </GridLayout>
+
+                <Button
+                    android:id="@+id/btnchangepswrd"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="Change Password" />
+
             </LinearLayout>
 
 

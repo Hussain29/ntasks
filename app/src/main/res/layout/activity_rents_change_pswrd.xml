@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".rents.RentsChangePswrdActivity">
 
@@ -16,12 +17,99 @@
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold" />
 
-    <!--<EditText
-        android:id="@+id/etcurpswrd"
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvtaskname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Current Password" />
--->
+        android:layout_below="@id/tvtask"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        app:cardCornerRadius="6dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="12dp"
+            android:hint="NEW PASSWORD"
+
+            app:boxStrokeWidth="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etnewpswrd"
+                android:layout_width="match_parent"
+                android:inputType="textCapCharacters"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/interf" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.cardview.widget.CardView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvtaskname"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvtask"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        app:cardCornerRadius="6dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            android:id="@+id/textInputLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:elevation="12dp"
+            android:hint="CONFIRM NEW PASSWORD"
+
+            app:boxStrokeWidth="0dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etconfirmnewpswrd"
+                android:layout_width="match_parent"
+                android:inputType="textCapCharacters"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/interf" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <!--
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvtaskname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvtask"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
+            app:cardCornerRadius="6dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/textInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="12dp"
+                android:hint="TASK NAME"
+
+                app:boxStrokeWidth="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextTaskName"
+                    android:layout_width="match_parent"
+                    android:inputType="textCapCharacters"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/interf" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
+
 
     <EditText
         android:id="@+id/etnewpswrd"
@@ -35,6 +123,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Confirm New Password" />
+-->
 
     <Button
         android:id="@+id/setpswrd"

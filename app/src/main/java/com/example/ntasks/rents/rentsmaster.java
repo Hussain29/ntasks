@@ -40,7 +40,7 @@ public class rentsmaster extends AppCompatActivity {
 
         Button btnchangepswrd=findViewById(R.id.btnchangepswrd);
 
-        if (user != null && user.getDisplayName() != null && user.getDisplayName().equals("Hussain Shaik")) {
+        if (user != null && user.getDisplayName() != null && user.getDisplayName().equals("Mohammed Suleman")) {
             btnchangepswrd.setVisibility(View.VISIBLE);
         } else {
             btnchangepswrd.setVisibility(View.GONE); // Hide the button if the condition doesn't match
