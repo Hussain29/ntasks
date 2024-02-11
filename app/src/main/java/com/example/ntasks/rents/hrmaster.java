@@ -20,6 +20,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ntasks.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,6 +38,8 @@ public class hrmaster extends AppCompatActivity {
 
 
     private ProgressDialog progressDialog;
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,16 @@ public class hrmaster extends AppCompatActivity {
         setContentView(R.layout.activity_hrmaster);
 
         Button btnAddEmployee = findViewById(R.id.btnaddemp);
+        Button btnchangepswrd=findViewById(R.id.btnchangepswrd);
+
+        btnchangepswrd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  intent67=new Intent(hrmaster.this, HrChangepswrd.class);
+                startActivity(intent67);
+            }
+        });
+
 
         btnAddEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +65,9 @@ public class hrmaster extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading...");

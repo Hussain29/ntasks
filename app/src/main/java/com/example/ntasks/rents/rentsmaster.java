@@ -32,6 +32,18 @@ public class rentsmaster extends AppCompatActivity {
         reportsbtn = findViewById(R.id.reportsbtn);
         statementsbtn = findViewById(R.id.statementsbtn);
 
+
+        Button btnchangepswrd=findViewById(R.id.btnchangepswrd);
+
+        btnchangepswrd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent  intent67=new Intent(rentsmaster.this, RentsChangePswrd.class);
+                startActivity(intent67);
+            }
+        });
+
+
         propertybtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

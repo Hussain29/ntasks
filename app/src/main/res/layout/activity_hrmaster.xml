@@ -20,6 +20,13 @@
         android:layout_gravity="center"
         android:text="ADD EMPLOYEE"
         />
+    <Button
+        android:id="@+id/btnchangepswrd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Change Pswrd"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewEmployeeList"
