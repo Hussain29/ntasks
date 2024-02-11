@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".rents.HrChangepswrd">
+    tools:context=".rents.HrChangePswrdActivity">
 
     <TextView
         android:layout_marginTop="@dimen/_18sdp"
@@ -16,11 +16,11 @@
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold" />
 
-    <EditText
+   <!-- <EditText
         android:id="@+id/etcurpswrd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Current Password" />
+        android:hint="Current Password" />-->
 
 
     <EditText

@@ -38,7 +38,7 @@ public class rentsmaster extends AppCompatActivity {
         btnchangepswrd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  intent67=new Intent(rentsmaster.this, RentsChangePswrd.class);
+                Intent  intent67=new Intent(rentsmaster.this, RentsChangePswrdActivity.class);
                 startActivity(intent67);
             }
         });
