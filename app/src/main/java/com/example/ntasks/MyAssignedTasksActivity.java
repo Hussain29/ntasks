@@ -8,7 +8,11 @@ import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +36,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
 
 public class MyAssignedTasksActivity extends AppCompatActivity {
 
@@ -40,6 +45,9 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
     MyAdapter myAdapter;
     ArrayList<Userlist> list;
     Button btnsort;
+
+    ArrayAdapter<String> spinnerAdapter;
+    List<String> registeredUserList;
 
     private ProgressDialog progressDialog;
 
@@ -66,7 +74,6 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         recyclerView = findViewById(R.id.myAssignedTasksRecycler);
-        btnsort = findViewById(R.id.buttonUserSort);
         dbref = FirebaseDatabase.getInstance().getReference("Taskdata");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,6 +82,15 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
         myAdapter = new MyAdapter(this, list);
         recyclerView.setAdapter(myAdapter);
 
+        Spinner spinnerUserFilter = findViewById(R.id.spinnerUserSort);
+
+        registeredUserList = new ArrayList<>();
+        spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, registeredUserList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerUserFilter.setAdapter(spinnerAdapter);
+
+        retrieveRegisteredUsers();
+
         myAdapter.setOnItemClickListener(new MyAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Userlist userlist) {
@@ -82,8 +98,19 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
             }
         });
 
-        // Add this code inside onCreate() method after setting up the RecyclerView
-        btnsort.setOnClickListener(v -> sortTasksPerUser());
+        spinnerUserFilter.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedUser = registeredUserList.get(position);
+                filterTasksByUser(selectedUser);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do nothing
+            }
+        });
+
 
 
         dbref.addValueEventListener(new ValueEventListener() {
@@ -160,23 +187,173 @@ public class MyAssignedTasksActivity extends AppCompatActivity {
         });
     }
 
+    private void filterTasksByUser(String selectedUser) {
+        list.clear();
+
+        if (selectedUser.equals("Select User")) {
+            // Display the full list without filtering
+            retrieveAllTasks();
+        } else {
+            // Filter tasks by the selected user
+            dbref.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    list.clear();
+
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                    if (currentUser != null) {
+                        String currentUserName = currentUser.getDisplayName();
+
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
+                            String statusdb = dataSnapshot.child("statusdb").getValue(String.class);
+                            String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
+
+                            if (assignedUserdb != null && assignedUserdb.equals(selectedUser) && !statusdb.equals("COMPLETED") && assignerdb != null && assignerdb.equals(currentUserName)) {
+                                String taskID = dataSnapshot.getKey();
+                                String taskName = dataSnapshot.child("taskNamedb").getValue(String.class);
+                                String taskDesc = dataSnapshot.child("taskDescriptiondb").getValue(String.class);
+                                String priority = dataSnapshot.child("prioritydb").getValue(String.class);
+                                String deadline = dataSnapshot.child("deadlinedb").getValue(String.class);
+                                String lastchangeddb = dataSnapshot.child("lastchangeddb").getValue(String.class);
+
+
+                                Userlist userlist = new Userlist();
+                                userlist.setTaskID(taskID);
+                                userlist.setTaskName(taskName);
+                                userlist.setTaskDesc(taskDesc);
+                                userlist.setTaskprio(priority);
+                                userlist.setTaskdeadl(deadline);
+                                userlist.setStatusdb(statusdb);
+                                userlist.setAssignedUserdb(assignedUserdb);
+                                userlist.setAssignerdb(assignerdb);
+                                userlist.setLastchangeddb(lastchangeddb);
+                                list.add(0, userlist);
+                            }
+                        }
+
+                        Collections.sort(list, new Comparator<Userlist>() {
+                            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                            @Override
+                            public int compare(Userlist task1, Userlist task2) {
+                                try {
+                                    Date lastChanged1 = dateFormat.parse(task1.getLastchangeddb());
+                                    Date lastChanged2 = dateFormat.parse(task2.getLastchangeddb());
+                                    return lastChanged2.compareTo(lastChanged1);
+                                } catch (ParseException | java.text.ParseException e) {
+                                    e.printStackTrace();
+                                    return 0;
+                                }
+                            }
+                        });
+
+                        myAdapter.notifyDataSetChanged();
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                    Log.e("Firebase", "Error fetching data", error.toException());
+                    Toast.makeText(MyAssignedTasksActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+    }
+
+    private void retrieveAllTasks() {
+        dbref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
+
+                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (currentUser != null) {
+                    String currentUserName = currentUser.getDisplayName();
+
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        String assignerdb = dataSnapshot.child("assignerdb").getValue(String.class);
+                        String statusdb = dataSnapshot.child("statusdb").getValue(String.class);
+
+                        if (assignerdb != null && assignerdb.equals(currentUserName) && !statusdb.equals("COMPLETED")) {
+                            String taskID = dataSnapshot.getKey();
+                            String taskName = dataSnapshot.child("taskNamedb").getValue(String.class);
+                            String taskDesc = dataSnapshot.child("taskDescriptiondb").getValue(String.class);
+                            String priority = dataSnapshot.child("prioritydb").getValue(String.class);
+                            String deadline = dataSnapshot.child("deadlinedb").getValue(String.class);
+                            String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
+                            String lastchangeddb = dataSnapshot.child("lastchangeddb").getValue(String.class);
+
+
+                            Userlist userlist = new Userlist();
+                            userlist.setTaskID(taskID);
+                            userlist.setTaskName(taskName);
+                            userlist.setTaskDesc(taskDesc);
+                            userlist.setTaskprio(priority);
+                            userlist.setTaskdeadl(deadline);
+                            userlist.setStatusdb(statusdb);
+                            userlist.setAssignerdb(assignerdb);
+                            userlist.setAssignedUserdb(assignedUserdb);
+                            userlist.setLastchangeddb(lastchangeddb);
+                            list.add(0, userlist);
+                        }
+                    }
+
+                    Collections.sort(list, new Comparator<Userlist>() {
+                        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+
+                        @Override
+                        public int compare(Userlist task1, Userlist task2) {
+                            try {
+                                Date lastChanged1 = dateFormat.parse(task1.getLastchangeddb());
+                                Date lastChanged2 = dateFormat.parse(task2.getLastchangeddb());
+                                return lastChanged2.compareTo(lastChanged1);
+                            } catch (ParseException | java.text.ParseException e) {
+                                e.printStackTrace();
+                                return 0;
+                            }
+                        }
+                    });
+
+                    myAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error fetching data", error.toException());
+                Toast.makeText(MyAssignedTasksActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
     private void openTaskDetailsActivity(Userlist userlist) {
         Intent intent = new Intent(MyAssignedTasksActivity.this, AssgnTaskDetailsActivity.class);
         intent.putExtra("task", new TaskModel(userlist.getTaskID(), userlist.getTaskName(), userlist.getTaskDesc(), userlist.getTaskprio(), userlist.getTaskdeadl(), userlist.getStatusdb(), userlist.getAssignedUserdb(), userlist.getAssignerdb(), userlist.getClientdb()));
         startActivity(intent);
     }
 
-    private void sortTasksPerUser() {
-        Collections.sort(list, new Comparator<Userlist>() {
+    private void retrieveRegisteredUsers() {
+        DatabaseReference dbrefRegisteredUsers = FirebaseDatabase.getInstance().getReference().child("Registered Users");
+
+        dbrefRegisteredUsers.addValueEventListener(new ValueEventListener() {
             @Override
-            public int compare(Userlist task1, Userlist task2) {
-                // Compare tasks based on assigned user
-                return task1.getAssignedUserdb().compareToIgnoreCase(task2.getAssignedUserdb());
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                registeredUserList.clear();
+                registeredUserList.add("Select User");
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    String user = dataSnapshot.child("name").getValue(String.class);
+                    registeredUserList.add(user);
+                }
+                spinnerAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Error fetching registered users", error.toException());
             }
         });
-
-        // Notify the adapter of the changes
-        myAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -260,42 +260,6 @@ public class TaskDetailsActivity extends AppCompatActivity {
         }
 
 
-        /*
-
-
-        [
-
-                 getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        // Get the ActionBar
-        ActionBar actionBar = getSupportActionBar();
-
-        // Set the title
-        actionBar.setTitle("ADD EMPLOYEE");
-
-        // Enable the back button
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        int actionBarColor = ContextCompat.getColor(this, R.color.orangeee); // Replace with your color resource
-        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                // Handle the back button click
-                onBackPressed();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }}
-
-                ]
-
-
-        */
         // Initialize Views
         taskNameTextView = findViewById(R.id.textViewTaskName);
         taskDescriptionTextView = findViewById(R.id.textViewTaskDescription);

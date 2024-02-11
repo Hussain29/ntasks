@@ -23,22 +23,19 @@
         android:textSize="25sp"
         android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/buttonUserSort"
-        style="@style/Widget.Material3.Button.ElevatedButton"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinnerUserSort"
+        android:layout_width="@dimen/_200sdp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/LabelTitle"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
+        android:padding="@dimen/_10sdp"
+        android:focusable="false"
         android:layout_gravity="center"
         android:background="@drawable/rounded_bg"
-        android:text="Sort By User"
-        android:textColor="@color/btncolour"
-        android:textSize="16dp"
-        android:textStyle="bold"
+        android:focusableInTouchMode="false"
         android:layout_marginBottom="20dp"
         />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myAssignedTasksRecycler"
