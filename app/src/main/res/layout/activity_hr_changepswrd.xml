@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".rents.HrChangepswrd">
+
+    <TextView
+        android:layout_marginTop="@dimen/_18sdp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="@font/interf"
+        android:text="CHANGE PASSWORD FOR HR ACTIVITY"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/etcurpswrd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Current Password" />
+
+
+    <EditText
+        android:id="@+id/etnewpswrd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="New Password" />
+
+
+    <EditText
+        android:id="@+id/etcnewpswrd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirm New Password" />
+
+    <Button
+        android:id="@+id/setpswrd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="SET PASSWORD" />
+
+</LinearLayout>
