@@ -13,9 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class rentsmaster extends AppCompatActivity {
 
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +39,12 @@ public class rentsmaster extends AppCompatActivity {
 
 
         Button btnchangepswrd=findViewById(R.id.btnchangepswrd);
+
+        if (user != null && user.getDisplayName() != null && user.getDisplayName().equals("Hussain Shaik")) {
+            btnchangepswrd.setVisibility(View.VISIBLE);
+        } else {
+            btnchangepswrd.setVisibility(View.GONE); // Hide the button if the condition doesn't match
+        }
 
         btnchangepswrd.setOnClickListener(new View.OnClickListener() {
             @Override

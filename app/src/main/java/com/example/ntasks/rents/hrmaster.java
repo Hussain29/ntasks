@@ -45,6 +45,12 @@ public class hrmaster extends AppCompatActivity {
         Button btnAddEmployee = findViewById(R.id.btnaddemp);
         Button btnchangepswrd=findViewById(R.id.btnchangepswrd);
 
+        if (user != null && user.getDisplayName() != null && user.getDisplayName().equals("Hussain Shaik")) {
+            btnchangepswrd.setVisibility(View.VISIBLE);
+        } else {
+            btnchangepswrd.setVisibility(View.GONE); // Hide the button if the condition doesn't match
+        }
+
         btnchangepswrd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
