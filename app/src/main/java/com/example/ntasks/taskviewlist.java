@@ -96,14 +96,21 @@ package com.example.ntasks;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ParseException;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -116,6 +123,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -179,22 +187,28 @@ public class taskviewlist extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
+                ///showNotification(taskviewlist.this, "Your Notification Title", "Your Notification Message");
 
 
 
                 // Get the currently logged-in user's information
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (currentUser != null) {
+                    Toast.makeText(taskviewlist.this, "t1", Toast.LENGTH_SHORT).show();
+                    showNotification(taskviewlist.this, "You Have A New Task", "Please Check Tasks");
+
                     String currentUserName = currentUser.getDisplayName();
 
                     // Iterate through the tasks and filter based on the assigned user
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                        Toast.makeText(taskviewlist.this, "t2", Toast.LENGTH_SHORT).show();
 
                         String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
 
                         // Check if the task is assigned to the currently logged-in user
                         if (assignedUserdb != null && assignedUserdb.equals(currentUserName)) {
                             // Task is assigned to the current user, retrieve task details
+                            ////Toast.makeText(taskviewlist.this, "t3", Toast.LENGTH_SHORT).show();
 
                             String taskID = dataSnapshot.getKey();
                             String taskName = dataSnapshot.child("taskNamedb").getValue(String.class);
@@ -257,8 +271,61 @@ public class taskviewlist extends AppCompatActivity {
                 Toast.makeText(taskviewlist.this, "Failed", Toast.LENGTH_SHORT).show();
             }
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
+    // Method to show a notification
+    private void showNotification(Context context, String title, String message) {
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // Create an explicit intent for the main activity of your app
+        Intent intent = new Intent(context, taskviewlist.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
+
+        // Create a notification channel for Android Oreo and higher
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "Your_Channel_ID";
+            String channelName = "Your_Channel_Name";
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_DEFAULT);
+            channel.enableLights(true);
+            channel.setLightColor(Color.RED);
+            channel.enableVibration(true);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        // Create the notification
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "Your_Channel_ID")
+                .setSmallIcon(R.drawable.ic_email) // Set your notification icon
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setContentIntent(pendingIntent)
+                .setAutoCancel(true); // Dismiss the notification when clicked
+
+        // Show the notification
+        notificationManager.notify(1, builder.build()); // Use a unique ID for each notification
+    }
     private String getCurrentUser() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
