@@ -283,7 +283,6 @@
                 android:id="@+id/spinnervendor"
                 style="@style/Widget.AppCompat.Spinner.DropDown"
                 android:layout_width="210dp"
-
                 android:layout_height="45dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/_90sdp"

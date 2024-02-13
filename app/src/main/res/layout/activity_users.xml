@@ -4,26 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".rents.AdminConsoleActivity">
+    tools:context=".rents.UsersActivity">
 
     <Button
-        android:id="@+id/passwordsButton"
-        android:layout_width="@dimen/_180sdp"
+        android:id="@+id/addUserButton"
+        android:layout_width="@dimen/_150sdp"
         android:layout_height="wrap_content"
-        android:text="Passwords"
+        android:text="Add User"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"/>
 
     <Button
-        android:id="@+id/usersButton"
-        android:layout_width="@dimen/_180sdp"
+        android:id="@+id/removeUserButton"
+        android:layout_width="@dimen/_150sdp"
         android:layout_height="wrap_content"
-        android:text="Users"
-        app:layout_constraintTop_toBottomOf="@id/passwordsButton"
+        android:text="Remove User"
+        app:layout_constraintTop_toBottomOf="@id/addUserButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
