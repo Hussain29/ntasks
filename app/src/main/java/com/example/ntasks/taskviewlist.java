@@ -195,13 +195,11 @@ public class taskviewlist extends AppCompatActivity {
                 FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
                 if (currentUser != null) {
                     Toast.makeText(taskviewlist.this, "t1", Toast.LENGTH_SHORT).show();
-                    showNotification(taskviewlist.this, "You Have A New Task", "Please Check Tasks");
 
                     String currentUserName = currentUser.getDisplayName();
 
                     // Iterate through the tasks and filter based on the assigned user
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                        Toast.makeText(taskviewlist.this, "t2", Toast.LENGTH_SHORT).show();
 
                         String assignedUserdb = dataSnapshot.child("assignedUserdb").getValue(String.class);
 
@@ -211,6 +209,9 @@ public class taskviewlist extends AppCompatActivity {
                             ////Toast.makeText(taskviewlist.this, "t3", Toast.LENGTH_SHORT).show();
 
                             String taskID = dataSnapshot.getKey();
+                            Toast.makeText(taskviewlist.this, "t2", Toast.LENGTH_SHORT).show();
+                            showNotification(taskviewlist.this, "You Have A New Task", "Please Check Tasks");
+
                             String taskName = dataSnapshot.child("taskNamedb").getValue(String.class);
                             String taskDesc = dataSnapshot.child("taskDescriptiondb").getValue(String.class);
                             String priority = dataSnapshot.child("prioritydb").getValue(String.class);
@@ -268,10 +269,10 @@ public class taskviewlist extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("Firebase", "Error fetching data", error.toException());
-                Toast.makeText(taskviewlist.this, "Failed", Toast.LENGTH_SHORT).show();
+
+                Toast.makeText(taskviewlist.this,"Failed",Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
 

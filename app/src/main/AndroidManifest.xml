@@ -36,6 +36,9 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".rents.Adminconsole"
+            android:exported="false" />
+        <activity
             android:name=".rents.RentsChangePswrdActivity"
             android:exported="false" />
         <activity
