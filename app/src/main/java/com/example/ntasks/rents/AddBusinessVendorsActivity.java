@@ -267,7 +267,7 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
     }
 
     private void validateAndSaveVendorDetails() {
-        String companyId = etcid.getText().toString().trim();
+        String companyId = vendorsRef.push().getKey();
         String companyName = etcname.getText().toString().trim();
         String companyShortName = etcsname.getText().toString().trim();
         String companyMailingAddress = etcmaddress.getText().toString().trim();

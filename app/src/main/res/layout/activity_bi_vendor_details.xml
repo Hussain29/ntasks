@@ -675,6 +675,13 @@
 
         </LinearLayout>
 
+        <Button
+            android:id="@+id/btnedit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="EDIT COMPANY DETAILS" />
+
     </LinearLayout>
 
 </ScrollView>
