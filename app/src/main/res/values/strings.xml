@@ -105,7 +105,7 @@
 
 
     <string name="Forgot"> <u>Forgot Your Password?</u>.</string>
-    <string name="noacc">Do not have Account? <u>Register</u>.</string>
+    <string name="noacc">Do not have an Account? <u>Contact ADMIN</u>.</string>
 
 
 </resources>

@@ -46,13 +46,13 @@ public class rentsmaster extends AppCompatActivity {
             btnchangepswrd.setVisibility(View.GONE); // Hide the button if the condition doesn't match
         }
 
-        btnchangepswrd.setOnClickListener(new View.OnClickListener() {
+       /* btnchangepswrd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent  intent67=new Intent(rentsmaster.this, RentsChangePswrdActivity.class);
                 startActivity(intent67);
             }
-        });
+        });*/
 
 
         propertybtn.setOnClickListener(new View.OnClickListener() {

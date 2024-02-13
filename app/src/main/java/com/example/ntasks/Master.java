@@ -78,9 +78,8 @@ public class Master extends AppCompatActivity {
         postbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*Toast.makeText(Master.this, "Under Development", Toast.LENGTH_SHORT).show();*/
-                Intent intent = new Intent(Master.this, AdminConsoleActivity.class);
-                startActivity(intent);
+                Toast.makeText(Master.this, "Under Development", Toast.LENGTH_SHORT).show();
+
             }
         });
 

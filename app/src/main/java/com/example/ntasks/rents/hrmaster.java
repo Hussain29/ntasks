@@ -54,7 +54,7 @@ public class hrmaster extends AppCompatActivity {
         btnchangepswrd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent  intent67=new Intent(hrmaster.this, HrChangePswrdActivity.class);
+                Intent  intent67=new Intent(hrmaster.this, AdminConsoleActivity.class);
                 startActivity(intent67);
             }
         });

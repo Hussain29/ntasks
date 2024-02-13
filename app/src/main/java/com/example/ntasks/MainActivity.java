@@ -96,8 +96,10 @@ public class MainActivity extends AppCompatActivity {
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(MainActivity.this, Register.class);
-                startActivity(intent1);
+
+                Toast.makeText(MainActivity.this, "Contact Admin For NEW USER REGISTRATION", Toast.LENGTH_LONG).show();
+               /* Intent intent1 = new Intent(MainActivity.this, Register.class);
+                startActivity(intent1);*/
             }
         });
 

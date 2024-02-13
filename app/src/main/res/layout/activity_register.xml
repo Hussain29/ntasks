@@ -32,6 +32,7 @@
                     android:adjustViewBounds="true"
                     android:maxWidth="180dp"
                     app:srcCompat="@drawable/osd" />
+
             </LinearLayout>
 
             <!-- Title Section -->

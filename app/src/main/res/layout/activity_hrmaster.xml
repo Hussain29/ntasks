@@ -15,17 +15,19 @@
 
     <Button
         android:id="@+id/btnaddemp"
+        android:layout_marginTop="@dimen/_15sdp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="ADD EMPLOYEE"
         />
+
     <Button
         android:id="@+id/btnchangepswrd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Change Pswrd"
+        android:text="ADMIN"
         />
 
     <androidx.recyclerview.widget.RecyclerView
