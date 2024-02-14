@@ -323,7 +323,8 @@ public class AddBusinessVendorsActivity extends AppCompatActivity {
 
 
     private void saveVendorToDatabase(BusinessVendor vendor) {
-        vendorsRef.push().setValue(vendor, new DatabaseReference.CompletionListener() {
+        String companyId = vendor.getCompanyId();
+        vendorsRef.child(companyId).setValue(vendor, new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                 if (databaseError == null) {
