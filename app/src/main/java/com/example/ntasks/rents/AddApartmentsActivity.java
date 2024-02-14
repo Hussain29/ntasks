@@ -274,7 +274,7 @@ public class AddApartmentsActivity extends AppCompatActivity {
 
 
     private void validateAndSaveApartmentDetails() {
-        String aptId = etAptId.getText().toString().trim();
+        String aptId = apartmentsRef.push().getKey();
         String aptName = etAptName.getText().toString().trim();
         String aptAddress = etAptAddress.getText().toString().trim();
         String aptArea = etAptArea.getText().toString().trim();

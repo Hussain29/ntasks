@@ -181,7 +181,7 @@ public class AddIndependentActivity extends AppCompatActivity {
     }
 
     private void saveIndependentDetails() {
-        String indpId = etIndpId.getText().toString().trim();
+        String indpId = independentRef.push().getKey();
         String indpName = etIndpName.getText().toString().trim();
         String indpAdd = etIndpAdd.getText().toString().trim();
         String indpArea = etIndpArea.getText().toString().trim();

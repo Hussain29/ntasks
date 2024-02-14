@@ -327,7 +327,7 @@ public class AddTenantActivity extends AppCompatActivity {
     }
 
     private Tenant extractTenantDetailsFromUI() {
-        String tenantId = etTenantId.getText().toString().trim();
+        String tenantId = tenantsRef.push().getKey();
         String tenantName = etTenantName.getText().toString().trim();
         String tenantFatherName = etTenantFatherName.getText().toString().trim();
         String tenantPerAddress = etTenantPerAddress.getText().toString().trim();

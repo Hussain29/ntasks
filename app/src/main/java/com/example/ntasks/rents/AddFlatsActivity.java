@@ -242,7 +242,7 @@ public class AddFlatsActivity extends AppCompatActivity {
 
     private void validateAndSaveFlatDetails() {
         try {
-            String flatId = etFlatId.getText().toString().trim();
+            String flatId = flatsRef.push().getKey();
             String area = etArea.getText().toString().trim();
             String flatNo = etFlatNo.getText().toString().trim();
             String flatNotes = etFlatNotes.getText().toString().trim();

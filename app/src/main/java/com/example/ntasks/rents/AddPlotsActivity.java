@@ -243,7 +243,7 @@ public class AddPlotsActivity extends AppCompatActivity {
     }
 
     private void savePlotDetails() {
-        String pltId = etPltId.getText().toString().trim();
+        String pltId = plotsRef.push().getKey();
         String pltName = etPltName.getText().toString().trim();
         String pltAdd = etPltAdd.getText().toString().trim();
         String pltArea = etPltArea.getText().toString().trim();

@@ -231,7 +231,7 @@ public class AddOwnersActivity extends AppCompatActivity {
     }
 
     private void saveOwnerDetails() {
-        String ownerId = etOwnerId.getText().toString().trim();
+        String ownerId = ownersRef.push().getKey();
         String ownerName = etOwnerName.getText().toString().trim();
         String ownerAddress = etOwnerAddress.getText().toString().trim();
         String ownerEmail = etOwnerEmail.getText().toString().trim();
