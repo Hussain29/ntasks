@@ -112,7 +112,7 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             tvCountry.setText("\t\tCountry: " + businessVendor.getCompanyCountry());
             tvFax.setText("\t\tFAX: " + businessVendor.getCompanyFax());
             tvTelephone.setText("\t\tTelephone No.: " + businessVendor.getCompanyTelephone());
-            tvEmail.setText("\t\tEmail Address: " + businessVendor.getCompanyEmail());
+            tvEmail.setText("\t\tEmail:" + businessVendor.getCompanyEmail());
             tvContactName.setText("\t\tPoint of Contact Name: " + businessVendor.getCompanyPocName());
             tvContactEmail.setText("\t\tContact Email: " + businessVendor.getCompanyEmail());
             tvLandline.setText("\t\tLandline No.: " + businessVendor.getCompanyAltContact1());
