@@ -2,8 +2,10 @@ package com.example.ntasks.rents;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,18 +20,27 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EditBiVendorsActivity extends AppCompatActivity {
 
     private EditText etcid, etcname, etcsname, etcmaddress, etcweb, etccity, etccountry, etcfax, etctel, etcemail, etcpocn, etcpoce, etcaltcontact1, etcaltcontact2, etcgoods, etccrno, etcvatno, etcaddinfo, etcglink, etcbankname, etcbenname, etcacno, etcbankadd, etcibanno, etcnotes;
-    private Button btnSave;
+    private Button btnSave,btnAddProduct;
 
     private DatabaseReference vendorsRef;
     private BusinessVendor currentVendor;
+    private List<String> productsList;
+    private TextView textViewProducts;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_business_vendors);
+        productsList = new ArrayList<>();
 
         vendorsRef = FirebaseDatabase.getInstance().getReference().child("BusinessVendors");
 
@@ -43,6 +54,8 @@ public class EditBiVendorsActivity extends AppCompatActivity {
 
         etcid = findViewById(R.id.etcid);
         etcname = findViewById(R.id.etcname);
+        textViewProducts=findViewById(R.id.tvproducts);
+        btnAddProduct=findViewById(R.id.btnaddproducts);
         etcsname = findViewById(R.id.etcsname);
         etcmaddress = findViewById(R.id.etcmaddress);
         etcweb = findViewById(R.id.etcweb);
@@ -83,7 +96,10 @@ public class EditBiVendorsActivity extends AppCompatActivity {
             etcpoce.setText(currentVendor.getCompanyPocEmail());
             etcaltcontact1.setText(currentVendor.getCompanyAltContact1());
             etcaltcontact2.setText(currentVendor.getCompanyAltContact2());
-            etcgoods.setText(currentVendor.getCompanyProducts());
+            //textViewProducts.setText(currentVendor.getCompanyProducts());
+            textViewProducts.append("\n" + currentVendor.getCompanyProducts());
+
+           //// textViewProducts.append(currentVendor.getCompanyProducts());
             etccrno.setText(currentVendor.getCompanyCrNumber());
             etcvatno.setText(currentVendor.getCompanyVatNumber());
             etcaddinfo.setText(currentVendor.getAdditionalInfo());
@@ -97,6 +113,15 @@ public class EditBiVendorsActivity extends AppCompatActivity {
         }
 
         btnSave.setOnClickListener(view -> validateAndSaveVendorDetails());
+
+        btnAddProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProduct();
+            }
+        });
+
+
     }
 
     private void validateAndSaveVendorDetails() {
@@ -114,7 +139,7 @@ public class EditBiVendorsActivity extends AppCompatActivity {
         String companyPocEmail = etcpoce.getText().toString().trim();
         String companyAltContact1 = etcaltcontact1.getText().toString().trim();
         String companyAltContact2 = etcaltcontact2.getText().toString().trim();
-        String companyProducts = etcgoods.getText().toString().trim();
+        String companyProducts = textViewProducts.getText().toString().trim();
         String companyCrNumber = etccrno.getText().toString().trim();
         String companyVatNumber = etcvatno.getText().toString().trim();
         String additionalInfo = etcaddinfo.getText().toString().trim();
@@ -201,4 +226,57 @@ public class EditBiVendorsActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    private void addProduct() {
+        String product = etcgoods.getText().toString().trim();
+
+        if (!product.isEmpty()) {
+            // Add product to the list
+            productsList.add(product);
+
+            // Update the TextView to display the products
+            updateProductsTextView();
+
+            // Clear the EditText for the next input
+            etcgoods.getText().clear();
+        }
+    }
+   /* private void updateProductsTextView() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String product : productsList) {
+            stringBuilder.append("(").append(product).append("), ");
+        }
+
+        // Remove the trailing comma and space
+        String productsText = stringBuilder.toString().replaceAll(", $", "");
+
+        // Set the updated products text to the TextView
+        textViewProducts.setText(productsText);
+
+
+    }*/
+/*
+    private void updateProductsTextView() {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (String product : productsList) {
+            stringBuilder.append("(").append(product).append("), ");
+        }
+
+        // Remove the trailing comma and space
+        String productsText = stringBuilder.toString().replaceAll(", $", "");
+
+        // Append the updated products text to the TextView
+        textViewProducts.append(productsText);
+    }*/
+    private void updateProductsTextView() {
+        if (!productsList.isEmpty()) {
+            String newProduct = productsList.get(productsList.size() - 1); // Get the latest product
+
+            // Append the new product to the TextView
+            textViewProducts.append(",(" + newProduct + ") ");
+        }
+    }
+
 }
