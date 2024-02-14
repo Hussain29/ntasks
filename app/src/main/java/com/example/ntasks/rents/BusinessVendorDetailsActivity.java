@@ -9,6 +9,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -55,6 +56,8 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
     private LinearLayout telephonelayout, altlayout, alt2layout;
     private BusinessVendor businessVendor;
 
+    private Button EditBtn;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,6 +101,7 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             tvIBANNo = findViewById(R.id.tvbvendoribanno);
             tvNotes = findViewById(R.id.tvbvendornotes);
             tvbuizCard = findViewById(R.id.tvbvendorbuizcard);
+            EditBtn = findViewById(R.id.btnedit);
 
             // Set values to views
             // Use Picasso to load the vendor image
@@ -155,6 +159,16 @@ public class BusinessVendorDetailsActivity extends AppCompatActivity {
             // You may also finish the activity or handle it accordingly
             finish();
         }
+
+
+        EditBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BusinessVendorDetailsActivity.this, EditBiVendorsActivity.class);
+                intent.putExtra("business_vendor", businessVendor);
+                startActivity(intent);
+            }
+        });
 
 
         telephonelayout.setOnClickListener(new View.OnClickListener() {
