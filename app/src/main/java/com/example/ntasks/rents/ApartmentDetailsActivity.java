@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +40,7 @@ public class ApartmentDetailsActivity extends AppCompatActivity {
     private TextView tvDocApt;
     private TextView tvDocumentsApt;
     private TextView linkTextView;
+    private Button Editbtn;
 
     private Apartment apartment;
 
@@ -47,8 +49,19 @@ public class ApartmentDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apartment_details);
 
+        Editbtn = findViewById(R.id.btneditdetails);
+
         // Retrieve Apartment object from Intent
         apartment = getIntent().getParcelableExtra("apartment");
+
+        Editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ApartmentDetailsActivity.this, EditApartmentDetailsActivity.class);
+                intent.putExtra("apartment_details", apartment);
+                startActivity(intent);
+            }
+        });
 
         // Check if apartment is null before accessing its properties
         if (apartment != null) {

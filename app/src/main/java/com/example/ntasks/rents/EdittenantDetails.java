@@ -10,7 +10,7 @@ import android.view.MenuItem;
 
 import com.example.ntasks.R;
 
-public class EdittenantDetails extends AppCompatActivity {
+public class EditTenantDetails extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

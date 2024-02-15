@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -40,6 +41,8 @@ public class IndependentDetailsActivity extends AppCompatActivity {
 
     private TextView tvCoords;
 
+    private Button Editbtn;
+
     private Independent independent;
 
     @Override
@@ -56,6 +59,16 @@ public class IndependentDetailsActivity extends AppCompatActivity {
         String latlong= independent.getCoordinates();
 
 
+
+        Editbtn = findViewById(R.id.btneditdetails);
+        Editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IndependentDetailsActivity.this, EditIndependentDetailsActivity.class);
+                intent.putExtra("independent_details", independent);
+                startActivity(intent);
+            }
+        });
 
         imgloc.setOnClickListener(new View.OnClickListener() {
             @Override

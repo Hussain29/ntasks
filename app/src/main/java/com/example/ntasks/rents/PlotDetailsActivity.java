@@ -8,6 +8,7 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -34,6 +35,8 @@ public class PlotDetailsActivity extends AppCompatActivity {
     private TextView tvDocPlot;
     private TextView linkTextView;
     private TextView tvCoords;
+    private Button Editbtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,14 +44,20 @@ public class PlotDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_plot_details);
         ImageView imgloc=findViewById(R.id.imgloc);
 
-
-
-
-
-
         // Retrieve Plot object from Intent
         Plot plot = getIntent().getParcelableExtra("plot");
         String latlong= plot.getCoordinates();
+
+
+        Editbtn = findViewById(R.id.btneditdetails);
+        Editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlotDetailsActivity.this, EditPlotDetailsActivity.class);
+                intent.putExtra("plot_details", plot);
+                startActivity(intent);
+            }
+        });
 
         imgloc.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -3,7 +3,7 @@ package com.example.ntasks.rents;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Apartment implements Parcelable {
+public class  Apartment implements Parcelable {
 
     private String aptId;
     private String aptName;

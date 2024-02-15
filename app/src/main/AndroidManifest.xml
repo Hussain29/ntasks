@@ -36,25 +36,25 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".rents.EditIndependentDetails"
+            android:name=".rents.EditIndependentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EditApartmentDetails"
+            android:name=".rents.EditApartmentDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EditPlotDetails"
+            android:name=".rents.EditPlotDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EditFlatDetails"
+            android:name=".rents.EditFlatDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EditOwnerDetails"
+            android:name=".rents.EditOwnerDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EditVendorDetails"
+            android:name=".rents.EditVendorDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EdittenantDetails"
+            android:name=".rents.EditTenantDetails"
             android:exported="false" />
         <activity
             android:name=".rents.AdminConsoleActivity"

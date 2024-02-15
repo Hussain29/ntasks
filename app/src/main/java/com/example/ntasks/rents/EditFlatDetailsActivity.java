@@ -10,17 +10,17 @@ import android.view.MenuItem;
 
 import com.example.ntasks.R;
 
-public class EditIndependentDetails extends AppCompatActivity {
+public class EditFlatDetailsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_independent_details);
+        setContentView(R.layout.activity_edit_flat_details);
         // Get the ActionBar
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("EDIT VENDORS");
+        actionBar.setTitle("EDIT FLAT");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);

@@ -267,6 +267,66 @@ public class Independent implements Parcelable {
         return coordinates;
     }
 
+    public void setIndpId(String indpId) {
+        this.indpId = indpId;
+    }
+
+    public void setIndpName(String indpName) {
+        this.indpName = indpName;
+    }
+
+    public void setIndpAddress(String indpAddress) {
+        this.indpAddress = indpAddress;
+    }
+
+    public void setIndpArea(String indpArea) {
+        this.indpArea = indpArea;
+    }
+
+    public void setIndpUnits(String indpUnits) {
+        this.indpUnits = indpUnits;
+    }
+
+    public void setIndpFloor(String indpFloor) {
+        this.indpFloor = indpFloor;
+    }
+
+    public void setIndpShops(String indpShops) {
+        this.indpShops = indpShops;
+    }
+
+    public void setIndpNotes(String indpNotes) {
+        this.indpNotes = indpNotes;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setDocuUrl(String docuUrl) {
+        this.docuUrl = docuUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setDocuType(String docuType) {
+        this.docuType = docuType;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
     @Override
     public int describeContents() {
         return 0;

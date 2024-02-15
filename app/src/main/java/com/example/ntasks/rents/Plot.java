@@ -128,6 +128,62 @@ public class Plot implements Parcelable {
         return coordinates;
     }
 
+    public void setPltId(String pltId) {
+        this.pltId = pltId;
+    }
+
+    public void setPltName(String pltName) {
+        this.pltName = pltName;
+    }
+
+    public void setPltAddress(String pltAddress) {
+        this.pltAddress = pltAddress;
+    }
+
+    public void setPltArea(String pltArea) {
+        this.pltArea = pltArea;
+    }
+
+    public void setPltFloor(String pltFloor) {
+        this.pltFloor = pltFloor;
+    }
+
+    public void setPltShops(String pltShops) {
+        this.pltShops = pltShops;
+    }
+
+    public void setPltNotes(String pltNotes) {
+        this.pltNotes = pltNotes;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
+    }
+
+    public void setOwnerName(String ownerName) {
+        this.ownerName = ownerName;
+    }
+
+    public void setDocType(String docType) {
+        this.docType = docType;
+    }
+
+    public void setDocUrl(String docUrl) {
+        this.docUrl = docUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
+    }
+
     @Override
     public int describeContents() {
         return 0;
