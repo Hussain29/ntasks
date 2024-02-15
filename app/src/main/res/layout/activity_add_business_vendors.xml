@@ -485,21 +485,26 @@
             <LinearLayout
 
                 android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_14sdp"
+
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
+                    android:layout_height="@dimen/_80sdp"
+
                     android:orientation="horizontal">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardVieww3"
+                        android:layout_marginLeft="@dimen/_4sdp"
                         android:layout_width="@dimen/_230sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginLeft="22dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginRight="22dp"
-                        app:cardCornerRadius="6dp">
+                        android:layout_height="@dimen/_60sdp"
+                        app:cardCornerRadius="6dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputLayout
 
@@ -526,13 +531,16 @@
 
                     <Button
                         android:id="@+id/btnaddproducts"
-                        android:layout_width="@dimen/_40sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_marginTop="@dimen/_8sdp"
-                        android:text="+"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:background="@android:drawable/ic_menu_upload_you_tube"
                         android:textAlignment="center"
-                        android:textSize="@dimen/_40sdp" />
-                </LinearLayout>
+                        android:textSize="@dimen/_40sdp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/cardVieww3"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:id="@+id/tvproducts"

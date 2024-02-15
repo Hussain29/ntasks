@@ -35,18 +35,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
-
+        <activity
+            android:name=".rents.EditIndependentDetails"
+            android:exported="false" />
+        <activity
+            android:name=".rents.EditApartmentDetails"
+            android:exported="false" />
+        <activity
+            android:name=".rents.EditPlotDetails"
+            android:exported="false" />
+        <activity
+            android:name=".rents.EditFlatDetails"
+            android:exported="false" />
+        <activity
+            android:name=".rents.EditOwnerDetails"
+            android:exported="false" />
+        <activity
+            android:name=".rents.EditVendorDetails"
+            android:exported="false" />
+        <activity
+            android:name=".rents.EdittenantDetails"
+            android:exported="false" />
         <activity
             android:name=".rents.AdminConsoleActivity"
             android:exported="false" />
-
         <activity
             android:name=".rents.EditBiVendorsActivity"
             android:exported="false" />
         <activity
             android:name=".PasswordsActivity"
             android:exported="false" />
-
         <activity
             android:name=".rents.RemoveUsersActivity"
             android:exported="false" />
