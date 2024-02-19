@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -95,6 +96,14 @@ public class EditIndependentDetailsActivity extends AppCompatActivity {
                 showFileChooser(PICK_FILE_REQUEST_IMG);
             }
         });
+
+        LinearLayout llAttach = findViewById(R.id.llattach);
+        llAttach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser(PICK_FILE_REQUEST_DOC);
+            }
+        });// Add this line to your existing declarations
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override

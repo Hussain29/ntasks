@@ -48,7 +48,7 @@ public class AddTenantActivity extends AppCompatActivity {
     private Uri imageUri;
     private Uri documentUri;
     private Spinner docTypeSpinner;
-    private Spinner spinnerpay, spinnernoof, spinid, propertySpinner;
+    private Spinner spinnerpay, spinnernoof, propertySpinner;
     private ProgressDialog progressDialog;
     private EditText etTenantId, etTenantName, etTenantFatherName, etTenantPerAddress, etTenantPrevAddress,
             etTenantOccupation, etTenantWorkAddress, etTenantPhoneNumber, etTenantPhoneNumber2,
@@ -200,11 +200,13 @@ public class AddTenantActivity extends AppCompatActivity {
 
         List<String> propertyList = new ArrayList<>();
         AtomicInteger requestsCompleted = new AtomicInteger(0);
+        propertyList.add("Select Property");
 
         ValueEventListener propertyListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot propertySnapshot : dataSnapshot.getChildren()) {
+
                     String propertyName;
                     if (dataSnapshot.getKey().equals("Flats")) {
                         propertyName = propertySnapshot.child("flatNo").getValue(String.class)  + ", " + propertySnapshot.child("apartmentName").getValue(String.class);
@@ -324,6 +326,11 @@ public class AddTenantActivity extends AppCompatActivity {
                 }
             });
         }
+        else {
+            Toast.makeText(AddTenantActivity.this, "Please fill all the necessary fields", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
     private Tenant extractTenantDetailsFromUI() {

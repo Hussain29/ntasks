@@ -1,5 +1,6 @@
 package com.example.ntasks.rents;
 
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -32,6 +33,8 @@ public class VendorDetailsActivity extends AppCompatActivity {
     private TextView docIdTypeTextView;
     private TextView linkTextView;
 
+    private Button Btnedit;
+
     private Vendor vendor;
 
     @Override
@@ -53,6 +56,16 @@ public class VendorDetailsActivity extends AppCompatActivity {
             vendorNotesTextView = findViewById(R.id.tvnotesv);
             docIdTypeTextView = findViewById(R.id.tvidv);
             linkTextView = findViewById(R.id.linkTextView);
+            Btnedit = findViewById(R.id.btneditdetails);
+
+            Btnedit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(VendorDetailsActivity.this, EditVendorDetailsActivity.class);
+                    intent.putExtra("vendor_details", vendor);
+                    startActivity(intent);
+                }
+            });
 
             // Set TextViews with vendor details
             vendorNameTextView.setText("\t\tName: " + vendor.getVendorName());

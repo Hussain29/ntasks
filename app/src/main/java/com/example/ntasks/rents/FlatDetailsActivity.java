@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -51,7 +52,18 @@ public class FlatDetailsActivity extends AppCompatActivity {
         TextView tvfType = findViewById(R.id.tvflattype);
         TextView tvOwnerName = findViewById(R.id.tvownerfapt);
         TextView tvVendorName = findViewById(R.id.tvvendorfapt);
+
         Button btnApartmentDetails = findViewById(R.id.btnApartmentDetails);
+        Button btnEdit = findViewById(R.id.btneditdetails);
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(FlatDetailsActivity.this, EditFlatDetailsActivity.class);
+                intent.putExtra("flat_details", flat);
+                startActivity(intent);
+            }
+        });
 
         // Check if the flat object is not null
         if (flat != null) {

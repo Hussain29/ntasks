@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -86,6 +87,14 @@ public class EditPlotDetailsActivity extends AppCompatActivity {
         docTypeSpinner = findViewById(R.id.spinnerdoc);
         spinOwner = findViewById(R.id.spinowner);
         spinVendors = findViewById(R.id.spinvendors);
+
+        LinearLayout llAttach = findViewById(R.id.llattach);
+        llAttach.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showFileChooser(PICK_FILE_REQUEST_DOC);
+            }
+        });// Add this line to your existing declarations
 
         plotImageView.setOnClickListener(new View.OnClickListener() {
             @Override

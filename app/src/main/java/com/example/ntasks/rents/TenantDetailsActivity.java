@@ -2,6 +2,7 @@ package com.example.ntasks.rents;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.View;
@@ -12,12 +13,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
-import com.example.ntasks.AssgnTaskDetailsActivity;
 import com.example.ntasks.R;
-import com.example.ntasks.TaskModel;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -35,6 +33,7 @@ public class TenantDetailsActivity extends AppCompatActivity {
 
     private Button btnEndTenant;
     private Button btnReTenant;
+    private Button Editbtn;
 
     private Tenant tenant;
 
@@ -42,6 +41,8 @@ public class TenantDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tenant_details);
+
+        tenant = getIntent().getParcelableExtra("tenant");
 
         // Initialize your views
         ivTenantPic = findViewById(R.id.ivtenantpic);
@@ -66,10 +67,16 @@ public class TenantDetailsActivity extends AppCompatActivity {
 
         btnEndTenant = findViewById(R.id.btnEndTenant);
         btnReTenant = findViewById(R.id.btnReTenant);
+        Editbtn = findViewById(R.id.btneditdetails);
 
-
-        // Retrieve Tenant data from Intent
-        tenant = getIntent().getParcelableExtra("tenant");
+        Editbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TenantDetailsActivity.this, EditTenantDetailsActivity.class);
+                intent.putExtra("tenant_details", tenant);
+                startActivity(intent);
+            }
+        });
 
         if(tenant.getStatus().equals("PAST")){
             btnEndTenant.setVisibility(View.GONE);// Show the logout button

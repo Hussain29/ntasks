@@ -36,6 +36,7 @@ public class OwnerDetailsActivity extends AppCompatActivity {
 
     private Owner owner;
     private Button downloadIdButton;
+    private Button Editbtn;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +59,16 @@ public class OwnerDetailsActivity extends AppCompatActivity {
             ownerNotesTextView = findViewById(R.id.tvnoteso);
             docIdTypeTextView = findViewById(R.id.tvido);
             linkTextView = findViewById(R.id.linkTextView);
+            Editbtn = findViewById(R.id.btneditdetails);
+
+            Editbtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(OwnerDetailsActivity.this, EditOwnerDetailsActivity.class);
+                    intent.putExtra("owner_details", owner);
+                    startActivity(intent);
+                }
+            });
             /*downloadIdButton = findViewById(R.id.downloadIdButton);*/
 
             // Set TextViews with owner details

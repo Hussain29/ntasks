@@ -465,7 +465,7 @@ public class AddVendorsActivity extends AppCompatActivity {
     }
 
     private void saveVendorDetails() {
-        String vendorId = etVendorId.getText().toString().trim();
+        String vendorId = vendorsRef.push().getKey();
         String vendorName = etVendorName.getText().toString().trim();
         String vendorAddress = etVendorAddress.getText().toString().trim();
         String vendorEmail = etVendorEmail.getText().toString().trim();

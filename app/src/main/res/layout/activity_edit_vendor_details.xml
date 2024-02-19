@@ -280,7 +280,7 @@
             </androidx.cardview.widget.CardView>
 
             <Spinner
-                android:id="@+id/spinnervendor"
+                android:id="@+id/spinnerdoctype"
                 style="@style/Widget.AppCompat.Spinner.DropDown"
                 android:layout_width="210dp"
                 android:layout_height="45dp"
@@ -303,7 +303,7 @@
                 android:elevation="@dimen/_12sdp">
 
                 <LinearLayout
-
+                    android:id="@+id/llattach"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">

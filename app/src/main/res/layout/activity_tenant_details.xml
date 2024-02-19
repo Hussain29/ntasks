@@ -430,7 +430,7 @@
                 android:id="@+id/btneditdetails"
                 android:text="EDIT DETAILS"
                 android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/_12sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <Button

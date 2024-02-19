@@ -27,7 +27,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-
+            android:id="@+id/ivaddflat"
             android:layout_width="@dimen/_70sdp"
             android:layout_height="@dimen/_70sdp"
             android:layout_marginTop="@dimen/_12sdp"
@@ -86,7 +86,7 @@
 
             </androidx.cardview.widget.CardView>
             <Spinner
-                android:id="@+id/spinapart"
+                android:id="@+id/spinapartment"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginLeft="22dp"
@@ -96,7 +96,7 @@
                 android:background="@drawable/spinnerbg" />
 
             <Spinner
-                android:id="@+id/spinftype"
+                android:id="@+id/spinflattype"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginLeft="22dp"
@@ -256,7 +256,7 @@
             </androidx.cardview.widget.CardView>
 
             <Spinner
-                android:id="@+id/spinid"
+                android:id="@+id/spindoctype"
                 style="@style/Widget.AppCompat.Spinner.DropDown"
                 android:layout_width="210dp"
 

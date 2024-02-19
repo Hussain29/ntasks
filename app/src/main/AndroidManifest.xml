@@ -54,7 +54,7 @@
             android:name=".rents.EditVendorDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".rents.EditTenantDetails"
+            android:name=".rents.EditTenantDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".rents.AdminConsoleActivity"
