@@ -15,27 +15,22 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tvPOsub"
+            android:id="@+id/tvPOsubject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="PO SUbjectSubjectSubjectSubject"
+            android:text="PO SubjectSubjectSubjectSubject"
             android:textAlignment="center"
             android:textSize="@dimen/_20sdp" />
 
-        <TextView
-            android:id="@+id/tvPOrem"
+        <EditText
+            android:id="@+id/tvPOremarks"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="111dp"
             android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:text="PO SUbjectSubjectSubjectSubject"
             android:textAlignment="gravity"
-            android:textSize="@dimen/_20sdp" />
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="DOWNLOAD P.O." />
+            android:textSize="@dimen/_15sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -48,27 +43,28 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tvPOAssignedBy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-
-                    android:text="A.By. Mohammed SulemanAhmed"
+                    android:text="A.By. Mohammed Suleman Ahmed"
                     android:textSize="@dimen/_13sdp" />
 
                 <TextView
+                    android:id="@+id/tvPOAssignedTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
-
-                    android:text="A.By. Mohammed SulemanAhmed"
+                    android:text="A.To. Mohammed SulemanAhmed"
                     android:textSize="@dimen/_13sdp" />
 
             </LinearLayout>
 
             <TextView
+                android:id="@+id/tvPODate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:text="Date:19-04-2024"
                 android:textSize="@dimen/_13sdp" />
@@ -79,14 +75,24 @@
 
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/tvAttachmentLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_5sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:text="PO Attachment Link: "
+        android:textStyle="bold" />
+
     <Button
+        android:id="@+id/btnPOUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
       android:layout_margin="@dimen/_20sdp"
         android:text="Update Remarks"
         android:layout_gravity="center"
-
-        android:textSize="@dimen/_19sdp" />
+        android:textSize="@dimen/_14sdp" />
 
 
 </LinearLayout>

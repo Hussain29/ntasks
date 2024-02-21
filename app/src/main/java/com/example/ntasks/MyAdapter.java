@@ -134,14 +134,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         @Override
         public void onClick(View v) {
-            Log.d("MyAdapter", "Clicked on item at position: " + getAdapterPosition());
-            Log.d("MyAdapter", "Clicked on item at position11: " + onItemClickListener);
 
             if (onItemClickListener != null) {
                 int position = getAdapterPosition();
-                Log.d("MyAdapter", "Clicked on item at position22: " + position);
                 if (position != RecyclerView.NO_POSITION) {
-                    Log.d("MyAdapter", "Opening task details for item at position: " + position);
                     onItemClickListener.onItemClick(list.get(position));
                 }
             }

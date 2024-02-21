@@ -66,7 +66,7 @@ public class POmaster extends AppCompatActivity {
         btnaddpo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(POmaster.this, AddPO.class);
+                Intent intent = new Intent(POmaster.this, AddPOActivity.class);
                 startActivity(intent);
             }
         });
@@ -122,14 +122,14 @@ public class POmaster extends AppCompatActivity {
         // Set item click listener for GridView
         gridViewClients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                // Handle the click on a client name
-                String selectedClient = clientNames.get(position);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the selected client name
+                String selectedClientName = clientNames.get(position);
 
-                // Start TaskViewListActivity with the selected client's tasks
-                /*Intent intent = new Intent(AddClientActivity.this, ClientTasksActivity.class);
-                intent.putExtra("selectedClient", selectedClient);
-                startActivity(intent);*/
+                // Open PO List Activity and pass the selected client name
+               Intent intent = new Intent(POmaster.this, POListActivity.class);
+               intent.putExtra("CLIENT_NAME", selectedClientName);
+               startActivity(intent);
             }
         });
     }

@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.example.ntasks.PO.POmaster;
 import com.example.ntasks.rents.AdminConsoleActivity;
 import com.example.ntasks.rents.MasterBiVendors;
 import com.example.ntasks.rents.hrmaster;
@@ -78,8 +79,8 @@ public class Master extends AppCompatActivity {
         postbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Master.this, "Under Development", Toast.LENGTH_SHORT).show();
-
+                Intent intent22 = new Intent(Master.this, POmaster.class);
+                startActivity(intent22);
             }
         });
 

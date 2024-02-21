@@ -36,6 +36,18 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".PO.PODetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PO.AddPOActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PO.POListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PO.POmaster"
+            android:exported="false" />
+        <activity
             android:name=".rents.EditIndependentDetailsActivity"
             android:exported="false" />
         <activity

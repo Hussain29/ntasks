@@ -73,7 +73,6 @@ public class EditFlatDetailsActivity extends AppCompatActivity {
         int actionBarColor = ContextCompat.getColor(this, R.color.pinkkk);
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
-
         etFlatNo = findViewById(R.id.etflatno);
         etArea = findViewById(R.id.etarflat);
         etFlatNotes = findViewById(R.id.etflatNotes);
