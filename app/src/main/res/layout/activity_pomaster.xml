@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PO.POmaster">
+
+    <Button
+        android:id="@+id/btnaddpo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:text="ADD P.O."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textClientD"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonTextInputLayoutContainer"
+        android:layout_centerHorizontal="true"
+        android:text="Clients"
+        android:textColor="@color/text"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <!-- GridView to display a grid of client buttons -->
+    <GridView
+        android:id="@+id/gridViewClients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textClientD"
+        android:background="@drawable/gridview_border"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:columnWidth="100dp"
+        android:gravity="center"
+        android:numColumns="2"
+        android:padding="8dp"
+        android:stretchMode="columnWidth"
+        app:layout_constraintTop_toBottomOf="@+id/btnaddpo" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
