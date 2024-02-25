@@ -42,14 +42,14 @@ public class newPOmaster extends AppCompatActivity {
         });  button_compo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent5=new Intent(newPOmaster.this, comPO.class);
+                Intent intent5=new Intent(newPOmaster.this, CompletedPOActivity.class);
                 startActivity(intent5);
             }
         });
         buttonpenpo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent9 = new Intent(newPOmaster.this, PendingPO.class);
+                Intent intent9 = new Intent(newPOmaster.this, PendingPOActivity.class);
                 startActivity(intent9);
             }
         });

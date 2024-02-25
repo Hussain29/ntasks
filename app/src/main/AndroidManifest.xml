@@ -36,10 +36,10 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
-            android:name=".PO.comPO"
+            android:name=".PO.CompletedPOActivity"
             android:exported="false" />
         <activity
-            android:name=".PO.PendingPO"
+            android:name=".PO.PendingPOActivity"
             android:exported="false" />
         <activity
             android:name=".PO.newPOmaster"
