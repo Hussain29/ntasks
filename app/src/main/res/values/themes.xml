@@ -5,7 +5,16 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
 
-
     </style>
+
     <style name="Theme.Ntasks" parent="Base.Theme.Ntasks" />
+
+    <style name="Theme.Ntasks.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Ntasks.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Ntasks.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -61,7 +61,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/textView_login_email"
+                            android:id="@+id/textView_login_emailll"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="14dp"
@@ -78,7 +78,7 @@
                             app:cardCornerRadius="6dp">
 
                             <com.google.android.material.textfield.TextInputLayout
-                                android:id="@+id/textInputLayout"
+                                android:id="@+id/textInputLayouttt"
                                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="57dp"
@@ -170,7 +170,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvforgot"
+                            android:id="@+id/tvforgoot"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"

@@ -106,6 +106,9 @@
 
     <string name="Forgot"> <u>Forgot Your Password?</u>.</string>
     <string name="noacc">Do not have an Account? <u>Contact ADMIN</u>.</string>
+    <string name="title_activity_potabbed">POtabbed</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
 
 
 </resources>

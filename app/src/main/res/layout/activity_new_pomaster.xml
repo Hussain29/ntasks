@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PO.newPOmaster">
+    <LinearLayout
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_120sdp"
+
+
+        >
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/button_addPo"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="190dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:fontFamily="@font/interf"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:text="ADD PO"
+                android:textAlignment="center"
+                android:textSize="16dp"
+
+                app:icon="@drawable/addbox" /> <!-- Initially set to gone -->
+
+            <Button
+                android:id="@+id/buttonpenpo"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+
+                android:layout_width="190dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_below="@id/button_asndby"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/interf"
+                android:text="PENDING PO"
+                android:textAlignment="center"
+                android:textSize="16dp"
+
+
+
+                />
+
+            <Button
+                android:id="@+id/button_compo"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="190dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/interf"
+                android:text="COMPLETED PO"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                 />
+
+            <Button
+                android:id="@+id/button_clipo"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="190dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_below="@id/buttonPersonalTasks"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/interf"
+                android:text="Clients"
+                android:textSize="16dp"
+                 />
+
+            <Button
+                android:id="@+id/buttonShowAllTasks"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:layout_width="190dp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_below="@id/button_addclient"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/interf"
+                android:text="Show All Tasks"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                 />
+
+
+
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

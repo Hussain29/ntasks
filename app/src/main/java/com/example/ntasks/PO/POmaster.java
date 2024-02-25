@@ -24,11 +24,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 import java.util.ArrayList;
 
 public class POmaster extends AppCompatActivity {
     private EditText editTextClientName;
-    private Button btnaddpo;
+    private Button btnaddpo,testbtn;
     private GridView gridViewClients;
 
     private DatabaseReference clientsRef;
@@ -58,11 +59,19 @@ public class POmaster extends AppCompatActivity {
 
         gridViewClients = findViewById(R.id.gridViewClients);
         btnaddpo = findViewById(R.id.btnaddpo);
+        testbtn = findViewById(R.id.testbtn);
 
         // Initialize Firebase Realtime Database reference
         clientsRef = FirebaseDatabase.getInstance().getReference().child("Clients");
 
 
+
+        testbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         btnaddpo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

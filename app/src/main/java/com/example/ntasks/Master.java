@@ -18,8 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.example.ntasks.PO.POmaster;
-import com.example.ntasks.rents.AdminConsoleActivity;
+import com.example.ntasks.PO.newPOmaster;
 import com.example.ntasks.rents.MasterBiVendors;
 import com.example.ntasks.rents.hrmaster;
 import com.example.ntasks.rents.rentsmaster;
@@ -79,7 +78,7 @@ public class Master extends AppCompatActivity {
         postbtni.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent22 = new Intent(Master.this, POmaster.class);
+                Intent intent22 = new Intent(Master.this, newPOmaster.class);
                 startActivity(intent22);
             }
         });

@@ -36,6 +36,20 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".PO.comPO"
+            android:exported="false" />
+        <activity
+            android:name=".PO.PendingPO"
+            android:exported="false" />
+        <activity
+            android:name=".PO.newPOmaster"
+            android:exported="false" />
+        <activity
+            android:name=".PO.POtabbed"
+            android:exported="false"
+            android:label="@string/title_activity_potabbed"
+            android:theme="@style/Theme.Ntasks.NoActionBar" />
+        <activity
             android:name=".PO.PODetailsActivity"
             android:exported="false" />
         <activity
