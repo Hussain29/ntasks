@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.util.Linkify;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.app.DownloadManager;
@@ -113,12 +114,24 @@ public class PODetailsActivity extends AppCompatActivity {
 
     private void showCompleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Are you sure you want to change the status to complete?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+        View dialogView = getLayoutInflater().inflate(R.layout.dialog_complete_po_with_invoice, null);
+        builder.setView(dialogView);
+
+        TextView tvMessage = dialogView.findViewById(R.id.tvMessage);
+        EditText etInvoiceNo = dialogView.findViewById(R.id.etInvoiceNo);
+
+        tvMessage.setText("Are you sure you want to change the status to complete? Enter the invoice number below:");
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        // User clicked "Yes," so delete the task
-                        completeTask(selectedPO.getPoId());
+                        // User clicked "Yes," so complete the PO
+                        String invoiceNo = etInvoiceNo.getText().toString().trim();
+                        if (!invoiceNo.isEmpty()) {
+                            completePO(selectedPO.getPoId(), invoiceNo);
+                        } else {
+                            Toast.makeText(PODetailsActivity.this, "Please enter the invoice number", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 })
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -131,18 +144,6 @@ public class PODetailsActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void completeTask(String poId) {
-
-        // Update the status of the task to "COMPLETED" in the database
-        DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference().child("POs").child(poId);
-        taskRef.child("status").setValue("COMPLETED");
-
-        // You can also show a Toast message or handle UI updates to indicate success
-        Toast.makeText(PODetailsActivity.this, "PO marked as completed", Toast.LENGTH_SHORT).show();
-
-        // Close the current activity after updating the task status
-        finish();
-    }
 
     // Download PO attachment
     private void displayAttachmentLink(String url) {
@@ -163,5 +164,19 @@ public class PODetailsActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void completePO(String poId, String invoiceNo) {
+        // Update the status of the PO to "COMPLETED" and set the invoice number
+        DatabaseReference poRef = FirebaseDatabase.getInstance().getReference().child("POs").child(poId);
+        poRef.child("status").setValue("COMPLETED");
+        poRef.child("invoiceNo").setValue(invoiceNo);
+
+        // Show a message or perform any additional actions upon completion
+        Toast.makeText(PODetailsActivity.this, "Purchase order marked as completed with invoice number: " + invoiceNo, Toast.LENGTH_SHORT).show();
+
+        // Close the activity or perform any other necessary actions
+        finish();
+    }
+
 
 }

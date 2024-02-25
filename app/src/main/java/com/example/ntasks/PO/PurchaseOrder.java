@@ -13,13 +13,14 @@ public class PurchaseOrder implements Parcelable {
     private String client;
     private String selectedDate;
     private String status;
+    private String invoiceNo;
     private String poAttachmentUrl;
 
     public PurchaseOrder() {
         // Default constructor required for calls to DataSnapshot.getValue(PurchaseOrder.class)
     }
 
-    public PurchaseOrder(String poId, String poSubject, String poRemarks, String client, String selectedDate, String assignedUser, String assigner, String status,
+    public PurchaseOrder(String poId, String poSubject, String poRemarks, String client, String selectedDate, String assignedUser, String assigner, String status, String invoiceNo,
                          String poAttachmentUrl) {
         this.poId = poId;
         this.poSubject = poSubject;
@@ -29,6 +30,7 @@ public class PurchaseOrder implements Parcelable {
         this.assignedUser = assignedUser;
         this.assigner = assigner;
         this.status = status;
+        this.invoiceNo = invoiceNo;
         this.poAttachmentUrl = poAttachmentUrl;
     }
 
@@ -41,6 +43,7 @@ public class PurchaseOrder implements Parcelable {
         assignedUser = in.readString();
         assigner = in.readString();
         status = in.readString();
+        invoiceNo = in.readString();
         poAttachmentUrl = in.readString();
     }
 
@@ -55,6 +58,15 @@ public class PurchaseOrder implements Parcelable {
             return new PurchaseOrder[size];
         }
     };
+
+
+    public String getInvoiceNo() {
+        return invoiceNo;
+    }
+
+    public void setInvoiceNo(String invoiceNo) {
+        invoiceNo = invoiceNo;
+    }
 
     public String getStatus() {
         return status;
@@ -144,6 +156,7 @@ public class PurchaseOrder implements Parcelable {
         dest.writeString(assignedUser);
         dest.writeString(assigner);
         dest.writeString(status);
+        dest.writeString(invoiceNo);
         dest.writeString(poAttachmentUrl);
     }
 }

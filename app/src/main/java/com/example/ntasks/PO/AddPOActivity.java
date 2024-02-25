@@ -279,6 +279,7 @@ public class AddPOActivity extends AppCompatActivity {
         String client = spinnerClients.getSelectedItem().toString();
         String selectedDate = selectedDateTextView.getText().toString().trim();
         String status = "PENDING";
+        String invoiceNo = "000000";
 
         if (TextUtils.isEmpty(subject) || TextUtils.isEmpty(remarks) || TextUtils.isEmpty(client) || selectedDate.equals("Select Date: ")) {
             Toast.makeText(this, "Please fill all the fields.", Toast.LENGTH_SHORT).show();
@@ -291,21 +292,21 @@ public class AddPOActivity extends AppCompatActivity {
 
         // Push PO data for each assigned user separately
         if (!assignedUser1.equals("Select User")) {
-            pushPOData(subject, remarks, client, selectedDate, assignedUser1, assigner, status);
+            pushPOData(subject, remarks, client, selectedDate, assignedUser1, assigner, status, invoiceNo);
         }
 
         if (!assignedUser2.equals("Select User")) {
-            pushPOData(subject, remarks, client, selectedDate, assignedUser2, assigner, status);
+            pushPOData(subject, remarks, client, selectedDate, assignedUser2, assigner, status, invoiceNo);
         }
 
         if (!assignedUser3.equals("Select User")) {
-            pushPOData(subject, remarks, client, selectedDate, assignedUser3, assigner, status);
+            pushPOData(subject, remarks, client, selectedDate, assignedUser3, assigner, status, invoiceNo);
         }
     }
 
-    private void pushPOData(String subject, String remarks, String client, String selectedDate, String assignedUser, String assigner, String status) {
+    private void pushPOData(String subject, String remarks, String client, String selectedDate, String assignedUser, String assigner, String status, String invoiceNo) {
         String poId = poRef.push().getKey();
-        PurchaseOrder po = new PurchaseOrder(poId, subject, remarks, client, selectedDate, assignedUser, assigner, status, PODocUrl);
+        PurchaseOrder po = new PurchaseOrder(poId, subject, remarks, client, selectedDate, assignedUser, assigner, status, invoiceNo, PODocUrl);
         poRef.child(poId).setValue(po)
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(AddPOActivity.this, "Purchase Order submitted successfully for " + assignedUser, Toast.LENGTH_SHORT).show();
