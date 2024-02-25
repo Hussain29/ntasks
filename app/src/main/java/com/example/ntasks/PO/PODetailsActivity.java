@@ -1,5 +1,7 @@
 package com.example.ntasks.PO;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +18,7 @@ import android.os.Environment;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ntasks.AssgnTaskDetailsActivity;
 import com.example.ntasks.PO.PurchaseOrder;
 import com.example.ntasks.R;
 import com.example.ntasks.rents.ApartmentDetailsActivity;
@@ -46,6 +49,15 @@ public class PODetailsActivity extends AppCompatActivity {
         tvPOAttachmentLink = findViewById(R.id.tvAttachmentLink);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("POs");
+
+        Button btnPOComplete = findViewById(R.id.btnPOcomplete);
+
+        btnPOComplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCompleteConfirmationDialog();
+            }
+        });
 
         Button btnPOUpdate = findViewById(R.id.btnPOUpdate);
         btnPOUpdate.setOnClickListener(new View.OnClickListener() {
@@ -97,6 +109,39 @@ public class PODetailsActivity extends AppCompatActivity {
         }
 
         // Handle attachment download button click
+    }
+
+    private void showCompleteConfirmationDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to change the status to complete?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User clicked "Yes," so delete the task
+                        completeTask(selectedPO.getPoId());
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // User clicked "No," so dismiss the dialog
+                        dialogInterface.dismiss();
+                    }
+                })
+                .show();
+    }
+
+    private void completeTask(String poId) {
+
+        // Update the status of the task to "COMPLETED" in the database
+        DatabaseReference taskRef = FirebaseDatabase.getInstance().getReference().child("POs").child(poId);
+        taskRef.child("status").setValue("COMPLETED");
+
+        // You can also show a Toast message or handle UI updates to indicate success
+        Toast.makeText(PODetailsActivity.this, "PO marked as completed", Toast.LENGTH_SHORT).show();
+
+        // Close the current activity after updating the task status
+        finish();
     }
 
     // Download PO attachment

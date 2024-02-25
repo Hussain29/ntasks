@@ -106,6 +106,7 @@ public class POListActivity extends AppCompatActivity implements POAdapter.OnIte
                 po.getSelectedDate(),
                 po.getAssignedUser(),
                 po.getAssigner(),
+                po.getStatus(),
                 po.getPoAttachmentUrl()));
         startActivity(intent);
     }
