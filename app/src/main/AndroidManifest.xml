@@ -39,6 +39,9 @@
             android:name=".PO.CompletedPOActivity"
             android:exported="false" />
         <activity
+            android:name=".PO.AllPOActivity"
+            android:exported="false" />
+        <activity
             android:name=".PO.PendingPOActivity"
             android:exported="false" />
         <activity

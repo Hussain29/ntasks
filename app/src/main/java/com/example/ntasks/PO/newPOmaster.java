@@ -11,7 +11,7 @@ import com.example.ntasks.R;
 
 public class newPOmaster extends AppCompatActivity {
 
-    private Button button_clipo, button_compo, buttonpenpo, button_addPo;
+    private Button button_clipo, button_compo, button_penpo, button_addPo, button_allPo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,8 +20,9 @@ public class newPOmaster extends AppCompatActivity {
 
         button_clipo=findViewById(R.id.button_clipo);
         button_compo=findViewById(R.id.button_compo);
-        buttonpenpo=findViewById(R.id.buttonpenpo);
+        button_penpo=findViewById(R.id.buttonpenpo);
         button_addPo=findViewById(R.id.button_addPo);
+        button_allPo=findViewById(R.id.buttonShowAllPOs);
 
 
 
@@ -39,18 +40,26 @@ public class newPOmaster extends AppCompatActivity {
                 Intent intent2=new Intent(newPOmaster.this, AddPOActivity.class);
                 startActivity(intent2);
             }
-        });  button_compo.setOnClickListener(new View.OnClickListener() {
+        });
+        button_compo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent5=new Intent(newPOmaster.this, CompletedPOActivity.class);
                 startActivity(intent5);
             }
         });
-        buttonpenpo.setOnClickListener(new View.OnClickListener() {
+        button_penpo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent9 = new Intent(newPOmaster.this, PendingPOActivity.class);
                 startActivity(intent9);
+            }
+        });
+        button_allPo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent91 = new Intent(newPOmaster.this, PendingPOActivity.class);
+                startActivity(intent91);
             }
         });
 

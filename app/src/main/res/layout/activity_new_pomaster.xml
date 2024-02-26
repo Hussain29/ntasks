@@ -85,7 +85,7 @@
                  />
 
             <Button
-                android:id="@+id/buttonShowAllTasks"
+                android:id="@+id/buttonShowAllPOs"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                 android:layout_width="190dp"
                 android:layout_height="@dimen/_60sdp"
@@ -94,7 +94,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:fontFamily="@font/interf"
-                android:text="Show All Tasks"
+                android:text="All PO's"
                 android:textAlignment="center"
                 android:textSize="16dp"
                  />
