@@ -29,7 +29,6 @@ import java.util.ArrayList;
 
 public class POmaster extends AppCompatActivity {
     private EditText editTextClientName;
-    private Button btnaddpo,testbtn;
     private GridView gridViewClients;
 
     private DatabaseReference clientsRef;
@@ -58,27 +57,12 @@ public class POmaster extends AppCompatActivity {
         progressDialog.show();
 
         gridViewClients = findViewById(R.id.gridViewClients);
-        btnaddpo = findViewById(R.id.btnaddpo);
-        testbtn = findViewById(R.id.testbtn);
+
 
         // Initialize Firebase Realtime Database reference
         clientsRef = FirebaseDatabase.getInstance().getReference().child("Clients");
 
 
-
-        testbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        btnaddpo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(POmaster.this, AddPOActivity.class);
-                startActivity(intent);
-            }
-        });
         // Load existing clients and update GridView
         loadClientsAndUpdateGridView();
     }
