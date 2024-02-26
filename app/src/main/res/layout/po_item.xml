@@ -17,7 +17,7 @@
         android:layout_marginTop="@dimen/_4sdp"
         android:layout_marginLeft="@dimen/_9sdp"
         android:text="PO SubjectSubjectSubject"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
