@@ -3,9 +3,11 @@ package com.example.ntasks.PO;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.util.Linkify;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,7 +19,9 @@ import android.os.Environment;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.AssgnTaskDetailsActivity;
 import com.example.ntasks.PO.PurchaseOrder;
@@ -108,10 +112,30 @@ public class PODetailsActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "PO Null", Toast.LENGTH_SHORT).show();
         }
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("PO DETAILS");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         // Handle attachment download button click
     }
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
     private void showCompleteConfirmationDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View dialogView = getLayoutInflater().inflate(R.layout.dialog_complete_po_with_invoice, null);

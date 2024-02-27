@@ -5,23 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Filter;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ntasks.PO.PurchaseOrder;
 import com.example.ntasks.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> {
+public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> implements POAdapterr {
 
     private Context context;
     private List<PurchaseOrder> poList;
+    private List<PurchaseOrder> filteredList;
+    private boolean isFiltering = false;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener {
+        void onBindViewHolder(@NonNull POViewHolder holder, int position);
+
         void onItemClick(PurchaseOrder po);
+
+        boolean onQueryTextSubmit(String query);
+
+        boolean onQueryTextChange(String newText);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
@@ -31,8 +40,36 @@ public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> {
     public POAdapter(Context context, List<PurchaseOrder> poList) {
         this.context = context;
         this.poList = poList;
+        this.filteredList = new ArrayList<>(poList);
+
     }
 
+
+    public void filter(String query) {
+        /*filteredList.clear();*/
+        if (query.isEmpty()) {
+            filteredList.clear();
+/*
+            isFiltering = false;
+*/
+            filteredList.addAll(poList);
+        } else {
+            filteredList.clear();
+            isFiltering = true;
+            query = query.toLowerCase().trim();
+            for (PurchaseOrder po : poList) {
+                if (po.getPoSubject().toLowerCase().contains(query)) {
+                    filteredList.add(po);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+    public void setDataList(ArrayList<PurchaseOrder> poList) {
+        this.poList = poList;
+        this.filteredList = new ArrayList<>(poList);
+        notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public POViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -41,8 +78,42 @@ public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> {
     }
 
     @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString().toLowerCase().trim();
+                List<PurchaseOrder> filteredList = new ArrayList<>();
+
+                if (charString.isEmpty()) {
+                    filteredList.addAll(poList);
+                } else {
+                    for (PurchaseOrder po : poList) {
+                        if (po.getPoSubject().toLowerCase().contains(charString)) {
+                            filteredList.add(po);
+                        }
+                    }
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                filteredList.clear();
+                filteredList.addAll((List<PurchaseOrder>) results.values);
+                notifyDataSetChanged();
+            }
+        };
+    }
+
+
+
+    @Override
     public void onBindViewHolder(@NonNull POViewHolder holder, int position) {
-        PurchaseOrder po = poList.get(position);
+        PurchaseOrder po = filteredList.get(position);
 
         holder.tvPOSubject.setText(po.getPoSubject());
         holder.tvAssignedBy.setText("A.By: " + po.getAssigner());
@@ -57,11 +128,32 @@ public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> {
                 }
             }
         });
+
+        String statuspo = po.getStatus();
+        if (statuspo != null) {
+            switch (statuspo.toLowerCase()) {
+                case "completed":
+                    holder.itemView.setBackgroundResource(R.drawable.done);
+                    break;
+                case "done":
+                    holder.itemView.setBackgroundResource(R.drawable.done);
+                    break;
+                default:
+                    holder.itemView.setBackgroundResource(R.drawable.assigned);
+                    break;
+            }
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.assigned);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return poList.size();
+        return filteredList.size();
+    }
+
+    public PurchaseOrder getItem(int position) {
+        return filteredList.get(position);
     }
 
     public static class POViewHolder extends RecyclerView.ViewHolder {
@@ -76,6 +168,4 @@ public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> {
             tvAssignedTo = itemView.findViewById(R.id.tvassignedto);
         }
     }
-
-
 }

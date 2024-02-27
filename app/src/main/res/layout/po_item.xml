@@ -4,50 +4,68 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:padding="@dimen/_10sdp"
+    android:padding="@dimen/_5sdp"
     android:elevation="4dp"
+    android:layout_margin="@dimen/_5sdp"
     app:cardCornerRadius="5dp"
     android:orientation="horizontal">
 
     <!-- PO Subject TextView -->
+
+    <!-- LinearLayout for Assigned By and Assigned To -->
+
     <TextView
         android:id="@+id/tvposubject"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_140sdp"
         android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_4sdp"
-        android:layout_marginLeft="@dimen/_9sdp"
+
+        android:fontFamily="@font/interf"
+        android:maxLength="16"
         android:text="PO SubjectSubjectSubject"
         android:textSize="@dimen/_12sdp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.454" />
 
-    <!-- LinearLayout for Assigned By and Assigned To -->
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
+        android:gravity="right"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvposubject"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="44">
 
         <!-- Assigned By TextView -->
+
+        <!-- Assigned To TextView -->
         <TextView
             android:id="@+id/tvassignedby"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_4sdp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/interf"
+            android:maxLength="26"
             android:text="A.By"
+            android:layout_margin="@dimen/_2sdp"
             android:textSize="@dimen/_10sdp" />
 
-        <!-- Assigned To TextView -->
         <TextView
             android:id="@+id/tvassignedto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_4sdp"
+            android:layout_gravity="left"
+            android:fontFamily="@font/interf"
+            android:maxLength="26"
+            android:layout_margin="@dimen/_2sdp"
+
             android:text="A.To."
             android:textSize="@dimen/_10sdp" />
 

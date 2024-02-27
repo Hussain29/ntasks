@@ -1,17 +1,24 @@
 package com.example.ntasks.PO;
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import com.example.ntasks.Master;
 import com.example.ntasks.R;
 
 public class newPOmaster extends AppCompatActivity {
 
     private Button button_clipo, button_compo, button_penpo, button_addPo, button_allPo;
+    private ImageView imageView_logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +31,28 @@ public class newPOmaster extends AppCompatActivity {
         button_addPo=findViewById(R.id.button_addPo);
         button_allPo=findViewById(R.id.buttonShowAllPOs);
 
+        imageView_logo=findViewById(R.id.imageView_logo);
 
+
+        imageView_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent89=new Intent(newPOmaster.this, Master.class);
+                startActivity(intent89);
+            }
+        });
+
+
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("PO");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
         button_clipo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,4 +93,18 @@ public class newPOmaster extends AppCompatActivity {
 
 
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 }

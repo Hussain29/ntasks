@@ -64,6 +64,7 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
                     PurchaseOrder purchaseOrder = snapshot.getValue(PurchaseOrder.class);
                     POList.add(purchaseOrder);
                 }
+                poAdapter.setDataList(POList);
                 poAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
             }
@@ -75,10 +76,25 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
         });
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull POAdapter.POViewHolder holder, int position) {
+
+    }
+
     // Handle item click on completed PO item
     @Override
     public void onItemClick(PurchaseOrder po) {
         openPODetailsActivity(po);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
     }
 
     private void openPODetailsActivity(PurchaseOrder po) {

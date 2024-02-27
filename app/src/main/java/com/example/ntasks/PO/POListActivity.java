@@ -1,26 +1,23 @@
 package com.example.ntasks.PO;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.widget.SearchView;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.graphics.drawable.ColorDrawable;
-
-import com.example.ntasks.ClientTasksActivity;
+import com.example.ntasks.PO.POAdapter;
+import com.example.ntasks.PO.PODetailsActivity;
 import com.example.ntasks.PO.PurchaseOrder;
-
-
 import com.example.ntasks.R;
-import com.example.ntasks.TaskDetailsActivity;
-import com.example.ntasks.TaskModel;
-import com.example.ntasks.Userlist;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,10 +33,12 @@ public class POListActivity extends AppCompatActivity implements POAdapter.OnIte
     private ArrayList<PurchaseOrder> poList;
     private ProgressDialog progressDialog;
     private String selectedClient;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_po_list);
 
         // Initialize views and variables
@@ -57,11 +56,49 @@ public class POListActivity extends AppCompatActivity implements POAdapter.OnIte
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("CLIENT_NAME")) {
             selectedClient = intent.getStringExtra("CLIENT_NAME");
-            getSupportActionBar().setTitle(selectedClient + "'s Tasks");
+            getSupportActionBar().setTitle(selectedClient + "'s PO");
         }
 
         // Load POs for the selected client from Firebase Realtime Database
         loadPOsForSelectedClient();
+
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("PO ACTIVITY");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+        // Set up SearchView
+        searchView = findViewById(R.id.svcppo);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                poAdapter.filter(newText);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // Load POs for the selected client from Firebase Realtime Database
@@ -81,6 +118,8 @@ public class POListActivity extends AppCompatActivity implements POAdapter.OnIte
                         poList.add(purchaseOrder);
                     }
                 }
+                poAdapter.setDataList(poList);
+
                 poAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
             }
@@ -92,9 +131,26 @@ public class POListActivity extends AppCompatActivity implements POAdapter.OnIte
         });
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull POAdapter.POViewHolder holder, int position) {
+
+    }
+
     // Handle item click on PO item
     @Override
-    public void onItemClick(PurchaseOrder po) {openPODetailsActivity(po);}
+    public void onItemClick(PurchaseOrder po) {
+        openPODetailsActivity(po);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
 
     private void openPODetailsActivity(PurchaseOrder po) {
         Intent intent = new Intent(POListActivity.this, PODetailsActivity.class);

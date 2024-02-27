@@ -5,12 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PO.CompletedPOActivity">
+    <SearchView
+        android:layout_marginTop="@dimen/_22sdp"
+        android:id="@+id/svcppo"
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCompletedPOs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewCompletedPOs"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/svcppo" />
 </androidx.constraintlayout.widget.ConstraintLayout>

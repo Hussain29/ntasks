@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".PO.POdetails">
 
@@ -16,11 +17,44 @@
 
         <TextView
             android:id="@+id/tvPOsubject"
-            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="PO SubjectSubjectSubjectSubject"
             android:textAlignment="center"
-            android:textSize="@dimen/_20sdp" />
+            android:fontFamily="@font/interf"
+            android:textSize="@dimen/_18sdp" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvtaskdescaqas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/cvtaskname"
+            android:layout_marginLeft="22dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="22dp"
+            app:cardCornerRadius="6dp">
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/textInputLayoutxcv"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="12dp"
+                app:boxStrokeWidth="0dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tvPOremarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/interf"
+                    android:hint="PO REMARKS"
+                    android:inputType="textMultiLine"
+                    android:minLines="4" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </androidx.cardview.widget.CardView>
+<!--
 
         <EditText
             android:id="@+id/tvPOremarks"
@@ -31,6 +65,7 @@
             android:text="PO SUbjectSubjectSubjectSubject"
             android:textAlignment="gravity"
             android:textSize="@dimen/_15sdp" />
+-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,10 +82,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/interf"
+
                     android:text="A.By. Mohammed Suleman Ahmed"
                     android:textSize="@dimen/_13sdp" />
 
                 <TextView
+                    android:fontFamily="@font/interf"
+
                     android:id="@+id/tvPOAssignedTo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -66,6 +105,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:fontFamily="@font/interf"
+
                 android:text="Date:19-04-2024"
                 android:textSize="@dimen/_13sdp" />
 
@@ -76,6 +117,8 @@
     </LinearLayout>
 
     <TextView
+        android:fontFamily="@font/interf"
+
         android:id="@+id/tvAttachmentLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
