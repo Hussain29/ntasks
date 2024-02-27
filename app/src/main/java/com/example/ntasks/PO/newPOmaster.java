@@ -86,7 +86,7 @@ public class newPOmaster extends AppCompatActivity {
         button_allPo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent91 = new Intent(newPOmaster.this, PendingPOActivity.class);
+                Intent intent91 = new Intent(newPOmaster.this, AllPOActivity.class);
                 startActivity(intent91);
             }
         });
