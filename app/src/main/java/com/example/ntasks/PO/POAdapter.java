@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Filter;
 
@@ -15,7 +16,7 @@ import com.example.ntasks.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> implements POAdapterr {
+public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> implements Filterable {
 
     private Context context;
     private List<PurchaseOrder> poList;
