@@ -118,7 +118,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.example.ntasks.PO.ShowMyPo;
+import com.example.ntasks.PO.ShowMyPoActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -126,7 +126,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -147,7 +146,7 @@ public class taskviewlist extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        showmypo=findViewById(R.id.btnshowpo);
+
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading tasks...");
         progressDialog.setCancelable(false);
@@ -167,11 +166,13 @@ public class taskviewlist extends AppCompatActivity {
         int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
 
+
+        showmypo=findViewById(R.id.btnshowposs);
         showmypo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(taskviewlist.this, ShowMyPo.class);
-                startActivity(intent);
+                Intent intent223=new Intent(taskviewlist.this, ShowMyPoActivity.class);
+                startActivity(intent223);
             }
         });
 

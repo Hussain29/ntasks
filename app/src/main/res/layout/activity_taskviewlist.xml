@@ -24,11 +24,12 @@
         android:textStyle="bold" />
 
     <Button
-        android:id="@+id/btnshowpo"
+        android:id="@+id/btnshowposs"
         android:layout_gravity="center"
         android:text="SHOW MY POs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/taskrecy"
         android:layout_width="match_parent"
