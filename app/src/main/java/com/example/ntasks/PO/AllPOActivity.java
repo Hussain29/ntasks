@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.graphics.drawable.ColorDrawable;
+import android.widget.SearchView;
 
 import com.example.ntasks.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +29,7 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
     private POAdapter poAdapter;
     private ArrayList<PurchaseOrder> POList;
     private ProgressDialog progressDialog;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,43 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
 
         // Load completed POs from Firebase Realtime Database
         loadCompletedPOs();
+        // Get the ActionBar
+        ActionBar actionBar = getSupportActionBar();
+
+        // Set the title
+        actionBar.setTitle("ALL PO");
+
+        // Enable the back button
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
+        actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+        // Set up SearchView
+        searchView = findViewById(R.id.svcppo);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                poAdapter.filter(newText);
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // Handle the back button click
+                onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     // Load completed POs from Firebase Realtime Database

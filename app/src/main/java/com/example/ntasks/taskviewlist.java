@@ -114,8 +114,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.ntasks.PO.ShowMyPo;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -138,13 +141,13 @@ public class taskviewlist extends AppCompatActivity {
     DatabaseReference dbref;
     MyAdapter myAdapter;
     ArrayList<Userlist> list;
-
+    Button showmypo;
     private ProgressDialog progressDialog;
     String assignerdbf;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        showmypo=findViewById(R.id.btnshowpo);
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Loading tasks...");
         progressDialog.setCancelable(false);
@@ -163,6 +166,15 @@ public class taskviewlist extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         int actionBarColor = ContextCompat.getColor(this, R.color.blueeee); // Replace with your color resource
         actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
+
+        showmypo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(taskviewlist.this, ShowMyPo.class);
+                startActivity(intent);
+            }
+        });
+
 
         assignerdbf = getCurrentUser();
         Log.d("TaskData", "Name: " + assignerdbf);

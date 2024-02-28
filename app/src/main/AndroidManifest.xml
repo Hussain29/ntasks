@@ -36,6 +36,9 @@
         android:theme="@style/Theme.Ntasks"
         tools:targetApi="31">
         <activity
+            android:name=".PO.ShowMyPo"
+            android:exported="false" />
+        <activity
             android:name=".PO.CompletedPOActivity"
             android:exported="false" />
         <activity

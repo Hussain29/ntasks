@@ -4,14 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <SearchView
+        android:id="@+id/svcppo"
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewPOs"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="4dp"
-        android:background="#E0E0E0"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/svcppo"
         android:clipToPadding="false"
+        android:padding="4dp"
         app:layoutManager="LinearLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </RelativeLayout>

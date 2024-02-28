@@ -71,7 +71,7 @@ public class PendingPOActivity extends AppCompatActivity implements POAdapter.On
         ActionBar actionBar = getSupportActionBar();
 
         // Set the title
-        actionBar.setTitle("PO");
+        actionBar.setTitle("PENDING PO");
 
         // Enable the back button
         actionBar.setDisplayHomeAsUpEnabled(true);
