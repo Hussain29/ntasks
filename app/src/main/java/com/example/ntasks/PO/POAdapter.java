@@ -119,6 +119,7 @@ public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> impl
         holder.tvPOSubject.setText(po.getPoSubject());
         holder.tvAssignedBy.setText("A.By: " + po.getAssigner());
         holder.tvAssignedTo.setText("A.To.: " + po.getAssignedUser());
+        holder.tvClientName.setText(po.getClient());
 
         // Set click listener for the item
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -161,12 +162,14 @@ public class POAdapter extends RecyclerView.Adapter<POAdapter.POViewHolder> impl
         TextView tvPOSubject;
         TextView tvAssignedBy;
         TextView tvAssignedTo;
+        TextView tvClientName;
 
         public POViewHolder(@NonNull View itemView) {
             super(itemView);
             tvPOSubject = itemView.findViewById(R.id.tvposubject);
             tvAssignedBy = itemView.findViewById(R.id.tvassignedby);
             tvAssignedTo = itemView.findViewById(R.id.tvassignedto);
+            tvClientName = itemView.findViewById(R.id.clientname);
         }
     }
 }

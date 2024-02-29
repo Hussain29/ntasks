@@ -35,7 +35,7 @@ public class ShowMyPoActivity extends AppCompatActivity implements POAdapter.OnI
     private POAdapter poAdapter;
     private ArrayList<PurchaseOrder> poList;
     private ProgressDialog progressDialog;
-    private String selectedClient;
+    private String selectedClient ;
     private SearchView searchView;
 
     @Override

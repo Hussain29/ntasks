@@ -140,7 +140,19 @@
         </LinearLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvInvoiceNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/interf"
+        android:padding="@dimen/_20sdp"
+        android:layout_gravity="center"
+        android:text="Invoice Number "
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tvAttachmentLink"

@@ -30,7 +30,7 @@ public class PurchaseOrder implements Parcelable {
         this.assignedUser = assignedUser;
         this.assigner = assigner;
         this.status = status;
-        this.invoiceNo = invoiceNo;
+                    this.invoiceNo = invoiceNo;
         this.poAttachmentUrl = poAttachmentUrl;
     }
 
@@ -65,7 +65,7 @@ public class PurchaseOrder implements Parcelable {
     }
 
     public void setInvoiceNo(String invoiceNo) {
-        invoiceNo = invoiceNo;
+        this.invoiceNo = invoiceNo;
     }
 
     public String getStatus() {

@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.util.Linkify;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -40,7 +41,7 @@ import java.net.URL;
 
 public class PODetailsActivity extends AppCompatActivity {
 
-    private TextView tvPOSubject, tvPOAssignedBy, tvPOAssignedTo, tvPODate, tvPORemarks, tvPOAttachmentLink;
+    private TextView tvPOSubject, tvPOAssignedBy, tvPOAssignedTo, tvPODate, tvPORemarks, tvPOAttachmentLink, tvClient, tvInvoiceNumber;
     private Button btnPOAttachDownload,btnPODown;
     private String poAttachmentUrl;
 
@@ -57,6 +58,8 @@ public class PODetailsActivity extends AppCompatActivity {
         tvPOAssignedTo = findViewById(R.id.tvPOAssignedTo);
         tvPODate = findViewById(R.id.tvPODate);
         tvPORemarks = findViewById(R.id.tvPOremarks);
+        tvClient = findViewById(R.id.tvPOclient);
+        tvInvoiceNumber = findViewById(R.id.tvInvoiceNo);
         tvPOAttachmentLink = findViewById(R.id.tvAttachmentLink);
 
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("POs");
@@ -72,10 +75,6 @@ public class PODetailsActivity extends AppCompatActivity {
         });
 
         Button btnPOUpdate = findViewById(R.id.btnPOUpdate);
-
-
-
-
 
         btnPOUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,6 +110,13 @@ public class PODetailsActivity extends AppCompatActivity {
         // Receive selected PO from intent
 
         selectedPO = getIntent().getParcelableExtra("PURCHASE_ORDER");
+        if (selectedPO != null) {
+            String invoiceNo = selectedPO.getInvoiceNo();
+            Log.d("InvoiceNo", "Value: " + invoiceNo);
+            // Your code to display PO details including the invoice number
+        } else {
+            Toast.makeText(this, "Purchase Order is null", Toast.LENGTH_SHORT).show();
+        }
 
         if (selectedPO != null) {
             // Set PO details to views
@@ -119,7 +125,26 @@ public class PODetailsActivity extends AppCompatActivity {
             tvPOAssignedTo.setText("A.To.: " + selectedPO.getAssignedUser());
             tvPODate.setText("Date: " + selectedPO.getSelectedDate());
             tvPORemarks.setText(selectedPO.getPoRemarks());
+            tvClient.setText(selectedPO.getClient());
             displayAttachmentLink(selectedPO.getPoAttachmentUrl());
+
+            String invoiceNo = selectedPO.getInvoiceNo();
+            Log.d("InvoiceNo", "Value: " + invoiceNo);
+
+            // Check if invoiceNo is equal to the default value "000000"
+            if ( invoiceNo != null && !invoiceNo.equals("000000")) {
+                // If invoice number is not the default value, display it and hide the Complete PO button
+                tvInvoiceNumber.setVisibility(View.VISIBLE);
+                tvInvoiceNumber.setText("Invoice Number: " + invoiceNo);
+                btnPOComplete.setVisibility(View.GONE);
+                Toast.makeText(this, "Invoice NO: " + invoiceNo, Toast.LENGTH_LONG).show();
+            } else {
+                // If invoice number is the default value, hide the TextView for invoice number and show the Complete PO button
+                tvInvoiceNumber.setVisibility(View.GONE);
+                btnPOComplete.setVisibility(View.VISIBLE);
+                Toast.makeText(this, "No Invoice", Toast.LENGTH_LONG).show();
+            }
+
 
 
         }

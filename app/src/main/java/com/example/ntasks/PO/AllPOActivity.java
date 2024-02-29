@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.example.ntasks.R;
 import com.google.firebase.database.DataSnapshot;
@@ -31,12 +32,15 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
     private ProgressDialog progressDialog;
     private SearchView searchView;
 
+    private TextView PendingCount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_po);
 
         // Initialize views and variables
+        PendingCount = findViewById(R.id.nopenpo);
         recyclerViewPOs = findViewById(R.id.recyclerViewPOs);
         progressDialog = new ProgressDialog(this);
         POList = new ArrayList<>();
@@ -98,14 +102,22 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int pendingCount = 0; // Initialize the count of pending POs
+
                 POList.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     PurchaseOrder purchaseOrder = snapshot.getValue(PurchaseOrder.class);
+                    if (purchaseOrder.getStatus().equals("PENDING")) { // Check if the PO is pending
+                        pendingCount++; // Increment the count for pending POs
+                    }
                     POList.add(purchaseOrder);
                 }
                 poAdapter.setDataList(POList);
                 poAdapter.notifyDataSetChanged();
                 progressDialog.dismiss();
+
+                // Update the PendingCount TextView with the number of pending POs
+                PendingCount.setText("Pending POs: " + pendingCount);
             }
 
             @Override
@@ -114,6 +126,7 @@ public class AllPOActivity extends AppCompatActivity implements POAdapter.OnItem
             }
         });
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull POAdapter.POViewHolder holder, int position) {

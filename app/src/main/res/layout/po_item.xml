@@ -34,7 +34,6 @@
         android:id="@+id/clientname"
         android:layout_width="wrap_content"
         android:layout_marginStart="@dimen/_10sdp"
-
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/_5sdp"
         android:maxLength="10"

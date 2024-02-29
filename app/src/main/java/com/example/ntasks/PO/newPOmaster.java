@@ -1,5 +1,6 @@
 package com.example.ntasks.PO;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -7,18 +8,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
+import android.app.ProgressDialog;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.example.ntasks.Master;
 import com.example.ntasks.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class newPOmaster extends AppCompatActivity {
 
     private Button button_clipo, button_compo, button_penpo, button_addPo, button_allPo;
     private ImageView imageView_logo;
+    private TextView tvPendingCount;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +41,53 @@ public class newPOmaster extends AppCompatActivity {
         button_penpo=findViewById(R.id.buttonpenpo);
         button_addPo=findViewById(R.id.button_addPo);
         button_allPo=findViewById(R.id.buttonShowAllPOs);
+        tvPendingCount = findViewById(R.id.nopenpo);
+
+        progressDialog = new ProgressDialog(this);
 
         imageView_logo=findViewById(R.id.imageView_logo);
+
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("POs");
+
+        progressDialog.setMessage("Loading...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                int pendingCount = 0; // Initialize the count of pending POs
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    PurchaseOrder purchaseOrder = snapshot.getValue(PurchaseOrder.class);
+                    if (purchaseOrder.getStatus().equals("PENDING")) { // Check if the PO is pending
+                        pendingCount++; // Increment the count for pending POs
+                    }
+                }
+                // Update the PendingCount TextView with the number of pending POs
+                tvPendingCount.setText("Pending PO's- " + pendingCount);
+                progressDialog.dismiss();
+                if(pendingCount==0){
+
+/*
+                    button_penpo.set
+*/
+                }
+                else {
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle errors
+            }
+        });
 
 
         imageView_logo.setOnClickListener(new View.OnClickListener() {
