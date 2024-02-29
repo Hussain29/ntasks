@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.app.ProgressDialog;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -68,16 +69,16 @@ public class newPOmaster extends AppCompatActivity {
                     }
                 }
                 // Update the PendingCount TextView with the number of pending POs
-                tvPendingCount.setText("Pending PO's- " + pendingCount);
+                tvPendingCount.setText("PENDING PO's- " + pendingCount);
                 progressDialog.dismiss();
-                if(pendingCount==0){
+                if(pendingCount>0){
 
-/*
-                    button_penpo.set
-*/
+
+                    button_penpo.setBackgroundColor(getResources().getColor(R.color.pendingcolour));
+
                 }
                 else {
-
+                    Toast.makeText(newPOmaster.this, "No pending POs", Toast.LENGTH_SHORT).show();
                 }
 
 
