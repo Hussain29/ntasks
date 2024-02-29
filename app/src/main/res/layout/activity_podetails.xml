@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".PO.POdetails">
+    tools:context=".PO.PODetailsActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,14 +17,15 @@
 
         <TextView
             android:id="@+id/tvPOsubject"
-            android:layout_gravity="center"
-            android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/interf"
             android:text="PO SubjectSubjectSubjectSubject"
             android:textAlignment="center"
-            android:fontFamily="@font/interf"
-            android:textSize="@dimen/_18sdp" />
+            android:textSize="@dimen/_18sdp"
+            android:textStyle="bold" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cvtaskdescaqas"
             android:layout_width="match_parent"
@@ -54,18 +55,18 @@
                     android:minLines="4" />
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
-<!--
+        <!--
 
-        <EditText
-            android:id="@+id/tvPOremarks"
-            android:layout_width="match_parent"
-            android:layout_height="111dp"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:text="PO SUbjectSubjectSubjectSubject"
-            android:textAlignment="gravity"
-            android:textSize="@dimen/_15sdp" />
--->
+                <EditText
+                    android:id="@+id/tvPOremarks"
+                    android:layout_width="match_parent"
+                    android:layout_height="111dp"
+                    android:layout_marginLeft="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:text="PO SUbjectSubjectSubjectSubject"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/_15sdp" />
+        -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,75 +76,109 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvPOAssignedBy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:fontFamily="@font/interf"
-
-                    android:text="A.By. Mohammed Suleman Ahmed"
+                    android:maxLength="25"
+                    android:text="A.By. Mohammed Sulemanahmed"
                     android:textSize="@dimen/_13sdp" />
 
                 <TextView
-                    android:fontFamily="@font/interf"
-
                     android:id="@+id/tvPOAssignedTo"
+
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:text="A.To. Mohammed SulemanAhmed"
+                    android:fontFamily="@font/interf"
+                    android:maxLength="25"
+
+                    android:text="A.To. Mohammed Sulemanahmed"
                     android:textSize="@dimen/_13sdp" />
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvPODate"
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:fontFamily="@font/interf"
+                android:orientation="vertical">
 
-                android:text="Date:19-04-2024"
-                android:textSize="@dimen/_13sdp" />
+                <TextView
+                    android:id="@+id/tvPOclient"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/interf"
+                    android:maxLines="19"
+                    android:text="Client NameName"
+                    android:textAlignment="center"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold" />
 
+                <TextView
+                    android:id="@+id/tvPODate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/interf"
 
+                    android:text="Date:19-04-2024"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
         </LinearLayout>
 
 
     </LinearLayout>
 
     <TextView
-        android:fontFamily="@font/interf"
-
         android:id="@+id/tvAttachmentLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/_5sdp"
-        android:layout_marginBottom="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:fontFamily="@font/interf"
+        android:padding="@dimen/_5sdp"
         android:text="PO Attachment Link: "
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/btnPODown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_20sdp"
+        android:text="Download Attachment"
+        android:textSize="@dimen/_14sdp" />
 
     <Button
         android:id="@+id/btnPOUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_margin="@dimen/_20sdp"
         android:text="Update Remarks"
-        android:layout_gravity="center"
         android:textSize="@dimen/_14sdp" />
 
     <Button
         android:id="@+id/btnPOcomplete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-      android:layout_margin="@dimen/_20sdp"
-        android:text="Complete PO"
         android:layout_gravity="center"
+        android:layout_margin="@dimen/_20sdp"
+        android:text="Complete PO"
         android:textSize="@dimen/_14sdp" />
 
 

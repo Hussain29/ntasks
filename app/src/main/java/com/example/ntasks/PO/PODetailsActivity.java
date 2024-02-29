@@ -32,10 +32,16 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 public class PODetailsActivity extends AppCompatActivity {
 
     private TextView tvPOSubject, tvPOAssignedBy, tvPOAssignedTo, tvPODate, tvPORemarks, tvPOAttachmentLink;
-    private Button btnPOAttachDownload;
+    private Button btnPOAttachDownload,btnPODown;
     private String poAttachmentUrl;
 
     PurchaseOrder selectedPO;
@@ -56,6 +62,7 @@ public class PODetailsActivity extends AppCompatActivity {
         DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("POs");
 
         Button btnPOComplete = findViewById(R.id.btnPOcomplete);
+        btnPODown=findViewById(R.id.btnPODown);
 
         btnPOComplete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +72,11 @@ public class PODetailsActivity extends AppCompatActivity {
         });
 
         Button btnPOUpdate = findViewById(R.id.btnPOUpdate);
+
+
+
+
+
         btnPOUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +120,8 @@ public class PODetailsActivity extends AppCompatActivity {
             tvPODate.setText("Date: " + selectedPO.getSelectedDate());
             tvPORemarks.setText(selectedPO.getPoRemarks());
             displayAttachmentLink(selectedPO.getPoAttachmentUrl());
+
+
         }
         else{
             Toast.makeText(this, "PO Null", Toast.LENGTH_SHORT).show();
@@ -170,7 +184,7 @@ public class PODetailsActivity extends AppCompatActivity {
 
 
     // Download PO attachment
-    private void displayAttachmentLink(String url) {
+    private void displayAttachmentLink(final String url) {
 
         // Set the autoLink property to web for automatic linking of URLs
         tvPOAttachmentLink.setAutoLinkMask(Linkify.WEB_URLS);
@@ -178,7 +192,8 @@ public class PODetailsActivity extends AppCompatActivity {
         // Set the text to the URL
         tvPOAttachmentLink.setText("Click To View PO Attachment: " + url);
 
-        // Set an onClickListener to perform some action when clicked
+
+
         tvPOAttachmentLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,6 +202,27 @@ public class PODetailsActivity extends AppCompatActivity {
                 Toast.makeText(PODetailsActivity.this, "Document URL Clicked", Toast.LENGTH_SHORT).show();
             }
         });
+
+        btnPODown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Replace "https://www.example.com" with your actual link
+                ///String link = "https://www.example.com";
+                if(url == null){
+                    Toast.makeText(PODetailsActivity.this, "NO FILE ATTACHED", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                // Create an Intent with ACTION_VIEW and the link URI
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+
+                // Start the activity to open the link
+                startActivity(intent);
+            }
+            }
+        });
+
+
+
     }
 
     private void completePO(String poId, String invoiceNo) {
@@ -201,6 +237,7 @@ public class PODetailsActivity extends AppCompatActivity {
         // Close the activity or perform any other necessary actions
         finish();
     }
+
 
 
 }
