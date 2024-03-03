@@ -13,11 +13,13 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.ntasks.PO.POAdapter;
 import com.example.ntasks.PO.PODetailsActivity;
 import com.example.ntasks.PO.PurchaseOrder;
 import com.example.ntasks.R;
+import com.example.ntasks.rents.RemoveUsersActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,6 +59,12 @@ public class POListActivity extends AppCompatActivity implements POAdapter.OnIte
         if (intent != null && intent.hasExtra("CLIENT_NAME")) {
             selectedClient = intent.getStringExtra("CLIENT_NAME");
             getSupportActionBar().setTitle(selectedClient + "'s PO");
+            Toast.makeText(POListActivity.this, "PO", Toast.LENGTH_SHORT).show();
+            Toast.makeText(POListActivity.this, "PO Name" + selectedClient, Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Toast.makeText(POListActivity.this, "NULL PO", Toast.LENGTH_SHORT).show();
+
         }
 
         // Load POs for the selected client from Firebase Realtime Database
