@@ -8,4 +8,4 @@
     android:textSize="14sp"
     android:layout_margin="18dp"
     android:background="@drawable/rounded_bg"
-    android:textColor="#000000" />
+    android:textColor="#171717" />

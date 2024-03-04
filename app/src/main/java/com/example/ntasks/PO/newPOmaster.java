@@ -72,10 +72,7 @@ public class newPOmaster extends AppCompatActivity {
                 tvPendingCount.setText("PENDING PO's- " + pendingCount);
                 progressDialog.dismiss();
                 if(pendingCount>0){
-
-
                     button_penpo.setBackgroundColor(getResources().getColor(R.color.pendingcolour));
-
                 }
                 else {
                     Toast.makeText(newPOmaster.this, "No pending POs", Toast.LENGTH_SHORT).show();

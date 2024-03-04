@@ -10,9 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/_7sdp"
-        android:layout_marginTop="@dimen/_22sdp"
-        android:layout_marginRight="@dimen/_3sdp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_10sdp"
         android:orientation="vertical">
 
         <TextView
@@ -21,6 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/interf"
+            android:layout_marginTop="@dimen/_15sdp"
             android:text="PO SubjectSubjectSubjectSubject"
             android:textAlignment="center"
             android:textSize="@dimen/_18sdp"
@@ -37,7 +37,6 @@
             app:cardCornerRadius="6dp">
 
             <com.google.android.material.textfield.TextInputLayout
-
                 android:id="@+id/textInputLayoutxcv"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -53,6 +52,7 @@
                     android:hint="PO REMARKS"
                     android:inputType="textMultiLine"
                     android:minLines="4" />
+
             </com.google.android.material.textfield.TextInputLayout>
         </androidx.cardview.widget.CardView>
         <!--
@@ -69,16 +69,54 @@
         -->
 
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvPODate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/interf"
+                android:text="Date:19-04-2024"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:layout_margin="@dimen/_3sdp"
+                android:padding="@dimen/_3sdp"
+                android:textSize="@dimen/_13sdp" />
+
+            <TextView
+                android:id="@+id/tvPOclient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:fontFamily="@font/interf"
+                android:maxLines="19"
+                android:layout_gravity="center"
+                android:text="Client NameName"
+                android:textAlignment="center"
+                android:padding="@dimen/_3sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_15sdp"
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:layout_marginBottom="@dimen/_10sdp">
+
 
                 <TextView
                     android:id="@+id/tvPOAssignedBy"
@@ -89,7 +127,7 @@
                     android:fontFamily="@font/interf"
                     android:maxLength="25"
                     android:text="A.By. Mohammed Sulemanahmed"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_10sdp" />
 
                 <TextView
                     android:id="@+id/tvPOAssignedTo"
@@ -102,45 +140,14 @@
                     android:maxLength="25"
 
                     android:text="A.To. Mohammed Sulemanahmed"
-                    android:textSize="@dimen/_13sdp" />
+                    android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tvPOclient"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="@dimen/_6sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/interf"
-                    android:maxLines="19"
-                    android:text="Client NameName"
-                    android:textAlignment="center"
-                    android:textSize="@dimen/_15sdp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvPODate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_6sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:fontFamily="@font/interf"
-
-                    android:text="Date:19-04-2024"
-                    android:textSize="@dimen/_13sdp" />
-
-            </LinearLayout>
         </LinearLayout>
 
 
-        </LinearLayout>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvInvoiceNo"
@@ -149,9 +156,10 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginBottom="@dimen/_5sdp"
         android:fontFamily="@font/interf"
-        android:padding="@dimen/_20sdp"
+        android:padding="@dimen/_15sdp"
         android:layout_gravity="center"
-        android:text="Invoice Number "
+        android:text="Invoice Number"
+        android:background="@drawable/border_invoice"
         android:textStyle="bold" />
 
     <TextView
@@ -171,7 +179,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/_20sdp"
+        android:layout_margin="@dimen/_15sdp"
         android:text="Download Attachment"
         android:textSize="@dimen/_14sdp" />
 
@@ -180,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="@dimen/_20sdp"
+        android:layout_margin="@dimen/_8sdp"
         android:text="Update Remarks"
         android:textSize="@dimen/_14sdp" />
 

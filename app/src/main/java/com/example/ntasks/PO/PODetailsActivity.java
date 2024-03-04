@@ -122,10 +122,10 @@ public class PODetailsActivity extends AppCompatActivity {
             // Set PO details to views
             tvPOSubject.setText(selectedPO.getPoSubject());
             tvPOAssignedBy.setText("A.By: " + selectedPO.getAssigner());
-            tvPOAssignedTo.setText("A.To.: " + selectedPO.getAssignedUser());
+            tvPOAssignedTo.setText("A.To: " + selectedPO.getAssignedUser());
             tvPODate.setText("Date: " + selectedPO.getSelectedDate());
             tvPORemarks.setText(selectedPO.getPoRemarks());
-            tvClient.setText(selectedPO.getClient());
+            tvClient.setText("Client: " + selectedPO.getClient());
             displayAttachmentLink(selectedPO.getPoAttachmentUrl());
 
             String invoiceNo = selectedPO.getInvoiceNo();
@@ -137,11 +137,13 @@ public class PODetailsActivity extends AppCompatActivity {
                 tvInvoiceNumber.setVisibility(View.VISIBLE);
                 tvInvoiceNumber.setText("Invoice Number: " + invoiceNo);
                 btnPOComplete.setVisibility(View.GONE);
+                btnPODown.setVisibility(View.VISIBLE);
                 Toast.makeText(this, "Invoice NO: " + invoiceNo, Toast.LENGTH_LONG).show();
             } else {
                 // If invoice number is the default value, hide the TextView for invoice number and show the Complete PO button
                 tvInvoiceNumber.setVisibility(View.GONE);
                 btnPOComplete.setVisibility(View.VISIBLE);
+                btnPODown.setVisibility(View.GONE);
                 Toast.makeText(this, "No Invoice", Toast.LENGTH_LONG).show();
             }
 

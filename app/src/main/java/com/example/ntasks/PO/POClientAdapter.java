@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ntasks.R;
 
@@ -54,6 +55,8 @@ public class POClientAdapter extends BaseAdapter {
         if (clientName.contains("*")) {
             // If yes, set the text with different color or style to highlight
             textViewClientName.setText(clientName);
+            textViewClientName.setTextColor(context.getResources().getColor(R.color.pendingcolour));
+
             // You can also set a different color or style for the '*' symbol
         } else {
             // If no pending POs, display the client name as it is
