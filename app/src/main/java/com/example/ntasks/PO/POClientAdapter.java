@@ -54,6 +54,7 @@ public class POClientAdapter extends BaseAdapter {
         // Check if the client name contains '*' symbol (indicating pending POs)
         if (clientName.contains("*")) {
             // If yes, set the text with different color or style to highlight
+            clientName = clientName.replaceAll("\\s*\\*", ""); // Remove '*' symbol and any surrounding spaces
             textViewClientName.setText(clientName);
             textViewClientName.setTextColor(context.getResources().getColor(R.color.pendingcolour));
 
