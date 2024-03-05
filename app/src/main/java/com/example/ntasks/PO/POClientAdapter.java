@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ntasks.R;
 
@@ -16,10 +15,12 @@ public class POClientAdapter extends BaseAdapter {
 
     private Context context;
     private ArrayList<String> clientNames;
+    private ArrayList<Integer> pendingCounts;
 
-    public POClientAdapter(Context context, ArrayList<String> clientNames) {
+    public POClientAdapter(Context context, ArrayList<String> clientNames, ArrayList<Integer> pendingCounts) {
         this.context = context;
         this.clientNames = clientNames;
+        this.pendingCounts = pendingCounts;
     }
 
     @Override
@@ -39,31 +40,39 @@ public class POClientAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-        if (view == null) {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.grid_item_layout, null);
+        ViewHolder holder;
+
+        if (convertView == null) {
+            convertView = LayoutInflater.from(context).inflate(R.layout.grid_item_layout, parent, false);
+            holder = new ViewHolder();
+            holder.textViewClientName = convertView.findViewById(R.id.textViewClientName);
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
 
-        // Get the current client name
+        // Get the client name and pending count for the current position
         String clientName = clientNames.get(position);
 
-        // Set the client name to the TextView in the custom layout
-        TextView textViewClientName = view.findViewById(R.id.textViewClientName);
+        clientName = clientName.replaceAll("\\s*\\*", ""); // Remove '*' symbol and any surrounding spaces
 
-        // Check if the client name contains '*' symbol (indicating pending POs)
-        if (clientName.contains("*")) {
-            // If yes, set the text with different color or style to highlight
-            clientName = clientName.replaceAll("\\s*\\*", ""); // Remove '*' symbol and any surrounding spaces
-            textViewClientName.setText(clientName);
-            textViewClientName.setTextColor(context.getResources().getColor(R.color.pendingcolour));
+        int pendingCount = pendingCounts.get(position);
 
-            // You can also set a different color or style for the '*' symbol
+
+        // Set the client name and pending count text
+        holder.textViewClientName.setText(clientName + (pendingCount > 0 ? " (" + pendingCount + ")" : ""));
+
+        // Set text color based on pending PO status
+        if (pendingCount > 0) {
+            holder.textViewClientName.setTextColor(context.getResources().getColor(R.color.pendingcolour));
         } else {
-            // If no pending POs, display the client name as it is
-            textViewClientName.setText(clientName);
+            holder.textViewClientName.setTextColor(context.getResources().getColor(android.R.color.black));
         }
 
-        return view;
+        return convertView;
+    }
+
+    static class ViewHolder {
+        TextView textViewClientName;
     }
 }

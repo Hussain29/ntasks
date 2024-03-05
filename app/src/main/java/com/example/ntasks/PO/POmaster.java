@@ -75,18 +75,19 @@ public class POmaster extends AppCompatActivity {
     }
 
     private void loadClientsAndUpdateGridView() {
+        ArrayList<String> clientNames = new ArrayList<>();
+        ArrayList<Integer> pendingCounts = new ArrayList<>(); // Initialize pendingCounts
+
         clientsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                ArrayList<String> clientNames = new ArrayList<>();
-
                 for (DataSnapshot clientSnapshot : dataSnapshot.getChildren()) {
                     String clientName = clientSnapshot.getValue(String.class);
 
                     // Check if client has pending POs
                     checkPendingPOsForClient(clientName, new PendingPOCallback() {
                         @Override
-                        public void onResult(String clientName, boolean hasPendingPO) {
+                        public void onResult(String clientName, boolean hasPendingPO, int pendingCount) {
                             // Modify client name if there are pending POs
                             if (hasPendingPO) {
                                 clientName += " *"; // Append '*' symbol
@@ -95,8 +96,11 @@ public class POmaster extends AppCompatActivity {
                             // Add modified client name to the list
                             clientNames.add(clientName);
 
+                            // Add pending count to the list
+                            pendingCounts.add(pendingCount);
+
                             // Update the GridView with client names
-                            updateGridView(clientNames);
+                            updateGridView(clientNames, pendingCounts);
                             progressDialog.dismiss();
                         }
                     });
@@ -111,6 +115,8 @@ public class POmaster extends AppCompatActivity {
         });
     }
 
+
+
     private void checkPendingPOsForClient(String clientName, PendingPOCallback callback) {
         DatabaseReference poRef = FirebaseDatabase.getInstance().getReference().child("POs");
         Query query = poRef.orderByChild("client").equalTo(clientName);
@@ -119,17 +125,18 @@ public class POmaster extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 boolean hasPending = false;
+                int pendingCount = 0;
                 for (DataSnapshot poSnapshot : dataSnapshot.getChildren()) {
                     PurchaseOrder po = poSnapshot.getValue(PurchaseOrder.class);
                     if (po != null && "PENDING".equals(po.getStatus())) {
                         Log.d("AAJJAAJJ", "Found pending PO for client: " + clientName);
                         hasPending = true;
-                        break;
+                        pendingCount++;
                     }
                 }
                 // Use the callback to pass the result
                 if (callback != null) {
-                    callback.onResult(clientName, hasPending);
+                    callback.onResult(clientName, hasPending, pendingCount);
                 }
             }
 
@@ -139,19 +146,19 @@ public class POmaster extends AppCompatActivity {
                 Log.e("AAJJAAJJ", "Database error: " + databaseError.getMessage());
                 // Use the callback to pass the result (false due to error)
                 if (callback != null) {
-                    callback.onResult(clientName, false);
+                    callback.onResult(clientName, false, 0);
                 }
             }
         });
     }
 
     interface PendingPOCallback {
-        void onResult(String clientName, boolean hasPendingPO);
+        void onResult(String clientName, boolean hasPendingPO, int pendingCount);
     }
 
-    private void updateGridView(ArrayList<String> clientNames) {
+    private void updateGridView(ArrayList<String> clientNames, ArrayList<Integer> pendingCounts) {
         // Use the custom adapter for GridView
-        POClientAdapter poClientAdapter = new POClientAdapter(this, clientNames);
+        POClientAdapter poClientAdapter = new POClientAdapter(this, clientNames, pendingCounts);
         gridViewClients.setAdapter(poClientAdapter);
 
         // Set item click listener for GridView
@@ -170,4 +177,6 @@ public class POmaster extends AppCompatActivity {
             }
         });
     }
+
+
 }
