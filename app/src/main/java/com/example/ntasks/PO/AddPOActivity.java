@@ -2,9 +2,11 @@ package com.example.ntasks.PO;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ntasks.AddTaskActivity;
@@ -272,7 +275,91 @@ public class AddPOActivity extends AppCompatActivity {
         }
     }
 
+
     private void submitPO() {
+        String subject = etPOsubject.getText().toString().trim();
+        String remarks = etPOremarks.getText().toString().trim();
+        String assigner = getCurrentUser();
+        String client = spinnerClients.getSelectedItem().toString();
+        String selectedDate = selectedDateTextView.getText().toString().trim();
+        String status = "PENDING";
+        String invoiceNo = "000000";
+
+        if (TextUtils.isEmpty(subject) || TextUtils.isEmpty(remarks) || TextUtils.isEmpty(client) || selectedDate.equals("Select Date: ")) {
+            Toast.makeText(this, "Please fill all the fields.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if ("Unknown User".equals(assigner)) {
+            showAssignerNameDialog(subject, remarks, client, selectedDate, status, invoiceNo);
+        } else {
+            String assignedUser1 = spinnerAssignedUser1.getSelectedItem().toString();
+            String assignedUser2 = spinnerAssignedUser2.getSelectedItem().toString();
+            String assignedUser3 = spinnerAssignedUser3.getSelectedItem().toString();
+
+            // Push PO data for each assigned user separately
+            if (!assignedUser1.equals("Select User")) {
+                pushPOData(subject, remarks, client, selectedDate, assignedUser1, assigner, status, invoiceNo);
+            }
+
+            if (!assignedUser2.equals("Select User")) {
+                pushPOData(subject, remarks, client, selectedDate, assignedUser2, assigner, status, invoiceNo);
+            }
+
+            if (!assignedUser3.equals("Select User")) {
+                pushPOData(subject, remarks, client, selectedDate, assignedUser3, assigner, status, invoiceNo);
+            }
+        }
+    }
+
+    private void showAssignerNameDialog(String subject, String remarks, String client, String selectedDate, String status, String invoiceNo) {
+        // Show a dialog to enter assigner's name
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Enter Assigner's Name");
+
+        // Set up the input
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+
+        // Set up the buttons
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String assignerName = input.getText().toString().trim();
+                if (!TextUtils.isEmpty(assignerName)) {
+                    String assignedUser1 = spinnerAssignedUser1.getSelectedItem().toString();
+                    String assignedUser2 = spinnerAssignedUser2.getSelectedItem().toString();
+                    String assignedUser3 = spinnerAssignedUser3.getSelectedItem().toString();
+
+                    // Push PO data for each assigned user separately
+                    if (!assignedUser1.equals("Select User")) {
+                        pushPOData(subject, remarks, client, selectedDate, assignedUser1, assignerName, status, invoiceNo);
+                    }
+
+                    if (!assignedUser2.equals("Select User")) {
+                        pushPOData(subject, remarks, client, selectedDate, assignedUser2, assignerName, status, invoiceNo);
+                    }
+
+                    if (!assignedUser3.equals("Select User")) {
+                        pushPOData(subject, remarks, client, selectedDate, assignedUser3, assignerName, status, invoiceNo);
+                    }
+                } else {
+                    Toast.makeText(AddPOActivity.this, "Please enter a valid name.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    /*private void submitPO() {
         String subject = etPOsubject.getText().toString().trim();
         String remarks = etPOremarks.getText().toString().trim();
         String assigner = getCurrentUser();
@@ -302,7 +389,7 @@ public class AddPOActivity extends AppCompatActivity {
         if (!assignedUser3.equals("Select User")) {
             pushPOData(subject, remarks, client, selectedDate, assignedUser3, assigner, status, invoiceNo);
         }
-    }
+    }*/
 
     private void pushPOData(String subject, String remarks, String client, String selectedDate, String assignedUser, String assigner, String status, String invoiceNo) {
         String poId = poRef.push().getKey();
