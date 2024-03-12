@@ -151,6 +151,7 @@
 
 
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
@@ -164,24 +165,37 @@
             android:id="@+id/selectedDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Selected Date: "
-            android:textSize="18sp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_margin="@dimen/_8sdp"
+            android:text="Select Date: "
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:textSize="@dimen/_16ssp"
+            android:fontFamily="@font/interf"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<Button
-    android:id="@+id/choseDatePickerButton"
-    android:layout_width="@dimen/_50sdp"
-    android:layout_gravity="right"
-    android:layout_marginLeft="@dimen/_60sdp"
-    android:layout_height="@dimen/_50sdp"/>
+        <ImageView
+            android:id="@+id/choseDatePickerButton"
+            android:layout_width="@dimen/_52sdp"
+            android:layout_height="@dimen/_52sdp"
+            android:layout_gravity="right"
+
+             android:layout_margin="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_25sdp"
+            android:background="@drawable/ic_calendar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/selectedDateTextView"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/submitPOButton"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/_170sdp"
         android:layout_gravity="center"
         android:text="ADD P.O."
+        android:textSize="@dimen/_18sdp"
          android:layout_height="@dimen/_50sdp"/>
 </LinearLayout>
